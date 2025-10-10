@@ -216,5 +216,5 @@ df = pd.DataFrame({
     "ratio_tamed/space": ratio_tamed,
     "ratio_trunc/space": ratio_trunc
 })
-from caas_jupyter_tools import display_dataframe_to_user
-display_dataframe_to_user("MFPT_Results", df)
+# from caas_jupyter_tools import display_dataframe_to_user
+# display_dataframe_to_user("MFPT_Results", df)
