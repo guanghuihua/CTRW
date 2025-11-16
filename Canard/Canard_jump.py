@@ -168,7 +168,7 @@ def detect_fast_jump_times_ssa(paths, x_threshold=1.5):
 # ---------- Run experiments ----------
 # Parameters
 # T_end = 5.0
-T_end = 40
+T_end = 500
 dt_ref = 1e-3
 
 # Time-discretization simulations
