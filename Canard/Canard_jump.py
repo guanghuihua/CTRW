@@ -70,7 +70,7 @@ def simulate_truncated(Npaths=20, dt=1e-3, T=5.0, x0=-1.5, y0=slow_manifold_xnul
 
 # ---------- Space-discretization: CTRW-SSA with Qu (finite-difference) ----------
 # Uniform rectangular grid with reflecting boundaries
-def build_grid(xmin=-2.5, xmax=2.5, ymin=-1.0, ymax=3.0, hx=0.05, hy=0.05):
+def build_grid(xmin=-2.5, xmax=2.5, ymin=-2.0, ymax=3.0, hx=0.05, hy=0.05):
     xs = np.arange(xmin, xmax+1e-12, hx)
     ys = np.arange(ymin, ymax+1e-12, hy)
     nx, ny = len(xs), len(ys)
@@ -167,7 +167,8 @@ def detect_fast_jump_times_ssa(paths, x_threshold=1.5):
 
 # ---------- Run experiments ----------
 # Parameters
-T_end = 5.0
+# T_end = 5.0
+T_end = 40
 dt_ref = 1e-3
 
 # Time-discretization simulations
@@ -188,7 +189,7 @@ plt.plot(Xt_tamed[0,:,0], Xt_tamed[0,:,1], lw=1.0, label="Tamed EM (dt=1e-3)")
 plt.plot(Xt_trunc[0,:,0], Xt_trunc[0,:,1], lw=1.0, label="Truncated EM (dt=1e-3)")
 p0 = paths_ssa[0]
 plt.plot(p0[:,1], p0[:,2], lw=1.0, label="CTRW-SSA (Qu)")
-plt.xlim([-2.5, 2.5]); plt.ylim([-1.0, 3.0])
+plt.xlim([-2.5, 2.5]); plt.ylim([-2.0, 3.0])
 plt.xlabel("x"); plt.ylabel("y"); plt.title("Stochastic Canard: sample trajectories")
 plt.legend()
 plt.tight_layout()
@@ -218,7 +219,7 @@ def occupancy_heat(X, xbins, ybins):
     return H.T, xe, ye
 
 xbins = np.linspace(-2.5, 2.5, 60)
-ybins = np.linspace(-1.0, 3.0, 60)
+ybins = np.linspace(-2.0, 3.0, 60)
 
 H_tamed, xe, ye = occupancy_heat(Xt_tamed, xbins, ybins)
 
