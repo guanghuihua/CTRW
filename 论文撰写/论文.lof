@@ -1,19 +1,15 @@
 \contentsline {figure}{\numberline {6.1}{\ignorespaces 两图共享一个标题}}{28}{figure.caption.10}%
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {子图1}}}{28}{subfigure.1.1}%
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {子图2}}}{28}{subfigure.1.2}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces 路径几何于快跳时间的分布}}{32}{figure.caption.11}%
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {背景为 $x$-零流形 $y=x^3/3-x$}}}{32}{subfigure.2.1}%
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {统计首次满足 $x\ge 1.5$ 的时刻直方图}}}{32}{subfigure.2.2}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Occupancy heatmaps（长期驻留直方图）： 左：tamed-EM；右：CTRW/SSA}}{32}{figure.caption.12}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Error vs work（common tamed-EM reference, $T=10$）： RMS 强误差随代价的衰减。时间法在强精度下效率更高。}}{33}{figure.caption.13}%
-\contentsline {figure}{\numberline {6.5}{\ignorespaces 子图 1}}{34}{figure.caption.14}%
-\contentsline {figure}{\numberline {6.6}{\ignorespaces 子图 2}}{34}{figure.caption.14}%
-\contentsline {figure}{\numberline {6.7}{\ignorespaces 子图 3}}{34}{figure.caption.14}%
-\contentsline {figure}{\numberline {6.8}{\ignorespaces 子图 4}}{34}{figure.caption.14}%
-\contentsline {figure}{\numberline {6.9}{\ignorespaces 总标题}}{34}{figure.caption.14}%
-\contentsline {figure}{\numberline {6.10}{\ignorespaces 沿慢流形 $y=x^3/3-x$ 的切片：左为 $q$，右为 $m$。虚线为 $x_A,x_B$。}}{34}{figure.caption.15}%
-\contentsline {figure}{\numberline {6.11}{\ignorespaces Committor：时间步进 MC 相对 $Q$-解的误差—代价曲线（RMS）。}}{35}{figure.caption.16}%
-\contentsline {figure}{\numberline {6.12}{\ignorespaces MFPT：时间步进 MC 相对 $Q$-解的误差—代价曲线（RMS）。}}{35}{figure.caption.17}%
-\contentsline {figure}{\numberline {6.13}{\ignorespaces Committor error vs work using time-stepping Monte Carlo. RMS error is measured against the spatial-generator solution $q$ (from $Qq=0$ with $q|_A=0,q|_B=1$). Both tamed and truncated EM improve as work increases, yet require substantial steps to match the $Q$-solution, highlighting the advantage of the spatial discretization for weak quantities.}}{36}{figure.caption.18}%
-\contentsline {figure}{\numberline {6.14}{\ignorespaces MFPT error vs work using time-stepping Monte Carlo. RMS error is measured against the spatial-generator solution $m$ (from $Qm=-1$ on $\Omega \setminus B$ with $m|_B=0$). Due to large variance and truncation bias, time-stepping requires higher work to approach the $Q$-solution, whereas the spatial method yields $m(x,y)$ via a single sparse solve.}}{36}{figure.caption.19}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces 路径几何于快跳时间的分布}}{31}{figure.caption.11}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {背景为 $x$-零流形 $y=x^3/3-x$}}}{31}{subfigure.2.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {统计首次满足 $x\ge 1.5$ 的时刻直方图}}}{31}{subfigure.2.2}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Occupancy heatmaps（长期驻留直方图）： 左：tamed-EM；右：CTRW/SSA}}{31}{figure.caption.12}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces 子图 1}}{33}{figure.caption.13}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces 子图 2}}{33}{figure.caption.13}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces 子图 3}}{33}{figure.caption.13}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces 子图 4}}{33}{figure.caption.13}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces 总标题}}{33}{figure.caption.13}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces committor 的 \emph {work--error} 曲线：空间离散（CTRW/\(Q\)）与时间离散（truncated EM MC）对比。纵轴为相对于参考 \(Q\)-解的 RMS 误差，横轴为代价（work proxy）。}}{35}{figure.caption.15}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Error vs work（common tamed-EM reference, $T=10$）： RMS 强误差随代价的衰减。时间法在强精度下效率更高。}}{37}{figure.caption.22}%
 \contentsfinish 

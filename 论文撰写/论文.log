@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  17 NOV 2025 13:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  18 NOV 2025 02:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1388,12 +1388,6 @@ LaTeX Warning: Label `fig:b' multiply defined.
 
 LaTeX Warning: Label `sub@fig:b' multiply defined.
 
-
-LaTeX Warning: Label `fig:committor_error_work_timeMC' multiply defined.
-
-
-LaTeX Warning: Label `fig:mfpt_error_work_timeMC' multiply defined.
-
 )
 \openout1 = `ËÆ∫Êñá.aux'.
 
@@ -1571,7 +1565,7 @@ File: c70zhsong.fd 2009/09/23 4.8.2
 )
 Package CJKpunct Info: use punctuation spaces for family 'zhsong' with punctsty
 le (quanjiao) on input line 362.
-<fig/xiaohui.png, id=196, 121.95563pt x 98.3675pt>
+<fig/xiaohui.png, id=180, 121.95563pt x 98.3675pt>
 File: fig/xiaohui.png Graphic file (type png)
 <use fig/xiaohui.png>
 Package pdftex.def Info: fig/xiaohui.png  used on input line 367.
@@ -1600,7 +1594,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 384
 (d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<fig/xiaoming.png, id=215, 162.00525pt x 33.726pt>
+<fig/xiaoming.png, id=199, 162.00525pt x 33.726pt>
 File: fig/xiaoming.png Graphic file (type png)
 <use fig/xiaoming.png>
 Package pdftex.def Info: fig/xiaoming.png  used on input line 386.
@@ -1719,33 +1713,13 @@ Overfull \hbox (6.02248pt too wide) detected at line 33
  []
 
 
-Overfull \hbox (6.02248pt too wide) detected at line 34
+Overfull \hbox (6.02248pt too wide) detected at line 38
 \T1/ptm/m/n/12.045 6.2.3  
  []
 
 
-Overfull \hbox (6.02248pt too wide) detected at line 35
-\T1/ptm/m/n/12.045 6.2.4  
- []
-
-
-Overfull \hbox (6.02248pt too wide) detected at line 36
-\T1/ptm/m/n/12.045 6.2.5  
- []
-
-
-Overfull \hbox (6.02248pt too wide) detected at line 37
-\T1/ptm/m/n/12.045 6.2.6  
- []
-
-
-Overfull \hbox (6.02248pt too wide) detected at line 38
-\T1/ptm/m/n/12.045 6.2.7  
- []
-
-
 Overfull \hbox (6.02248pt too wide) detected at line 39
-\T1/ptm/m/n/12.045 6.2.8  
+\T1/ptm/m/n/12.045 6.2.4  
  []
 
 )
@@ -1754,13 +1728,39 @@ Overfull \hbox (6.02248pt too wide) detected at line 39
 
 
 
-[4] (./ËÆ∫Êñá.lof)
+[4] (./ËÆ∫Êñá.lof
+Overfull \hbox (1.1841pt too wide) in paragraph at lines 13--13
+[]|\C70/zhsong/m/n/12.045/56 ˛ \T1/ptm/m/n/12.045 6.9[][]committor \C70/zhsong/
+m/n/12.045/76 Ñ \T1/ptm/m/it/12.045 work--error \C70/zhsong/m/n/12.045/66 Ú \C7
+0/zhsong/m/n/12.045/7e ø|\C70/zhsong/m/n/12.045/ff ^^Z| \C70/zhsong/m/n/12.045/
+7a z \C70/zhsong/m/n/12.045/95 Ù \C70/zhsong/m/n/12.045/79 ª \C70/zhsong/m/n/12
+.045/65 c |\C70/zhsong/m/n/12.045/ff ^^H|\T1/ptm/m/n/12.045 CTRW/$\OML/cmm/m/it
+/12.045 Q$|\C70/zhsong/m/n/12.045/ff 	| \C70/zhsong/m/n/12.045/4e ^^N \C70/zhso
+ng/m/n/12.045/65 ˆ \C70/zhsong/m/n/12.045/95 Ù \C70/zhsong/m/n/12.045/79 ª \C70
+/zhsong/m/n/12.045/65 c |\C70/zhsong/m/n/12.045/ff ^^H|\T1/ptm/m/n/12.045 trunc
+ated 
+ []
+
+)
 \tf@lof=\write6
 \openout6 = `ËÆ∫Êñá.lof'.
 
 
 
-[5] (./ËÆ∫Êñá.lot)
+[5] (./ËÆ∫Êñá.lot
+Overfull \hbox (1.81612pt too wide) in paragraph at lines 2--2
+[]|\C70/zhsong/m/n/12.045/88 h \T1/ptm/m/n/12.045 6.2[][]TD |\C70/zhsong/m/n/12
+.045/ff ^^H|\T1/ptm/m/n/12.045 truncated EM|\C70/zhsong/m/n/12.045/ff ^^L| $\OT
+1/cmr/m/n/12.045 ^^A\OML/cmm/m/it/12.045 t \OT1/cmr/m/n/12.045 = 0\OML/cmm/m/it
+/12.045 :\OT1/cmr/m/n/12.045 004$|\C70/zhsong/m/n/12.045/ff 	| \C70/zhsong/m/n/
+12.045/57 ( \C70/zhsong/m/n/12.045/4e ^^M \C70/zhsong/m/n/12.045/54 ^^L \C70/zh
+song/m/n/12.045/68 7 \C70/zhsong/m/n/12.045/67 , \C70/zhsong/m/n/12.045/65 p \C
+70/zhsong/m/n/12.045/4e  \C70/zhsong/m/n/12.045/76 Ñ \T1/ptm/m/it/12.045 work-
+-error |\C70/zhsong/m/n/12.045/ff ^^H|\T1/ptm/m/n/12.045 committor|\C70/zhsong/
+m/n/12.045/ff 	| 
+ []
+
+)
 \tf@lot=\write7
 \openout7 = `ËÆ∫Êñá.lot'.
 
@@ -1876,17 +1876,17 @@ n/12.045/ff 	| \C70/rm/m/n/12.045/4e |\C70/rm/m/n/12.045/ff ^^L| \C70/rm/m/n/1
 [19]
 
 [20]
-Overfull \hbox (0.3287pt too wide) in paragraph at lines 1603--1604
+Overfull \hbox (0.3287pt too wide) in paragraph at lines 1621--1622
 []\C70/rm/m/n/12.045/62 ^^Q \C70/rm/m/n/12.045/4e Ï \C70/rm/m/n/12.045/5c ^^F \
 C70/rm/m/n/12.045/62 ä \C70/zhsong/m/n/12.045/7c æ \C70/rm/m/n/12.045/5e s \C70
-/rm/m/n/12.045/57 G \C70/rm/m/n/12.045/50 \ \C70/rm/m/n/12.045/75 Y \C70/rm/m/n
-/12.045/65 ˆ \C70/rm/m/n/12.045/95 Ù $\OML/cmm/m/it/12.045 t[]$ \C70/rm/m/n/12.
-045/4e ^^N \C70/rm/m/n/12.045/75 1 \C70/rm/m/n/12.045/4e $ * \C70/rm/m/n/12.045
-/79 ª \C70/rm/m/n/12.045/65 c \C70/rm/m/n/12.045/75 ^^_ \C70/rm/m/n/12.045/62 ^
-^P \C70/rm/m/n/12.045/5b P $[]$ |\C70/rm/m/n/12.045/ff ^^H|\C70/rm/m/n/12.045/5
-f ^^O \T1/ptm/m/n/12.045 (3.1.1)|\C70/rm/m/n/12.045/ff 	| \C70/zhsong/m/n/12.04
-5/54 å $[]$ |\C70/rm/m/n/12.045/ff ^^H|\C70/rm/m/n/12.045/5f ^^O \T1/ptm/m/n/12
-.045 (3.1.2)|\C70/rm/m/n/12.045/ff 	|
+/rm/m/n/12.045/57 G \C70/zhsong/b/n/12.045/50 \ \C70/rm/m/n/12.045/75 Y \C70/zh
+song/b/n/12.045/65 ˆ \C70/rm/m/n/12.045/95 Ù $\OML/cmm/m/it/12.045 t[]$ \C70/rm
+/m/n/12.045/4e ^^N \C70/rm/m/n/12.045/75 1 \C70/rm/m/n/12.045/4e $ * \C70/rm/m/
+n/12.045/79 ª \C70/zhsong/b/n/12.045/65 c \C70/rm/m/n/12.045/75 ^^_ \C70/rm/m/n
+/12.045/62 ^^P \C70/rm/m/n/12.045/5b P $[]$ |\C70/zhsong/b/n/12.045/ff ^^H|\C70
+/rm/m/n/12.045/5f ^^O \T1/ptm/m/n/12.045 (3.1.1)|\C70/zhsong/b/n/12.045/ff 	| \
+C70/zhsong/m/n/12.045/54 å $[]$ |\C70/zhsong/b/n/12.045/ff ^^H|\C70/rm/m/n/12.0
+45/5f ^^O \T1/ptm/m/n/12.045 (3.1.2)|\C70/zhsong/b/n/12.045/ff 	|
  []
 
 
@@ -1902,823 +1902,207 @@ f ^^O \T1/ptm/m/n/12.045 (3.1.1)|\C70/rm/m/n/12.045/ff 	| \C70/zhsong/m/n/12.04
 [25]
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <16.06> not available
-(Font)              size <17.28> substituted on input line 1789.
+(Font)              size <17.28> substituted on input line 1807.
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <7.52812> not available
-(Font)              size <8> substituted on input line 1851.
+(Font)              size <8> substituted on input line 1869.
 
 
 
 [26]
-Overfull \hbox (7.11484pt too wide) in paragraph at lines 1945--1946
+Overfull \hbox (7.11484pt too wide) in paragraph at lines 1963--1964
 \C70/rm/m/n/12.045/5c @\T1/ptm/m/n/12.045 Lipschitz\C70/rm/m/n/12.045/4e ^^T \C
-70/rm/m/n/12.045/51 w \C70/rm/m/n/12.045/67 	 \C70/rm/m/n/12.045/8d Ö \C70/rm/m
-/n/12.045/7e ø \C70/rm/m/n/12.045/60 ' \C70/zhsong/m/n/12.045/58 û \C70/rm/m/n/
-12.045/95 ^^? |\C70/rm/m/n/12.045/ff ^^H|$\OMS/cmsy/m/n/12.045 j\OML/cmm/m/it/1
-2.045 ^^V\OT1/cmr/m/n/12.045 (\OML/cmm/m/it/12.045 x\OT1/cmr/m/n/12.045 )\OMS/c
-msy/m/n/12.045 j \OT1/cmr/m/n/12.045 = \OMS/cmsy/m/n/12.045 j\OML/cmm/m/it/12.0
-45 x[]\OMS/cmsy/m/n/12.045 j$\C70/rm/m/n/12.045/57 ( \C70/rm/m/n/12.045/65 ‡ \C
-70/rm/m/n/12.045/75 L \C70/rm/m/n/12.045/53 : \C70/zhsong/m/n/12.045/58 û \C70/
-rm/m/n/12.045/95 ^^? \C70/rm/m/n/12.045/8f ≈ \C70/zhsong/m/n/12.045/73 ^^[|\C70
-/rm/m/n/12.045/ff 	||^^L| \C70/zhsong/m/n/12.045/68 ^^G \C70/rm/m/n/12.045/51 ∆
-\T1/ptm/m/n/12.045 Euler^^UMaruyama\C70/rm/m/n/12.045/65 π
+70/zhsong/b/n/12.045/51 w \C70/rm/m/n/12.045/67 	 \C70/rm/m/n/12.045/8d Ö \C70/
+zhsong/b/n/12.045/7e ø \C70/rm/m/n/12.045/60 ' \C70/zhsong/m/n/12.045/58 û \C70
+/rm/m/n/12.045/95 ^^? |\C70/zhsong/b/n/12.045/ff ^^H|$\OMS/cmsy/m/n/12.045 j\OM
+L/cmm/m/it/12.045 ^^V\OT1/cmr/m/n/12.045 (\OML/cmm/m/it/12.045 x\OT1/cmr/m/n/12
+.045 )\OMS/cmsy/m/n/12.045 j \OT1/cmr/m/n/12.045 = \OMS/cmsy/m/n/12.045 j\OML/c
+mm/m/it/12.045 x[]\OMS/cmsy/m/n/12.045 j$\C70/rm/m/n/12.045/57 ( \C70/zhsong/b/
+n/12.045/65 ‡ \C70/rm/m/n/12.045/75 L \C70/rm/m/n/12.045/53 : \C70/zhsong/m/n/1
+2.045/58 û \C70/rm/m/n/12.045/95 ^^? \C70/zhsong/b/n/12.045/8f ≈ \C70/zhsong/b/
+n/12.045/73 ^^[|\C70/zhsong/b/n/12.045/ff 	||^^L| \C70/zhsong/m/n/12.045/68 ^^G
+ \C70/zhsong/b/n/12.045/51 ∆\T1/ptm/m/n/12.045 Euler^^UMaruyama\C70/zhsong/b/n/
+12.045/65 π
  []
 
 
 
 [27]
-<fig/Absolute_error.png, id=1032, 505.89pt x 361.35pt>
+<fig/Absolute_error.png, id=1003, 505.89pt x 361.35pt>
 File: fig/Absolute_error.png Graphic file (type png)
 <use fig/Absolute_error.png>
-Package pdftex.def Info: fig/Absolute_error.png  used on input line 1961.
+Package pdftex.def Info: fig/Absolute_error.png  used on input line 1979.
 (pdftex.def)             Requested size: 216.81pt x 154.86469pt.
-<fig/Error_ratio.png, id=1033, 505.89pt x 361.35pt>
+<fig/Error_ratio.png, id=1004, 505.89pt x 361.35pt>
 File: fig/Error_ratio.png Graphic file (type png)
 <use fig/Error_ratio.png>
-Package pdftex.def Info: fig/Error_ratio.png  used on input line 1962.
+Package pdftex.def Info: fig/Error_ratio.png  used on input line 1980.
 (pdftex.def)             Requested size: 216.81pt x 154.86469pt.
 
 
 [28 <./fig/Absolute_error.png> <./fig/Error_ratio.png>]
 
 [29]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
-074.
- (d:/texlive/2025/texmf-dist/tex/latex/psnfss/ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-)
+
+LaTeX Warning: Reference `' on page 30 undefined on input line 2118.
+
+
+LaTeX Warning: Reference `fig:canard_jump_hist_T40' on page 30 undefined on inp
+ut line 2118.
+
+
 
 [30]
-
-LaTeX Warning: Reference `' on page 31 undefined on input line 2100.
-
-
-LaTeX Warning: Reference `fig:canard_jump_hist_T40' on page 31 undefined on inp
-ut line 2100.
-
-
-Overfull \hbox (16.68948pt too wide) in paragraph at lines 2113--2114
-[]\C70/zhsong/b/n/12.045/62 ^^Q \C70/zhsong/b/n/12.045/4e Ï \C70/rm/m/n/12.045/
-53 Ô \C70/zhsong/b/n/12.045/4e Â \C70/zhsong/b/n/12.045/5f ó \C70/zhsong/b/n/12
-.045/52 0|\C70/zhsong/b/n/12.045/ff ^^L| \C70/zhsong/b/n/12.045/57 ( \T1/ptm/m/
-n/12.045 Ca-nard \C70/zhsong/b/n/12.045/76 Ñ \C70/zhsong/b/n/12.045/67 	 \C70/r
-m/m/n/12.045/96 P \C70/zhsong/b/n/12.045/65 ˆ \C70/zhsong/b/n/12.045/95 Ù \C70/
-zhsong/b/n/12.045/8d Ô \C70/zhsong/b/n/12.045/5f Ñ \C70/zhsong/b/n/12.045/7e ß 
-\C70/zhsong/m/n/12.045/7c æ \C70/zhsong/b/n/12.045/5e ¶ \C70/zhsong/b/n/12.045/
-4e 
-|\C70/zhsong/b/n/12.045/ff ^^L| \C70/zhsong/b/n/12.045/65 ˆ \C70/zhsong/b/n/12.
-045/95 Ù \C70/rm/m/n/12.045/6c ’ |\C70/zhsong/b/n/12.045/ff ^^H|\C70/rm/m/n/12.
-045/72 y \C70/zhsong/b/n/12.045/52 + \C70/zhsong/m/n/12.045/66 / \T1/ptm/m/n/12
-.045 tamed/truncated|\C70/zhsong/b/n/12.045/ff 	|
+Overfull \hbox (16.68948pt too wide) in paragraph at lines 2131--2132
+[]\C70/rm/m/n/12.045/62 ^^Q \C70/rm/m/n/12.045/4e Ï \C70/rm/m/n/12.045/53 Ô \C7
+0/rm/m/n/12.045/4e Â \C70/rm/m/n/12.045/5f ó \C70/rm/m/n/12.045/52 0|\C70/zhson
+g/b/n/12.045/ff ^^L| \C70/rm/m/n/12.045/57 ( \T1/ptm/m/n/12.045 Ca-nard \C70/rm
+/m/n/12.045/76 Ñ \C70/rm/m/n/12.045/67 	 \C70/rm/m/n/12.045/96 P \C70/zhsong/b/
+n/12.045/65 ˆ \C70/rm/m/n/12.045/95 Ù \C70/rm/m/n/12.045/8d Ô \C70/rm/m/n/12.04
+5/5f Ñ \C70/zhsong/b/n/12.045/7e ß \C70/zhsong/m/n/12.045/7c æ \C70/rm/m/n/12.0
+45/5e ¶ \C70/rm/m/n/12.045/4e 
+|\C70/zhsong/b/n/12.045/ff ^^L| \C70/zhsong/b/n/12.045/65 ˆ \C70/rm/m/n/12.045/
+95 Ù \C70/rm/m/n/12.045/6c ’ |\C70/zhsong/b/n/12.045/ff ^^H|\C70/rm/m/n/12.045/
+72 y \C70/rm/m/n/12.045/52 + \C70/zhsong/m/n/12.045/66 / \T1/ptm/m/n/12.045 tam
+ed/truncated|\C70/zhsong/b/n/12.045/ff 	|
  []
 
-<fig/Sample_trajectories_100.png, id=1062, 433.62pt x 361.35pt>
+<fig/Sample_trajectories_100.png, id=1032, 433.62pt x 361.35pt>
 File: fig/Sample_trajectories_100.png Graphic file (type png)
 <use fig/Sample_trajectories_100.png>
 Package pdftex.def Info: fig/Sample_trajectories_100.png  used on input line 21
-17.
+35.
 (pdftex.def)             Requested size: 216.81pt x 180.67456pt.
-<fig/Fast_jump_time_distribution_100.png, id=1063, 433.62pt x 289.08pt>
+<fig/Fast_jump_time_distribution_100.png, id=1033, 433.62pt x 289.08pt>
 File: fig/Fast_jump_time_distribution_100.png Graphic file (type png)
 <use fig/Fast_jump_time_distribution_100.png>
 Package pdftex.def Info: fig/Fast_jump_time_distribution_100.png  used on input
- line 2118.
+ line 2136.
 (pdftex.def)             Requested size: 216.81pt x 144.53964pt.
-<fig/Occupancy_100.png, id=1064, 794.97pt x 289.08pt>
+<fig/Occupancy_100.png, id=1034, 794.97pt x 289.08pt>
 File: fig/Occupancy_100.png Graphic file (type png)
 <use fig/Occupancy_100.png>
-Package pdftex.def Info: fig/Occupancy_100.png  used on input line 2125.
+Package pdftex.def Info: fig/Occupancy_100.png  used on input line 2143.
 (pdftex.def)             Requested size: 273.14923pt x 99.32689pt.
 
 
-[31]
-
-[32 <./fig/Sample_trajectories_100.png> <./fig/Fast_jump_time_distribution_100.
+[31 <./fig/Sample_trajectories_100.png> <./fig/Fast_jump_time_distribution_100.
 png> <./fig/Occupancy_100.png>]
-<fig/Work_error.png, id=1085, 482.7636pt x 354.123pt>
+
+LaTeX Warning: Reference `eq:committor-mfpt' on page 32 undefined on input line
+ 2186.
+
+
+LaTeX Warning: Reference `fig:committor_mfpt_heat' on page 32 undefined on inpu
+t line 2186.
+
+<fig/committor_heatmap.jpg, id=1048, 434.3427pt x 339.669pt>
+File: fig/committor_heatmap.jpg Graphic file (type jpg)
+<use fig/committor_heatmap.jpg>
+Package pdftex.def Info: fig/committor_heatmap.jpg  used on input line 2191.
+(pdftex.def)             Requested size: 204.85846pt x 160.20938pt.
+<fig/mfpt_heatmap.jpg, id=1049, 431.4519pt x 339.669pt>
+File: fig/mfpt_heatmap.jpg Graphic file (type jpg)
+<use fig/mfpt_heatmap.jpg>
+Package pdftex.def Info: fig/mfpt_heatmap.jpg  used on input line 2195.
+(pdftex.def)             Requested size: 204.85846pt x 161.28226pt.
+<fig/committor_trunc_heatmap.png, id=1050, 440.847pt x 339.669pt>
+File: fig/committor_trunc_heatmap.png Graphic file (type png)
+<use fig/committor_trunc_heatmap.png>
+Package pdftex.def Info: fig/committor_trunc_heatmap.png  used on input line 22
+00.
+(pdftex.def)             Requested size: 204.85846pt x 157.84079pt.
+<fig/mfpt_trunc_heatmap.png, id=1051, 440.847pt x 339.669pt>
+File: fig/mfpt_trunc_heatmap.png Graphic file (type png)
+<use fig/mfpt_trunc_heatmap.png>
+Package pdftex.def Info: fig/mfpt_trunc_heatmap.png  used on input line 2204.
+(pdftex.def)             Requested size: 204.85846pt x 157.84079pt.
+
+Overfull \hbox (4.49904pt too wide) detected at line 2224
+[]  []
+ []
+
+
+
+[32]
+
+[33 <./fig/committor_heatmap.jpg> <./fig/mfpt_heatmap.jpg> <./fig/committor_tru
+nc_heatmap.png> <./fig/mfpt_trunc_heatmap.png>]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
+263.
+
+(d:/texlive/2025/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
+Overfull \hbox (23.2625pt too wide) in paragraph at lines 2279--2281
+\C70/rm/b/n/10.53937/5b û \C70/rm/b/n/10.53937/9a å \C70/rm/b/n/10.53937/6d A \
+C70/rm/b/n/10.53937/7a  \C70/rm/b/n/10.53937/5c ^^O \C70/rm/b/n/10.53937/7e ”\
+T1/ptm/b/n/10.53937 .[] \T1/ptm/m/n/12.045 (i) \C70/zhsong/b/n/12.045/4e Â $\OM
+L/cmm/m/it/12.045 h[] \OT1/cmr/m/n/12.045 = 0\OML/cmm/m/it/12.045 :\OT1/cmr/m/n
+/12.045 08$ \C70/rm/m/n/12.045/76 Ñ $\OML/cmm/m/it/12.045 Q$\T1/ptm/m/n/12.045 
+-\C70/rm/m/n/12.045/89 „ \C70/zhsong/b/n/12.045/4e : \C70/zhsong/b/n/12.045/53 
+¬ \C70/zhsong/b/n/12.045/80 ^^C|\C70/zhsong/b/n/12.045/ff ^^[| \T1/ptm/m/n/12.0
+45 (ii) \C70/rm/m/n/12.045/62 k \C70/rm/m/n/12.045/63 œ \T1/ptm/m/n/12.045 SD \
+C70/rm/m/n/12.045/76 Ñ \C70/zhsong/m/n/12.045/7f Q \C70/zhsong/m/n/12.045/68 < 
+\C70/zhsong/b/n/12.045/6b e \C70/zhsong/b/n/12.045/95 ^^? $\OML/cmm/m/it/12.045
+ h \OMS/cmsy/m/n/12.045 2 f\OT1/cmr/m/n/12.045 0\OML/cmm/m/it/12.045 :\OT1/cmr/
+m/n/12.045 14\OML/cmm/m/it/12.045 ; \OT1/cmr/m/n/12.045 0\OML/cmm/m/it/12.045 :
+\OT1/cmr/m/n/12.045 12\OML/cmm/m/it/12.045 ; \OT1/cmr/m/n/12.045 0\OML/cmm/m/it
+/12.045 :\OT1/cmr/m/n/12.045 10\OMS/cmsy/m/n/12.045 g$
+ []
+
+<fig/work_error_committor_trunc_vs_ctrw.pdf, id=1064, 427.40387pt x 317.11801pt
+>
+File: fig/work_error_committor_trunc_vs_ctrw.pdf Graphic file (type pdf)
+<use fig/work_error_committor_trunc_vs_ctrw.pdf>
+Package pdftex.def Info: fig/work_error_committor_trunc_vs_ctrw.pdf  used on in
+put line 2284.
+(pdftex.def)             Requested size: 282.24911pt x 209.42917pt.
+
+
+[34]
+
+[35 <./fig/work_error_committor_trunc_vs_ctrw.pdf>]
+<fig/Work_error.png, id=1128, 482.7636pt x 354.123pt>
 File: fig/Work_error.png Graphic file (type png)
 <use fig/Work_error.png>
-Package pdftex.def Info: fig/Work_error.png  used on input line 2138.
+Package pdftex.def Info: fig/Work_error.png  used on input line 2350.
 (pdftex.def)             Requested size: 273.14923pt x 200.36624pt.
 
 
-LaTeX Warning: Reference `fig:committor_mfpt_heat' on page 33 undefined on inpu
-t line 2147.
-
-<fig/committor_heatmap.jpg, id=1088, 434.3427pt x 339.669pt>
-File: fig/committor_heatmap.jpg Graphic file (type jpg)
-<use fig/committor_heatmap.jpg>
-Package pdftex.def Info: fig/committor_heatmap.jpg  used on input line 2153.
-(pdftex.def)             Requested size: 204.85846pt x 160.20938pt.
-<fig/mfpt_heatmap.jpg, id=1089, 431.4519pt x 339.669pt>
-File: fig/mfpt_heatmap.jpg Graphic file (type jpg)
-<use fig/mfpt_heatmap.jpg>
-Package pdftex.def Info: fig/mfpt_heatmap.jpg  used on input line 2157.
-(pdftex.def)             Requested size: 204.85846pt x 161.28226pt.
-<fig/committor_trunc_heatmap.png, id=1090, 440.847pt x 339.669pt>
-File: fig/committor_trunc_heatmap.png Graphic file (type png)
-<use fig/committor_trunc_heatmap.png>
-Package pdftex.def Info: fig/committor_trunc_heatmap.png  used on input line 21
-62.
-(pdftex.def)             Requested size: 204.85846pt x 157.84079pt.
-<fig/mfpt_trunc_heatmap.png, id=1091, 440.847pt x 339.669pt>
-File: fig/mfpt_trunc_heatmap.png Graphic file (type png)
-<use fig/mfpt_trunc_heatmap.png>
-Package pdftex.def Info: fig/mfpt_trunc_heatmap.png  used on input line 2166.
-(pdftex.def)             Requested size: 204.85846pt x 157.84079pt.
-<fig/committor_slice.jpg, id=1092, 426.393pt x 281.853pt>
-File: fig/committor_slice.jpg Graphic file (type jpg)
-<use fig/committor_slice.jpg>
-Package pdftex.def Info: fig/committor_slice.jpg  used on input line 2185.
-(pdftex.def)             Requested size: 218.51521pt x 144.43983pt.
-<fig/mfpt_slice.jpg, id=1093, 426.393pt x 281.853pt>
-File: fig/mfpt_slice.jpg Graphic file (type jpg)
-<use fig/mfpt_slice.jpg>
-Package pdftex.def Info: fig/mfpt_slice.jpg  used on input line 2186.
-(pdftex.def)             Requested size: 218.51521pt x 144.43983pt.
+LaTeX Warning: Reference `fig:mfpt_error_work_timeMC' on page 36 undefined on i
+nput line 2362.
 
 
-[33 <./fig/Work_error.png>]
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
 
-[34 <./fig/committor_heatmap.jpg> <./fig/mfpt_heatmap.jpg> <./fig/committor_tru
-nc_heatmap.png> <./fig/mfpt_trunc_heatmap.png> <./fig/committor_slice.jpg> <./f
-ig/mfpt_slice.jpg>]
-Overfull \hbox (1.42316pt too wide) in paragraph at lines 2195--2197
-[]\C70/zhsong/b/n/12.045/4e : \C70/zhsong/b/n/12.045/51 ¯ \C70/zhsong/m/n/12.04
-5/66 > \C70/zhsong/b/n/12.045/7a z \C70/zhsong/b/n/12.045/95 Ù \C70/zhsong/b/n/
-12.045/79 ª \C70/zhsong/b/n/12.045/65 c \C70/zhsong/b/n/12.045/57 ( \C70/zhsong
-/b/n/12.045/5f 1\T1/ptm/m/n/12.045 /\C70/zhsong/b/n/12.045/95 ^^? \C70/zhsong/b
-/n/12.045/67 ^^_ \C70/zhsong/b/n/12.045/91 œ \C70/zhsong/b/n/12.045/4e 
- \C70/zhsong/b/n/12.045/76 Ñ \C70/rm/m/n/12.045/4f ^^X \C70/zhsong/b/n/12.045/5
-2 ø|\C70/zhsong/b/n/12.045/ff ^^L| \C70/zhsong/b/n/12.045/62 ^^Q \C70/zhsong/b/
-n/12.045/4e Ï Â $\OML/cmm/m/it/12.045 Q$\T1/ptm/m/n/12.045 -\C70/rm/m/n/12.045/
-89 „ \C70/rm/m/n/12.045/4f \ \C70/zhsong/b/n/12.045/4e : |\C70/zhsong/b/n/12.04
-5/20 ^^\|\C70/zhsong/b/n/12.045/57 0 \C70/zhsong/m/n/12.045/97 b \C70/zhsong/m/
-n/12.045/77 ^^_ \C70/rm/m/n/12.045/5b û \C70/zhsong/b/n/12.045/50 <|\C70/zhsong
-/b/n/12.045/20 ^^]||\C70/zhsong/b/n/12.045/ff ^^L| \C70/zhsong/b/n/12.045/75 ( 
-\T1/ptm/m/n/12.045 tamed-
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2364 
+       
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 2364
+[][]
  []
 
-<fig/committor_error_work_time.png, id=1108, 456.7464pt x 324.85365pt>
-File: fig/committor_error_work_time.png Graphic file (type png)
-<use fig/committor_error_work_time.png>
-Package pdftex.def Info: fig/committor_error_work_time.png  used on input line 
-2200.
-(pdftex.def)             Requested size: 273.14923pt x 194.28416pt.
-<fig/mfpt_error_work_time.png, id=1109, 440.1243pt x 324.85365pt>
-File: fig/mfpt_error_work_time.png Graphic file (type png)
-<use fig/mfpt_error_work_time.png>
-Package pdftex.def Info: fig/mfpt_error_work_time.png  used on input line 2207.
 
-(pdftex.def)             Requested size: 273.14923pt x 201.62032pt.
-File: fig/committor_error_work_time.png Graphic file (type png)
-<use fig/committor_error_work_time.png>
-Package pdftex.def Info: fig/committor_error_work_time.png  used on input line 
-2214.
-(pdftex.def)             Requested size: 273.14923pt x 194.28416pt.
-File: fig/mfpt_error_work_time.png Graphic file (type png)
-<use fig/mfpt_error_work_time.png>
-Package pdftex.def Info: fig/mfpt_error_work_time.png  used on input line 2223.
-
-(pdftex.def)             Requested size: 273.14923pt x 201.62032pt.
-
-Underfull \vbox (badness 1975) has occurred while \output is active []
-
-
-
-[35 <./fig/committor_error_work_time.png> <./fig/mfpt_error_work_time.png>]
 
 [36]
-! You can't use `macro parameter character #' in vertical mode.
-l.2253 #
-         1. ‰∏§‰∏™Âº±ÈáèÁöÑÂÆö‰πâ‰∏éÊÑè‰πâ
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-! LaTeX Error: \mathrm allowed only in math mode.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.2257 \mathrm
-              {d}Z_t=\mu(Z_t),\mathrm{d}t+\Sigma(Z_t),\mathrm{d}W_t,\qquad
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+[37 <./fig/Work_error.png>]
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2257 \mathrm{d}Z_
-                   t=\mu(Z_t),\mathrm{d}t+\Sigma(Z_t),\mathrm{d}W_t,\qquad
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2262 
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-Missing character: There is no Ÿ in font cmr12!
-Missing character: There is no ö in font cmr12!
-Missing character: There is no ∆ in font cmr12!
-Missing character: There is no á in font cmr12!
-Missing character: There is no ÷ in font cmr12!
-Missing character: There is no π in font cmr12!
-Missing character: There is no Õ in font cmr12!
-Missing character: There is no ö in font cmr12!
-
-Overfull \hbox (5.64131pt too wide) in paragraph at lines 2255--2262
-[]\C70/zhsong/b/n/12.045/8b æ \C70/zhsong/b/n/12.045/4e å \C70/zhsong/b/n/12.04
-5/7e Ù \T1/ptm/m/n/12.045 ItÙ SDE [ dZ$[] \OT1/cmr/m/n/12.045 = \OML/cmm/m/it/1
-2.045 ^^V\OT1/cmr/m/n/12.045 (\OML/cmm/m/it/12.045 Z[]\OT1/cmr/m/n/12.045 )\OML
-/cmm/m/it/12.045 ; \OT1/cmr/m/n/12.045 d\OML/cmm/m/it/12.045 t \OT1/cmr/m/n/12.
-045 + ^^F(\OML/cmm/m/it/12.045 Z[]\OT1/cmr/m/n/12.045 )\OML/cmm/m/it/12.045 ; \
-OT1/cmr/m/n/12.045 d\OML/cmm/m/it/12.045 W[];  Z[] \OT1/cmr/m/n/12.045 = (\OML/
-cmm/m/it/12.045 x[]; y[]\OT1/cmr/m/n/12.045 ) \OMS/cmsy/m/n/12.045 2 \OT1/cmr/m
-/n/12.045 
- \OMS/cmsy/m/n/12.045 ^^Z \U/msb/m/n/12.045 R[]\OML/cmm/m/it/12.045 ; \OT1/cmr/
-m/n/12.045 ][][][][](\OML/cmm/m/it/12.045 Lf \OT1/cmr/m/n/12.045 =
- []
-
-! Extra alignment tab has been changed to \cr.
-<template> ...w@strut \hfil $\relax $\endtemplate 
-                                                  
-l.2270 \end{cases}}
-                   
-You have given more \span or & marks than there were
-in the preamble to the \halign or \valign now in progress.
-So I'll assume that you meant to type \cr instead.
-
-
-! LaTeX Error: \mathbb allowed only in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.2272 ...æ (B) ËÄåÈùû (A) ÁöÑÊ¶ÇÁéá (q(z)=\mathbb
-                                                   P_z(\tau_B<\tau_A))„ÄÇ
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2272 ...B) ËÄåÈùû (A) ÁöÑÊ¶ÇÁéá (q(z)=\mathbb P_
-                                                  z(\tau_B<\tau_A))„ÄÇ
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2273 
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (52.27638pt too wide) in paragraph at lines 2263--2273
-[]\T1/ptm/m/n/12.045 Committor |\C70/zhsong/b/n/12.045/ff ^^H|\C70/zhsong/b/n/1
-2.045/51 H \C70/zhsong/b/n/12.045/8f æ \C70/zhsong/m/n/12.045/69 Ç \C70/zhsong/
-m/n/12.045/73 á|\C70/zhsong/b/n/12.045/ff 	|  \T1/ptm/m/n/12.045 [ []
- []
-
-! Extra alignment tab has been changed to \cr.
-<template> ...w@strut \hfil $\relax $\endtemplate 
-                                                  
-l.2281 \end{cases}}
-                   
-You have given more \span or & marks than there were
-in the preamble to the \halign or \valign now in progress.
-So I'll assume that you meant to type \cr instead.
-
-
-! LaTeX Error: \mathbb allowed only in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.2283 Áâ©ÁêÜÊÑè‰πâÔºö(,m(z)=\mathbb
-                                     E_z[\tau_B],)„ÄÇ
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2283 Áâ©ÁêÜÊÑè‰πâÔºö(,m(z)=\mathbb E_
-                                       z[\tau_B],)„ÄÇ
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2284 
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (48.68916pt too wide) in paragraph at lines 2274--2284
-[]\T1/ptm/m/n/12.045 MFPT |\C70/zhsong/b/n/12.045/ff ^^H|\C70/rm/m/n/12.045/99 
-ñ \C70/rm/m/n/12.045/6b ! \C70/zhsong/b/n/12.045/52 0 \C70/zhsong/b/n/12.045/8f
- æ \T1/ptm/m/n/12.045 (B) \C70/zhsong/b/n/12.045/76 Ñ \C70/zhsong/b/n/12.045/67
- ^^_ ^^[ \C70/zhsong/b/n/12.045/65 ˆ \C70/zhsong/b/n/12.045/95 Ù|\C70/zhsong/b/
-n/12.045/ff 	|  \T1/ptm/m/n/12.045 [ []
- []
-
-! You can't use `macro parameter character #' in vertical mode.
-l.2289 #
-         2. Êàë‰ª¨ÁöÑÊØîËæÉÊµÅÁ®ãÔºàSpace vs. TimeÔºâ
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-
-[37]
-
-! Package amsmath Error: \begin{aligned} allowed only in math mode.
-
-See the amsmath package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.2294 	\mathrm
-               {d}x_t &= \big(y_t-(x_t^3/3-x_t)\big),\mathrm{d}t + \sigma_x,...
-
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2294 	\mathrm
-               {d}x_t &= \big(y_t-(x_t^3/3-x_t)\big),\mathrm{d}t + \sigma_x,...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2296 \end{aligned}
-                    
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2298 Âü∫ÂáÜÂèÇÊï∞Ôºö(\varepsilon
-                                  =10^{-2},,a=1.0,;(\sigma_x,\sigma_y)=(0,0....
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2299 
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-Missing character: There is no ﬂ in font cmr12!
-Missing character: There is no Õ in font cmr12!
-
-Overfull \hbox (99.38533pt too wide) in paragraph at lines 2291--2299
-[]\C70/zhsong/b/n/12.045/95 Ó \C70/zhsong/b/n/12.045/98 ò \C70/zhsong/b/n/12.04
-5/8b æ \C70/rm/m/n/12.045/5b ö |\C70/zhsong/b/n/12.045/ff ^^H|\C70/zhsong/b/n/1
-2.045/96 è \C70/zhsong/b/n/12.045/67 : \T1/ptm/m/n/12.045 Ca-nard|\C70/zhsong/b
-/n/12.045/ff 	||^^Z|  \T1/ptm/m/n/12.045 [ []$[]$
- []
-
-
-Overfull \hbox (0.94319pt too wide) in paragraph at lines 2291--2299
-\T1/ptm/m/n/12.045 ] \C70/zhsong/b/n/12.045/57 ˙ \C70/zhsong/b/n/12.045/51 ∆ \C
-70/zhsong/b/n/12.045/53 ¬ \C70/zhsong/b/n/12.045/65 p|\C70/zhsong/b/n/12.045/ff
- ^^Z| \T1/ptm/m/n/12.045 ($\OML/cmm/m/it/12.045 " \OT1/cmr/m/n/12.045 = 10[]\OM
-L/cmm/m/it/12.045 ; ; a \OT1/cmr/m/n/12.045 = 1\OML/cmm/m/it/12.045 :\OT1/cmr/m
-/n/12.045 0\OML/cmm/m/it/12.045 ; \OT1/cmr/m/n/12.045 ; (\OML/cmm/m/it/12.045 ^
-^[[]; ^^[[]\OT1/cmr/m/n/12.045 ) = (0\OML/cmm/m/it/12.045 ; \OT1/cmr/m/n/12.045
- 0\OML/cmm/m/it/12.045 :\OT1/cmr/m/n/12.045 08))[][](
- = [\OMS/cmsy/m/n/12.045 ^^@\OT1/cmr/m/n/12.045 2\OML/cmm/m/it/12.045 :\OT1/cmr
-/m/n/12.045 5\OML/cmm/m/it/12.045 ; \OT1/cmr/m/n/12.045 2\OML/cmm/m/it/12.045 :
-\OT1/cmr/m/n/12.045 5] \OMS/cmsy/m/n/12.045 ^^B \OT1/cmr/m/n/12.045 [\OMS/cmsy/
-m/n/12.045 ^^@\OT1/cmr/m/n/12.045 1\OML/cmm/m/it/12.045 ; \OT1/cmr/m/n/12.045 3
-])[][][](\OML/cmm/m/it/12.045 x[] \OT1/cmr/m/n/12.045 =
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2302 ...Âè†ÈÇªÂüüÂ±ÄÈÉ®Âä†ÂØÜ„ÄÅÂêÑÂêëÂºÇÊÄß (h_
-                                                  y!\approx! c,\varepsilon h...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2310 
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-Missing character: There is no Ñ in font cmr12!
-Missing character: There is no — in font cmr12!
-Missing character: There is no ª in font cmr12!
-Missing character: There is no Û in font cmr12!
-Missing character: There is no á in font cmr12!
-Missing character: There is no ˘ in font cmr12!
-Missing character: There is no “ in font cmr12!
-Missing character: There is no ˙ in font cmr12!
-Missing character: There is no á in font cmr12!
-Missing character: There is no û in font cmr12!
-Missing character: There is no ∞ in font cmr12!
-Missing character: There is no Õ in font cmr12!
-Missing character: There is no π in font cmr12!
-Missing character: There is no Ù in font cmr12!
-Missing character: There is no • in font cmr12!
-Missing character: There is no „ in font cmr12!
-Missing character: There is no ª in font cmr12!
-Missing character: There is no π in font cmr12!
-Missing character: There is no ó in font cmr12!
-Missing character: There is no è in font cmr12!
-Missing character: There is no ø in font cmr12!
-Missing character: There is no „ in font cmr12!
-Missing character: There is no „ in font cmr12!
-
-Overfull \hbox (113.05609pt too wide) in paragraph at lines 2302--2310
-[]\T1/ptm/m/n/12.045 1. \C70/zhsong/b/n/12.045/67 Ñ \C70/rm/m/n/12.045/90   \C7
-0/zhsong/m/n/12.045/77 È \C70/zhsong/b/n/12.045/5f b \C70/zhsong/b/n/12.045/7f 
-Q \C70/zhsong/b/n/12.045/68 < |\C70/zhsong/b/n/12.045/ff ^^H|\C70/zhsong/b/n/12
-.045/53 Ô \C70/zhsong/b/n/12.045/57 ( \C70/zhsong/b/n/12.045/62 ò \C70/zhsong/b
-/n/12.045/53 ‡ \C70/rm/m/n/12.045/90 ª \C70/zhsong/b/n/12.045/57 ﬂ \C70/rm/m/n/
-12.045/5c @ \C70/rm/m/n/12.045/90 Ë \C70/zhsong/b/n/12.045/52 † \C70/rm/m/n/12.
-045/5b ∆|\C70/zhsong/m/n/12.045/30 ^^A| \C70/zhsong/b/n/12.045/54 ^^D ^^Q \C70/
-zhsong/b/n/12.045/5f ^^B \C70/zhsong/b/n/12.045/60 ' \T1/ptm/m/n/12.045 (h$[]\O
-T1/cmr/m/n/12.045 ! \OMS/cmsy/m/n/12.045 ^^Y\OT1/cmr/m/n/12.045 !\OML/cmm/m/it/
-12.045 c; "h[]\OT1/cmr/m/n/12.045 )[][]2\OML/cmm/m/it/12.045 :[]\OT1/cmr/m/n/12
-.045 (\OML/cmm/m/it/12.045 Q[]\OT1/cmr/m/n/12.045 )[][][][][][][][][][][][][][]
-[][][][][][][][][]3\OML/cmm/m/it/12.045 :[][][][][][][][]\OT1/cmr/m/n/12.045 [\
-OML/cmm/m/it/12.045 Q; q \OT1/cmr/m/n/12.045 =
- []
-
-
-Overfull \hbox (6.03659pt too wide) in paragraph at lines 2302--2310
-\OT1/cmr/m/n/12.045 0  ([]\OML/cmm/m/it/12.045 A; B\OT1/cmr/m/n/12.045 )\OML/cm
-m/m/it/12.045 ;  Q; m \OT1/cmr/m/n/12.045 = \OMS/cmsy/m/n/12.045 ^^@\OT1/cmr/bx
-/n/12.045 1  \OT1/cmr/m/n/12.045 ([]\OML/cmm/m/it/12.045 B\OT1/cmr/m/n/12.045 )
-\OML/cmm/m/it/12.045 ; \OT1/cmr/m/n/12.045 ][][][][](\OML/cmm/m/it/12.045 q\OT1
-/cmr/m/n/12.045 (\OML/cmm/m/it/12.045 x; y\OT1/cmr/m/n/12.045 ))[](\OML/cmm/m/i
-t/12.045 m\OT1/cmr/m/n/12.045 (\OML/cmm/m/it/12.045 x; y\OT1/cmr/m/n/12.045 ))[
-][][][][][][][][][][][][]$ 
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2315 3. Áî®Âõ∫ÂÆöÊ≠•Èïø (\Delta
-                                  t) ‰∏éÊ†∑Êú¨Êï∞ (N) ÁöÑ MCÔºö
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2316 
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-Missing character: There is no Ñ in font cmr12!
-
-! Package amsmath Error: \hat allowed only in math mode.
-
-See the amsmath package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.2317 ...ÈÅìÔºåÁªüËÆ°ÂÖàËææ (B) ÁöÑÈ¢ëÁéá (\hat q
-                                                  )„ÄÇ
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! Package amsmath Error: \hat allowed only in math mode.
-
-See the amsmath package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.2318 ...ÂëΩ‰∏≠ (B) ÁöÑÂà∞ËææÊó∂Èó¥ÂùáÂÄº (\hat m
-                                                  )ÔºàÂê´ÂøÖË¶ÅÁöÑÊà™Êñ≠Â§ÑÁ...
-
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! You can't use `macro parameter character #' in vertical mode.
-l.2329 #
-         3. ÂÖ≥ÈîÆÂõæÂÉè‰∏éËßÇÊµãÔºà‰∏é‰∏äËø∞‰ª£Á†ÅËæìÂá∫‰∏ÄËá¥Ôºâ
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2335  Ê≤øÊÖ¢ÊµÅÂΩ¢ (y=x^
-                          3/3-x) ÁöÑÂàáÁâáÔºö(q(x)) Âú®ÊäòÂè†ÈôÑËøëÊúâÂø´ÈÄü...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2336 
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-Missing character: There is no Ñ in font cmr12!
-Missing character: There is no ò in font cmr12!
-Missing character: There is no ‡ in font cmr12!
-Missing character: There is no — in font cmr12!
-Missing character: There is no Î in font cmr12!
-Missing character: There is no • in font cmr12!
-Missing character: There is no — in font cmr12!
-Missing character: There is no ˆ in font cmr12!
-
-Overfull \hbox (1.04486pt too wide) in paragraph at lines 2333--2336
-\T1/ptm/m/n/12.045 (m(x,y)) \C70/zhsong/m/n/12.045/70 Ì \C70/zhsong/m/n/12.045/
-56 ˛|\C70/zhsong/b/n/12.045/ff ^^Z| \C70/zhsong/b/n/12.045/5d Ê \C70/rm/m/n/12.
-045/4f ß\T1/ptm/m/n/12.045 /\C70/zhsong/b/n/12.045/8f ‹ \C70/zhsong/b/n/12.045/
-79 ª \T1/ptm/m/n/12.045 (B) \C70/zhsong/b/n/12.045/53 : \C70/zhsong/b/n/12.045/
-57 ﬂ \C70/zhsong/b/n/12.045/50 < \C70/rm/m/n/12.045/59 '|\C70/zhsong/b/n/12.045
-/ff ^^L| \C70/zhsong/m/n/12.045/97 ` \C70/zhsong/b/n/12.045/8f — \T1/ptm/m/n/12
-.045 (B) \C70/zhsong/b/n/12.045/52 M \C70/rm/m/n/12.045/6c ø \C70/zhsong/b/n/12
-.045/60 % \C70/zhsong/b/n/12.045/52 g \C70/zhsong/b/n/12.045/4e  \C70/zhsong/b
-/n/12.045/96 M \C70/zhsong/b/n/12.045/4e : \T1/ptm/m/n/12.045 0|\C70/zhsong/m/n
-/12.045/30 ^^B| \C70/rm/m/n/12.045/6c ø \C70/zhsong/m/n/12.045/61 b \C70/rm/m/n
-/12.045/6d A \C70/zhsong/b/n/12.045/5f b \T1/ptm/m/n/12.045 (y=x$[]\OML/cmm/m/i
-t/12.045 =\OT1/cmr/m/n/12.045 3 \OMS/cmsy/m/n/12.045 ^^@
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2338 ((x_
-           0,y_0)=(-1.5,\ x_0^3/3-x_0)): (q\approx 0.00,\ m\approx 24.2)Ôºõ
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2341 
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-Missing character: There is no Ù in font cmr12!
-Missing character: There is no Ê in font cmr12!
-Missing character: There is no Ò in font cmr12!
-Missing character: There is no æ in font cmr12!
-Missing character: There is no Ñ in font cmr12!
-Missing character: There is no Ç in font cmr12!
-Missing character: There is no á in font cmr12!
-Missing character: There is no — in font cmr12!
-Missing character: There is no « in font cmr12!
-Missing character: There is no ò in font cmr12!
-Missing character: There is no ‡ in font cmr12!
-Missing character: There is no Ç in font cmr12!
-Missing character: There is no á in font cmr12!
-Missing character: There is no Ô in font cmr12!
-Missing character: There is no ˝ in font cmr12!
-Missing character: There is no ‡ in font cmr12!
-Missing character: There is no Ô in font cmr12!
-Missing character: There is no Ñ in font cmr12!
-Missing character: There is no û in font cmr12!
-
-Overfull \hbox (33.93538pt too wide) in paragraph at lines 2337--2341
-[]\C70/zhsong/b/n/12.045/4e „ \C70/zhsong/m/n/12.045/88 h \C70/zhsong/b/n/12.04
-5/60 ' \C70/zhsong/b/n/12.045/65 p \C70/zhsong/b/n/12.045/50 < |\C70/zhsong/b/n
-/12.045/ff ^^H|\C70/zhsong/m/n/12.045/61 b \C70/rm/m/n/12.045/6d A \C70/zhsong/
-b/n/12.045/5f b \C70/zhsong/b/n/12.045/4e 
-|\C70/zhsong/b/n/12.045/ff 	||^^Z|  \T1/ptm/m/n/12.045 ((x$[]\OML/cmm/m/it/12.0
-45 ; y[]\OT1/cmr/m/n/12.045 ) = (\OMS/cmsy/m/n/12.045 ^^@\OT1/cmr/m/n/12.045 1\
-OML/cmm/m/it/12.045 :\OT1/cmr/m/n/12.045 5\OML/cmm/m/it/12.045 ;  x[]=\OT1/cmr/
-m/n/12.045 3 \OMS/cmsy/m/n/12.045 ^^@ \OML/cmm/m/it/12.045 x[]\OT1/cmr/m/n/12.0
-45 )) : (\OML/cmm/m/it/12.045 q \OMS/cmsy/m/n/12.045 ^^Y \OT1/cmr/m/n/12.045 0\
-OML/cmm/m/it/12.045 :\OT1/cmr/m/n/12.045 00\OML/cmm/m/it/12.045 ;  m \OMS/cmsy/
-m/n/12.045 ^^Y \OT1/cmr/m/n/12.045 24\OML/cmm/m/it/12.045 :\OT1/cmr/m/n/12.045 
-2)[]((\OML/cmm/m/it/12.045 x[]; y[]\OT1/cmr/m/n/12.045 ) =
- []
-
-! You can't use `macro parameter character #' in vertical mode.
-l.2351 #
-         4. ÂÆûË∑µË¶ÅÁÇπ‰∏éÂèØÂ§çÁé∞ÂÆûÈ™åÊ≠•È™§ÔºàÁÆÄË°®Ôºâ
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-
-[38]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2353 1. ËÆæÂÆöÔºö(\varepsilon
-                               =10^{-2},,a=1.0)Ôºõ(\Omega=[-2.5,2.5]\times[-...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2358 
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-Missing character: There is no Õ in font cmr12!
-Missing character: There is no ˙ in font cmr12!
-Missing character: There is no ƒ in font cmr12!
-Missing character: There is no ≈ in font cmr12!
-Missing character: There is no „ in font cmr12!
-Missing character: There is no ˙ in font cmr12!
-Missing character: There is no Ì in font cmr12!
-Missing character: There is no ˛ in font cmr12!
-Missing character: There is no Ç in font cmr12!
-Missing character: There is no π in font cmr12!
-Missing character: There is no — in font cmr12!
-Missing character: There is no Â in font cmr12!
-Missing character: There is no π in font cmr12!
-Missing character: There is no ° in font cmr12!
-Missing character: There is no ﬂ in font cmr12!
-Missing character: There is no ° in font cmr12!
-Missing character: There is no Ô in font cmr12!
-Missing character: There is no Ó in font cmr12!
-Missing character: There is no Ô in font cmr12!
-Missing character: There is no Ó in font cmr12!
-Missing character: There is no „ in font cmr12!
-Missing character: There is no ˜ in font cmr12!
-Missing character: There is no Ú in font cmr12!
-Missing character: There is no ø in font cmr12!
-
-Overfull \hbox (185.23296pt too wide) in paragraph at lines 2353--2358
-[]\OT1/cmr/m/n/12.045 )[]2\OML/cmm/m/it/12.045 :Space[][][][][][]\OT1/cmr/m/n/1
-2.045 (\OML/cmm/m/it/12.045 h[] \OT1/cmr/m/n/12.045 = \OML/cmm/m/it/12.045 h[] 
-\OMS/cmsy/m/n/12.045 ^^Y \OT1/cmr/m/n/12.045 0\OML/cmm/m/it/12.045 :\OT1/cmr/m/
-n/12.045 06)[][][][](\OML/cmm/m/it/12.045 Q[]\OT1/cmr/m/n/12.045 )[][][][](\OML
-/cmm/m/it/12.045 Qq \OT1/cmr/m/n/12.045 = 0)[](\OML/cmm/m/it/12.045 Qm \OT1/cmr
-/m/n/12.045 = \OMS/cmsy/m/n/12.045 ^^@\OT1/cmr/m/n/12.045 1)[][](\OML/cmm/m/it/
-12.045 q; m\OT1/cmr/m/n/12.045 )[][][][][][][][][]3\OML/cmm/m/it/12.045 :Time[]
-[][][][][][][][][][][][][][]tamed \OMS/cmsy/m/n/12.045 ^^@
- []
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2359 ...Êï¥ËäÇÁÇπÈõÜÔºàÂê´ÊäòÂè†ÈÇªÂüüÔºâ„ÄÅ((x_
-                                                  A,x_B))ÔºàÈó¥Ë∑ùÁº©ÊîæÔºâÔºõ
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2362 
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-Missing character: There is no Ù in font cmr12!
-Missing character: There is no › in font cmr12!
-Missing character: There is no Ù in font cmr12!
-Missing character: There is no ß in font cmr12!
-Missing character: There is no ò in font cmr12!
-Missing character: There is no ‡ in font cmr12!
-Missing character: There is no ª in font cmr12!
-Missing character: There is no ﬂ in font cmr12!
-Missing character: There is no Ë in font cmr12!
-Missing character: There is no † in font cmr12!
-Missing character: There is no ∆ in font cmr12!
-Missing character: There is no å in font cmr12!
-Missing character: There is no ¡ in font cmr12!
-Missing character: There is no Ô in font cmr12!
-Missing character: There is no Ó in font cmr12!
-Missing character: There is no ˆ in font cmr12!
-Missing character: There is no Ù in font cmr12!
-Missing character: There is no ß in font cmr12!
-Missing character: There is no † in font cmr12!
-Missing character: There is no ˆ in font cmr12!
-Missing character: There is no ˆ in font cmr12!
-Missing character: There is no Ù in font cmr12!
-Missing character: There is no ¬ in font cmr12!
-Missing character: There is no ﬂ in font cmr12!
-Missing character: There is no Ú in font cmr12!
-Missing character: There is no ø in font cmr12!
-Missing character: There is no · in font cmr12!
-
-Overfull \hbox (80.39912pt too wide) in paragraph at lines 2359--2362
-[]\C70/zhsong/m/n/12.045/8c ^^C \C70/zhsong/b/n/12.045/65 t \C70/zhsong/m/n/12.
-045/82 Ç \C70/zhsong/m/n/12.045/70 π \C70/zhsong/b/n/12.045/96 ∆ |\C70/zhsong/b
-/n/12.045/ff ^^H|\C70/zhsong/b/n/12.045/54 + \C70/zhsong/b/n/12.045/62 ò \C70/z
-hsong/b/n/12.045/53 ‡ \C70/rm/m/n/12.045/90 ª \C70/zhsong/b/n/12.045/57 ﬂ|\C70/
-zhsong/b/n/12.045/ff 	||\C70/zhsong/m/n/12.045/30 ^^A| \T1/ptm/m/n/12.045 ((x$[
-]\OML/cmm/m/it/12.045 ; x[]\OT1/cmr/m/n/12.045 ))[][][][][][][][][][][][][][][]
-[][][][]\OML/cmm/m/it/12.045 =[][][][][][][][][][][][][][][][]\OT1/cmr/m/n/12.0
-45 (\OML/cmm/m/it/12.045 N\OT1/cmr/m/n/12.045 )[][][](^^A\OML/cmm/m/it/12.045 t
-\OT1/cmr/m/n/12.045 )[][][][][][][][][][][][][][][][][][][][][][][]$ 
- []
-
-! You can't use `macro parameter character #' in vertical mode.
-l.2365 #
-         5. ‰∏ÄÂè•ËØùÁªìËÆ∫ÔºàÂÜôÂú®Â∞èÁªìÈáåÔºâ
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2367 ...º±ÈáèÊõ¥ÈÄÇÂêàÁî®Á©∫Èó¥Á¶ªÊï£ÔºàCTRW/(Q_
-                                                  u)ÔºâÁõ¥Êé•Ê±ÇËß£Ôºö‰∏ÄÊ¨°...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.2368 
-       
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-Missing character: There is no Ù in font cmr12!
-Missing character: There is no • in font cmr12!
-Missing character: There is no „ in font cmr12!
-Missing character: There is no è in font cmr12!
-Missing character: There is no ø in font cmr12!
-Missing character: There is no π in font cmr12!
-Missing character: There is no Ô in font cmr12!
-Missing character: There is no ó in font cmr12!
-Missing character: There is no ö in font cmr12!
-Missing character: There is no ‡ in font cmr12!
-Missing character: There is no π in font cmr12!
-Missing character: There is no Ó in font cmr12!
-Missing character: There is no ˆ in font cmr12!
-Missing character: There is no Ù in font cmr12!
-Missing character: There is no ª in font cmr12!
-Missing character: There is no ô in font cmr12!
-Missing character: There is no ° in font cmr12!
-Missing character: There is no ˝ in font cmr12!
-Missing character: There is no æ in font cmr12!
-Missing character: There is no æ in font cmr12!
-Missing character: There is no ¶ in font cmr12!
-Missing character: There is no ˆ in font cmr12!
-Missing character: There is no Å in font cmr12!
-Missing character: There is no Ù in font cmr12!
-Missing character: There is no ÿ in font cmr12!
-Missing character: There is no Ñ in font cmr12!
-Missing character: There is no ° in font cmr12!
-Missing character: There is no ó in font cmr12!
-Missing character: There is no „ in font cmr12!
-Missing character: There is no ˜ in font cmr12!
-
-Overfull \hbox (83.34729pt too wide) in paragraph at lines 2367--2368
-|\C70/zhsong/b/n/12.045/ff ^^H|\T1/ptm/m/n/12.045 CTRW/(Q$[]\OT1/cmr/m/n/12.045
- )[][][][][][][][][][][][][][][][][][][][][][][][][][][]\OML/cmm/m/it/12.045 Mo
-nteCarlo[][][][][][][][][]tamed=truncatedEM[][][][][][][][][][][][][][][][][][]
-[][][][][][][][][][][][][][][][][][][]$ 
- []
-
-
+[38] (./ËÆ∫Êñá.bbl
 
 [39]
-
-[40] (./ËÆ∫Êñá.bbl
-
-[41]
 Underfull \hbox (badness 1275) in paragraph at lines 91--94
 []\T1/ptm/m/n/12.045 B. Ok-sendal, \T1/ptm/m/it/12.045 Stochas-tic dif-fer-en-t
 ial equa-tions: an in-tro-duc-tion with ap-pli-ca-tions\T1/ptm/m/n/12.045 .
@@ -2726,25 +2110,25 @@ ial equa-tions: an in-tro-duc-tion with ap-pli-ca-tions\T1/ptm/m/n/12.045 .
 
 )
 
+[40]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \hskip 12.045pt
+(hyperref)                replaced by space on input line 2433.
+
+
+
+[41]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \hskip 12.045pt
+(hyperref)                replaced by space on input line 2440.
+
+
+
 [42]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \hskip 12.045pt
-(hyperref)                replaced by space on input line 2459.
-
-
-
 [43]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \hskip 12.045pt
-(hyperref)                replaced by space on input line 2466.
-
-
-
-[44]
-
-[45]
 > Step: init table outer spec.
 > Step: parse table options.
 > Step: split table.
@@ -2755,7 +2139,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 > Step: build the whole table.
 
 
-[46] (./ËÆ∫Êñá.aux)
+[44] (./ËÆ∫Êñá.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/07/14>
@@ -2772,34 +2156,34 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `ËÆ∫Êñá.out' has not changed.
-(rerunfilecheck)             Checksum: F7A021FA04CFCB123CF43E4580DC83CC;6027.
+(rerunfilecheck)             Checksum: 9F9A2DF392E50B2CE5D11944443BF690;5524.
  ) 
 Here is how much of TeX's memory you used:
- 63686 strings out of 473190
- 1572582 string characters out of 5719980
- 2254001 words of memory out of 5000000
- 85032 multiletter control sequences out of 15000+600000
- 764364 words of font info for 663 fonts, out of 8000000 for 9000
+ 63706 strings out of 473190
+ 1572873 string characters out of 5719980
+ 2253146 words of memory out of 5000000
+ 85038 multiletter control sequences out of 15000+600000
+ 771798 words of font info for 687 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,15n,99p,2003b,980s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/s
-imsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows
-/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:
-/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun
-.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Font
+ 88i,15n,99p,1917b,980s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/s
+imsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows
+/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:
+/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei
+.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Font
 s/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Wind
-ows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf>
-<c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/sim
-hei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/F
-onts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/W
-indows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.t
+ows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc>
+<c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/sim
+sun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/F
+onts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/W
+indows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.t
 tc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/
 simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Window
 s/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c
 :/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsu
-n.ttc><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fon
-ts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simkai.ttf><c:/Win
-dows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf
+n.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fon
+ts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simsun.ttc><c:/Win
+dows/Fonts/simhei.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf
 ><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/si
 mkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/
 Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/
@@ -2821,21 +2205,21 @@ ows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf>
 <c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/sim
 kai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/F
 onts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/W
-indows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.t
-tf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/
-simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Window
-s/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c
-:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhe
-i.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fon
+indows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simhei.t
+tf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/
+simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Window
+s/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c
+:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsu
+n.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fon
 ts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Win
 dows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf
 ><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/si
-mhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/
-Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/
+mhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/
+Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/
 Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.
 ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts
 /simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windo
-ws/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><
+ws/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><
 c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/sims
 un.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fo
 nts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Wi
@@ -2847,16 +2231,16 @@ imsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows
 .ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Font
 s/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Wind
 ows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc>
-<c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/sim
-hei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/F
-onts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/W
-indows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.t
+<c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/sim
+sun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/F
+onts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/W
+indows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.t
 tf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/
 simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Window
 s/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c
 :/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhe
 i.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fon
-ts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Win
+ts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Win
 dows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc
 ><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/si
 msun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/
@@ -2867,38 +2251,39 @@ ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts
 ws/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><
 c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/sims
 un.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fo
-nts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><d:/te
-xlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><d:/texlive/202
-5/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/texlive/2025/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/texlive/2025/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi12.pfb><d:/texlive/2025/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi5.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi6.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i7.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:
-/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><d:/texlive/2
-025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><d:/texlive/2025/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/texlive/2025/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr12.pfb><d:/texlive/2025/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr6.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr7.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8
-.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><d:/te
-xlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb><d:/texlive/202
-5/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><d:/texlive/2025/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/texlive/2025/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy6.pfb><d:/texlive/2025/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmsy7.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy8.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9
-.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
-><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><d:
-/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><d:/texl
-ive/2025/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb><d:/texlive/2025/texmf-d
-ist/fonts/type1/urw/times/utmb8a.pfb><d:/texlive/2025/texmf-dist/fonts/type1/ur
-w/times/utmr8a.pfb><d:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pf
-b>
-Output written on ËÆ∫Êñá.pdf (59 pages, 1986442 bytes).
+nts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Wi
+ndows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><d:/texlive/2025/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmbx12.pfb><d:/texlive/2025/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx8.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmex10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi1
+2.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><d:/
+texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/texlive/20
+25/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><d:/texlive/2025/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/texlive/2025/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi9.pfb><d:/texlive/2025/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmib10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+12.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><d:/
+texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><d:/texlive/202
+5/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/texlive/2025/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr9.pfb><d:/texlive/2025/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmss12.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmss8.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.
+pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><d:/te
+xlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/texlive/2025
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><d:/texlive/2025/texmf-dis
+t/fonts/type1/public/amsfonts/symbols/msam10.pfb><d:/texlive/2025/texmf-dist/fo
+nts/type1/public/amsfonts/symbols/msbm10.pfb><d:/texlive/2025/texmf-dist/fonts/
+type1/public/amsfonts/symbols/msbm7.pfb><d:/texlive/2025/texmf-dist/fonts/type1
+/public/rsfs/rsfs10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8
+a.pfb><d:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><d:/texlive/
+2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on ËÆ∫Êñá.pdf (57 pages, 1785639 bytes).
 PDF statistics:
- 2071 PDF objects out of 2073 (max. 8388607)
- 1535 compressed objects within 16 object streams
- 263 named destinations out of 1000 (max. 500000)
- 761 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2084 PDF objects out of 2487 (max. 8388607)
+ 1510 compressed objects within 16 object streams
+ 253 named destinations out of 1000 (max. 500000)
+ 718 words of extra memory for PDF output out of 10000 (max. 10000000)
 
