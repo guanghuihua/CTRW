@@ -1,0 +1,45 @@
+\contentsline {section}{摘要}{I}{section*.1}%
+\contentsline {section}{Abstract}{II}{section*.2}%
+\contentsline {section}{插图目录}{V}{section*.4}%
+\contentsline {section}{附表目录}{VI}{section*.5}%
+\contentsline {section}{符号和缩略语说明}{VII}{section*.6}%
+\contentsline {section}{\numberline {1\hspace {-0.5\ccwd }}引言}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1\hspace {-0.5\ccwd }}随机微分方程的的起源与发展}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2\hspace {-0.5\ccwd }}随机微分方程数值解的研究现状}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3\hspace {-0.5\ccwd }}本文的主要研究内容}{5}{subsection.1.3}%
+\contentsline {section}{\numberline {2\hspace {-0.5\ccwd }}预备知识}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1\hspace {-0.5\ccwd }}随机游走和马尔可夫链}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2\hspace {-0.5\ccwd }}Markov过程的无穷小生成元}{9}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3\hspace {-0.5\ccwd }}Ito扩散与随机微分方程}{10}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4\hspace {-0.5\ccwd }}平均首达时间（MFPT）的推导}{14}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5\hspace {-0.5\ccwd }}一维立方振子模型平均首达时间（MFPT）的推导与局部渐近}{16}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6\hspace {-0.5\ccwd }}Committor 函数与出界概率}{19}{subsection.2.6}%
+\contentsline {section}{\numberline {3\hspace {-0.5\ccwd }}空间离散方法的平均驻留时间分析}{21}{section.3}%
+\contentsline {section}{\numberline {4\hspace {-0.5\ccwd }}时间离散格式的平均首达时间分析}{24}{section.4}%
+\contentsline {subsection}{\numberline {4.1\hspace {-0.5\ccwd }}设定与目标}{24}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2\hspace {-0.5\ccwd }}EM的离散 MFPT}{24}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3\hspace {-0.5\ccwd }}截断 EM（Truncated EM）的离散 MFPT}{25}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4\hspace {-0.5\ccwd }}驯化 EM（Tamed EM）的离散 MFPT}{25}{subsection.4.4}%
+\contentsline {section}{\numberline {5\hspace {-0.5\ccwd }}$|\text {Mean Holding Time}-t^e|$ 与 $|\text {MFPT}-t^e|$ 的比较}{26}{section.5}%
+\contentsline {subsection}{\numberline {5.1\hspace {-0.5\ccwd }}比较对象与误差定义}{26}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2\hspace {-0.5\ccwd }}空间离散的误差主项}{26}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3\hspace {-0.5\ccwd }}时间离散的误差主项}{26}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4\hspace {-0.5\ccwd }}交叉阈值与 $t^e$的比较}{27}{subsection.5.4}%
+\contentsline {section}{\numberline {6\hspace {-0.5\ccwd }}数值实验}{27}{section.6}%
+\contentsline {subsection}{\numberline {6.1\hspace {-0.5\ccwd }}一维立方振子模型}{27}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1\hspace {-0.5\ccwd }}实验设定}{29}{subsubsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.2\hspace {-0.5\ccwd }}随机Canard慢快系统}{30}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1\hspace {-0.5\ccwd }}数值方法与公平性口径}{30}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2\hspace {-0.5\ccwd }}评价指标与任务}{30}{subsubsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.3\hspace {-0.5\ccwd }}路径几何与快跳时间分布}{31}{subsubsection.6.2.3}%
+\contentsline {subsubsection}{\numberline {6.2.4\hspace {-0.5\ccwd }}强误差—代价}{33}{subsubsection.6.2.4}%
+\contentsline {subsubsection}{\numberline {6.2.5\hspace {-0.5\ccwd }}Committor 与 MFPT的比较}{33}{subsubsection.6.2.5}%
+\contentsline {subsubsection}{\numberline {6.2.6\hspace {-0.5\ccwd }}时间步进 MC 对照——弱量的误差—代价}{35}{subsubsection.6.2.6}%
+\contentsline {subsubsection}{\numberline {6.2.7\hspace {-0.5\ccwd }}小结与讨论}{37}{subsubsection.6.2.7}%
+\contentsline {subsubsection}{\numberline {6.2.8\hspace {-0.5\ccwd }}实现备注（复现要点）}{37}{subsubsection.6.2.8}%
+\contentsline {section}{\numberline {7\hspace {-0.5\ccwd }}结论}{38}{section.7}%
+\contentsline {section}{附录\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{41}{section*.21}%
+\contentsline {section}{附录\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{42}{section*.22}%
+\contentsline {section}{后记}{43}{section*.23}%
+\contentsline {section}{在学期间取得创新性成果情况}{44}{section*.24}%
+\contentsfinish 

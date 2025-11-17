@@ -372,7 +372,7 @@ plt.title('Committor: time-stepping MC vs Q (error vs work)')
 plt.grid(True, which='both', ls=':')
 plt.legend()
 plt.tight_layout()
-plt.savefig('/mnt/data/committor_error_work_timeMC.pdf', bbox_inches='tight')
+plt.savefig('Canard_EM/committor_error_work_timeMC.jpg', bbox_inches='tight')
 plt.show()
 
 # Plot: MFPT error vs work
@@ -384,7 +384,7 @@ plt.title('MFPT: time-stepping MC vs Q (error vs work)')
 plt.grid(True, which='both', ls=':')
 plt.legend()
 plt.tight_layout()
-plt.savefig('/mnt/data/mfpt_error_work_timeMC.pdf', bbox_inches='tight')
+plt.savefig('Canard_EM/mfpt_error_work_timeMC.jpg', bbox_inches='tight')
 plt.show()
 
 # Report the numeric pairs for quick inspection
