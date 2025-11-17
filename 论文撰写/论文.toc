@@ -1,45 +1,44 @@
 \contentsline {section}{摘要}{I}{section*.1}%
 \contentsline {section}{Abstract}{II}{section*.2}%
-\contentsline {section}{插图目录}{V}{section*.4}%
-\contentsline {section}{附表目录}{VI}{section*.5}%
-\contentsline {section}{符号和缩略语说明}{VII}{section*.6}%
+\contentsline {section}{插图目录}{VI}{section*.4}%
+\contentsline {section}{附表目录}{VII}{section*.5}%
+\contentsline {section}{符号和缩略语说明}{VIII}{section*.6}%
 \contentsline {section}{\numberline {1\hspace {-0.5\ccwd }}引言}{1}{section.1}%
 \contentsline {subsection}{\numberline {1.1\hspace {-0.5\ccwd }}随机微分方程的的起源与发展}{1}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2\hspace {-0.5\ccwd }}随机微分方程数值解的研究现状}{2}{subsection.1.2}%
 \contentsline {subsection}{\numberline {1.3\hspace {-0.5\ccwd }}本文的主要研究内容}{5}{subsection.1.3}%
 \contentsline {section}{\numberline {2\hspace {-0.5\ccwd }}预备知识}{6}{section.2}%
-\contentsline {subsection}{\numberline {2.1\hspace {-0.5\ccwd }}随机游走和马尔可夫链}{6}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2\hspace {-0.5\ccwd }}Markov过程的无穷小生成元}{9}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3\hspace {-0.5\ccwd }}Ito扩散与随机微分方程}{10}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4\hspace {-0.5\ccwd }}平均首达时间（MFPT）的推导}{14}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5\hspace {-0.5\ccwd }}一维立方振子模型平均首达时间（MFPT）的推导与局部渐近}{16}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6\hspace {-0.5\ccwd }}Committor 函数与出界概率}{19}{subsection.2.6}%
-\contentsline {section}{\numberline {3\hspace {-0.5\ccwd }}空间离散方法的平均驻留时间分析}{21}{section.3}%
-\contentsline {section}{\numberline {4\hspace {-0.5\ccwd }}时间离散格式的平均首达时间分析}{24}{section.4}%
-\contentsline {subsection}{\numberline {4.1\hspace {-0.5\ccwd }}设定与目标}{24}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2\hspace {-0.5\ccwd }}EM的离散 MFPT}{24}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3\hspace {-0.5\ccwd }}截断 EM（Truncated EM）的离散 MFPT}{25}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4\hspace {-0.5\ccwd }}驯化 EM（Tamed EM）的离散 MFPT}{25}{subsection.4.4}%
-\contentsline {section}{\numberline {5\hspace {-0.5\ccwd }}$|\text {Mean Holding Time}-t^e|$ 与 $|\text {MFPT}-t^e|$ 的比较}{26}{section.5}%
-\contentsline {subsection}{\numberline {5.1\hspace {-0.5\ccwd }}比较对象与误差定义}{26}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2\hspace {-0.5\ccwd }}空间离散的误差主项}{26}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3\hspace {-0.5\ccwd }}时间离散的误差主项}{26}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4\hspace {-0.5\ccwd }}交叉阈值与 $t^e$的比较}{27}{subsection.5.4}%
-\contentsline {section}{\numberline {6\hspace {-0.5\ccwd }}数值实验}{27}{section.6}%
-\contentsline {subsection}{\numberline {6.1\hspace {-0.5\ccwd }}一维立方振子模型}{27}{subsection.6.1}%
-\contentsline {subsubsection}{\numberline {6.1.1\hspace {-0.5\ccwd }}实验设定}{29}{subsubsection.6.1.1}%
-\contentsline {subsection}{\numberline {6.2\hspace {-0.5\ccwd }}随机Canard慢快系统}{30}{subsection.6.2}%
-\contentsline {subsubsection}{\numberline {6.2.1\hspace {-0.5\ccwd }}路径几何与快跳时间分布（Q解的几何）}{30}{subsubsection.6.2.1}%
-\contentsline {subsubsection}{\numberline {6.2.2\hspace {-0.5\ccwd }}基于 committor 的时间/空间离散 work--error 比较}{32}{subsubsection.6.2.2}%
-\contentsline {paragraph}{实验流程小结.}{34}{paragraph*.14}%
-\contentsline {paragraph}{定量结果（committor）.}{34}{paragraph*.16}%
-\contentsline {paragraph}{同等代价的直接对比.}{36}{paragraph*.19}%
-\contentsline {paragraph}{讨论与结论.}{36}{paragraph*.21}%
-\contentsline {subsubsection}{\numberline {6.2.3\hspace {-0.5\ccwd }}强误差—代价}{36}{subsubsection.6.2.3}%
-\contentsline {subsubsection}{\numberline {6.2.4\hspace {-0.5\ccwd }}结论}{36}{subsubsection.6.2.4}%
-\contentsline {section}{\numberline {7\hspace {-0.5\ccwd }}结论}{37}{section.7}%
-\contentsline {section}{附录\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{41}{section*.24}%
-\contentsline {section}{附录\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{42}{section*.25}%
-\contentsline {section}{后记}{43}{section*.26}%
-\contentsline {section}{在学期间取得创新性成果情况}{44}{section*.27}%
+\contentsline {subsection}{\numberline {2.1\hspace {-0.5\ccwd }}Markov过程的无穷小生成元}{8}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2\hspace {-0.5\ccwd }}Ito扩散与随机微分方程}{8}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3\hspace {-0.5\ccwd }}平均首达时间（MFPT）的推导}{13}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4\hspace {-0.5\ccwd }}一维立方振子模型平均首达时间（MFPT）的推导与局部渐近}{15}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5\hspace {-0.5\ccwd }}Committor 函数与出界概率}{17}{subsection.2.5}%
+\contentsline {section}{\numberline {3\hspace {-0.5\ccwd }}空间离散方法的平均驻留时间分析}{19}{section.3}%
+\contentsline {section}{\numberline {4\hspace {-0.5\ccwd }}时间离散格式的平均首达时间分析}{22}{section.4}%
+\contentsline {subsection}{\numberline {4.1\hspace {-0.5\ccwd }}设定与目标}{22}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2\hspace {-0.5\ccwd }}EM的离散 MFPT}{22}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3\hspace {-0.5\ccwd }}截断 EM（Truncated EM）的离散 MFPT}{23}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4\hspace {-0.5\ccwd }}驯化 EM（Tamed EM）的离散 MFPT}{23}{subsection.4.4}%
+\contentsline {section}{\numberline {5\hspace {-0.5\ccwd }}$|\text {Mean Holding Time}-t^e|$ 与 $|\text {MFPT}-t^e|$ 的比较}{24}{section.5}%
+\contentsline {subsection}{\numberline {5.1\hspace {-0.5\ccwd }}比较对象与误差定义}{24}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2\hspace {-0.5\ccwd }}空间离散的误差主项}{24}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3\hspace {-0.5\ccwd }}时间离散的误差主项}{24}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4\hspace {-0.5\ccwd }}交叉阈值与 $t^e$的比较}{25}{subsection.5.4}%
+\contentsline {section}{\numberline {6\hspace {-0.5\ccwd }}数值实验}{25}{section.6}%
+\contentsline {subsection}{\numberline {6.1\hspace {-0.5\ccwd }}一维立方振子模型}{25}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1\hspace {-0.5\ccwd }}实验设定}{27}{subsubsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.2\hspace {-0.5\ccwd }}随机Canard慢快系统}{28}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1\hspace {-0.5\ccwd }}路径几何与快跳时间分布（Q解的几何）}{28}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2\hspace {-0.5\ccwd }}基于 committor 的时间/空间离散 work--error 比较}{30}{subsubsection.6.2.2}%
+\contentsline {paragraph}{实验流程小结.}{32}{paragraph*.14}%
+\contentsline {paragraph}{定量结果（committor）.}{32}{paragraph*.16}%
+\contentsline {paragraph}{同等代价的直接对比.}{34}{paragraph*.19}%
+\contentsline {paragraph}{讨论与结论.}{34}{paragraph*.21}%
+\contentsline {subsubsection}{\numberline {6.2.3\hspace {-0.5\ccwd }}强误差—代价}{34}{subsubsection.6.2.3}%
+\contentsline {subsubsection}{\numberline {6.2.4\hspace {-0.5\ccwd }}结论}{34}{subsubsection.6.2.4}%
+\contentsline {section}{\numberline {7\hspace {-0.5\ccwd }}结论}{35}{section.7}%
+\contentsline {section}{附录\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{39}{section*.24}%
+\contentsline {section}{附录\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{40}{section*.25}%
+\contentsline {section}{后记}{41}{section*.26}%
+\contentsline {section}{在学期间取得创新性成果情况}{42}{section*.27}%
 \contentsfinish 

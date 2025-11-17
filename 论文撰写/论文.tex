@@ -530,7 +530,7 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	
 	随机微分方程（SDE）在分子动力学、数理金融、生物系统及当代生成模型中广泛出现，但传统数值法在漂移项仅具局部Lipschitz且可能超线性增长时易失稳或发散。本文围绕“时间离散与空间离散两类数值格式的比较”展开系统研究：一方面，从时间步进视角考察改进显式方法——截断Euler–Maruyama（Truncated EM）与驯化Euler（Tamed EM），分析其在Khasminskii型条件下的强收敛与矩有界性质；另一方面，从生成元离散视角研究连续时间随机行走（CTRW）类空间离散法，包括Bou-Rabee–Vanden-Eijnden的\( Q_u/Q_c \)格式及其改进\(Q_u\)格式，讨论其可实现性、结构保持与稳态采样能力。为进行公平比较，本文提出“等空间位移—等效时间/事件数”的评价准则：在数值解跨越同一空间距离的前提下，对比方法的平均停留时间、有效推进速度与计算代价，并结合长时间统计量（如不变分布采样偏差）刻画精度—稳定性的权衡。
 	
-	在模型层面，选择两类具有代表性的随机系统进行分析与实验：其一是一维加性噪声立方振子，利用强非线性漂移检验显式方法的稳定化效果，并比较\( Q_u\)在小噪声极限下的平均停留时间与解析近似的偏差；其二为具有Canard现象的慢快随机系统，评估方法在多尺度刚性场景下对慢流形几何的保真、在折点附近的过渡刻画以及误差的累积放大。本文还凝练出面向应用的若干结论：空间离散法在结构保持与稳态采样方面具显著优势，时间离散改进法在短时强收敛与实现复杂度上更为经济；在强刚性或边界/约束显著的情形下，可优先考虑生成元离散或二者的混合策略。作为背景拓展，本文概述了SDE数值求解在现代生成模型（扩散/score-based）中的角色，解释前向/反向SDE与概率流ODE的数值实现要点，凸显本文比较框架对相关应用的参考价值。数值实验部分将围绕上述两类系统展开，并据此给出定量比较与敏感性分析。本文的主要贡献在于：构建统一的比较框架与评价指标，澄清两类离散思想在稳定性、收敛性与结构保持上的本质差异，并为实际问题中的算法选型提供可操作的准则。
+	在模型层面，选择两类具有代表性的随机系统进行分析与实验：其一是一维加性噪声立方振子，利用强非线性漂移检验显式方法的稳定化效果，并比较\( Q_u\)在小噪声极限下的平均停留时间与解析近似的偏差；其二为具有Canard现象的慢快随机系统，评估方法在多尺度刚性场景下对慢流形几何的保真、在折点附近的过渡刻画以及误差的累积放大。本文还凝练出面向应用的若干结论：空间离散法在结构保持与稳态采样方面具显著优势，时间离散改进法在短时强收敛与实现复杂度上更为经济；在强刚性或边界/约束显著的情形下，可优先考虑生成元离散或二者的混合策略。本文的主要贡献在于：构建统一的比较框架与评价指标，澄清两类离散思想在稳定性、收敛性与结构保持上的本质差异，并为实际问题中的算法选型提供可操作的准则。
 	\\   % 摘要文本与关键词之间空一行
 	
 	{\songti\bf\zihao{-4}关键词：}随机微分方程；时间离散；空间离散；截断Euler–Maruyama；
@@ -545,20 +545,12 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	\addcontentsline{toc}{section}{Abstract}
 	\large %设置英文字号
 	
-	Text text text text text text text text text text text text text text text, 
-	text text text text text text text text text text text text text text. 
-	Text text text text text text text text text text text text text text text, text text text text text text text,
-	text text text text text text text text text text text text text text. 
-	text text text text text text text, text text text text text text text text text text text text text text.
-	
-	Second paragraph text text text text text text text text text text text text text text, text text text text text text text,
-	text text text text text text text text text text text text text text. Text text text text text text text text text text text text text text text,
-	text text text text text.
-	text text text text text text text text text text text text text text. Text text text text text text text text text text text text text text text,
-	text text text text text.
+	Stochastic differential equations (SDEs) arise widely in molecular dynamics, mathematical finance, biological systems, and modern generative models. However, classical numerical methods can easily become unstable or even divergent when the drift term is only locally Lipschitz and may grow superlinearly. This thesis conducts a systematic study centered on the comparison between two classes of numerical schemes, namely time discretization and space discretization. From the time-stepping viewpoint, we examine improved explicit schemes—the truncated Euler–Maruyama (Truncated EM) and tamed Euler (Tamed EM) methods—and analyze their strong convergence and moment boundedness under Khasminskii-type conditions. From the generator-discretization viewpoint, we investigate continuous-time random walk (CTRW) type space-discretization schemes, including the \(Q_u/Q_c\) methods of Bou-Rabee and Vanden-Eijnden and their modified \(Q_u\) scheme, and discuss their realizability, structure-preserving properties, and ability to sample the steady state. To enable a fair comparison, we propose an evaluation criterion based on “equal spatial displacement and equivalent time/event count”: under the requirement that the numerical solutions traverse the same spatial distance, we compare the schemes in terms of mean holding time, effective propagation speed, and computational cost, and, together with long-time statistics (such as the sampling bias of the invariant distribution), characterize the trade-off between accuracy and stability.
+
+	At the modeling level, two representative stochastic systems are selected for analysis and experiments. The first is a one-dimensional cubic oscillator with additive noise, which uses the strongly nonlinear drift to test the stabilizing effects of explicit schemes and compares the mean holding time of the \(Q_u\) scheme in the small-noise limit with analytical approximations. The second is a slow–fast stochastic system exhibiting canard phenomena, where we assess how well each method preserves the geometry of the slow manifold in a multiscale stiff regime, captures the transition near the fold point, and controls the cumulative amplification of errors. The thesis also distills several application-oriented conclusions: space-discretization methods have marked advantages in structure preservation and steady-state sampling, whereas improved time-discretization schemes are more economical in terms of short-time strong convergence and implementation complexity. In highly stiff situations or in the presence of prominent boundaries or constraints, one may preferentially adopt generator discretization or hybrid strategies combining time and space discretization. The main contribution of this work is to construct a unified comparison framework and evaluation metrics, clarify the essential differences between the two discretization philosophies in stability, convergence, and structure preservation, and provide practically usable guidelines for algorithm selection in real-world applications.
 	\\   % 摘要文本与关键词之间空一行
 	
-	{\bf\large Key words:} keywords1; keywords2; keywords3; keywords4
+	{\bf\large Key words:} stochastic differential equations; time discretization; space discretization; truncated Euler–Maruyama
 	
 	%%=====================================================================================================%%
 	%%
@@ -767,7 +759,7 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	%%
 	%%=====================================================================================================%%
 	
-	本文的具体安排如下：第一章介绍课题背景和研究动机；第二章总结随机微分方程数值解的理论基础，包括解的存在唯一性、基本数值方法及其收敛性理论；第三章介绍通过离散生成元构造马尔可夫跳跃过程的空间离散方法，并描述Bou-Rabee与Vanden-Eijnden提出的$Q_u$/$Q_c$格式及祖建\cite{zu2023random}的改进方案的结构与性质并将其与\(t^e\)比较；第四章通过计算出改进的EM格式的时间，并将其与\(t^e\)进行比较，第五章给出数值实验，分别以一维立方振子模型和随机Canard慢快系统为例进行对比分析（在该部分中，每个模型先介绍方程和研究动机，得出实验图表与详细分析），并综合比较两类方法的性能，从稳定性、精度、收敛阶及结构保持性等方面讨论各自的优劣，并结合模型特征进行评述；第六章总结全文并展望进一步的研究方向。
+	本文的具体安排如下：第一章介绍课题背景和研究动机；第二章总结随机微分方程数值解的理论基础，包括解的存在唯一性、基本数值方法及其收敛性理论；第三章介绍通过离散生成元构造马尔可夫跳跃过程的空间离散方法，并描述Bou-Rabee与Vanden-Eijnden提出的$Q_u$格式及祖建\cite{zu2023random}的改进方案的结构与性质并将其与\(t^e\)比较；第四章通过计算出改进的EM格式的时间，并将其与\(t^e\)进行比较，第五章给出数值实验，分别以一维立方振子模型和随机Canard慢快系统为例进行对比分析，并综合比较两类方法的性能，并结合模型特征进行评述；第六章总结全文并展望进一步的研究方向。
 	
 	
 	\newpage
@@ -780,74 +772,74 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	
 	 \section{预备知识}
 	
-	 \subsection{随机游走和马尔可夫链}
-	
-	
-	 \begin{definition}[随机过程]
-	      随机过程 $\mathbf{X}=\left\{X_{t}\right\}_{t \in T}$ 是一族随机变量。即，对于指标集 $T$ 中的每个 $t, X(t)$ 是一个随机变量。
-	
-	 若指标集 $T$ 是可数集，则我们称过程 $\mathbf{X}$ 是离散时间的，而若指标集 $T$ 是连续统，则我们称过程 X 是连续时间的。
-	 \end{definition}
-	
-	 \begin{definition}[指数分布与泊松过程]
-	     指数分布与泊松过程
-	 \end{definition}
-	 \begin{definition}[伯努利过程]
-	     参数为 $p \in[0,1]$ 的伯努利过程 $\left\{Y_{n}\right\}_{n \geq 1}$ 是一组独立同分布（i．i．d）的随机变量序列，满足
-	
-	
-	 \begin{equation}
-		 \mathbb{P}\left(Y_{1}=1\right)=1-\mathbb{P}\left(Y_{1}=0\right)=p 
-		 \end{equation}
-	
-	
-	 具有（2．1）所描述的概率质量函数（pmf）的变量称为具有分布 $\operatorname{Ber}(p)$ 的伯努利随机变量。伯努利过程是一个在状态空间 $\{0,1\}$ 中取值的离散时间过程。
-	
-	 \end{definition}
-	
-	 \begin{definition}[随机游走]  给定一个参数为 $p \in[0,1]$ 的伯努利过程 $\left\{Y_{n}\right\}_{n \geq 1}$ ，我们定义初始条件为 $X_{0}=x_{0}$ ，参数为 $p$ 的随机游走 $\left\{X_{n}\right\}_{n \geq 1}$ 为
-	
-	 $$
-	 X_{n+1}=X_{n}+\left(2 Y_{n+1}-1\right)
-	 $$
-	 \end{definition}
-	
-	 注意，如果 $Y_{n}=1$ ，则 $\left(2 Y_{n}-1\right)=1$ ；如果 $Y_{n}=0$ ，则 $\left(2 Y_{n}-1\right)=-1$ 。所以，本质上，随机游走的每一步上升 1 或者下降 1 。
-	
-	 考虑一个存在于概率空间 $(\Omega, \mathcal{F}, \mathbb{P})$ ，取值于具有 $\sigma$-代数 $\Sigma$ 的状态空间 $\mathcal{X}$ 的连续时间的随机过程 $\left\{X_{t}\right\}_{t \geq 0}$ ，其中 $\Omega$ 通常选取为 $[0, \infty]$ 上的连续函数空间 $C[0, \infty]$或 $[0, \infty]$ 上的右连续左极限函数空间 $D[0, \infty]$ 。那么 $\Omega$ 的元素 $\omega$ 是一个函数。 $\mathcal{F}$ 为对每个 $t \geq 0, \omega \rightarrow \omega(t)$ 可测的最小 $\sigma$-代数。 $\left\{\mathbb{P}_{x}\right\}_{x \in \mathcal{X}}$ 为概率测度集，其中 $\mathbb{P}_{x}$ 表示从 $X_{0}=x$ 开始的随机过程的概率测度（即 $\mathbb{P}_{x}\left(X_{0}=x\right)=1$ ）。
-	
-	 \begin{definition}[域流]
-	 域流 $\left\{\mathcal{F}_{t}\right\}_{t \geq 0}$ 是一个非递减的 $\mathcal{F}$ 的子 $\sigma$-代数族，即对所有的 $s \leq t$ ，
-	
-	 $$
-	 \mathcal{F}_{s} \subseteq \mathcal{F}_{t} \subseteq \mathcal{F}
-	 $$
-	
-	 通常，假定域流是右连续的。即 $\forall t \geq 0, \mathcal{F}_{t}=\bigcap_{s \geq t} \mathcal{F}_{s}$ 。
-	 \end{definition}
-	
-	
-	 \begin{definition}[$\mathcal{F}_{t} \text {-适应 }$] 
-	 如果对所有的 $t \geq 0, X_{t}$ 是 $\left\{\mathcal{F}_{t}\right\}$ 可测的，则称过程 $\left\{X_{t}\right\}_{t \geq 0}$ 适应于域流 $\left\{\mathcal{F}_{t}\right\}_{t \geq 0}$ 或者 $\mathcal{F}_{t}$-适应。
-	 $\left\{X_{t}\right\}_{t \geq 0}$ 适应于域流 $\left\{\mathcal{F}_{t}\right\}_{t \geq 0}$ ，也就是域流包含关于 $\left\{X_{t}\right\}_{t \geq 0}$ 的充分信息。
-	 \end{definition}
-	
-	\begin{definition}[停止时间] \label{def:stopping-time}
-		设 $\{\mathcal{N}_t\}$ 是一个递增的 $\sigma$-代数族（定义在子集上）。函数 $T: \Omega \to [0, \infty]$ 称为关于 $\{\mathcal{N}_t\}$ 的（严格）停止时间，如果对于所有 $t \geq 0$，有
-		\[
-		\{ \omega; T(\omega) \leq t \} \in \mathcal{N}_t.
-		\]
-		换言之，基于 $\mathcal{N}_t$ 的知识，应能够判断事件 $\{T \leq t\}$ 是否发生。
-		
-		注意，如果 $T(\omega) = t_0$（常数）对于所有 $\omega$ 成立，则 $T$ 显然是关于任何滤子的停止时间，因为此时
-		\[
-		\{ \omega; T(\omega) \leq t \} = 
-		\begin{cases}
-			\emptyset \in \mathcal{N}_t, & \text{若 } t < t_0, \\
-			\Omega \in \mathcal{N}_t, & \text{若 } t \geq t_0.
-		\end{cases}
-		\]
-	\end{definition}
+%	 \subsection{随机游走和马尔可夫链}
+%	
+%	
+%	 \begin{definition}[随机过程]
+%	      随机过程 $\mathbf{X}=\left\{X_{t}\right\}_{t \in T}$ 是一族随机变量。即，对于指标集 $T$ 中的每个 $t, X(t)$ 是一个随机变量。
+%	
+%	 若指标集 $T$ 是可数集，则我们称过程 $\mathbf{X}$ 是离散时间的，而若指标集 $T$ 是连续统，则我们称过程 X 是连续时间的。
+%	 \end{definition}
+%	
+%	 \begin{definition}[指数分布与泊松过程]
+%	     指数分布与泊松过程
+%	 \end{definition}
+%	 \begin{definition}[伯努利过程]
+%	     参数为 $p \in[0,1]$ 的伯努利过程 $\left\{Y_{n}\right\}_{n \geq 1}$ 是一组独立同分布（i．i．d）的随机变量序列，满足
+%	
+%	
+%	 \begin{equation}
+%		 \mathbb{P}\left(Y_{1}=1\right)=1-\mathbb{P}\left(Y_{1}=0\right)=p 
+%		 \end{equation}
+%	
+%	
+%	 具有（2．1）所描述的概率质量函数（pmf）的变量称为具有分布 $\operatorname{Ber}(p)$ 的伯努利随机变量。伯努利过程是一个在状态空间 $\{0,1\}$ 中取值的离散时间过程。
+%	
+%	 \end{definition}
+%	
+%	 \begin{definition}[随机游走]  给定一个参数为 $p \in[0,1]$ 的伯努利过程 $\left\{Y_{n}\right\}_{n \geq 1}$ ，我们定义初始条件为 $X_{0}=x_{0}$ ，参数为 $p$ 的随机游走 $\left\{X_{n}\right\}_{n \geq 1}$ 为
+%	
+%	 $$
+%	 X_{n+1}=X_{n}+\left(2 Y_{n+1}-1\right)
+%	 $$
+%	 \end{definition}
+%	
+%	 注意，如果 $Y_{n}=1$ ，则 $\left(2 Y_{n}-1\right)=1$ ；如果 $Y_{n}=0$ ，则 $\left(2 Y_{n}-1\right)=-1$ 。所以，本质上，随机游走的每一步上升 1 或者下降 1 。
+%	
+%	 考虑一个存在于概率空间 $(\Omega, \mathcal{F}, \mathbb{P})$ ，取值于具有 $\sigma$-代数 $\Sigma$ 的状态空间 $\mathcal{X}$ 的连续时间的随机过程 $\left\{X_{t}\right\}_{t \geq 0}$ ，其中 $\Omega$ 通常选取为 $[0, \infty]$ 上的连续函数空间 $C[0, \infty]$或 $[0, \infty]$ 上的右连续左极限函数空间 $D[0, \infty]$ 。那么 $\Omega$ 的元素 $\omega$ 是一个函数。 $\mathcal{F}$ 为对每个 $t \geq 0, \omega \rightarrow \omega(t)$ 可测的最小 $\sigma$-代数。 $\left\{\mathbb{P}_{x}\right\}_{x \in \mathcal{X}}$ 为概率测度集，其中 $\mathbb{P}_{x}$ 表示从 $X_{0}=x$ 开始的随机过程的概率测度（即 $\mathbb{P}_{x}\left(X_{0}=x\right)=1$ ）。
+%	
+%	 \begin{definition}[域流]
+%	 域流 $\left\{\mathcal{F}_{t}\right\}_{t \geq 0}$ 是一个非递减的 $\mathcal{F}$ 的子 $\sigma$-代数族，即对所有的 $s \leq t$ ，
+%	
+%	 $$
+%	 \mathcal{F}_{s} \subseteq \mathcal{F}_{t} \subseteq \mathcal{F}
+%	 $$
+%	
+%	 通常，假定域流是右连续的。即 $\forall t \geq 0, \mathcal{F}_{t}=\bigcap_{s \geq t} \mathcal{F}_{s}$ 。
+%	 \end{definition}
+%	
+%	
+%	 \begin{definition}[$\mathcal{F}_{t} \text {-适应 }$] 
+%	 如果对所有的 $t \geq 0, X_{t}$ 是 $\left\{\mathcal{F}_{t}\right\}$ 可测的，则称过程 $\left\{X_{t}\right\}_{t \geq 0}$ 适应于域流 $\left\{\mathcal{F}_{t}\right\}_{t \geq 0}$ 或者 $\mathcal{F}_{t}$-适应。
+%	 $\left\{X_{t}\right\}_{t \geq 0}$ 适应于域流 $\left\{\mathcal{F}_{t}\right\}_{t \geq 0}$ ，也就是域流包含关于 $\left\{X_{t}\right\}_{t \geq 0}$ 的充分信息。
+%	 \end{definition}
+%	
+%	\begin{definition}[停止时间] \label{def:stopping-time}
+%		设 $\{\mathcal{N}_t\}$ 是一个递增的 $\sigma$-代数族（定义在子集上）。函数 $T: \Omega \to [0, \infty]$ 称为关于 $\{\mathcal{N}_t\}$ 的（严格）停止时间，如果对于所有 $t \geq 0$，有
+%		\[
+%		\{ \omega; T(\omega) \leq t \} \in \mathcal{N}_t.
+%		\]
+%		换言之，基于 $\mathcal{N}_t$ 的知识，应能够判断事件 $\{T \leq t\}$ 是否发生。
+%		
+%		注意，如果 $T(\omega) = t_0$（常数）对于所有 $\omega$ 成立，则 $T$ 显然是关于任何滤子的停止时间，因为此时
+%		\[
+%		\{ \omega; T(\omega) \leq t \} = 
+%		\begin{cases}
+%			\emptyset \in \mathcal{N}_t, & \text{若 } t < t_0, \\
+%			\Omega \in \mathcal{N}_t, & \text{若 } t \geq t_0.
+%		\end{cases}
+%		\]
+%	\end{definition}
 	
 	\begin{definition}[首次退出时间] \label{def:first-exit-time}
 		设 $U \subset \mathbb{R}^n$ 为开集。则首次退出时间
@@ -1125,13 +1117,7 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	
 	
 	 其中 $a \vee b=\max (a, b), a \wedge b=\min (a, b)$ ．\\
-	 有限体积离散化 $Q_{c}$
-	
-	
-	 \begin{align}\label{algorithm:Q_c}
-	 Q_{c} f(x)= & \sum_{i=1}^{n} \frac{1}{h_{i}^{+}(x) h_{i}(x)} \exp \left(\frac{h_{i}^{+}(x)}{2} \tilde{\mu}(x)^{T} \sigma_{i}(x)\right)\left(f\left(x+h_{i}^{+}(x) \sigma_{i}(x)\right)-f(x)\right) \notag \\
-	 & +\frac{1}{h_{i}^{-}(x) h_{i}(x)} \exp \left(-\frac{h_{i}^{-}(x)}{2} \tilde{\mu}(x)^{T} \sigma_{i}(x)\right)\left(f\left(x-h_{i}^{-}(x) \sigma_{i}(x)\right)-f(x)\right) 
-	 \end{align}
+
 	
 	
 	 在 $\mathbb{R}^{n}$ 上边长为 $h$ 的 Cartesian 网格上考虑具有加性噪声的随机微分方程
@@ -1147,9 +1133,7 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	
 	 \begin{align*}
 	 Q_{u} f(x)= & \sum_{i=1}^{n}\left(\frac{\mu_{i}(x) \vee 0}{h}+\frac{M_{i i}}{h^{2}}\right)\left(f\left(x+h e_{i}\right)-f(x)\right)  \\
-	 & +\left(-\frac{\mu_{i}(x) \wedge 0}{h}+\frac{M_{i i}}{h^{2}}\right)\left(f\left(x-h e_{i}\right)-f(x)\right), \\
-	 Q_{c} f(x)= & \sum_{i=1}^{n} \frac{M_{i i}}{h^{2}} \exp \left(\frac{\mu_{i}(x) h}{2 M_{i i}}\right)\left(f\left(x+h e_{i}\right)-f(x)\right)  \\
-	 & +\frac{M_{i i}}{h^{2}} \exp \left(-\frac{\mu_{i}(x) h}{2 M_{i i}}\right)\left(f\left(x-h e_{i}\right)-f(x)\right),
+	 & +\left(-\frac{\mu_{i}(x) \wedge 0}{h}+\frac{M_{i i}}{h^{2}}\right)\left(f\left(x-h e_{i}\right)-f(x)\right), 
 	 \end{align*}
 	
 	
@@ -1171,8 +1155,6 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	 \begin{align*}
 	 & Q_{u} \text { 步骤 }: M_{i i} \leftarrow 0.5 * \sigma_{i i}^{2} \\
 	 & \quad q_{i 1} \leftarrow\left(\mu_{i}(X) \vee 0\right) / h+M_{i i} / h^{2}, q_{i 2} \leftarrow\left(-\mu_{i}(X) \wedge 0\right) / h+M_{i i} / h^{2}  \\
-	 & Q_{c} \text { 步骤 }: M_{i i} \leftarrow 0.5 * \sigma_{i i}^{2} \\
-	 & \quad q_{i 1} \leftarrow M_{i i} / h^{2} \exp \left(\mu_{i}(X) h /\left(2 * M_{i i}\right)\right), q_{i 2} \leftarrow M_{i i} / h^{2} \exp \left(-\mu_{i}(X) h /\left(2 * M_{i i}\right)\right) \\
 	 & Q_{u}^{LZ} \text { 步骤 }: M_{i i} \leftarrow 0.5 *\left(\sigma_{i i}^{2}-\left|\mu_{i}(X)\right| h\right) \vee 0   \\
 	 & \quad q_{i 1} \leftarrow\left(\mu_{i}(X) \vee 0\right) / h+M_{i i} / h^{2}, q_{i 2} \leftarrow\left(-\mu_{i}(X) \wedge 0\right) / h+M_{i i} / h^{2} 
 	 \end{align*}
@@ -1288,7 +1270,7 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 			\tau'(\xi)=0, & \text{若端点 }\xi\in\{a,b\}\text{ 是反射边界}.
 		\end{cases}
 	\end{equation}
-	需要说明的是，在本文后续主要考虑的加性噪声情形（\(\sigma\) 常数）下，反射边界对应\textbf{Neumann} 条件 \(\tau'(\xi)=0\)。若 \(\sigma=\sigma(x)\) 非常数，反射可等价为零概率流边界，对于后向问题仍写作 Neumann 型条件，本文采用 \eqref{eq:bc} 的统一写法。
+	需要说明的是，在本文后续主要考虑的加性噪声情形（\(\sigma\) 常数）下，反射边界对应Neumann条件 \(\tau'(\xi)=0\)。若 \(\sigma=\sigma(x)\) 非常数，反射可等价为零概率流边界，对于后向问题仍写作 Neumann 型条件，本文采用 \eqref{eq:bc} 的统一写法。
 	
 %	\paragraph{一维解析通式（尺度函数/速度测度）.}
 	
@@ -1548,7 +1530,7 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	
 	
 	给定两子域 $A,B\subset\Omega$（外边界 $\partial\Omega$ 取反射），
-	\textbf{committor} 定义为
+	committor定义为
 	\[
 	q(z):=\mathbb{P}_z(\tau_B<\tau_A),\qquad z\in\Omega,
 	\]
@@ -1561,8 +1543,8 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 		\partial_{\mathbf n}q=0,& \text{on } \partial\Omega\ \text{(反射)}.
 	\end{cases}
 	\]
-	在本文中我们统一称 $q$ 为\textbf{先达概率函数（committor）}，并将
-	$q(z)\in[0,1]$ 的等值曲线称为\textbf{先达概率等值线}（isocommittor）。
+	在本文中我们统一称 $q$ 为先达概率函数（committor），并将
+	$q(z)\in[0,1]$ 的等值曲线称为先达概率等值线（isocommittor）。
 	
 	
 	\newpage
@@ -2084,7 +2066,7 @@ x_0=-1.5,\qquad y_0=\tfrac{x_0^3}{3}-x_0,
 方程 \eqref{eq:canard-sde} 的 $x$-零流形为 $y=x^3/3-x$，其在折叠点附近分为吸引与反吸引分支。Canard 轨道典型过程为：沿吸引慢流形缓慢贴靠，接近折叠后短暂停留在反吸引分支，随后发生快跳（fast jump）离开。
 
 %\subsubsection{数值方法与公平性口径}
-时间离散采用 tamed Euler–Maruyama（下称 tamed-EM）与 truncated EM两种稳定格式；空间离散（Space）采用基于生成元的一致离散 \textbf{CTRW/SSA} 框架（下称 $Q_u$），构造最近邻跳率并用 SSA 模拟跳时与通道。
+时间离散采用 tamed Euler–Maruyama（下称 tamed-EM）与 truncated EM两种稳定格式；空间离散（Space）采用基于生成元的一致离散 CTRW/SSA 框架（下称 $Q_u$），构造最近邻跳率并用 SSA 模拟跳时与通道。
 
 %为公平比较：
 %\begin{itemize}
@@ -2267,13 +2249,13 @@ MFPT 估计：统计命中 \(B\) 的到达时间均值 \(\hat m\)（含必要的
 公平性：Time 以“总步数”为 work；Space 是“一次稀疏解”获得全场（若需要，可额外报告线性求解器的实际耗时）。两侧边界一致（反射）；比较在同一节点集上进行。
 
 
-\textbf{空间离散（SD）}：CTRW/\(Q_u\) 生成元法，在规则网格上装配 \(Q\)，用高斯--赛德尔迭代（GS）直接求解线性方程；  
-\textbf{时间离散（TD）}：\emph{truncated EM} 蒙特卡罗（MC）估计 \(\hat q\)。  
-在慢流形 \(y=x^3/3-x\) 上选取 \(10\) 个评价点 \(\{z_i\}\)，以 SD 在较细网格 \(h_{\text{ref}}=0.08\) 的 \(Q\)-解作为\textbf{参考}，并在这些评价点上计算
+空间离散（SD）：CTRW/\(Q_u\) 生成元法，在规则网格上装配 \(Q\)，用高斯--赛德尔迭代（GS）直接求解线性方程；  
+时间离散（TD）：\emph{truncated EM} 蒙特卡罗（MC）估计 \(\hat q\)。  
+在慢流形 \(y=x^3/3-x\) 上选取 \(10\) 个评价点 \(\{z_i\}\)，以 SD 在较细网格 \(h_{\text{ref}}=0.08\) 的 \(Q\)-解作为参考，并在这些评价点上计算
 \[
 E_q=\Big(\tfrac1{N_p}\sum_{i=1}^{N_p}\lvert \hat q(z_i)-q_{\text{ref}}(z_i)\rvert^2\Big)^{1/2}.
 \]
-\textbf{代价（work）}度量：SD 取“自由未知元数 \(\times\) 迭代轮数”（一次局部更新记 1 单位）；TD 取“所有起点与样本路径的\textbf{总时间步数}”。TD 的步长取 \(\Delta t=0.004\)，时间窗 \(T_{\max}\approx 18\)。
+代价（work）度量：SD 取“自由未知元数 \(\times\) 迭代轮数”（一次局部更新记 1 单位）；TD 取“所有起点与样本路径的总时间步数”。TD 的步长取 \(\Delta t=0.004\)，时间窗 \(T_{\max}\approx 18\)。
 
 \paragraph{实验流程小结.}
 (i) 以 \(h_{\text{ref}}=0.08\) 的 \(Q\)-解为参考；(ii) 扫描 SD 的网格步长 \(h\in\{0.14,0.12,0.10\}\) 得到 \((\text{work},E_q)\)；(iii) 固定 \(\Delta t\) 扫描 TD 的样本数 \(N\in\{12,24,48,72\}\) 得到 \((\text{work},E_q)\)。  
@@ -2299,7 +2281,7 @@ SD（\(Q\)-解，GS 迭代）与 TD（trunc-EM MC）的 \emph{work--error} 数�
 		\midrule
 		0.140 & 26 & 9{,}048  & 0.25118 \\
 		0.120 & 37 & 17{,}612 & 0.26187 \\
-		0.100 & 39 & 27{,}183 & \textbf{0.07024} \\
+		0.100 & 39 & 27{,}183 & 0.07024 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -2331,19 +2313,19 @@ SD（\(Q\)-解，GS 迭代）与 TD（trunc-EM MC）的 \emph{work--error} 数�
 		\toprule
 		TD：work（步） & TD：\(E_q\) & SD（最近 work）：work & SD：\(E_q\) \\
 		\midrule
-		172{,}849 & 0.24704 & 27{,}183 & \textbf{0.07024} \\
-		309{,}434 & 0.27759 & 27{,}183 & \textbf{0.07024} \\
-		667{,}001 & 0.27981 & 27{,}183 & \textbf{0.07024} \\
-		924{,}692 & 0.25288 & 27{,}183 & \textbf{0.07024} \\
+		172{,}849 & 0.24704 & 27{,}183 & 0.07024 \\
+		309{,}434 & 0.27759 & 27{,}183 & 0.07024 \\
+		667{,}001 & 0.27981 & 27{,}183 & 0.07024 \\
+		924{,}692 & 0.25288 & 27{,}183 & 0.07024 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
 \paragraph{讨论与结论.}
-在 committor 这样\textbf{生成元型弱量}的度量上，空间离散（CTRW/\(Q\)）具有天然优势：一次稀疏求解即可得到\emph{全场}的 \(q(x,y)\)，且无 MC 方差；而时间离散需要大量样本和更长时间窗来降低方差与时间插值误差，达到同等精度时代价通常显著更高。上面的\emph{work--error} 曲线与“同等代价”配对表明：当 work 约为 \(2.7\times 10^4\) 时，SD 已把 \(E_q\) 降到 \(\approx 0.07\)；而 TD 在 \(1.7\times 10^5\) 乃至 \(9.2\times 10^5\) 的代价下仍处于 \(0.25\sim0.28\) 的误差区间。由此可见，在随机 Canard 系统的弱量比较中，\textbf{空间离散更高效、更稳健}。
+在 committor 这样生成元型弱量的度量上，空间离散（CTRW/\(Q\)）具有天然优势：一次稀疏求解即可得到\emph{全场}的 \(q(x,y)\)，且无 MC 方差；而时间离散需要大量样本和更长时间窗来降低方差与时间插值误差，达到同等精度时代价通常显著更高。上面的\emph{work--error} 曲线与“同等代价”配对表明：当 work 约为 \(2.7\times 10^4\) 时，SD 已把 \(E_q\) 降到 \(\approx 0.07\)；而 TD 在 \(1.7\times 10^5\) 乃至 \(9.2\times 10^5\) 的代价下仍处于 \(0.25\sim0.28\) 的误差区间。由此可见，在随机 Canard 系统的弱量比较中，空间离散更高效、更稳健。
 
 \subsubsection{强误差—代价}
-以极细 tamed-EM 为共同参考，绘制 tamed/truncated/CTRW 的\textbf{强误差—代价}曲线，结果见图~\ref{fig:canard_error_work_T10}。可见在\textbf{路径级强误差}下，时间法随 work 单调收敛且显著优于 CTRW，这与二者设计目标一致：时间法针对路径级强精度，CTRW 更偏向弱/长期统计。
+以极细 tamed-EM 为共同参考，绘制 tamed/truncated/CTRW 的强误差—代价曲线，结果见图~\ref{fig:canard_error_work_T10}。可见在路径级强误差下，时间法随 work 单调收敛且显著优于 CTRW，这与二者设计目标一致：时间法针对路径级强精度，CTRW 更偏向弱/长期统计。
 
 \begin{figure}[htbp]
 	\centering
@@ -2356,10 +2338,10 @@ SD（\(Q\)-解，GS 迭代）与 TD（trunc-EM MC）的 \emph{work--error} 数�
 
 
 \subsubsection{结论}
- 在\textbf{有限时间的路径级强误差}度量下（图~\ref{fig:canard_error_work_T10}），tamed/truncated-EM 收敛快、效率高，更适合追踪 Canard 轨道的\emph{几何细节}（贴靠与快跳时序）。
+ 在有限时间的路径级强误差度量下（图~\ref{fig:canard_error_work_T10}），tamed/truncated-EM 收敛快、效率高，更适合追踪 Canard 轨道的\emph{几何细节}（贴靠与快跳时序）。
  
  
- 在\textbf{弱/长期量与生成元型边值问题}中（图~\ref{fig:canard_occ}--\ref{fig:mfpt_error_work_timeMC}），空间离散（CTRW/$Q_u$）\emph{一次求解}即可获得\emph{全场}解，稳定且无 MC 方差，误差—代价表现更优，且边界条件处理自然。
+ 在弱/长期量与生成元型边值问题中（图~\ref{fig:canard_occ}--\ref{fig:mfpt_error_work_timeMC}），空间离散（CTRW/$Q_u$）\emph{一次求解}即可获得\emph{全场}解，稳定且无 MC 方差，误差—代价表现更优，且边界条件处理自然。
 
 
 
