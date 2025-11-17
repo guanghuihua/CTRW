@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  17 NOV 2025 13:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  17 NOV 2025 13:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1571,7 +1571,7 @@ File: c70zhsong.fd 2009/09/23 4.8.2
 )
 Package CJKpunct Info: use punctuation spaces for family 'zhsong' with punctsty
 le (quanjiao) on input line 362.
-<fig/xiaohui.png, id=192, 121.95563pt x 98.3675pt>
+<fig/xiaohui.png, id=196, 121.95563pt x 98.3675pt>
 File: fig/xiaohui.png Graphic file (type png)
 <use fig/xiaohui.png>
 Package pdftex.def Info: fig/xiaohui.png  used on input line 367.
@@ -1600,7 +1600,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 384
 (d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<fig/xiaoming.png, id=211, 162.00525pt x 33.726pt>
+<fig/xiaoming.png, id=215, 162.00525pt x 33.726pt>
 File: fig/xiaoming.png Graphic file (type png)
 <use fig/xiaoming.png>
 Package pdftex.def Info: fig/xiaoming.png  used on input line 386.
@@ -1741,6 +1741,11 @@ Overfull \hbox (6.02248pt too wide) detected at line 37
 
 Overfull \hbox (6.02248pt too wide) detected at line 38
 \T1/ptm/m/n/12.045 6.2.7  
+ []
+
+
+Overfull \hbox (6.02248pt too wide) detected at line 39
+\T1/ptm/m/n/12.045 6.2.8  
  []
 
 )
@@ -1923,12 +1928,12 @@ rm/m/n/12.045/95 ^^? \C70/rm/m/n/12.045/8f Å \C70/zhsong/m/n/12.045/73 ^^[|\C70
 
 
 [27]
-<fig/Absolute_error.png, id=1026, 505.89pt x 361.35pt>
+<fig/Absolute_error.png, id=1032, 505.89pt x 361.35pt>
 File: fig/Absolute_error.png Graphic file (type png)
 <use fig/Absolute_error.png>
 Package pdftex.def Info: fig/Absolute_error.png  used on input line 1961.
 (pdftex.def)             Requested size: 216.81pt x 154.86469pt.
-<fig/Error_ratio.png, id=1027, 505.89pt x 361.35pt>
+<fig/Error_ratio.png, id=1033, 505.89pt x 361.35pt>
 File: fig/Error_ratio.png Graphic file (type png)
 <use fig/Error_ratio.png>
 Package pdftex.def Info: fig/Error_ratio.png  used on input line 1962.
@@ -1968,19 +1973,19 @@ zhsong/b/n/12.045/8d ï \C70/zhsong/b/n/12.045/5f „ \C70/zhsong/b/n/12.045/7e §
 .045 tamed/truncated|\C70/zhsong/b/n/12.045/ff 	|
  []
 
-<fig/Sample_trajectories_100.png, id=1056, 433.62pt x 361.35pt>
+<fig/Sample_trajectories_100.png, id=1062, 433.62pt x 361.35pt>
 File: fig/Sample_trajectories_100.png Graphic file (type png)
 <use fig/Sample_trajectories_100.png>
 Package pdftex.def Info: fig/Sample_trajectories_100.png  used on input line 21
 17.
 (pdftex.def)             Requested size: 216.81pt x 180.67456pt.
-<fig/Fast_jump_time_distribution_100.png, id=1057, 433.62pt x 289.08pt>
+<fig/Fast_jump_time_distribution_100.png, id=1063, 433.62pt x 289.08pt>
 File: fig/Fast_jump_time_distribution_100.png Graphic file (type png)
 <use fig/Fast_jump_time_distribution_100.png>
 Package pdftex.def Info: fig/Fast_jump_time_distribution_100.png  used on input
  line 2118.
 (pdftex.def)             Requested size: 216.81pt x 144.53964pt.
-<fig/Occupancy_100.png, id=1058, 794.97pt x 289.08pt>
+<fig/Occupancy_100.png, id=1064, 794.97pt x 289.08pt>
 File: fig/Occupancy_100.png Graphic file (type png)
 <use fig/Occupancy_100.png>
 Package pdftex.def Info: fig/Occupancy_100.png  used on input line 2125.
@@ -1991,7 +1996,7 @@ Package pdftex.def Info: fig/Occupancy_100.png  used on input line 2125.
 
 [32 <./fig/Sample_trajectories_100.png> <./fig/Fast_jump_time_distribution_100.
 png> <./fig/Occupancy_100.png>]
-<fig/Work_error.png, id=1079, 482.7636pt x 354.123pt>
+<fig/Work_error.png, id=1085, 482.7636pt x 354.123pt>
 File: fig/Work_error.png Graphic file (type png)
 <use fig/Work_error.png>
 Package pdftex.def Info: fig/Work_error.png  used on input line 2138.
@@ -2001,33 +2006,33 @@ Package pdftex.def Info: fig/Work_error.png  used on input line 2138.
 LaTeX Warning: Reference `fig:committor_mfpt_heat' on page 33 undefined on inpu
 t line 2147.
 
-<fig/committor_heatmap.jpg, id=1082, 434.3427pt x 339.669pt>
+<fig/committor_heatmap.jpg, id=1088, 434.3427pt x 339.669pt>
 File: fig/committor_heatmap.jpg Graphic file (type jpg)
 <use fig/committor_heatmap.jpg>
 Package pdftex.def Info: fig/committor_heatmap.jpg  used on input line 2153.
 (pdftex.def)             Requested size: 204.85846pt x 160.20938pt.
-<fig/mfpt_heatmap.jpg, id=1083, 431.4519pt x 339.669pt>
+<fig/mfpt_heatmap.jpg, id=1089, 431.4519pt x 339.669pt>
 File: fig/mfpt_heatmap.jpg Graphic file (type jpg)
 <use fig/mfpt_heatmap.jpg>
 Package pdftex.def Info: fig/mfpt_heatmap.jpg  used on input line 2157.
 (pdftex.def)             Requested size: 204.85846pt x 161.28226pt.
-<fig/committor_trunc_heatmap.png, id=1084, 440.847pt x 339.669pt>
+<fig/committor_trunc_heatmap.png, id=1090, 440.847pt x 339.669pt>
 File: fig/committor_trunc_heatmap.png Graphic file (type png)
 <use fig/committor_trunc_heatmap.png>
 Package pdftex.def Info: fig/committor_trunc_heatmap.png  used on input line 21
 62.
 (pdftex.def)             Requested size: 204.85846pt x 157.84079pt.
-<fig/mfpt_trunc_heatmap.png, id=1085, 440.847pt x 339.669pt>
+<fig/mfpt_trunc_heatmap.png, id=1091, 440.847pt x 339.669pt>
 File: fig/mfpt_trunc_heatmap.png Graphic file (type png)
 <use fig/mfpt_trunc_heatmap.png>
 Package pdftex.def Info: fig/mfpt_trunc_heatmap.png  used on input line 2166.
 (pdftex.def)             Requested size: 204.85846pt x 157.84079pt.
-<fig/committor_slice.jpg, id=1086, 426.393pt x 281.853pt>
+<fig/committor_slice.jpg, id=1092, 426.393pt x 281.853pt>
 File: fig/committor_slice.jpg Graphic file (type jpg)
 <use fig/committor_slice.jpg>
 Package pdftex.def Info: fig/committor_slice.jpg  used on input line 2185.
 (pdftex.def)             Requested size: 218.51521pt x 144.43983pt.
-<fig/mfpt_slice.jpg, id=1087, 426.393pt x 281.853pt>
+<fig/mfpt_slice.jpg, id=1093, 426.393pt x 281.853pt>
 File: fig/mfpt_slice.jpg Graphic file (type jpg)
 <use fig/mfpt_slice.jpg>
 Package pdftex.def Info: fig/mfpt_slice.jpg  used on input line 2186.
@@ -2055,13 +2060,13 @@ n/12.045/77 ^^_ \C70/rm/m/n/12.045/5b  \C70/zhsong/b/n/12.045/50 <|\C70/zhsong
 \T1/ptm/m/n/12.045 tamed-
  []
 
-<fig/committor_error_work_time.png, id=1102, 456.7464pt x 324.85365pt>
+<fig/committor_error_work_time.png, id=1108, 456.7464pt x 324.85365pt>
 File: fig/committor_error_work_time.png Graphic file (type png)
 <use fig/committor_error_work_time.png>
 Package pdftex.def Info: fig/committor_error_work_time.png  used on input line 
 2200.
 (pdftex.def)             Requested size: 273.14923pt x 194.28416pt.
-<fig/mfpt_error_work_time.png, id=1103, 440.1243pt x 324.85365pt>
+<fig/mfpt_error_work_time.png, id=1109, 440.1243pt x 324.85365pt>
 File: fig/mfpt_error_work_time.png Graphic file (type png)
 <use fig/mfpt_error_work_time.png>
 Package pdftex.def Info: fig/mfpt_error_work_time.png  used on input line 2207.
@@ -2085,12 +2090,635 @@ Underfull \vbox (badness 1975) has occurred while \output is active []
 [35 <./fig/committor_error_work_time.png> <./fig/mfpt_error_work_time.png>]
 
 [36]
+! You can't use `macro parameter character #' in vertical mode.
+l.2253 #
+         1. ä¸¤ä¸ªå¼±é‡çš„å®šä¹‰ä¸æ„ä¹‰
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+! LaTeX Error: \mathrm allowed only in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2257 \mathrm
+              {d}Z_t=\mu(Z_t),\mathrm{d}t+\Sigma(Z_t),\mathrm{d}W_t,\qquad
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2257 \mathrm{d}Z_
+                   t=\mu(Z_t),\mathrm{d}t+\Sigma(Z_t),\mathrm{d}W_t,\qquad
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2262 
+       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no Ù in font cmr12!
+Missing character: There is no š in font cmr12!
+Missing character: There is no Æ in font cmr12!
+Missing character: There is no ‡ in font cmr12!
+Missing character: There is no Ö in font cmr12!
+Missing character: There is no ¹ in font cmr12!
+Missing character: There is no Í in font cmr12!
+Missing character: There is no š in font cmr12!
+
+Overfull \hbox (5.64131pt too wide) in paragraph at lines 2255--2262
+[]\C70/zhsong/b/n/12.045/8b ¾ \C70/zhsong/b/n/12.045/4e Œ \C70/zhsong/b/n/12.04
+5/7e ô \T1/ptm/m/n/12.045 Itô SDE [ dZ$[] \OT1/cmr/m/n/12.045 = \OML/cmm/m/it/1
+2.045 ^^V\OT1/cmr/m/n/12.045 (\OML/cmm/m/it/12.045 Z[]\OT1/cmr/m/n/12.045 )\OML
+/cmm/m/it/12.045 ; \OT1/cmr/m/n/12.045 d\OML/cmm/m/it/12.045 t \OT1/cmr/m/n/12.
+045 + ^^F(\OML/cmm/m/it/12.045 Z[]\OT1/cmr/m/n/12.045 )\OML/cmm/m/it/12.045 ; \
+OT1/cmr/m/n/12.045 d\OML/cmm/m/it/12.045 W[];  Z[] \OT1/cmr/m/n/12.045 = (\OML/
+cmm/m/it/12.045 x[]; y[]\OT1/cmr/m/n/12.045 ) \OMS/cmsy/m/n/12.045 2 \OT1/cmr/m
+/n/12.045 
+ \OMS/cmsy/m/n/12.045 ^^Z \U/msb/m/n/12.045 R[]\OML/cmm/m/it/12.045 ; \OT1/cmr/
+m/n/12.045 ][][][][](\OML/cmm/m/it/12.045 Lf \OT1/cmr/m/n/12.045 =
+ []
+
+! Extra alignment tab has been changed to \cr.
+<template> ...w@strut \hfil $\relax $\endtemplate 
+                                                  
+l.2270 \end{cases}}
+                   
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
+
+! LaTeX Error: \mathbb allowed only in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2272 ...¾ (B) è€Œé (A) çš„æ¦‚ç‡ (q(z)=\mathbb
+                                                   P_z(\tau_B<\tau_A))ã€‚
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2272 ...B) è€Œé (A) çš„æ¦‚ç‡ (q(z)=\mathbb P_
+                                                  z(\tau_B<\tau_A))ã€‚
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2273 
+       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (52.27638pt too wide) in paragraph at lines 2263--2273
+[]\T1/ptm/m/n/12.045 Committor |\C70/zhsong/b/n/12.045/ff ^^H|\C70/zhsong/b/n/1
+2.045/51 H \C70/zhsong/b/n/12.045/8f ¾ \C70/zhsong/m/n/12.045/69 ‚ \C70/zhsong/
+m/n/12.045/73 ‡|\C70/zhsong/b/n/12.045/ff 	|  \T1/ptm/m/n/12.045 [ []
+ []
+
+! Extra alignment tab has been changed to \cr.
+<template> ...w@strut \hfil $\relax $\endtemplate 
+                                                  
+l.2281 \end{cases}}
+                   
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
+
+! LaTeX Error: \mathbb allowed only in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2283 ç‰©ç†æ„ä¹‰ï¼š(,m(z)=\mathbb
+                                     E_z[\tau_B],)ã€‚
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2283 ç‰©ç†æ„ä¹‰ï¼š(,m(z)=\mathbb E_
+                                       z[\tau_B],)ã€‚
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2284 
+       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (48.68916pt too wide) in paragraph at lines 2274--2284
+[]\T1/ptm/m/n/12.045 MFPT |\C70/zhsong/b/n/12.045/ff ^^H|\C70/rm/m/n/12.045/99 
+– \C70/rm/m/n/12.045/6b ! \C70/zhsong/b/n/12.045/52 0 \C70/zhsong/b/n/12.045/8f
+ ¾ \T1/ptm/m/n/12.045 (B) \C70/zhsong/b/n/12.045/76 „ \C70/zhsong/b/n/12.045/67
+ ^^_ ^^[ \C70/zhsong/b/n/12.045/65 ö \C70/zhsong/b/n/12.045/95 ô|\C70/zhsong/b/
+n/12.045/ff 	|  \T1/ptm/m/n/12.045 [ []
+ []
+
+! You can't use `macro parameter character #' in vertical mode.
+l.2289 #
+         2. æˆ‘ä»¬çš„æ¯”è¾ƒæµç¨‹ï¼ˆSpace vs. Timeï¼‰
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
 
 [37]
 
-[38] (./è®ºæ–‡.bbl
+! Package amsmath Error: \begin{aligned} allowed only in math mode.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2294 	\mathrm
+               {d}x_t &= \big(y_t-(x_t^3/3-x_t)\big),\mathrm{d}t + \sigma_x,...
+
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2294 	\mathrm
+               {d}x_t &= \big(y_t-(x_t^3/3-x_t)\big),\mathrm{d}t + \sigma_x,...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2296 \end{aligned}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2298 åŸºå‡†å‚æ•°ï¼š(\varepsilon
+                                  =10^{-2},,a=1.0,;(\sigma_x,\sigma_y)=(0,0....
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2299 
+       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no ß in font cmr12!
+Missing character: There is no Í in font cmr12!
+
+Overfull \hbox (99.38533pt too wide) in paragraph at lines 2291--2299
+[]\C70/zhsong/b/n/12.045/95 î \C70/zhsong/b/n/12.045/98 ˜ \C70/zhsong/b/n/12.04
+5/8b ¾ \C70/rm/m/n/12.045/5b š |\C70/zhsong/b/n/12.045/ff ^^H|\C70/zhsong/b/n/1
+2.045/96  \C70/zhsong/b/n/12.045/67 : \T1/ptm/m/n/12.045 Ca-nard|\C70/zhsong/b
+/n/12.045/ff 	||^^Z|  \T1/ptm/m/n/12.045 [ []$[]$
+ []
+
+
+Overfull \hbox (0.94319pt too wide) in paragraph at lines 2291--2299
+\T1/ptm/m/n/12.045 ] \C70/zhsong/b/n/12.045/57 ú \C70/zhsong/b/n/12.045/51 Æ \C
+70/zhsong/b/n/12.045/53 Â \C70/zhsong/b/n/12.045/65 p|\C70/zhsong/b/n/12.045/ff
+ ^^Z| \T1/ptm/m/n/12.045 ($\OML/cmm/m/it/12.045 " \OT1/cmr/m/n/12.045 = 10[]\OM
+L/cmm/m/it/12.045 ; ; a \OT1/cmr/m/n/12.045 = 1\OML/cmm/m/it/12.045 :\OT1/cmr/m
+/n/12.045 0\OML/cmm/m/it/12.045 ; \OT1/cmr/m/n/12.045 ; (\OML/cmm/m/it/12.045 ^
+^[[]; ^^[[]\OT1/cmr/m/n/12.045 ) = (0\OML/cmm/m/it/12.045 ; \OT1/cmr/m/n/12.045
+ 0\OML/cmm/m/it/12.045 :\OT1/cmr/m/n/12.045 08))[][](
+ = [\OMS/cmsy/m/n/12.045 ^^@\OT1/cmr/m/n/12.045 2\OML/cmm/m/it/12.045 :\OT1/cmr
+/m/n/12.045 5\OML/cmm/m/it/12.045 ; \OT1/cmr/m/n/12.045 2\OML/cmm/m/it/12.045 :
+\OT1/cmr/m/n/12.045 5] \OMS/cmsy/m/n/12.045 ^^B \OT1/cmr/m/n/12.045 [\OMS/cmsy/
+m/n/12.045 ^^@\OT1/cmr/m/n/12.045 1\OML/cmm/m/it/12.045 ; \OT1/cmr/m/n/12.045 3
+])[][][](\OML/cmm/m/it/12.045 x[] \OT1/cmr/m/n/12.045 =
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2302 ...å é‚»åŸŸå±€éƒ¨åŠ å¯†ã€å„å‘å¼‚æ€§ (h_
+                                                  y!\approx! c,\varepsilon h...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2310 
+       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no „ in font cmr12!
+Missing character: There is no Ñ in font cmr12!
+Missing character: There is no » in font cmr12!
+Missing character: There is no ó in font cmr12!
+Missing character: There is no ‡ in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no Ò in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‡ in font cmr12!
+Missing character: There is no  in font cmr12!
+Missing character: There is no ° in font cmr12!
+Missing character: There is no Í in font cmr12!
+Missing character: There is no ¹ in font cmr12!
+Missing character: There is no ô in font cmr12!
+Missing character: There is no ¥ in font cmr12!
+Missing character: There is no ã in font cmr12!
+Missing character: There is no » in font cmr12!
+Missing character: There is no ¹ in font cmr12!
+Missing character: There is no — in font cmr12!
+Missing character: There is no  in font cmr12!
+Missing character: There is no ¿ in font cmr12!
+Missing character: There is no ã in font cmr12!
+Missing character: There is no ã in font cmr12!
+
+Overfull \hbox (113.05609pt too wide) in paragraph at lines 2302--2310
+[]\T1/ptm/m/n/12.045 1. \C70/zhsong/b/n/12.045/67 „ \C70/rm/m/n/12.045/90   \C7
+0/zhsong/m/n/12.045/77 é \C70/zhsong/b/n/12.045/5f b \C70/zhsong/b/n/12.045/7f 
+Q \C70/zhsong/b/n/12.045/68 < |\C70/zhsong/b/n/12.045/ff ^^H|\C70/zhsong/b/n/12
+.045/53 ï \C70/zhsong/b/n/12.045/57 ( \C70/zhsong/b/n/12.045/62 ˜ \C70/zhsong/b
+/n/12.045/53 à \C70/rm/m/n/12.045/90 » \C70/zhsong/b/n/12.045/57 ß \C70/rm/m/n/
+12.045/5c @ \C70/rm/m/n/12.045/90 è \C70/zhsong/b/n/12.045/52   \C70/rm/m/n/12.
+045/5b Æ|\C70/zhsong/m/n/12.045/30 ^^A| \C70/zhsong/b/n/12.045/54 ^^D ^^Q \C70/
+zhsong/b/n/12.045/5f ^^B \C70/zhsong/b/n/12.045/60 ' \T1/ptm/m/n/12.045 (h$[]\O
+T1/cmr/m/n/12.045 ! \OMS/cmsy/m/n/12.045 ^^Y\OT1/cmr/m/n/12.045 !\OML/cmm/m/it/
+12.045 c; "h[]\OT1/cmr/m/n/12.045 )[][]2\OML/cmm/m/it/12.045 :[]\OT1/cmr/m/n/12
+.045 (\OML/cmm/m/it/12.045 Q[]\OT1/cmr/m/n/12.045 )[][][][][][][][][][][][][][]
+[][][][][][][][][]3\OML/cmm/m/it/12.045 :[][][][][][][][]\OT1/cmr/m/n/12.045 [\
+OML/cmm/m/it/12.045 Q; q \OT1/cmr/m/n/12.045 =
+ []
+
+
+Overfull \hbox (6.03659pt too wide) in paragraph at lines 2302--2310
+\OT1/cmr/m/n/12.045 0  ([]\OML/cmm/m/it/12.045 A; B\OT1/cmr/m/n/12.045 )\OML/cm
+m/m/it/12.045 ;  Q; m \OT1/cmr/m/n/12.045 = \OMS/cmsy/m/n/12.045 ^^@\OT1/cmr/bx
+/n/12.045 1  \OT1/cmr/m/n/12.045 ([]\OML/cmm/m/it/12.045 B\OT1/cmr/m/n/12.045 )
+\OML/cmm/m/it/12.045 ; \OT1/cmr/m/n/12.045 ][][][][](\OML/cmm/m/it/12.045 q\OT1
+/cmr/m/n/12.045 (\OML/cmm/m/it/12.045 x; y\OT1/cmr/m/n/12.045 ))[](\OML/cmm/m/i
+t/12.045 m\OT1/cmr/m/n/12.045 (\OML/cmm/m/it/12.045 x; y\OT1/cmr/m/n/12.045 ))[
+][][][][][][][][][][][][]$ 
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2315 3. ç”¨å›ºå®šæ­¥é•¿ (\Delta
+                                  t) ä¸æ ·æœ¬æ•° (N) çš„ MCï¼š
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2316 
+       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no „ in font cmr12!
+
+! Package amsmath Error: \hat allowed only in math mode.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2317 ...é“ï¼Œç»Ÿè®¡å…ˆè¾¾ (B) çš„é¢‘ç‡ (\hat q
+                                                  )ã€‚
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! Package amsmath Error: \hat allowed only in math mode.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2318 ...å‘½ä¸­ (B) çš„åˆ°è¾¾æ—¶é—´å‡å€¼ (\hat m
+                                                  )ï¼ˆå«å¿…è¦çš„æˆªæ–­å¤„ç...
+
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! You can't use `macro parameter character #' in vertical mode.
+l.2329 #
+         3. å…³é”®å›¾åƒä¸è§‚æµ‹ï¼ˆä¸ä¸Šè¿°ä»£ç è¾“å‡ºä¸€è‡´ï¼‰
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2335  æ²¿æ…¢æµå½¢ (y=x^
+                          3/3-x) çš„åˆ‡ç‰‡ï¼š(q(x)) åœ¨æŠ˜å é™„è¿‘æœ‰å¿«é€Ÿ...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2336 
+       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no „ in font cmr12!
+Missing character: There is no ˜ in font cmr12!
+Missing character: There is no à in font cmr12!
+Missing character: There is no Ñ in font cmr12!
+Missing character: There is no ë in font cmr12!
+Missing character: There is no ¥ in font cmr12!
+Missing character: There is no Ñ in font cmr12!
+Missing character: There is no ö in font cmr12!
+
+Overfull \hbox (1.04486pt too wide) in paragraph at lines 2333--2336
+\T1/ptm/m/n/12.045 (m(x,y)) \C70/zhsong/m/n/12.045/70 í \C70/zhsong/m/n/12.045/
+56 ş|\C70/zhsong/b/n/12.045/ff ^^Z| \C70/zhsong/b/n/12.045/5d æ \C70/rm/m/n/12.
+045/4f §\T1/ptm/m/n/12.045 /\C70/zhsong/b/n/12.045/8f Ü \C70/zhsong/b/n/12.045/
+79 » \T1/ptm/m/n/12.045 (B) \C70/zhsong/b/n/12.045/53 : \C70/zhsong/b/n/12.045/
+57 ß \C70/zhsong/b/n/12.045/50 < \C70/rm/m/n/12.045/59 '|\C70/zhsong/b/n/12.045
+/ff ^^L| \C70/zhsong/m/n/12.045/97 ` \C70/zhsong/b/n/12.045/8f Ñ \T1/ptm/m/n/12
+.045 (B) \C70/zhsong/b/n/12.045/52 M \C70/rm/m/n/12.045/6c ¿ \C70/zhsong/b/n/12
+.045/60 % \C70/zhsong/b/n/12.045/52 g \C70/zhsong/b/n/12.045/4e  \C70/zhsong/b
+/n/12.045/96 M \C70/zhsong/b/n/12.045/4e : \T1/ptm/m/n/12.045 0|\C70/zhsong/m/n
+/12.045/30 ^^B| \C70/rm/m/n/12.045/6c ¿ \C70/zhsong/m/n/12.045/61 b \C70/rm/m/n
+/12.045/6d A \C70/zhsong/b/n/12.045/5f b \T1/ptm/m/n/12.045 (y=x$[]\OML/cmm/m/i
+t/12.045 =\OT1/cmr/m/n/12.045 3 \OMS/cmsy/m/n/12.045 ^^@
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2338 ((x_
+           0,y_0)=(-1.5,\ x_0^3/3-x_0)): (q\approx 0.00,\ m\approx 24.2)ï¼›
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2341 
+       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no ô in font cmr12!
+Missing character: There is no æ in font cmr12!
+Missing character: There is no ñ in font cmr12!
+Missing character: There is no ¾ in font cmr12!
+Missing character: There is no „ in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no ‡ in font cmr12!
+Missing character: There is no Ñ in font cmr12!
+Missing character: There is no Ç in font cmr12!
+Missing character: There is no ˜ in font cmr12!
+Missing character: There is no à in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no ‡ in font cmr12!
+Missing character: There is no ï in font cmr12!
+Missing character: There is no ı in font cmr12!
+Missing character: There is no à in font cmr12!
+Missing character: There is no ï in font cmr12!
+Missing character: There is no „ in font cmr12!
+Missing character: There is no  in font cmr12!
+
+Overfull \hbox (33.93538pt too wide) in paragraph at lines 2337--2341
+[]\C70/zhsong/b/n/12.045/4e ã \C70/zhsong/m/n/12.045/88 h \C70/zhsong/b/n/12.04
+5/60 ' \C70/zhsong/b/n/12.045/65 p \C70/zhsong/b/n/12.045/50 < |\C70/zhsong/b/n
+/12.045/ff ^^H|\C70/zhsong/m/n/12.045/61 b \C70/rm/m/n/12.045/6d A \C70/zhsong/
+b/n/12.045/5f b \C70/zhsong/b/n/12.045/4e 
+|\C70/zhsong/b/n/12.045/ff 	||^^Z|  \T1/ptm/m/n/12.045 ((x$[]\OML/cmm/m/it/12.0
+45 ; y[]\OT1/cmr/m/n/12.045 ) = (\OMS/cmsy/m/n/12.045 ^^@\OT1/cmr/m/n/12.045 1\
+OML/cmm/m/it/12.045 :\OT1/cmr/m/n/12.045 5\OML/cmm/m/it/12.045 ;  x[]=\OT1/cmr/
+m/n/12.045 3 \OMS/cmsy/m/n/12.045 ^^@ \OML/cmm/m/it/12.045 x[]\OT1/cmr/m/n/12.0
+45 )) : (\OML/cmm/m/it/12.045 q \OMS/cmsy/m/n/12.045 ^^Y \OT1/cmr/m/n/12.045 0\
+OML/cmm/m/it/12.045 :\OT1/cmr/m/n/12.045 00\OML/cmm/m/it/12.045 ;  m \OMS/cmsy/
+m/n/12.045 ^^Y \OT1/cmr/m/n/12.045 24\OML/cmm/m/it/12.045 :\OT1/cmr/m/n/12.045 
+2)[]((\OML/cmm/m/it/12.045 x[]; y[]\OT1/cmr/m/n/12.045 ) =
+ []
+
+! You can't use `macro parameter character #' in vertical mode.
+l.2351 #
+         4. å®è·µè¦ç‚¹ä¸å¯å¤ç°å®éªŒæ­¥éª¤ï¼ˆç®€è¡¨ï¼‰
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+
+[38]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2353 1. è®¾å®šï¼š(\varepsilon
+                               =10^{-2},,a=1.0)ï¼›(\Omega=[-2.5,2.5]\times[-...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2358 
+       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no Í in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no Å in font cmr12!
+Missing character: There is no ã in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no í in font cmr12!
+Missing character: There is no ş in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no ¹ in font cmr12!
+Missing character: There is no Ñ in font cmr12!
+Missing character: There is no å in font cmr12!
+Missing character: There is no ¹ in font cmr12!
+Missing character: There is no ¡ in font cmr12!
+Missing character: There is no ß in font cmr12!
+Missing character: There is no ¡ in font cmr12!
+Missing character: There is no ï in font cmr12!
+Missing character: There is no î in font cmr12!
+Missing character: There is no ï in font cmr12!
+Missing character: There is no î in font cmr12!
+Missing character: There is no ã in font cmr12!
+Missing character: There is no ÷ in font cmr12!
+Missing character: There is no ò in font cmr12!
+Missing character: There is no ¿ in font cmr12!
+
+Overfull \hbox (185.23296pt too wide) in paragraph at lines 2353--2358
+[]\OT1/cmr/m/n/12.045 )[]2\OML/cmm/m/it/12.045 :Space[][][][][][]\OT1/cmr/m/n/1
+2.045 (\OML/cmm/m/it/12.045 h[] \OT1/cmr/m/n/12.045 = \OML/cmm/m/it/12.045 h[] 
+\OMS/cmsy/m/n/12.045 ^^Y \OT1/cmr/m/n/12.045 0\OML/cmm/m/it/12.045 :\OT1/cmr/m/
+n/12.045 06)[][][][](\OML/cmm/m/it/12.045 Q[]\OT1/cmr/m/n/12.045 )[][][][](\OML
+/cmm/m/it/12.045 Qq \OT1/cmr/m/n/12.045 = 0)[](\OML/cmm/m/it/12.045 Qm \OT1/cmr
+/m/n/12.045 = \OMS/cmsy/m/n/12.045 ^^@\OT1/cmr/m/n/12.045 1)[][](\OML/cmm/m/it/
+12.045 q; m\OT1/cmr/m/n/12.045 )[][][][][][][][][]3\OML/cmm/m/it/12.045 :Time[]
+[][][][][][][][][][][][][][]tamed \OMS/cmsy/m/n/12.045 ^^@
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2359 ...æ•´èŠ‚ç‚¹é›†ï¼ˆå«æŠ˜å é‚»åŸŸï¼‰ã€((x_
+                                                  A,x_B))ï¼ˆé—´è·ç¼©æ”¾ï¼‰ï¼›
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2362 
+       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no ô in font cmr12!
+Missing character: There is no İ in font cmr12!
+Missing character: There is no ô in font cmr12!
+Missing character: There is no § in font cmr12!
+Missing character: There is no ˜ in font cmr12!
+Missing character: There is no à in font cmr12!
+Missing character: There is no » in font cmr12!
+Missing character: There is no ß in font cmr12!
+Missing character: There is no è in font cmr12!
+Missing character: There is no   in font cmr12!
+Missing character: There is no Æ in font cmr12!
+Missing character: There is no Œ in font cmr12!
+Missing character: There is no Á in font cmr12!
+Missing character: There is no ï in font cmr12!
+Missing character: There is no î in font cmr12!
+Missing character: There is no ö in font cmr12!
+Missing character: There is no ô in font cmr12!
+Missing character: There is no § in font cmr12!
+Missing character: There is no   in font cmr12!
+Missing character: There is no ö in font cmr12!
+Missing character: There is no ö in font cmr12!
+Missing character: There is no ô in font cmr12!
+Missing character: There is no Â in font cmr12!
+Missing character: There is no ß in font cmr12!
+Missing character: There is no ò in font cmr12!
+Missing character: There is no ¿ in font cmr12!
+Missing character: There is no á in font cmr12!
+
+Overfull \hbox (80.39912pt too wide) in paragraph at lines 2359--2362
+[]\C70/zhsong/m/n/12.045/8c ^^C \C70/zhsong/b/n/12.045/65 t \C70/zhsong/m/n/12.
+045/82 ‚ \C70/zhsong/m/n/12.045/70 ¹ \C70/zhsong/b/n/12.045/96 Æ |\C70/zhsong/b
+/n/12.045/ff ^^H|\C70/zhsong/b/n/12.045/54 + \C70/zhsong/b/n/12.045/62 ˜ \C70/z
+hsong/b/n/12.045/53 à \C70/rm/m/n/12.045/90 » \C70/zhsong/b/n/12.045/57 ß|\C70/
+zhsong/b/n/12.045/ff 	||\C70/zhsong/m/n/12.045/30 ^^A| \T1/ptm/m/n/12.045 ((x$[
+]\OML/cmm/m/it/12.045 ; x[]\OT1/cmr/m/n/12.045 ))[][][][][][][][][][][][][][][]
+[][][][]\OML/cmm/m/it/12.045 =[][][][][][][][][][][][][][][][]\OT1/cmr/m/n/12.0
+45 (\OML/cmm/m/it/12.045 N\OT1/cmr/m/n/12.045 )[][][](^^A\OML/cmm/m/it/12.045 t
+\OT1/cmr/m/n/12.045 )[][][][][][][][][][][][][][][][][][][][][][][]$ 
+ []
+
+! You can't use `macro parameter character #' in vertical mode.
+l.2365 #
+         5. ä¸€å¥è¯ç»“è®ºï¼ˆå†™åœ¨å°ç»“é‡Œï¼‰
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2367 ...¼±é‡æ›´é€‚åˆç”¨ç©ºé—´ç¦»æ•£ï¼ˆCTRW/(Q_
+                                                  u)ï¼‰ç›´æ¥æ±‚è§£ï¼šä¸€æ¬¡...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.2368 
+       
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no ô in font cmr12!
+Missing character: There is no ¥ in font cmr12!
+Missing character: There is no ã in font cmr12!
+Missing character: There is no  in font cmr12!
+Missing character: There is no ¿ in font cmr12!
+Missing character: There is no ¹ in font cmr12!
+Missing character: There is no ï in font cmr12!
+Missing character: There is no — in font cmr12!
+Missing character: There is no š in font cmr12!
+Missing character: There is no à in font cmr12!
+Missing character: There is no ¹ in font cmr12!
+Missing character: There is no î in font cmr12!
+Missing character: There is no ö in font cmr12!
+Missing character: There is no ô in font cmr12!
+Missing character: There is no » in font cmr12!
+Missing character: There is no ™ in font cmr12!
+Missing character: There is no ¡ in font cmr12!
+Missing character: There is no ı in font cmr12!
+Missing character: There is no ¾ in font cmr12!
+Missing character: There is no ¾ in font cmr12!
+Missing character: There is no ¦ in font cmr12!
+Missing character: There is no ö in font cmr12!
+Missing character: There is no  in font cmr12!
+Missing character: There is no ô in font cmr12!
+Missing character: There is no Ø in font cmr12!
+Missing character: There is no „ in font cmr12!
+Missing character: There is no ¡ in font cmr12!
+Missing character: There is no — in font cmr12!
+Missing character: There is no ã in font cmr12!
+Missing character: There is no ÷ in font cmr12!
+
+Overfull \hbox (83.34729pt too wide) in paragraph at lines 2367--2368
+|\C70/zhsong/b/n/12.045/ff ^^H|\T1/ptm/m/n/12.045 CTRW/(Q$[]\OT1/cmr/m/n/12.045
+ )[][][][][][][][][][][][][][][][][][][][][][][][][][][]\OML/cmm/m/it/12.045 Mo
+nteCarlo[][][][][][][][][]tamed=truncatedEM[][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][][][][][][]$ 
+ []
+
+
 
 [39]
+
+[40] (./è®ºæ–‡.bbl
+
+[41]
 Underfull \hbox (badness 1275) in paragraph at lines 91--94
 []\T1/ptm/m/n/12.045 B. Ok-sendal, \T1/ptm/m/it/12.045 Stochas-tic dif-fer-en-t
 ial equa-tions: an in-tro-duc-tion with ap-pli-ca-tions\T1/ptm/m/n/12.045 .
@@ -2098,25 +2726,25 @@ ial equa-tions: an in-tro-duc-tion with ap-pli-ca-tions\T1/ptm/m/n/12.045 .
 
 )
 
-[40]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \hskip 12.045pt
-(hyperref)                replaced by space on input line 2336.
-
-
-
-[41]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \hskip 12.045pt
-(hyperref)                replaced by space on input line 2343.
-
-
-
 [42]
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \hskip 12.045pt
+(hyperref)                replaced by space on input line 2459.
+
+
+
 [43]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \hskip 12.045pt
+(hyperref)                replaced by space on input line 2466.
+
+
+
+[44]
+
+[45]
 > Step: init table outer spec.
 > Step: parse table options.
 > Step: split table.
@@ -2127,7 +2755,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 > Step: build the whole table.
 
 
-[44] (./è®ºæ–‡.aux)
+[46] (./è®ºæ–‡.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/07/14>
@@ -2143,21 +2771,15 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-
-Package rerunfilecheck Warning: File `è®ºæ–‡.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `è®ºæ–‡.out':
-(rerunfilecheck)             Before: 7E7395E8589CFD2C5F3BD85992B6E5E5;5871
-(rerunfilecheck)             After:  F7A021FA04CFCB123CF43E4580DC83CC;6027.
+Package rerunfilecheck Info: File `è®ºæ–‡.out' has not changed.
+(rerunfilecheck)             Checksum: F7A021FA04CFCB123CF43E4580DC83CC;6027.
  ) 
 Here is how much of TeX's memory you used:
- 63662 strings out of 473190
- 1572084 string characters out of 5719980
+ 63686 strings out of 473190
+ 1572582 string characters out of 5719980
  2254001 words of memory out of 5000000
- 85012 multiletter control sequences out of 15000+600000
- 763824 words of font info for 661 fonts, out of 8000000 for 9000
+ 85032 multiletter control sequences out of 15000+600000
+ 764364 words of font info for 663 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  88i,15n,99p,2003b,980s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/s
@@ -2273,10 +2895,10 @@ ive/2025/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb><d:/texlive/2025/texmf-d
 ist/fonts/type1/urw/times/utmb8a.pfb><d:/texlive/2025/texmf-dist/fonts/type1/ur
 w/times/utmr8a.pfb><d:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pf
 b>
-Output written on è®ºæ–‡.pdf (57 pages, 1969345 bytes).
+Output written on è®ºæ–‡.pdf (59 pages, 1986442 bytes).
 PDF statistics:
- 2058 PDF objects out of 2073 (max. 8388607)
- 1525 compressed objects within 16 object streams
- 261 named destinations out of 1000 (max. 500000)
- 753 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2071 PDF objects out of 2073 (max. 8388607)
+ 1535 compressed objects within 16 object streams
+ 263 named destinations out of 1000 (max. 500000)
+ 761 words of extra memory for PDF output out of 10000 (max. 10000000)
 

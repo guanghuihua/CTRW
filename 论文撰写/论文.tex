@@ -2244,6 +2244,129 @@ Tamed-EM 的占据度与 CTRW 的占据度在总体形状上相吻合；CTRW 的
 \end{enumerate}
 
 
+============================================
+
+下面把 committor 与 MFPT 的含义、在随机 Canard 系统中的比较思路，以及我们已完成实验的关键结论，做一个面向论文的精炼总结（含必要公式，便于直接放入正文或方法小节）。
+
+---
+
+# 1. 两个弱量的定义与意义
+
+设二维 Itô SDE
+[
+\mathrm{d}Z_t=\mu(Z_t),\mathrm{d}t+\Sigma(Z_t),\mathrm{d}W_t,\qquad
+Z_t=(x_t,y_t)\in\Omega\subset\mathbb R^2,
+]
+生成元为 (L f=\mu\cdot\nabla f+\tfrac12\mathrm{Tr}(\Sigma\Sigma^\top\nabla^2 f))。给定两个集合 (A,B\subset\Omega)（本文取
+(A={x\le x_A},B={x\ge x_B})；外边界 (\partial\Omega) 反射），定义：
+
+ Committor（先达概率）
+[
+\boxed{
+	\begin{cases}
+		L q=0,& \text{in } \Omega!\setminus!(A\cup B),\
+		q|_A=0,\quad q|B=1,\
+		\text{（反射）}\ \partial\mathbf{n} q=0,& \text{on } \partial\Omega,
+\end{cases}}
+]
+物理意义：从 (z) 出发，先到达 (B) 而非 (A) 的概率 (q(z)=\mathbb P_z(\tau_B<\tau_A))。
+
+ MFPT（首次到达 (B) 的期望时间）
+[
+\boxed{
+	\begin{cases}
+		L m=-1,& \text{in } \Omega!\setminus!B,\
+		m|B=0,\
+		\text{（反射）}\ \partial\mathbf{n} m=0,& \text{on } \partial\Omega.
+\end{cases}}
+]
+物理意义：(,m(z)=\mathbb E_z[\tau_B],)。
+
+这两类量都是弱/分布型指标，天然适合用空间离散的生成元方法来求解与比较。
+
+---
+
+# 2. 我们的比较流程（Space vs. Time）
+
+问题设定（随机 Canard）：
+[
+\begin{aligned}
+	\mathrm{d}x_t &= \big(y_t-(x_t^3/3-x_t)\big),\mathrm{d}t + \sigma_x,\mathrm{d}W_t^{(x)},\
+	\mathrm{d}y_t &= \varepsilon,(a-x_t),\mathrm{d}t + \sigma_y,\mathrm{d}W_t^{(y)}.
+\end{aligned}
+]
+基准参数：(\varepsilon=10^{-2},,a=1.0,;(\sigma_x,\sigma_y)=(0,0.08))；域 (\Omega=[-2.5,2.5]\times[-1,3]) 反射；(x_A=-0.2,\ x_B=1.5)。
+
+Space（CTRW/SSA, 基于生成元 (Q)）
+
+1. 构造矩形网格（可在折叠邻域局部加密、各向异性 (h_y!\approx! c,\varepsilon h_x)）。
+2. 由 (Q_u) 构造最近邻非负跳率与对角出率（实现反射边界）。
+3. 直接求解离散方程
+[
+Q,q=0\ \ (\text{Dirichlet on }A,B),\qquad
+Q,m=-\mathbf 1\ \ (\text{Dirichlet on }B),
+]
+得到全场 (q(x,y))、(m(x,y))（一次稀疏线性代数求解）。
+
+Time（tamed-EM 与 truncated-EM 的 Monte Carlo）
+
+1. 在同一域内施加镜像反射近似。
+2. 选取若干评价节点（如慢流形附近的点集）。
+3. 用固定步长 (\Delta t) 与样本数 (N) 的 MC：
+
+ Committor 估计：从每个节点发射 (N) 条轨道，统计先达 (B) 的频率 (\hat q)。
+ MFPT 估计：统计命中 (B) 的到达时间均值 (\hat m)（含必要的截断处理）。
+4. 以 (Q)-解为“地面真实值”，计算这些节点上的 RMS 误差，并用
+[
+\text{work}=\text{总步数（所有节点×所有路径×步数）}
+]
+作为代价，绘制误差—代价曲线。
+
+> 公平性：Time 以“总步数”为 work；Space 是“一次稀疏解”获得全场（若需要，可额外报告线性求解器的实际耗时）。两侧边界一致（反射）；比较在同一节点集上进行。
+
+---
+
+# 3. 关键图像与观测（与上述代码输出一致）
+
+(i) (Q)-解的几何
+
+ (q(x,y)) 热图与等值线：在折叠附近由 0 快速抬升至 1，显著受慢流形几何影响。
+ (m(x,y)) 热图：左侧/远离 (B) 区域值大，靠近 (B) 前沿急剧下降为 0。
+ 沿慢流形 (y=x^3/3-x) 的切片：(q(x)) 在折叠附近有快速层，(m(x)) 在接近 (B) 时陡降。
+
+代表性数值（慢流形上）：
+((x_0,y_0)=(-1.5,\ x_0^3/3-x_0)): (q\approx 0.00,\ m\approx 24.2)；
+((x_f,y_f)=(1.0,\ x_f^3/3-x_f)): (q\approx 0.35,\ m\approx 54.0)。
+说明：左支深处先达 (B) 的概率近 0；过折叠后概率上升，但 MFPT 可能因通道路径而增大。
+
+(ii) Time vs. Space：误差—代价（节点集上的 RMS）
+
+ Committor：tamed 与 truncated 的误差随 work 增加而下降；但要匹配 (Q)-解需要相当多的步数。空间离散则通过一次稀疏求解直接得到全场，无 MC 方差。
+ MFPT：时间法方差更大、对截断更敏感，曲线下降更慢；空间法依旧一次得到稳定的全场 (m(x,y))。
+
+> 总体趋势：在弱/长期量（committor、MFPT）上，空间离散更高效、更稳健；时间法可以作为交叉验证，但若追求同等精度，通常需要明显更高的 work。
+
+---
+
+# 4. 实践要点与可复现实验步骤（简表）
+
+1. 设定：(\varepsilon=10^{-2},,a=1.0)；(\Omega=[-2.5,2.5]\times[-1,3])（反射）；
+(A={x\le -0.2},\ B={x\ge 1.5})。
+2. Space：网格（基本 (h_x=h_y\approx 0.06)），组装 (Q_u)；一次解 (Qq=0)、(Qm=-1)，出 (q,m) 热图与慢流形切片。
+3. Time：选节点（慢流形附近若干点），tamed-EM 与 truncated-EM MC 估计 (\hat q,\hat m)；统计 RMS 误差与 work，画误差—代价曲线。
+4. 稳健性：
+
+ 调整节点集（含折叠邻域）、((x_A,x_B))（间距缩放）；
+ 空间侧在折叠邻域局部加密/各向异性验证误差下降；
+ 时间侧加大 (N)、缩小 (\Delta t)、延长上限时间，观察曲线单调下降与置信带收缩。
+
+---
+
+# 5. 一句话结论（写在小结里）
+
+> 对随机 Canard 系统，committor 与 MFPT 等生成元型弱量更适合用空间离散（CTRW/(Q_u)）直接求解：一次稀疏线性方程即可得到全场分布，稳定且无 Monte Carlo 方差；而时间离散（tamed/truncated EM）作为蒙特卡洛估计虽能收敛，但在达到同等精度时通常需要显著更高的计算代价。
+
+
 %%=====================================================================================================%%
 %%
 %%                结语（结论）
