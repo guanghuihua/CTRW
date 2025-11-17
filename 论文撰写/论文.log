@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  18 NOV 2025 02:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  18 NOV 2025 02:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2002,22 +2002,22 @@ File: fig/committor_heatmap.jpg Graphic file (type jpg)
 <use fig/committor_heatmap.jpg>
 Package pdftex.def Info: fig/committor_heatmap.jpg  used on input line 2191.
 (pdftex.def)             Requested size: 204.85846pt x 160.20938pt.
-<fig/mfpt_heatmap.jpg, id=1049, 431.4519pt x 339.669pt>
-File: fig/mfpt_heatmap.jpg Graphic file (type jpg)
-<use fig/mfpt_heatmap.jpg>
-Package pdftex.def Info: fig/mfpt_heatmap.jpg  used on input line 2195.
-(pdftex.def)             Requested size: 204.85846pt x 161.28226pt.
-<fig/committor_trunc_heatmap.png, id=1050, 440.847pt x 339.669pt>
+<fig/committor_trunc_heatmap.png, id=1049, 434.3427pt x 339.669pt>
 File: fig/committor_trunc_heatmap.png Graphic file (type png)
 <use fig/committor_trunc_heatmap.png>
-Package pdftex.def Info: fig/committor_trunc_heatmap.png  used on input line 22
-00.
-(pdftex.def)             Requested size: 204.85846pt x 157.84079pt.
-<fig/mfpt_trunc_heatmap.png, id=1051, 440.847pt x 339.669pt>
+Package pdftex.def Info: fig/committor_trunc_heatmap.png  used on input line 21
+95.
+(pdftex.def)             Requested size: 204.85846pt x 160.20938pt.
+<fig/mfpt_heatmap.jpg, id=1050, 431.4519pt x 339.669pt>
+File: fig/mfpt_heatmap.jpg Graphic file (type jpg)
+<use fig/mfpt_heatmap.jpg>
+Package pdftex.def Info: fig/mfpt_heatmap.jpg  used on input line 2200.
+(pdftex.def)             Requested size: 204.85846pt x 161.28226pt.
+<fig/mfpt_trunc_heatmap.png, id=1051, 436.5108pt x 339.669pt>
 File: fig/mfpt_trunc_heatmap.png Graphic file (type png)
 <use fig/mfpt_trunc_heatmap.png>
 Package pdftex.def Info: fig/mfpt_trunc_heatmap.png  used on input line 2204.
-(pdftex.def)             Requested size: 204.85846pt x 157.84079pt.
+(pdftex.def)             Requested size: 204.85846pt x 159.41121pt.
 
 Overfull \hbox (4.49904pt too wide) detected at line 2224
 []  []
@@ -2027,8 +2027,8 @@ Overfull \hbox (4.49904pt too wide) detected at line 2224
 
 [32]
 
-[33 <./fig/committor_heatmap.jpg> <./fig/mfpt_heatmap.jpg> <./fig/committor_tru
-nc_heatmap.png> <./fig/mfpt_trunc_heatmap.png>]
+[33 <./fig/committor_heatmap.jpg> <./fig/committor_trunc_heatmap.png> <./fig/mf
+pt_heatmap.jpg> <./fig/mfpt_trunc_heatmap.png>]
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
 263.
 
@@ -2075,23 +2075,6 @@ LaTeX Warning: Reference `fig:mfpt_error_work_timeMC' on page 36 undefined on i
 nput line 2362.
 
 
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.2364 
-       
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 2364
-[][]
- []
-
-
 
 [36]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2114,7 +2097,7 @@ ial equa-tions: an in-tro-duc-tion with ap-pli-ca-tions\T1/ptm/m/n/12.045 .
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \hskip 12.045pt
-(hyperref)                replaced by space on input line 2433.
+(hyperref)                replaced by space on input line 2432.
 
 
 
@@ -2122,7 +2105,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \hskip 12.045pt
-(hyperref)                replaced by space on input line 2440.
+(hyperref)                replaced by space on input line 2439.
 
 
 
@@ -2161,7 +2144,7 @@ Package rerunfilecheck Info: File `论文.out' has not changed.
 Here is how much of TeX's memory you used:
  63706 strings out of 473190
  1572873 string characters out of 5719980
- 2253146 words of memory out of 5000000
+ 2253148 words of memory out of 5000000
  85038 multiletter control sequences out of 15000+600000
  771798 words of font info for 687 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2280,7 +2263,7 @@ type1/public/amsfonts/symbols/msbm7.pfb><d:/texlive/2025/texmf-dist/fonts/type1
 /public/rsfs/rsfs10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8
 a.pfb><d:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><d:/texlive/
 2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on 论文.pdf (57 pages, 1785639 bytes).
+Output written on 论文.pdf (57 pages, 1796728 bytes).
 PDF statistics:
  2084 PDF objects out of 2487 (max. 8388607)
  1510 compressed objects within 16 object streams

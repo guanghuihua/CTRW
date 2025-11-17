@@ -130,6 +130,7 @@ Xg, Yg = np.meshgrid(xs, ys, indexing='xy')
 def plot_heat_with_contours(F, title, fname, nlevels=6):
     plt.figure(figsize=(6.2,4.8))
     plt.imshow(F, origin='lower', extent=extent, aspect='auto')
+    plt.colorbar(label='committor q(x,y)')
     CS = plt.contour(Xg, Yg, F, levels=nlevels, linewidths=0.9)
     plt.clabel(CS, inline=True, fontsize=8)
     plt.xlabel('x'); plt.ylabel('y')

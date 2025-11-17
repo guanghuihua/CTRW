@@ -1,0 +1,10 @@
+\beamer@sectionintoc {1}{解析求解SDE的困难}{1}{0}{1}
+\beamer@sectionintoc {2}{数值解的存在唯一性 }{4}{0}{2}
+\beamer@sectionintoc {3}{空间离散方法的平均驻留时间分析}{7}{0}{3}
+\beamer@subsectionintoc {3}{1}{连续时间随机游走方法}{7}{0}{3}
+\beamer@sectionintoc {4}{Time-discretization Scheme}{16}{0}{4}
+\beamer@subsectionintoc {4}{1}{Backgrounds}{16}{0}{4}
+\beamer@subsectionintoc {4}{2}{我们的问题}{18}{0}{4}
+\beamer@subsectionintoc {4}{3}{1D Cubic Oscillator with Additive Noise}{18}{0}{4}
+\beamer@subsectionintoc {4}{4}{改进的explicit方法}{20}{0}{4}
+\beamer@sectionintoc {5}{符号说明}{25}{0}{5}
