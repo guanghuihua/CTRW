@@ -582,32 +582,31 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 		
 		\item[\( \mu(X_t) \)]    漂移项（drift term） 
 		\item[$\sigma(X_t)$] 扩散项（diffusion term）
-		\item[$\delta x := h$] 空间离散步长
+		\item[$\delta $] 空间离散步长
 		\item[$\Delta$] 时间离散步长
 		\item[$Q_u$] Eric 提出的有限差分格式
-		\item[$Q_c$] Eric 提出的有限体积格式
+%		\item[$Q_c$] Eric 提出的有限体积格式
 		\item[$\tilde{Q}_u$] Zu 提出的改进的有限差分格式
 		\item[$\mathbb{E [\tau] }$] 真实SDE的平均首达时间
-		\item[$t^e$] 漂移主导的ODE时间 \quad 当 $|x| \to \infty$ 时的精确平均等待时间 (mean holding time)
+		\item[$t^e$] 漂移主导的ODE时间 %\quad 当 $|x| \to \infty$ 时的精确平均等待时间 (mean holding time)
 		\item[$t^*$] $t^e$ 的主要部分
 		\item[$t^u$] $Q_u$ 格式对应的平均等待时间 (mean holding time)
-		\item[$t^c$] $Q_c$ 格式对应的平均等待时间 (mean holding time)
+%		\item[$t^c$] $Q_c$ 格式对应的平均等待时间 (mean holding time)
 		\item[$\tilde{t}^u$] $\tilde{Q}_u$ 格式对应的平均等待时间 (mean holding time)
-		\item[$t^{\Delta}$] 截断方法运动 $h$ 距离所需的平均时间
+
 		\item[$t^{\delta}$] 驯化方法运动 $h$ 距离所需的平均时间
-		
+		\item[$t^{\Delta}$] 截断方法运动 $h$ 距离所需的平均时间
 		\item[$f(x)\asymp g(x)$]
-		（渐近同阶）指存在常数 $c_1,c_2>0$ 与 $R>0$，使得对所有足够大的 $x$（默认 $x\ge R$），有
-		\[
-		c_1\,|g(x)| \;\le\; |f(x)| \;\le\; c_2\,|g(x)|.
-		\]
-		隐含常数 $c_1,c_2$ 不依赖于自变量（如 $x$）与网格/步长参数（如 $h,\Delta$）。若以 $h\downarrow 0$ 或 $n\to\infty$ 为极限，定义作相应替换理解。
+		渐近同阶\footnote{指存在常数 $c_1,c_2>0$ 与 $R>0$，使得对所有足够大的 $x$（默认 $x\ge R$），有
+		\(		c_1\,|g(x)| \;\le\; |f(x)| \;\le\; c_2\,|g(x)|.
+		\)
+		隐含常数 $c_1,c_2$ 不依赖于自变量（如 $x$）与网格/步长参数（如 $h,\Delta$）。若以 $h\downarrow 0$ 或 $n\to\infty$ 为极限，定义作相应替换理解。}
 		%与 $f(x)\sim g(x)$（比值极限为 1）不同，$\asymp$ 只要求双边常数界；例如在“顺漂移+小位移”极限下，
 		%$t^e=\frac{\delta}{x^3}+\frac{3}{2}\frac{\delta^2}{x^4}+O\!\big(\frac{\delta^3}{x^5}\big)$，
 		%因此 $t^e \asymp \delta/x^3$（当 $x\to\infty$ 且 $\delta/x\to 0$）。
 		
 		\item[$f(x)\sim g(x)$]
-		（渐近等价）指 $\displaystyle \lim_{x\to\infty}\frac{f(x)}{g(x)}=1$（或相应极限）。相比 $f\asymp g$ 更强。
+		渐近等价 \footnote{指 $\displaystyle \lim_{x\to\infty}\frac{f(x)}{g(x)}=1$（或相应极限）。相比 $f\asymp g$ 更强。}
 		
 	\end{newdescription}
 	
@@ -690,13 +689,13 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	对于时间离散方法， 1999 年，学者 Kloeden 和 Platen\cite{kloeden1992stochastic}系统描述了具有不同收敛阶的求解随机微分方程的数值方法。1955年，Maruyama \cite{Maruyama1955}首次提出了 Euler- Maruyama 方法。Euler-Maruyama 方法是时间离散近似最常用的方法，其数值方法如下：
 	
 	\begin{equation}
-	X_{k+1}=X_{k}+a\left(X_{k}\right) h+b\left(X_{k}\right)\left(W_{k+1}-W_{k}\right)
+	X_{k+1}=X_{k}+ \mu \left(X_{k}\right) h+\sigma \left(X_{k}\right)\left(W_{k+1}-W_{k}\right)
 	\end{equation}
 	
 	Euler-Maruyama 方法是 0.5 阶强收敛和 1.0 阶弱收敛的。1974年，Milstein \cite{Milstein1975}通过对随机 Taylor 展开式在一阶处截断得到了 Milstein 方法。Milstein 方法是对 Euler-Maruyama 方法的一个重要改进，其数值方法如下：
 	
 	\begin{equation}
-	X_{k+1}=X_{k}+a\left(X_{k}\right) h+b\left(X_{k}\right)\left(W_{k+1}-W_{k}\right)+\frac{1}{2} b\left(X_{k}\right) b^{\prime}\left(X_{k}\right)\left[\left(W_{k+1}-W_{k}\right)^{2}-h\right]
+	X_{k+1}=X_{k}+\mu \left(X_{k}\right) h+\sigma \left(X_{k}\right)\left(W_{k+1}-W_{k}\right)+\frac{1}{2} \sigma\left(X_{k}\right) \sigma^{\prime}\left(X_{k}\right)\left[\left(W_{k+1}-W_{k}\right)^{2}-\Delta\right]
 	\end{equation}
 	
 	Milstein 方法是 1.0 阶强收敛和 1.0 阶弱收敛的，但 Milstein 方法中需要计算导数，即使在一维情况下，计算量也很大。
@@ -704,62 +703,39 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	Euler-Maruyama 方法最常用于近似具有全局 Lipschitz 连续系数的随机微分方程。对于非全局 Lipschitz 连续的情形，简单介绍如下。2002年，学者 Higham， Mao 和 Stuart \cite{higham2002strong} 在随机微分方程满足局部 Lipschitz 条件和 p 阶矩有界条件下，证明了通过 Euler-Maruyama 方法得到的数值解强均方收敛到精确解，并给出了方程漂移系数满足单边 Lipschitz 条件且方程扩散系数满足全局 Lipschitz 条件下，隐式 Euler 方法具有强收敛性，但没有解决对于具有超线性增长和单侧 Lipschitz 连续漂移系数的随机微分方程，Euler-Maruyama 方法在强均方意义下的有限时间收敛的问题。2011年，学者 Hutzenthaler，Jentzen 和 Kloeden \cite{hutzenthaler2011strong} 对这一问题给出了否定的答案，并证明了对于一类具有非全局 Lipschitz 连续的随机微分方程，在有限时间点 $T \in(0, \infty)$ ，Euler-Maruyama 近似无论是在强均方意义还是在数值弱意义下都不收敛。甚至更糟糕的是，在强均方意义下和数值弱意义下，在有限时间点的精确解和数值近似的差发散到无穷。随后在2012年，他们 \cite{hutzenthaler2012strong}通过对 Euler-Maruyama方法进行改进得到了 Tamed Euler 方法
 	
 	\begin{equation} \label{tamed EM}
-	X_{k+1}=X_{k}+\frac{a\left(X_{k}\right) h}{1+\left\|a\left(X_{k}\right)\right\| h}+b\left(X_{k}\right)\left(W_{k+1}-W_{k}\right)
+	X_{k+1}=X_{k}+\frac{\mu \left(X_{k}\right) h}{1+\left\| \mu \left(X_{k}\right)\right\| h}+\sigma \left(X_{k}\right)\left(W_{k+1}-W_{k}\right)
 	\end{equation}
 	
 	该方法在Euler–Maruyama方案的基础上对漂移项进行了“驯服”处理：在每个时间步，使用有界函数削弱漂移的大小，从而将数值增量中的漂移量限制在一个上界以内。这种处理避免了漂移过大导致的单步跳跃失控，从而抑制了解的发散。值得注意的是，Tamed Euler方法仍保持与EM相同的强收敛阶（$1/2$阶），适用于具有超线性增长和全局单侧 Lipschitz 连续漂移系数和全局Lipschitz的扩散系数情形。
-	并且模拟结果表明，这种显式强收敛的 Tamed Euler 方法比隐式 Euler 方法要快得多。2015 年，Mao \cite{mao2015truncated}对于具有
-	
-	局部 Lipschitz 条件和 Khasminskii 型条件
-	
+	并且模拟结果表明，这种显式强收敛的 Tamed Euler 方法比隐式 Euler 方法要快得多。2015 年，Mao \cite{mao2015truncated}对于具有局部 Lipschitz 条件和 Khasminskii 型条件
 	\begin{equation}\label{Khasminskii}
-		x^{T} \mu(x)+\frac{p-1}{2}|\sigma(x)|^{2} \leq K\left(1+|x|^{2}\right)
+		x^{T} \mu(x)+\frac{p-1}{2}|\sigma(x)|^{2} \leq K\left(1+|x|^{2}\right) \quad p > 2
 	\end{equation}
+	的非线性随机微分方程，提出了一种新的显式数值方法即截断Euler-Maruyama方法，并证明了该方法的强收敛性，通过对漂移项$\mu(x)$和扩散项$\sigma(x)$实施适度的截断来处理超线性增长的情形。其核心思想是为数值方法引入一个依赖步长$\Delta$的阈值，将状态空间中超过阈值的区域“裁剪”掉，在计算时用阈值处的函数值替代原函数值。这样可强制将漂移和扩散限制在有界范围内，避免显式EM在超线性漂移下可能出现的爆炸。在局部Lipschitz条件及Khasminskii型线性增长条件下，截断EM方法被证明在均方意义下是收敛的；进一步地，如果扩散项满足多项式增长条件，还可以推得其“路径依赖”的强收敛性（即几乎必然收敛）。另外有研究指出，相较于驯化Euler，截断方法在相同误差控制下允许使用更大的步长，从而提高了效率。除了上述两种，Wei Liu等人提出的停止时间Euler方法通过引入随机停止时间，在数值解进入非物理区域（例如变量变为负值）之前终止模拟，从而保证了解的有界性和物理合理性。这进一步丰富了非Lipschitz情形下显式方法的改进手段。随后在2016年，Mao \cite{mao2016convergence} 给出了截断 Euler-Maruyama 方法的 $L^{q}(q \geq 2)$ 收敛速度，并表明在某些附加条件下，$L^{q}$ 收敛阶可以任意接近 $q / 2$ 。然而，截断函数存在一些限制，这些限制可能会迫使步长太小以致截断 Euler-Maruyama 方法不适用。2018 年， $\mathrm{Hu}, \mathrm{Li}$ 和 $\mathrm{Mao}$ \cite{Hu2018} 建立了不受这些限制的收敛速度，并研究了截断 Euler-Maruyama 方法的稳定性。但是以上方法对随机微分方程长时间的数值模拟效果并不好。
 	
-	（ $p>2$ ）的非线性随机微分方程，提出了一种新的显式数值方法－截断 Euler-Maruyama 方法，并证明了该方法的强收敛性，通过对漂移项$\mu(x)$和扩散项$\sigma(x)$实施适度的截断来处理超线性增长的情形。其核心思想是为数值方法引入一个依赖步长$\Delta$的阈值，将状态空间中超过阈值的区域“裁剪”掉，在计算时用阈值处的函数值替代原函数值。这样可强制将漂移和扩散限制在有界范围内，避免显式EM在超线性漂移下可能出现的爆炸。在局部Lipschitz条件及Khasminskii型线性增长条件下，截断EM方法被证明在均方意义下是收敛的；进一步地，如果扩散项满足多项式增长条件，还可以推得其“路径依赖”的强收敛性（即几乎必然收敛）。另外有研究指出，相较于驯化Euler，截断方法在相同误差控制下允许使用更大的步长，从而提高了效率。除了上述两种，Wei Liu等人提出的停止时间Euler方法通过引入随机停止时间，在数值解进入非物理区域（例如变量变为负值）之前终止模拟，从而保证了解的有界性和物理合理性。这进一步丰富了非Lipschitz情形下显式方法的改进手段。。随后在2016年，他 \cite{mao2016convergence} 给出了截断 Euler-Maruyama 方法的 $L^{q}(q \geq 2)$ 收敛速度，并表明在某些附加条件下，$L^{q}$ 收敛阶可以任意接近 $q / 2$ 。然而，截断函数存在一些限制，这些限制可能会迫使步长太小以致截断 Euler-Maruyama 方法不适用。2018 年， $\mathrm{Hu}, \mathrm{Li}$ 和 $\mathrm{Mao}$ \cite{Hu2018} 建立了不受这些限制的收敛速度，并研究了截断 Euler-Maruyama 方法的稳定性。但是以上方法对随机微分方程长时间的数值模拟效果并不好。
+	在另一方向，2018年，Bou-Rabee和 Vanden-Eijnden \cite{bou2018continuous} 提出了随机微分方程的连续时间数值方法。他们不再沿用传统的时间步进，而是从SDE的无穷小生成元入手，采用有限差分或有限体积等方法对其进行离散近似，从而构造出在离散状态空间上演化的马尔可夫过程。只要离散算子满足所谓的“可实现性”条件，即它可以解释为某离散Markov链的生成元（迁移率矩阵满足非负性和行和为零），那么便可以借助随机模拟算法来精确地模拟该Markov跳跃过程。这种方法的显著优点在于：数值解的空间步长是离散的且受控的，每次跳跃的幅度由网格间距$\delta $决定，因此数值解始终被限制在SDE定义域内，不会越过物理边界条件；同时，由于跳跃速率可以随状态自适应调整，空间离散方法天然地对不同状态区域的刚性具有自适应性，在漂移变化剧烈的区域会发生更频繁的小步跳跃，在平稳区域则长时间驻留，这在一定程度上缓解了多尺度问题带来的困难。此外，通过精心设计跳跃率满足平衡条件，离散方案可以保证原SDE的平稳分布正是该马尔可夫链的稳定分布，从而理论上严格保证对稳态分布的采样。Bou-Rabee和Vanden-Eijnden在相关工作中分别提出了基于有限差分的$Q_u$方案和基于有限体积的$Q_c$方案，它们在弱意义下对SDE具有高阶准确性，并能较好保持SDE的几何性质。
 	
-	
-	在另一方向，2018年，Bou-Rabee和 Vanden-Eijnden \cite{bou2018continuous} 提出了随机微分方程的连续时间数值方法。他们不再沿用传统的时间步进，而是从SDE的无穷小生成元（一个二阶微分算子）入手，采用有限差分或有限体积等方法对其进行离散近似，从而构造出在离散状态空间上演化的马尔可夫过程。只要离散算子满足所谓的“可实现性”条件，即它可以解释为某离散Markov链的生成元（迁移率矩阵满足非负性和行和为零），那么便可以借助随机模拟算法（Stochastic Simulation Algorithm, SSA）来精确地模拟该Markov跳跃过程。这种方法的显著优点在于：数值解的空间步长是离散的且受控的，每次跳跃的幅度由网格间距$\delta x$决定，因此数值解始终被限制在SDE定义域内，不会越过物理边界条件；同时，由于跳跃速率可以随状态自适应调整，空间离散方法天然地对不同状态区域的刚性具有自适应性，在漂移变化剧烈的区域会发生更频繁的小步跳跃，在平稳区域则长时间驻留，这在一定程度上缓解了多尺度问题带来的困难。此外，通过精心设计跳跃率满足平衡条件，离散方案可以保证原SDE的平稳分布正是该马尔可夫链的稳定分布，从而理论上严格保证对稳态分布的采样。Bou-Rabee和Vanden-Eijnden在相关工作中分别提出了基于有限差分的$Q_u$方案和基于有限体积的$Q_c$方案，它们在弱意义下对SDE具有高阶准确性，并能较好保持SDE的几何性质。
-	
-	
-	
-	需要指出的是，这类连续时间随机行走（CTRW）方法在逼近漂移项时是通过泊松过程实现的：漂移引起的确定性运动被离散化为一系列随机跳跃及等待时间。这意味着漂移贡献被引入了一定的人工扩散（因为泊松过程的等待时间是随机的，会带来方差）。对于噪声强度较大的系统，这一影响可以忽略；但当原SDE扩散项很小（如噪声标准差与网格步长同阶甚至更小）时，这种人工扩散将显著扭曲数值解，导致模拟结果偏离真实行为。
-	
-	
-	考虑具有加性噪声的随机微分方程
-	
+	需要指出的是，这类连续时间随机行走（CTRW）方法在逼近漂移项时是通过泊松过程实现的：漂移引起的确定性运动被离散化为一系列随机跳跃及等待时间。这意味着漂移贡献被引入了一定的人工扩散，因为泊松过程的等待时间是随机的，会带来方差。对于噪声强度较大的系统，这一影响可以忽略，但当原SDE扩散项很小，如噪声标准差与网格步长同阶甚至更小时，这种人工扩散将显著扭曲数值解，导致模拟结果偏离真实行为。例如下面我们考虑具有加性噪声的随机微分方程
 	\begin{equation} \label{add noise equation}
-		d X_{t}=\mu\left(X_{t}\right) d t+\sigma d W_{t}
+		dX_{t}=\mu\left(X_{t}\right) d t+\sigma d W_{t}
 	\end{equation}
+	其中 $\sigma=\operatorname{diag}\left(\sigma_{11}, \sigma_{22}, \ldots, \sigma_{n n}\right)$ 是噪声强度，并且对于 $i=1,2, \ldots, n, \sigma_{i i} \in \mathbb{R}^{+}$。当对方程\eqref{add noise equation}应用连续时间随机游走方法$Q_{u}$时漂移项会产生额外的扩散项。针对这一不足，祖建\cite{zu2023random}提出了一种改进的$Q_u$跳跃格式。该方法在原有$Q_u$方案基础上，通过减小式\eqref{add noise equation}中的 $\sigma$ 来补偿这种额外的扩散项，等价于对跳跃过程附加了校正的扩散项。理论分析表明，$\tilde{Q}_u$格式相较原始的$Q_u$和$Q_c$方案在精度上表现更好，特别是在“小噪声”情形下依然适用。进一步地，$\tilde{Q}_u$方案在平均驻留时间的渐近展开上具有良好的性质，可保证当网格加密时数值平均步长逼近解析值并达到高阶收敛。
 	
-	其中 $\sigma=\operatorname{diag}\left(\sigma_{11}, \sigma_{22}, \ldots, \sigma_{n n}\right)$ 是噪声强度，并且对于 $i=1,2, \ldots, n, \sigma_{i i} \in \mathbb{R}^{+}$。当对方程\eqref{add noise equation}应用连续时间随机游走方法 $Q_{u}$（有限差分离散化）时漂移项会产生额外的扩散项。针对这一不足，祖建\cite{zu2023random}提出了一种改进的$Q_u$跳跃格式。该方法在原有$Q_u$方案基础上，通过减小式\eqref{add noise equation}中的 $\sigma$ 来补偿这种额外的扩散项，等价于对跳跃过程附加了校正的扩散项。理论分析表明，$\tilde{Q}_u$格式相较原始的$Q_u$和$Q_c$方案在精度上更胜一筹，特别是在“小噪声”情形下依然适用自如（而$Q_c$方法在噪声很小时会失效）。进一步地，$\tilde{Q}_u$方案在平均驻留时间（mean holding time）的渐近展开上具有良好的性质，可保证当网格加密时数值平均步长逼近解析值并达到高阶收敛。
-	
-	综上所述，针对具有局部Lipschitz而非全局Lipschitz漂移的随机系统，当前主要有两类数值离散途径：一是改进的时间离散方法（如截断欧拉和驯化欧拉），二是基于生成元的空间离散方法（$Q_u$/$Q_c$跳跃方案及其改进）。两类方法各有优劣，但在具体应用中应如何抉择、它们在稳定性和效率方面孰优孰劣，目前缺乏系统的比较研究。而在实际数值模拟中，一个亟待解决的问题是：对于给定的SDE模型，哪种离散方式能以更小的误差或更高的效率获得可靠结果。为此，本文旨在比较时间离散与空间离散两类方法在稳定性、精度、收敛性以及结构保持等方面的差异。
+	综上所述，针对具有局部Lipschitz而非全局Lipschitz漂移的随机系统，当前主要有两类数值离散途径：一是改进的时间离散方法（如截断EM格式和驯化EM格式），二是基于生成元的空间离散方法（$Q_u$跳跃方案及其改进）。而在实际数值模拟中，一个亟待解决的问题是：对于给定的SDE模型，哪种离散方式能以更小的误差或更高的效率获得可靠结果。为此，本文旨在比较时间离散与空间离散两类方法在稳定性、精度、收敛性等方面的差异。
 	
 	\subsection{本文的主要研究内容}
 	
-	本文整体思路是，对于\eqref{add noise equation}，当$X_t$非常大的时候，此时方程 \eqref{add noise equation}由漂移项主导，我们可以通过
-	
+	本文主要是通过两种格式模拟随机动力系统的时间以及在空间中的动力学行为来进行比较。首先本文提出通过比较系统运动固定距离\(L\)所需要的时间，将其与真实时间进行对比来评定两种格式的优劣。本文选取一维立方振子模型作为例子，在该模型下当\(X_t\)非常大时，此时方程 \eqref{add noise equation}由漂移项主导，我们可以通过
 	\begin{equation}\label{drift dominated}
 		d X_{t}=\mu\left(X_{t}\right) d t
 	\end{equation}
-	
-	求解出漂移主导的ODE时间记为$t^e$,其主要部分记为\(t^*\), 
-	
-	特别地，我们将引入一个公平的比较准则：对于\( \forall M> 0, \),给定$x_i,x_j > M $，考察在数值解从$x_i$运动到$x_j$时，两类方法各自所需的演化时间及计算代价，从而评估其效率和稳健性。
-	
-	把空间离散格式的mean holding time记为$t^u$与$t^*,t^e$比较，
-	对于扩散项和漂移项不满足全局Lipschitz条件的随机微分方程，使用经典的Euler-Maruyama 近似无论是在强均方意义还是在数值弱意义下都不收敛，于是本文考虑使用截断EM格式和驯化EM格式，计算在使用改进EM格式时求解出从\(x_i\)到\(x_j\)的平均首达时间\(t^{\Delta,t^{\delta}}\)来与\(t^*,t^e\)。
+	求解出漂移主导的ODE时间记为$t^e$，其主要部分记为\(t^*\)，把空间离散格式的所需要的时间（平均等待时间）记为$t^u$与$t^e$进行比较。
+	对于扩散项和漂移项不满足全局Lipschitz条件的随机微分方程，使用经典的Euler-Maruyama 近似无论是在强均方意义还是在数值弱意义下都不收敛，于是本文考虑使用截断EM格式和驯化EM格式，计算在使用改进EM格式时求解出从\(x\)运动到\( x + L \)的平均首达时间\(t^{\Delta},t^{\delta}\)来与\(t^e\)比较。
 	这一准则等价于比较空间离散方法的平均停留时间与时间离散方法的等效步长所导致的平均首达时间，能够较直观地反映不同算法在相同距离尺度上的表现差异。
 	
-	%%=====================================================================================================%%
-	%%
-	%%本文的最终目的是想要对时间离散格式和空间离散格式在求解不满足全局Lipschitz条件的随机微分方程时的优劣，
-	%%从而得到在处理非全局Lipschitz条件的SDE数值求解过程中，空间离散格式\(\tilde{Q}^u\) 是要优于改进的时间离散格式的。
-	%%
-	%%=====================================================================================================%%
-	
-	本文的具体安排如下：第一章介绍课题背景和研究动机；第二章总结随机微分方程数值解的理论基础，包括解的存在唯一性、基本数值方法及其收敛性理论；第三章介绍通过离散生成元构造马尔可夫跳跃过程的空间离散方法，并描述Bou-Rabee与Vanden-Eijnden提出的$Q_u$格式及祖建\cite{zu2023random}的改进方案的结构与性质并将其与\(t^e\)比较；第四章通过计算出改进的EM格式的时间，并将其与\(t^e\)进行比较，第五章给出数值实验，分别以一维立方振子模型和随机Canard慢快系统为例进行对比分析，并综合比较两类方法的性能，并结合模型特征进行评述；第六章总结全文并展望进一步的研究方向。
+	本文还考虑在系统在动力学行为方面来评定两个格式对于模拟系统的真实行为的好坏，为了能够清晰得到不同格式的优劣，本文选取了随机Canard系统来进行对比，因为Canard系统在相空间中能够清晰看到系统沿着慢流形然后快跳的现象，本文讲通过先达概率函数（committor function）作为评价指标来进行对比。
+
+	本文的具体安排如下：第一章介绍课题背景和研究动机；第二章总结随机微分方程数值解的理论基础，包括解的存在唯一性、基本数值方法及其收敛性理论；第三章介绍通过离散生成元构造马尔可夫跳跃过程的空间离散方法，并描述Bou-Rabee与Vanden-Eijnden提出的$Q_u$格式及祖建\cite{zu2023random}的改进方案的结构与性质并将其与\(t^e\)比较的理论分析；第四章通过计算出改进的EM格式的时间，并将其与\(t^e\)进行比较的理论分析，第五章给出数值实验，分别以一维立方振子模型和随机Canard慢快系统为例进行对比分析，并综合比较两类方法的性能，并结合模型特征进行评述；第六章总结全文并展望进一步的研究方向。
 	
 	
 	\newpage
@@ -771,6 +747,8 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	
 	
 	 \section{预备知识}
+	 
+	 
 	
 %	 \subsection{随机游走和马尔可夫链}
 %	
@@ -841,46 +819,48 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 %		\]
 %	\end{definition}
 	
-	\begin{definition}[首次退出时间] \label{def:first-exit-time}
-		设 $U \subset \mathbb{R}^n$ 为开集。则首次退出时间
-		\[
-		\tau_U := \inf \{ t > 0; X_t \notin U \}
-		\]
-		是关于 $\{\mathcal{M}_t\}$ 的停止时间，因为
-		\[
-		\{ \omega; \tau_U(\omega) \leq t \} = \bigcap_{m=1}^{\infty} \{ \omega; X_{t_m} \notin K_m \} \in \mathcal{M}_t,
-		\]
-		其中 $\{K_m\}$ 是一个递增的闭集序列，使得 $U = \bigcup_{m=1}^{\infty} K_m$。
-		
-		更一般地，如果 $H \subset \mathbb{R}^n$ 是任意集合，我们定义从 $H$ 的首次退出时间 $\tau_H$ 如下：
-		\[
-		\tau_H = \inf \{ t > 0; X_t \notin H \}.
-		\]
-		如果我们将测度为 0 的集合包含在 $\mathcal{M}_t$ 中（通常这样做），则族 $\{\mathcal{M}_t\}$ 是右连续的，即 $\mathcal{M}_t = \mathcal{M}_{t+}$，其中 $\mathcal{M}_{t+} = \bigcap_{s > t} \mathcal{M}_s$（参见 Chung (1982, Theorem 2.3.4., p.81)）。因此，对于任何 Borel 集 $H$，$\tau_H$ 是停止时间（参见 Dynkin (1965, II, 4.5.C.e.), p.111)）。
-	\end{definition}
+%	\begin{definition}[首次退出时间] \label{def:first-exit-time}
+%		设 $U \subset \mathbb{R}^n$ 为开集。则首次退出时间
+%		\[
+%		\tau_U := \inf \{ t > 0; X_t \notin U \}
+%		\]
+%		是关于 $\{\mathcal{M}_t\}$ 的停止时间，因为
+%		\[
+%		\{ \omega; \tau_U(\omega) \leq t \} = \bigcap_{m=1}^{\infty} \{ \omega; X_{t_m} \notin K_m \} \in \mathcal{M}_t,
+%		\]
+%		其中 $\{K_m\}$ 是一个递增的闭集序列，使得 $U = \bigcup_{m=1}^{\infty} K_m$。
+%		
+%		更一般地，如果 $H \subset \mathbb{R}^n$ 是任意集合，我们定义从 $H$ 的首次退出时间 $\tau_H$ 如下：
+%		\[
+%		\tau_H = \inf \{ t > 0; X_t \notin H \}.
+%		\]
+%		如果我们将测度为 0 的集合包含在 $\mathcal{M}_t$ 中（通常这样做），则族 $\{\mathcal{M}_t\}$ 是右连续的，即 $\mathcal{M}_t = \mathcal{M}_{t+}$，其中 $\mathcal{M}_{t+} = \bigcap_{s > t} \mathcal{M}_s$（参见 Chung (1982, Theorem 2.3.4., p.81)）。因此，对于任何 Borel 集 $H$，$\tau_H$ 是停止时间（参见 Dynkin (1965, II, 4.5.C.e.), p.111)）。
+%	\end{definition}
+%	
+%	
+%	\begin{definition}[首达时间] \label{def:first-hitting-time}
+%		设 $\{X_t\}$ 为一个取值于 $\mathbb{R}^n$ 的随机过程，其自然滤子为 $\{\mathcal{F}_t\}$。对于任意 Borel 集 $B \subset \mathbb{R}^n$，过程 $\{X_t\}$ 进入集合 $B$ 的首达时间 $T_B$ 定义为：
+%		\[
+%		T_B := \inf \{ t > 0; X_t \in B \}.
+%		\]
+%		当集合 $B$ 是一个单点集，即 $B = \{\boldsymbol{a}\}$ 时，我们将其称为首达点 $\boldsymbol{a}$ 的时间，并简记为 $T_{\boldsymbol{a}}$。
+%		
+%		若 $B$ 是一个闭集（或开集，在适当的滤子条件下），则 $T_B$ 是一个关于 $\{\mathcal{F}_t\}$ 的停时。
+%	\end{definition}
+%	
+%	
+%		首达时间 $T_B$ 与定义 \ref{def:first-exit-time} 中的首次退出时间 $\tau_H$ 有着紧密的对偶关系。事实上，从集合 $H$ 的首次退出时间等价于进入其补集 $H^c$ 的首达时间，即：
+%		\[
+%		\tau_H = \inf \{ t > 0; X_t \notin H \} = \inf \{ t > 0; X_t \in H^c \} = T_{H^c}.
+%		\]
+%		因此，首达时间与首次退出时间在数学上是同一类对象，只是所考虑的集合不同。
+%	
+	\subsection{马尔可夫过程的无穷小生成元}
 	
-	
-	\begin{definition}[首达时间] \label{def:first-hitting-time}
-		设 $\{X_t\}$ 为一个取值于 $\mathbb{R}^n$ 的随机过程，其自然滤子为 $\{\mathcal{F}_t\}$。对于任意 Borel 集 $B \subset \mathbb{R}^n$，过程 $\{X_t\}$ 进入集合 $B$ 的首达时间 $T_B$ 定义为：
-		\[
-		T_B := \inf \{ t > 0; X_t \in B \}.
-		\]
-		当集合 $B$ 是一个单点集，即 $B = \{\boldsymbol{a}\}$ 时，我们将其称为首达点 $\boldsymbol{a}$ 的时间，并简记为 $T_{\boldsymbol{a}}$。
-		
-		若 $B$ 是一个闭集（或开集，在适当的滤子条件下），则 $T_B$ 是一个关于 $\{\mathcal{F}_t\}$ 的停时。
-	\end{definition}
-	
-	
-		首达时间 $T_B$ 与定义 \ref{def:first-exit-time} 中的首次退出时间 $\tau_H$ 有着紧密的对偶关系。事实上，从集合 $H$ 的首次退出时间等价于进入其补集 $H^c$ 的首达时间，即：
-		\[
-		\tau_H = \inf \{ t > 0; X_t \notin H \} = \inf \{ t > 0; X_t \in H^c \} = T_{H^c}.
-		\]
-		因此，首达时间与首次退出时间在数学上是同一类对象，只是所考虑的集合不同。
-	
-	
-	
-	 \begin{definition}[马尔可夫性：连续时间版本] 
-	 设 $\left\{X_{t}\right\}_{t \geq 0}$ 是在 $\mathcal{X}$ 中取值的 $\mathcal{F}_{t^{-}}$适应的随机过程，如果对所有 $x \in \mathcal{X}, 0 \leq s \leq t$ 和 $A \in \Sigma$ ，有
+	 \begin{definition}[马尔可夫过程] 
+	 考虑一个存在于概率空间 $(\Omega, \mathcal{F}, \mathbb{P})$ ，
+%取值于具有 $\sigma$-代数 $\Sigma$ 的状态空间 $\mathcal{X}$ 的连续时间的随机过程 $\left\{X_{t}\right\}_{t \geq 0}$ ，其中 $\Omega$ 通常选取为 $[0, \infty]$ 上的连续函数空间 $C[0, \infty]$或 $[0, \infty]$ 上的右连续左极限函数空间 $D[0, \infty]$ 。那么 $\Omega$ 的元素 $\omega$ 是一个函数。 $\mathcal{F}$ 为对每个 $t \geq 0, \omega \rightarrow \omega(t)$ 可测的最小 $\sigma$-代数。 $\left\{\mathbb{P}_{x}\right\}_{x \in \mathcal{X}}$ 为概率测度集，其中 $\mathbb{P}_{x}$ 表示从 $X_{0}=x$ 开始的随机过程的概率测度（即 $\mathbb{P}_{x}\left(X_{0}=x\right)=1$ ）。
+	 设 $\left\{X_{t}\right\}_{t \geq 0}$ 是取值于具有 $\sigma$-代数 $\Sigma$ 的状态空间 $\mathcal{X}$ 的 $\mathcal{F}_{t^{-}}$适应的随机过程，如果对所有 $x \in \mathcal{X}, 0 \leq s \leq t$ 和 $A \in \Sigma$ ，有
 	
 	 $$
 	 \mathbb{P}_{x}\left(X_{t+s} \in A \mid \mathcal{F}_{s}\right)=\mathbb{P}_{x}\left(X_{t+s} \in A \mid X_{s}\right)
@@ -890,70 +870,121 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	 具有以上连续时间马尔可夫性的随机过程是一个连续时间的马尔可夫链，在给定当前时刻 $s$ 的状态和一切过去的状态下，在时刻 $t+s$ 的将来的状态只依赖于当前时刻的状态，而与过去的情形独立。连续时间的马尔可夫链，可以用两种不同但等价的方式（转移函数和无穷小生成元）来描述。
 	 \end{definition}
 	
-	 \begin{definition}[转移函数] 
-	 若 $\forall i, j \in \mathcal{X}, t \geq 0, p_{t}(i, j)=\mathbb{P}_{i}\left(X_{t}=j\right)$ 是一个实值函数且满足以下性质：\\
-	 （i）$\forall i, j \in \mathcal{X}, t \geq 0, p_{t}(i, j) \geq 0$ ，\\
-	 （ii）$\forall i \in \mathcal{X}, t \geq 0, \sum_{j \in \mathcal{X}} p_{t}(i, j)=1 \geq 0$ ，\\
-	 （iii）$\forall i \in \mathcal{X}, \lim _{t \downarrow 0} p_{t}(i, j)=p_{0}(i, j)=1$ ，\\
-	 （iv）$\forall i, j \in \mathcal{X}, t \geq 0$ ，满足 Chapman-Kolmogorov 方程 $p_{s+t}(i, j)=\sum_{k \in \mathcal{X}} p_{s}(i, k) p_{t}(k, j)$ ，则称 $p_{t}(i, j)=\mathbb{P}_{i}\left(X_{t}=j\right)$ 是转移函数．
+	 
+	 \begin{definition}[转移函数]
+	 	设 $\mathcal{X}$ 为可数状态空间，$\{X_t\}_{t\ge0}$ 为取值于 $\mathcal{X}$ 的随机过程。若对任意 $i,j\in\mathcal{X}$ 以及 $t\ge0$，
+	 	\[
+	 	p_t(i,j) := \mathbb{P}_i\bigl(X_t = j\bigr)
+	 	\]
+	 	构成一族实值函数，并且满足：
+	 	\begin{enumerate}
+	 		\item[(i)] 非负性：对任意 $i,j\in\mathcal{X}$ 与 $t\ge0$，有
+	 		\( 	p_t(i,j) \ge 0; \)
+	 		\item[(ii)] 归一性：对任意 $i\in\mathcal{X}$ 与 $t\ge0$，有
+	 		\(\sum_{j\in\mathcal{X}} p_t(i,j) = 1;\)
+	 		\item[(iii)] 初始条件：对任意 $i,j\in\mathcal{X}$，有
+	 		\(\lim_{t\downarrow 0} p_t(i,j) = p_0(i,j) = \delta_{ij};\)
+	 		\item[(iv)] Chapman--Kolmogorov 方程：对任意 $i,j\in\mathcal{X}$ 与 $s,t\ge0$，有
+	 		\(p_{s+t}(i,j) = \sum_{k\in\mathcal{X}} p_s(i,k)\,p_t(k,j).	\)
+	 	\end{enumerate}
+	 	则称 $\{p_t(i,j)\}_{t\ge0}$ 为该过程的\emph{转移函数}。
 	 \end{definition}
-	
-	 转移函数还可以看作是一个矩阵族 $\{P(t)\}_{t \geq 0}, t$ 为指标．对于固定的 $t,(P(t))_{i, j}= p_{t}(i, j)$ ．
-	
-	 \begin{definition}[无穷小生成元]\label{eq:q-matrix-def}
-	 若矩阵 $Q$ 是一个实值矩阵且满足以下性质：\\
-	 （i）对所有 $i \neq j, q_{i, j} \geq 0$ ，\\
-	 （ii）$\sum_{j \in \mathcal{X}} q_{i, j}=0$ ，\\
-	 则称 $Q$ 为无穷小生成元（或 $Q$-矩阵）。\\
-	 因此，$q_{i, i}=-\sum_{j \neq i} q_{i, j}, q_{i}$ 表示 $-q_{i, i}$ ．\\
-	 如果我们只考虑一个连续时间马尔可夫链访问的状态序列（通过查看连续时间马尔可夫链在每次跳转后立即获得的值），我们得到一个离散时间马尔可夫链 $\left\{Y_{n}\right\}_{n \geq 0}$ ，称为连续时间马尔可夫链的跳跃链。我们把每一个状态所花费的时间称为 holding time．与跳跃链 $Y_{0}, \ldots, Y_{n}$ 的路径相关联的是一个 holding time 序列 $S_{1}, \ldots, S_{n+1}$ ，
-	
-	 其中 $S_{1}$ 是在跳跃到 $Y_{1}$ 之前在 $Y_{0}$ 所花费的时间，$S_{2}$ 是在跳跃到 $Y_{2}$ 之前在 $Y_{1}$ 所花费的时间，以此类推。跳跃链 $\left\{Y_{n}\right\}_{n \geq 0}$ 是一个离散时间的马尔可夫链，所以它可以用一个转移矩阵 $J$ 描述。 $J$ 可以写成 $Q$-矩阵。
-	
-	 \end{definition}
-	
-	 \begin{lemma}\cite{brereton2014stochastic}
-	 给定一个具有无穷小生成元 $Q$ 的连续时间马尔可夫链，跳跃矩阵 $J$ 定义为：对所有 $i \in \mathcal{X}, J_{i, i}=0$ 和对所有 $j \neq i$ 的 $i, j \in \mathcal{X}, J_{i, j}=\frac{q_{i, j}}{q_{i}}$ 。 holding time 也可以由 $Q$-矩阵定义。
-	 \end{lemma}
-	
-	
-	 \begin{lemma}\cite{brereton2014stochastic}
-	 给定 $Y_{0}, Y_{1}, \ldots, Y_{n}$ ，holding times $S_{1}, S_{2}, \ldots, S_{n+1}$ 是参数为 $q_{Y_{0}}, q_{Y_{1}}, \ldots, q_{Y_{n}}$ 的指数随机变量。
-	 \end{lemma}
 	 
-	 
-	 \subsection{Markov过程的无穷小生成元}
-	 
-	 我们可以使用半群理论来研究齐次马尔可夫过程。对于 $t \geq 0$，在可测有界函数 $f$ 上定义算子 $T_t$ 如下：
+	 由转移函数可以得到一族以时间 $t$ 为指标的矩阵 $\{P(t)\}_{t\ge0}$，其中对固定的 $t\ge0$，定义
 	 \[
-	 (T_t f)(x) = \mathbb{E}^x [f(X_t)] = \int_{\mathbb{R}} f(y) \, p(t, x, dy).
-	 \]
-	 根据定义，$T_0$ 是恒等算子。此算子族 $\{T_t\}$ 对任意 $t, s \geq 0$ 满足如下半群性质：
-	 \begin{align*}
-	 	(T_t \circ T_s) f(x) &= \int_{\mathbb{R}} p(t, x, dy) \left( \int_{\mathbb{R}} f(z) \, p(s, y, dz) \right) \\
-	 	&= \int_{\mathbb{R}} f(z) \left( \int_{\mathbb{R}} p(t, x, dy) \, p(s, y, dz) \right) \\
-	 	&= \int_{\mathbb{R}} f(z) \, p(t+s, x, dz) = T_{t+s} f(x).
-	 \end{align*}
-	 最后一个等式由 Chapman-Kolmogorov 方程保证。这些参数化的算子 $\{T_t\}_{t \geq 0}$ 被称为 算子半群。
-	 
-	 对于定义在合适 Banach 空间 $B$ 上的算子半群 $\{T_t\}_{t \geq 0}$，可以如下定义其无穷小生成元 $\mathcal{L}$（关于抽象理论的更多细节，参见 \cite{Yos95}）
-	 
-	 \begin{equation} \label{eq:inf-generator-def}
-	 	\mathcal{L}f = \lim_{t \to 0^+} \frac{T_t f - f}{t}
-	 \end{equation}
-	 该定义域是 $B$ 的一个合适子空间，即 $\mathcal{L}$ 的定义域。此处的收敛是指范数收敛：
-	 \[
-	 \lim_{t \to 0^+} \left\| t^{-1}(T_t f - f) - \mathcal{L}f \right\| = 0.
+	 P(t) := \bigl(p_t(i,j)\bigr)_{i,j\in\mathcal{X}}, \qquad
+	 P(t)_{ij} = p_t(i,j).
 	 \]
 	 
+	 \begin{definition}[无穷小生成元]\label{def:q-matrix}
+	 	在可数状态空间 $\mathcal{X}$ 上，矩阵 $Q = (q_{ij})_{i,j\in\mathcal{X}}$ 若满足：
+	 	\begin{enumerate}
+	 		\item[(i)] 对所有 $i\neq j$，有 $q_{ij}\ge 0$；
+	 		\item[(ii)] 对所有 $i\in\mathcal{X}$，有
+	 		\[
+	 		\sum_{j\in\mathcal{X}} q_{ij} = 0,
+	 		\]
+	 	\end{enumerate}
+	 	则称 $Q$ 为一个\emph{无穷小生成元}（或 \emph{$Q$-矩阵}）。由 (ii) 可知
+	 	\[
+	 	q_{ii} = -\sum_{j\neq i} q_{ij}, \qquad
+	 	q_i := -q_{ii} = \sum_{j\neq i} q_{ij},
+	 	\]
+	 	其中 $q_i$ 常被称为从状态 $i$ 的\emph{离开率}。
+	 \end{definition}
+	 
+	 设 $\{X_t\}_{t\ge0}$ 是一个具有无穷小生成元 $Q$ 的连续时间马尔可夫链。令
+	 \[
+	 0 = T_0 < T_1 < T_2 < \cdots
+	 \]
+	 为该过程的跳跃时刻，并定义
+	 \[
+	 Y_n := X_{T_n}, \qquad n\ge0.
+	 \]
+	 则 $\{Y_n\}_{n\ge0}$ 构成一个离散时间马尔可夫链，称为连续时间马尔可夫链 $\{X_t\}_{t\ge0}$ 的\emph{跳跃链}。过程在第 $n$ 次跳跃前停留在状态 $Y_{n-1}$ 的时间定义为
+	 \[
+	 S_n := T_n - T_{n-1}, \qquad n\ge1,
+	 \]
+	 称为\emph{停留时间}（holding time）。因此，与路径 $Y_0,\dots,Y_n$ 关联的停留时间序列为
+	 \[
+	 S_1,S_2,\dots,S_{n+1}.
+	 \]
+	 
+	 \begin{lemma}[\cite{brereton2014stochastic}]
+	 	给定一个具有无穷小生成元 $Q$ 的连续时间马尔可夫链，其跳跃链的转移矩阵 $J = (J_{ij})_{i,j\in\mathcal{X}}$ 定义为
+	 	\[
+	 	J_{ii} = 0, \qquad
+	 	J_{ij} = \frac{q_{ij}}{q_i}, \quad i\neq j,
+	 	\]
+	 	其中 $q_i = \sum_{j\neq i} q_{ij}$ 为状态 $i$ 的离开率。也就是说，给定当前状态为 $i$，下一个跳跃落在状态 $j\neq i$ 的概率为 $q_{ij}/q_i$。
+	 \end{lemma}
+	 
+	 \begin{lemma}[\cite{brereton2014stochastic}]
+	 	在给定跳跃链路径 $Y_0,Y_1,\ldots,Y_n$ 的条件下，对每个 $k=1,\ldots,n+1$，停留时间
+	 	\[
+	 	S_k = T_k - T_{k-1}
+	 	\]
+	 	相互独立，且
+	 	\[
+	 	S_k \sim \mathrm{Exp}\bigl(q_{Y_{k-1}}\bigr),
+	 	\]
+	 	即 $S_1,S_2,\ldots,S_{n+1}$ 分别是参数为 $q_{Y_0},q_{Y_1},\ldots,q_{Y_n}$ 的指数型随机变量。
+	 \end{lemma}
+	 
+%============================================
+%	 
+%	 我们可以使用半群理论来研究齐次马尔可夫过程。对于 $t \geq 0$，在可测有界函数 $f$ 上定义算子 $T_t$ 如下：
+%	 \[
+%	 (T_t f)(x) = \mathbb{E}^x [f(X_t)] = \int_{\mathbb{R}} f(y) \, p(t, x, dy).
+%	 \]
+%	 根据定义，$T_0$ 是恒等算子。此算子族 $\{T_t\}$ 对任意 $t, s \geq 0$ 满足如下半群性质：
+%	 \begin{align*}
+%	 	(T_t \circ T_s) f(x) &= \int_{\mathbb{R}} p(t, x, dy) \left( \int_{\mathbb{R}} f(z) \, p(s, y, dz) \right) \\
+%	 	&= \int_{\mathbb{R}} f(z) \left( \int_{\mathbb{R}} p(t, x, dy) \, p(s, y, dz) \right) \\
+%	 	&= \int_{\mathbb{R}} f(z) \, p(t+s, x, dz) = T_{t+s} f(x).
+%	 \end{align*}
+%	 最后一个等式由 Chapman-Kolmogorov 方程保证。这些参数化的算子 $\{T_t\}_{t \geq 0}$ 被称为 算子半群。
+%	 
+%	 对于定义在合适 Banach 空间 $B$ 上的算子半群 $\{T_t\}_{t \geq 0}$，可以如下定义其无穷小生成元 $\mathcal{L}$（关于抽象理论的更多细节，参见 \cite{Yos95}）
+%	 
+%	 \begin{equation} \label{eq:inf-generator-def}
+%	 	\mathcal{L}f = \lim_{t \to 0^+} \frac{T_t f - f}{t}
+%	 \end{equation}
+%	 该定义域是 $B$ 的一个合适子空间，即 $\mathcal{L}$ 的定义域。此处的收敛是指范数收敛：
+%	 \[
+%	 \lim_{t \to 0^+} \left\| t^{-1}(T_t f - f) - \mathcal{L}f \right\| = 0.
+%	 \]
+%============================================
+
+
 	 \begin{theorem}[$Q$-过程的无穷小生成元] \label{ex:q-process-generator}
-	 	考虑状态空间 $S = \{1, 2, \dots, I\}$ 上的 $Q$-过程 $X_t$，其生成元 $Q$ 由 \eqref{eq:q-matrix-def}定义。我们有：
+	 	考虑状态空间 $S = \{1, 2, \dots, I\}$ 上的 $Q$-过程 $X_t$，其生成元 $Q$ 由 \eqref{def:q-matrix}定义。我们有：
 	 	\begin{align*}
 	 		(\mathcal{A}f)(i) &= \lim_{t \to 0^+} \frac{\mathbb{E}^i [f(X_t)] - f(i)}{t} \\
 	 		&= \lim_{t \to 0^+} \frac{1}{t} \left[ \sum_{j \in S} (P_{ij}(t) - \delta_{ij}) f(j) \right] \\
 	 		&= \sum_{j \in S} q_{ij} f(j), \quad i \in S.
 	 	\end{align*}
-	 	推导最后一步用到了 \eqref{eq:q-matrix-def}。因此，生成元 $Q$ 正是 $X_t$ 的无穷小生成元。
+	 	推导最后一步用到了 \eqref{def:q-matrix}。因此，生成元 $Q$ 正是 $X_t$ 的无穷小生成元。
 	 \end{theorem}
 	 
 	 
@@ -1176,7 +1207,7 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	 $t \leftarrow 0$, \quad $X \leftarrow X_0$\;
 	 \While{$t < T$}{
 		     \For{$i \leftarrow 1$ \KwTo $n$}{
-			         根据 $Q_u$ 步骤（或 $Q_c$ 步骤或 $Q_u^{\mathrm{LZ}}$ 步骤）计算 $q_{i1}$ 和 $q_{i2}$\;
+			         根据 $Q_u$ 步骤（或 $Q_u^{\mathrm{LZ}}$ 步骤）计算 $q_{i1}$ 和 $q_{i2}$\;
 			     }
 		     $\lambda \leftarrow \sum_{i=1}^n (q_{i1} + q_{i2})$\;
 		     生成均匀分布随机变量 $r_1, r_2 \sim \mathcal{U}(0,1)$, $\tau \leftarrow -\ln(r_1)/\lambda$, $t \leftarrow t + \tau$\;
