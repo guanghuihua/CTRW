@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{引言}{3}{0}{1}
+\beamer@sectionintoc {2}{预备知识}{6}{0}{2}
+\beamer@sectionintoc {3}{固定空间跨越距离下的时间尺度比较}{9}{0}{3}
+\beamer@sectionintoc {4}{随机 Canard 慢–快系统的动力学行为与 committor 分析}{13}{0}{4}
+\beamer@sectionintoc {5}{结论与展望}{22}{0}{5}

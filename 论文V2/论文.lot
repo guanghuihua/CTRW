@@ -1,0 +1,4 @@
+\contentsline {table}{\numberline {4.1}{\ignorespaces SD（\(Q\)-解，GS 迭代）在不同网格下的 \emph {work--error}（committor）}}{31}{table.caption.15}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces TD（truncated EM，\(\Delta t=0.004\)）在不同样本数下的 \emph {work--error}（committor）}}{31}{table.caption.16}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces 同等代价（就近配对）的 RMS 误差对比（committor）}}{31}{table.caption.17}%
+\contentsfinish 

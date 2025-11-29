@@ -1,0 +1,10 @@
+\contentsline {figure}{\numberline {3.1}{\ignorespaces 一维立方振子模型中，从 \(x\) 向左跨越固定距离 \(\delta \) 的平均时间误差比较：空间离散（改进 \(Q_u \)–SSA）与时间离散（tamed EM、截断 EM）的数值结果。}}{20}{figure.caption.10}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {不同方法相对于 \(t^e(x\to L)\) 的绝对误差}}}{20}{subfigure.1.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {时间离散误差与空间离散误差比值}}}{20}{subfigure.1.2}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces 随机 Canard 系统的路径与快跳时间分布：三种数值方法在 \(T=40\) 内的对比。}}{27}{figure.caption.11}%
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {典型样本轨道（背景为 $x$-零流形 $y=x^3/3-x$）}}}{27}{subfigure.2.1}%
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {首次满足 $x\ge x_{\mathrm {th}}$ 的时间直方图}}}{27}{subfigure.2.2}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces 占据度热图（长期驻留分布）：左图为 tamed-EM，右图为 CTRW/SSA。可以看到，两者在慢流形通道内的概率质量分布总体一致。}}{27}{figure.caption.12}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces 随机 Canard 系统中 committor 与 MFPT 的空间结构：左列为空间离散（CTRW/\(Q\)）结果，右列为时间离散（truncated EM Monte Carlo）结果。}}{29}{figure.caption.13}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces committor 的 \emph {work--error} 曲线：空间离散（CTRW/\(Q\)）与时间离散（truncated EM Monte Carlo）对比。纵轴为相对于参考 \(Q\)-解的 RMS 误差，横轴为代价（work proxy）。}}{30}{figure.caption.14}%
+\contentsfinish 

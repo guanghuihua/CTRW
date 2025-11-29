@@ -1,0 +1,412 @@
+\documentclass[aspectratio=169]{beamer}
+
+\usepackage[UTF8]{ctex}          % 中文支持
+\usepackage{amsmath,amssymb,bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+% 题目信息（可根据需要修改）
+\title[时间离散 vs 空间离散]{基于时间离散和空间离散的\\两类随机微分方程数值格式比较}
+\author[华光辉]{华光辉}
+\institute[东北师范大学]{东北师范大学\\数学与统计学院}
+\date{\today}
+
+\begin{document}
+	
+	%------------------------------------
+	% 封面
+	%------------------------------------
+	\begin{frame}
+		\titlepage
+%		\begin{center}
+%			硕士学位论文答辩
+%		\end{center}
+	\end{frame}
+	
+	%------------------------------------
+	% 目录
+	%------------------------------------
+	\begin{frame}{报告提纲}
+		\tableofcontents
+	\end{frame}
+	
+	%====================================
+	\section{引言}
+	%====================================
+	
+	\begin{frame}{研究背景}
+		\begin{itemize}
+			\item 随机微分方程（SDE）广泛应用于分子动力学、数理金融、人口动力学、生物系统以及生成模型等领域.
+			\item 许多数值方法依赖于时间离散（例如 Euler–Maruyama、Milstein 等），在漂移项仅满足局部 Lipschitz 且具有超线性增长时，容易出现数值发散和长期不稳定现象.
+			\item 近年来，空间离散思路得到发展：通过离散 Kolmogorov 方程生成马尔可夫跳跃过程，典型代表为 Bou–Rabee 与 Vanden–Eijnden 提出的连续时间随机游走（CTRW）类方法以及后续的改进格式.
+			\item 本文围绕时间离散 vs 空间离散两类数值格式的公平比较展开系统研究.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{研究问题与动机}
+		\begin{center}
+			如何给出评价准则，在相同计算代价下比较两类格式的误差表现
+		\end{center}
+	\end{frame}
+	
+	\begin{frame}{本文工作与创新点}
+		
+		本文围绕随机动力系统的数值模拟，分别从时间尺度与空间尺度两个角度，对两类离散格式的性能进行系统比较.
+
+		\begin{itemize}
+			\item 提出“固定空间跨越距离–等效时间”的比较思想：固定数值轨道跨越同一空间距离 $L$，比较不同格式所需的时间，在一维立方振子模型上，系统比较：
+			\begin{itemize}
+				\item 时间离散：tamed EM 与 truncated EM 的 MFPT 与漂移主导时间\( t^e\)比较
+				\item 空间离散：计算平均等待时间与漂移主导时间\( t^e\)比较
+			\end{itemize}
+			\item 针对随机 Canard 慢–快系统，构造 committor 与平均首达时间（MFPT）的空间离散线性方程，并与时间步进 Monte Carlo 的估计结果进行误差–代价比较.
+		\end{itemize}
+	\end{frame}
+	
+	%====================================
+	\section{预备知识}
+	%====================================
+	
+	\begin{frame}{SDE 模型与生成元}
+		\begin{itemize}
+			\item 	标准的$n$ 维的 It\^{o} 扩散过程是
+			\begin{equation}
+				d X_{t}=\mu\left(X_{t}, t\right) d t+\sigma\left(X_{t}, t\right) d W_{t} ,
+			\end{equation}
+			其中 $X_{t} \in \mathbb{R}^{n}, \mu(x, t):[0, T] \times \mathbb{R}^{n} \rightarrow \mathbb{R}^{n}, \sigma(x, t):[0, T] \times \mathbb{R}^{n} \rightarrow \mathbb{R}^{n \times n},\left\{W_{t}\right\}_{t \geq 0}$是 $n$ 维 Brownian 运动.
+			\item 对应的 Kolmogorov 向后方程：
+			\[
+			\partial_t u(t,x) = Lu(t,x), \quad
+			L f(x) = \mu(x) f'(x) + \tfrac12 \sigma^2(x) f''(x).
+			\]
+			\item 对应的 Fokker–Planck 方程：
+			\[
+			\partial_t p(t,x) = L^* p(t,x).
+			\]
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{时间离散方法回顾}
+		\begin{itemize}
+			\item Euler–Maruyama 格式在非全局 Lipschitz 条件下可能强、弱发散，存在矩发散与数值轨道爆炸问题.
+			\item tamed Euler（驯化 Euler）：
+			\[
+			X_{n+1} = X_n + \frac{\mu(X_n)\Delta t}{1 + \Delta t\,|\mu(X_n)|}
+			+ \sigma(X_n)\Delta W_n,
+			\]
+			通过驯化漂移保证数值解矩有界，获得强收敛.
+			\item truncated EM（截断 EM）：
+			\begin{itemize}
+				\item 先将漂移、扩散在大半径球外截断，使其满足线性增长；
+				\item 再对截断后系统使用 EM 步进，可在 Khasminskii 型条件下证明强收敛.
+			\end{itemize}
+			\item 本文主要在上述两种改进显式方法与空间离散格式之间进行比较.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{空间离散方法与 CTRW 思路}
+		\begin{itemize}
+			\item Bou–Rabee \& Vanden–Eijnden 的核心思想：
+			\begin{itemize}
+				\item 对生成元 $L$ 做空间离散，构造离散算子 $Q$；
+				\item 要求 $Q$ 为 $Q$–matrix，从而定义出一个连续时间马尔可夫链.
+			\end{itemize}
+			\item 在给定网格上，由 $Q$ 决定各个跳跃方向的速率以及保持时间的统计分布，从而得到一条连续时间随机游走轨道.
+			\item Zu（2023）提出的改进 $Q_u$ 格式，对原始 CTRW 的人工扩散做补偿，在弱噪声与稳态密度上显著提升精度.
+		\end{itemize}
+	\end{frame}
+	
+
+	
+	%====================================
+	\section{固定空间跨越距离下的时间尺度比较}
+	%====================================
+	
+	\begin{frame}{实验设计：固定空间跨越距离}
+		\begin{itemize}
+			\item 模型：一维立方振子
+			\[
+			\mathrm{d}X_t = -X_t^3\,\mathrm{d}t + \sqrt{2}\,\mathrm{d}W_t.
+			\]
+			\item 当 $|X_t|$ 很大时，漂移项主导，随机扰动影响相对较小.
+			\item 思路：固定一个空间跨越距离，例如从 $x_0$ 漂移至 $ L = x_0-\delta $：
+			\begin{itemize}
+				\item 空间离散：利用基于改进 $Q_u$ 的连续时间马尔可夫链轨道，记录到 $L$ 所需的平均时间；
+				\item 时间离散：用 tamed EM、truncated EM 步进，记录跨越同样距离所需的步数与物理时间.
+			\end{itemize}
+			\item 比较指标：在等空间位移前提下，比较不同格式对真实时间的逼近误差及其与计算代价的关系.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{漂移主导近似与理论时间尺度}
+		\begin{itemize}
+			\item 漂移主导近似：
+			\[
+			\mathrm{d}X_t \approx -X_t^3\,\mathrm{d}t.
+			\]
+			\item 对应确定性 ODE：
+			\[
+			\frac{\mathrm{d}x}{\mathrm{d}t} = -x^3,\quad
+			t = \int_{x_0}^{L} \frac{-\mathrm{d}x}{x^3}.
+			\]
+			\item 可解析得到漂移主导时间 $t^{\mathrm{e}}(x_0\to L)$
+			\item 数值实验中，将：
+			\begin{itemize}
+				\item 空间离散给出的平均跨越时间；
+				\item tamed EM、truncated EM 给出的平均跨越时间；
+			\end{itemize}
+			与 $t^{\mathrm{e}}$进行对比.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{时间–空间离散误差比较图（立方振子）}
+		\begin{columns}[T]
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=\textwidth]{fig/Absolute_error.png}
+				\end{center}
+				\vspace{-0.5em}
+				\begin{itemize}
+					\item 不同方法相对于 $t^{\mathrm{e}}(x\to L)$ 的绝对误差.
+					\item 改进 $Q_u$–轨道在漂移主导区域更接近理论时间.
+				\end{itemize}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+					\includegraphics[width=\textwidth]{fig/Error_ratio.png}
+				\end{center}
+				\vspace{-0.5em}
+				\begin{itemize}
+					\item 时间离散误差与空间离散误差比值.
+					\item 可以看到，空间离散在远离平衡点的大 $|x|$ 区域明显更优.
+				\end{itemize}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{固定距离实验的结论}
+	
+		实验结果显示：
+		\begin{itemize}
+			\item 在漂移主导的大 $|x|$ 区域，空间离散的改进 $Q_u$ 格式在给定相同代价下，对时间尺度的刻画更接近漂移主导理论 $t^e$；
+			\item tamed EM 与 truncated EM 随着步长减小均可收敛，但为了达到同样误差水平，需要更大的时间步数，代价相对更高.
+		\end{itemize}
+		
+	\end{frame}
+	
+	%====================================
+	\section{随机 Canard 慢–快系统的动力学行为与 committor 分析}
+	%====================================
+	
+	\begin{frame}{随机 Canard 慢–快系统简介}
+		\begin{itemize}
+			\item 考虑典型的慢–快 Canard 系统，在确定性情形下存在：
+			\begin{itemize}
+				\item 慢流形与快跃迁；
+				\item Canard 轨道沿不稳定慢流形停留一段时间后突然跳转.
+			\end{itemize}
+			\item 加入噪声后的随机 Canard 系统：
+			\[
+			\begin{cases}
+				\mathrm{d}X_t = f(X_t,Y_t)\,\mathrm{d}t + \sigma_1\,\mathrm{d}W_t^{(1)},\\[0.2em]
+				\mathrm{d}Y_t = \dfrac{1}{\varepsilon}g(X_t,Y_t)\,\mathrm{d}t + \dfrac{\sigma_2}{\sqrt{\varepsilon}}\,\mathrm{d}W_t^{(2)},
+			\end{cases}
+			\]
+			其中 $\varepsilon \ll 1$ 描述时间尺度分离.
+			\item 数值挑战
+				噪声驱动的跨流形跃迁对路径几何与弱指标极为敏感.
+
+		\end{itemize}
+	\end{frame}
+	
+		\begin{frame}{弱指标：committor 与 MFPT}
+		\begin{itemize}
+			%			\item 稳态密度 $p^*(x)$：满足
+			%			\[
+			%			L^* p^*(x) = 0, \quad \int p^*(x)\,\mathrm{d}x = 1.
+			%			\]
+			\item committor 函数 $q(x)$：
+			\begin{itemize}
+				\item 给定互不相交的集合 $A,B$；
+				\item $q(x) = \mathbb{P}_x\{\tau_B < \tau_A\}$；
+				\item 满足边值问题
+				\[
+				L q(x) = 0,\quad x\in D\setminus (A\cup B),\quad
+				q|_A = 0,\ q|_B = 1.
+				\]
+			\end{itemize}
+			\item 平均首达时间（MFPT） $m(x)$：
+			\[
+			L m(x) = -1, \quad x \in D\setminus B, \quad m|_B = 0.
+			\]
+			\item 这些弱指标更能体现长期统计性质，是本文比较时间离散与空间离散优劣的重要依据.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{随机 Canard：样本轨道与快跳时间分布}
+		\begin{columns}[T]
+			\begin{column}{0.3\textwidth}
+				\begin{center}
+					\includegraphics[width=\textwidth]{fig/Sample_trajectories_100.png}
+				\end{center}
+				\vspace{-0.5em}
+				\begin{itemize}
+					\item 典型样本轨道，背景为 $x$–零流形 $y=x^3/3-x$.
+					\item 可观察到在慢流形附近的停留与快跳行为.
+				\end{itemize}
+			\end{column}
+			\begin{column}{0.3\textwidth}
+				\begin{center}
+					\includegraphics[width=\textwidth]{fig/Fast_jump_time_distribution_100.png}
+				\end{center}
+				\vspace{-0.5em}
+				\begin{itemize}
+					\item 首次满足 $x\ge x_{\mathrm{th}}$ 的时间直方图.
+					\item 三种数值方法在 $T=40$ 内的快跳时间分布比较.
+				\end{itemize}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}{随机 Canard：占据度热图}
+		\begin{center}
+			\includegraphics[width=0.65\textwidth]{fig/Occupancy_100.png}
+		\end{center}
+		\vspace{-0.5em}
+		\begin{itemize}
+			\item 占据度热图（长期驻留分布）：左图为 tamed-EM，右图为 CTRW 轨道.
+			\item 可以看到空间离散方法的占据度相对于时间离散方法更明显.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{committor 与 MFPT 的空间离散方程}
+		\begin{itemize}
+			\item 在二维 $(x,y)$ 网格上构造生成元矩阵 $Q$：
+			\[
+			Q q = 0,\quad q|_A = 0,\ q|_B = 1,
+			\]
+			得到离散 committor $q_h$.
+			\item 对应 MFPT：
+			\[
+			Q m = -\bm{1},\quad m|_B = 0,
+			\]
+			得到离散 $m_h$.
+			\item 数值上：
+			\begin{itemize}
+				\item 在二维网格上求解上述线性方程组，得到 committor 与 MFPT 的热力图；
+				\item 可沿慢流形或其它路径做切片分析，刻画从区域 $A$ 到 $B$ 的跃迁概率结构与时间尺度.
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{随机 Canard：committor 与 MFPT 热力图}
+		\begin{center}
+			\begin{minipage}[b]{0.45\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{fig/committor_heatmap.jpg}
+				\vspace{0.3em}
+				
+			\end{minipage}\hfill
+			\begin{minipage}[b]{0.45\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{fig/committor_trunc_heatmap.png}
+				\vspace{0.3em}
+				
+			\end{minipage}
+		\end{center}
+		\vspace{-0.5em}
+		\begin{itemize}
+			\item 左列：空间离散（CTRW/$Q$–解）；右列：时间离散（truncated EM Monte Carlo）.
+			\item 可见空间离散在整个相空间上给出了平滑的 committor 与 MFPT 结构，而时间离散估计在样本有限时更粗糙.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{时间离散 Monte Carlo 估计 committor / MFPT}
+		\begin{itemize}
+			\item 在若干代表性初始点 $(x_i,y_i)$ 处：
+			\begin{itemize}
+				\item 用 truncated EM、tamed EM 模拟大量路径；
+				\item 统计首次到达 $A$ 与 $B$ 的事件，估计
+				\[
+				\widehat{q}(x_i,y_i) = \frac{\#\{\tau_B < \tau_A\}}{\text{总路径数}}.
+				\]
+			\end{itemize}
+			\item 同样地，统计首达时间以估计 MFPT：
+			\[
+			\widehat{m}(x_i,y_i) = \frac{1}{N}\sum_{k=1}^N \tau_B^{(k)}.
+			\]
+			\item 将 $\widehat{q},\widehat{m}$ 与离散方程解 $q_h,m_h$ 比较，得到节点级别的误差–代价曲线，用于评价时间离散与空间离散的效率差异.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{committor 的 work–error 曲线}
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{fig/work_error_committor_trunc_vs_ctrw.pdf}
+		\end{center}
+		\vspace{-0.5em}
+		\begin{itemize}
+			\item 纵轴：相对于参考 $Q$–解的 RMS 误差；横轴：代价（work proxy）.
+			\item 可以看到：在随机 Canard 系统的 committor 估计上，空间离散的 CTRW/$Q$ 格式在同等代价下误差更小，呈现更陡峭的 work–error 收敛趋势.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{随机 Canard 数值实验的小结}
+		\begin{itemize}
+			\item 样本路径方面：
+			\begin{itemize}
+				\item 三种数值方法在慢流形附近的轨道与快跳时间分布基本一致；
+				\item 说明空间离散在路径层面可以与改进时间离散方法保持一致.
+			\end{itemize}
+			\item 弱指标方面：
+			\begin{itemize}
+				\item 在 committor 与 MFPT 热力图及 work–error 曲线中，空间离散明显更优；
+				\item 时间离散方法需要更多样本与更小步长才能达到可比精度.
+			\end{itemize}
+			\item 结论：
+			\begin{itemize}
+				\item 对于随机 Canard 这类高度非线性、慢–快耦合系统，空间离散–CTRW 在长期统计量上具有明显优势.
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	%====================================
+	\section{结论与展望}
+	%====================================
+	
+	\begin{frame}{全文总结}
+		\begin{itemize}
+			\item 本文围绕“基于时间离散和空间离散的两类随机微分方程数值格式比较”这一主题，分别从：
+			\begin{itemize}
+				\item 固定空间跨越距离的时间尺度；
+				\item 随机 Canard 慢–快系统中的 committor 与 MFPT；
+			\end{itemize}
+			两个层面系统比较了 tamed EM、truncated EM 与 CTRW–$Q_u$ 等格式的表现.
+			\item 结合理论分析与数值实验，说明了空间离散在稳态密度、committor、MFPT 等弱指标上的潜在优势，以及时间离散在路径几何刻画上的适用性.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}{不足与展望}
+		\begin{itemize}
+			\item 当前工作主要集中在一维模型和二维随机 Canard 系统，尚未系统考虑高维 SDE.
+			\item 空间离散在高维情形仍面临网格数爆炸与线性方程组求解代价较高的问题.
+			\item 后续工作方向：
+			\begin{itemize}
+				\item 结合自适应网格与稀疏线性代数技术，提高 CTRW 在高维问题中的可扩展性.
+				\item 将本文的比较框架推广到更一般的非梯度系统与具有复杂边界条件的 SDE.
+				\item 探索与机器学习方法（如 PINN、数据驱动生成元学习）结合的可能性，实现生成元的半解析–数据驱动离散.
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{致谢}
+		\begin{center}
+			感谢导师、评委老师和各位同学的指导与帮助.\\[1em]
+			谢谢各位的聆听，敬请批评指正.
+		\end{center}
+	\end{frame}
+	
+\end{document}
