@@ -284,7 +284,7 @@
 \newcommand{\Emyname}{Hua Guanghui} %作者姓名（英文）
 \newcommand{\myID}{2023102228} %研究生学号
 \newcommand{\Cmysupervisor}{祖建\quad 副教授} %导师姓名、职称（中文）
-\newcommand{\Emysupervisor}{Zu Jian\quad Associate Rrofessor} %导师姓名导师姓名、职称（英文）
+\newcommand{\Emysupervisor}{Zu Jian\quad Associate Professor} %导师姓名导师姓名、职称（英文）
 \newcommand{\Cmysecurityleve}{无} %密级（中文）
 \newcommand{\Emysecurityleve}{Open level} %密级（中文）
 
@@ -529,7 +529,7 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	\addcontentsline{toc}{section}{摘要}
 	\songti\zihao{-4} %宋体小四号
 	
-	随机微分方程在分子动力学、数理金融和生物系统等领域广泛出现。对于仅满足局部 Lipschitz 条件且漂移具有超线性增长的方程，经典 Euler–Maruyama 等时间离散格式可能数值发散；而基于无穷小生成元的空间离散方法（如连续时间随机游走，CTRW）在稳定性和长期统计性质上往往更可靠。本文围绕时间离散与空间离散哪一种更适合刻画给定 SDE 的长期行为这一问题，在统一框架下比较两类数值格式的精度与计算代价。
+	随机微分方程在分子动力学、数理金融和生物系统等领域广泛出现。对于仅满足局部 Lipschitz 条件且漂移具有超线性增长的方程，经典 Euler–Maruyama 等时间离散格式可能数值发散，而基于无穷小生成元的空间离散方法（如连续时间随机游走）在稳定性和长期统计性质上往往更可靠。本文围绕时间离散与空间离散哪一种更适合刻画给定 SDE 的长期行为这一问题，在统一框架下比较两类数值格式的精度与计算代价。
 	
 	在模型方面，本文选取一维立方振子和随机 Canard 慢–快系统作为原型。时间离散侧采用驯化 Euler 与截断 Euler–Maruyama；空间离散侧采用 CTRW 格式 \(Q_u\) 及其改进格式 \(\widetilde Q_u\)。对一维立方振子，本文在漂移主导区域引入固定空间跨越距离的时间尺度，将确定性漂移时间、CTRW 的平均驻留时间以及真实 SDE 的平均首达时间（MFPT）置于同一渐近框架，并给出 MFPT 的局部渐近展开，从而定量比较时间离散与空间离散在 MFPT 上的误差阶和适用区间。
 	
@@ -1155,12 +1155,9 @@ Numerical experiments compare the two classes of schemes in terms of trajectory 
 	综上所述，驯化 Euler 与截断 EM 都是在保持方法显式性的前提下，对漂移/扩散项进行适度修正，以恢复在非全局 Lipschitz 情形下的强收敛性。前者通过对漂移增量施加非线性缩放，后者则通过空间截断保证系数有界。本文后续章节将以 \eqref{scheme:tamed} 与 \eqref{scheme:trunc} 为时间离散的两种代表性的改进 EM 格式，并在一维立方振子与随机 Canard 系统等模型上，从强收敛、长时间行为以及 committor/MFPT 等弱指标的角度，系统比较它们与空间离散方法的数值表现。
 	
 	
-
-	
-	
 	\newpage
 	
-\section{固定空间跨越距离下的时间尺度比较}
+\section{固定空间距离跨越时间的比较}
 
 考虑一维加性噪声 SDE
 \begin{equation}\label{eq:sde-time-mfpt}
@@ -1198,7 +1195,7 @@ Numerical experiments compare the two classes of schemes in terms of trajectory 
 t^u = t^{\ast}\;-\;\frac{(t^{\ast})^2}{\,2+|\mu_i|\,\delta x\,}.
 \end{equation}
 
-由\eqref{eq:te-local-expansion}以及 \eqref{t^u} 可见，当 $|x_i|$ 很大时，$t^u$ 会趋近于 $t^{\ast}$，\cite{bou2018continuous}中仅给出了\(t^u\)与近似平均等待时间\(t^*\)的比较，本文给出\(t^u\)与精确平均等待时间\(t^e\)的比较
+由\eqref{t^u} 可见，当 $|x_i|$ 很大时，$t^u$ 会趋近于 $t^{\ast}$，\cite{bou2018continuous}中仅给出了\(t^u\)与近似平均等待时间\(t^*\)的比较，本文给出\(t^u\)与精确平均等待时间\(t^e\)的比较
 \begin{theorem}
 对任意 $\delta x>0, Q_u$ 的平均停留时间满足
 $$
@@ -1229,7 +1226,7 @@ $$
 \begin{equation}\label{eq:sde-mfpt-local}
 	dX_t=\mu(X_t)\,dt+\sigma\,dW_t,\qquad X_0=x,
 \end{equation}
-其生成元在 1 维写作
+其无穷小生成元为
 \begin{equation}\label{eq:gen-1d-local}
 	(L f)(x)=\mu(x)f'(x)+M f''(x),\qquad M=\frac{\sigma^{2}}{2}.
 \end{equation}
@@ -1447,6 +1444,175 @@ y^{-7}=x^{-7}\,\Big(1+\frac{7(x-y)}{x}+\cdots\Big),
 %	+\mathcal{O}(\Delta),
 %\end{equation}
 %与 \eqref{eq:te-cubic} 在 $\mathcal{O}(\delta^2/x^4)$ 上完全对齐，偏差主导为 $\mathcal{O}(\Delta)$
+
+%================== 11.30 新加入内容 =======
+
+\subsection{时间离散格式的平均首达时间：渐近一致性与误差估计}
+
+为便于比较，记
+\begin{equation}\label{eq:te-def}
+	t^{e}(x,\delta)\;:=\;\int_{x-\delta}^{x}\frac{dy}{\lvert \mu(y)\rvert},
+	\qquad x\gg1,\quad 0<\delta\ll x,
+\end{equation}
+为在“顺漂移+\ 小位移”极限下的\emph{漂移主导}解析时间（cf.\,式~\eqref{eq:te-def} 与前文的漂移主导讨论）。记 Tamed--EM 的一步更新为
+\[
+X_{n+1}
+=
+X_n
++\frac{\mu(X_n)\,\Delta}{1+\Delta\,\lvert\mu(X_n)\rvert}
++\sigma(X_n)\,\Delta W_n,
+\]
+Truncated--EM 的一步更新为
+\[
+X_{n+1}
+=
+X_n+\mu_{\Delta}(X_n)\,\Delta+\sigma_{\Delta}(X_n)\,\Delta W_n,
+\quad
+\mu_{\Delta}(x):=\mu\!\big(\pi_{\Delta}(x)\big),\ \ 
+\sigma_{\Delta}(x):=\sigma\!\big(\pi_{\Delta}(x)\big),
+\]
+其中 \(\pi_{\Delta}\) 为以半径 \(h(\Delta)\) 的截断投影（常用约束 \(\Delta^{1/4}h(\Delta)\le 1\)）。
+在区间 \([x-\delta,x]\) 内，定义两种时间离散法跨越距离 \(\delta\) 的平均首达时间分别为
+\(t^{\delta}(x,\delta;\Delta)\) 与 \(t^{\Delta}(x,\delta;\Delta)\)。
+
+\begin{theorem}[Tamed--EM 的 MFPT 渐近与误差]\label{thm:tamed-mfpt}
+	设 \(\mu\in C^{2}\) 且在 \(x\) 的邻域内单调并满足 \(\mu(x)<0\)（向左顺漂移），\(\sigma\) 有界。
+	在极限 \(x\to\infty,\ \delta/x\to0,\ \Delta\to0\) 下，有
+	\begin{equation}\label{eq:tamed-expansion}
+		t^{\delta}(x,\delta;\Delta)
+		\;=\;
+		\frac{\delta}{\lvert \mu(x)\rvert}
+		\;+\;\delta\,\Delta
+		\;+\;\mathcal O\!\Big(\Delta^{2}\delta\Big)
+		\;+\;\mathcal O\!\Big(\delta^{2}\,\lvert \mu\rvert^{-2}\lvert \mu'\rvert\Big).
+	\end{equation}
+	进一步地，与漂移主导时间 \(t^{e}\) 的差满足
+	\begin{equation}\label{eq:tamed-vs-te}
+		t^{\delta}(x,\delta;\Delta)-t^{e}(x,\delta)
+		\;=\;
+		\delta\,\Delta
+		\;-\;\frac{\mu'(x)}{2\,\mu(x)^{2}}\,\delta^{2}
+		\;+\;o\!\Big(\Delta\delta\Big)
+		\;+\;o\!\Big(\delta^{2}\Big).
+	\end{equation}
+	因此，以 \(t^{e}\) 的主导项 \(\delta/\lvert\mu(x)\rvert\) 计，相对误差为
+	\[
+	\frac{t^{\delta}-t^{e}}{\delta/\lvert\mu(x)\rvert}
+	\;=\;
+	\Delta\,\lvert\mu(x)\rvert
+	\;+\;\mathcal O\!\Big(\tfrac{\delta}{x}\Big),
+	\]
+	从而满足
+	\(
+	\Delta\lesssim \delta\,\lvert\mu(x)\rvert^{-1}
+	\)
+	可使 \(t^{\delta}\) 与 \(t^{e}\) 在 \(\mathcal O(\delta^{2})\) 阶上一致。
+\end{theorem}
+
+\begin{proof}
+	忽略噪声对 MFPT 的次主导修正（在顺漂移、小位移下为更高阶），单步\emph{期望}位移
+	\(
+	\mathbb E[X_{n+1}-X_n\mid X_n=y]
+	=
+	\mu(y)\Delta/(1+\Delta\lvert\mu(y)\rvert)
+	\).
+	于是局部\emph{有效速度}
+	\(
+	v_{\mathrm{tame}}(y)=\lvert\mu(y)\rvert/(1+\Delta\lvert\mu(y)\rvert)
+	\),
+	跨越 \(\delta\) 的时间可写为
+	\(
+	t^{\delta}=\int_{x-\delta}^{x} v_{\mathrm{tame}}(y)^{-1}\,dy
+	\).
+	对 \(y\in[x-\delta,x]\) 以 \(x\) 为中心展开：
+	\[
+	v_{\mathrm{tame}}(y)^{-1}	\frac{1+\Delta\lvert\mu(y)\rvert}{\lvert\mu(y)\rvert}
+	=
+	\frac{1+\Delta\lvert\mu(x)\rvert}{\lvert\mu(x)\rvert}
+	\;-\;\frac{\mu'(x)}{\mu(x)^{2}}\,(x-y)
+	\;+\;\mathcal O\!\big((x-y)^{2}\big)
+	\;+\;\mathcal O(\Delta\,(x-y)).
+	\]
+	对 \(y\) 积分并用
+	\(\int_{x-\delta}^{x}dy=\delta\),\(\int_{x-\delta}^{x}(x-y)\,dy=\delta^{2}/2\)，即得
+	\eqref{eq:tamed-expansion}。
+	另一方面，\eqref{eq:te-def} 中
+	\(
+	t^{e}=\int_{x-\delta}^{x}\lvert\mu(y)\rvert^{-1}dy
+	=
+	\delta/\lvert\mu(x)\rvert-(\mu'(x)/2\mu(x)^{2})\,\delta^{2}+\mathcal O(\delta^{3})
+	\),
+	两式相减即得 \eqref{eq:tamed-vs-te}。
+\end{proof}
+
+\begin{theorem}[Truncated--EM 的 MFPT 渐近与误差]\label{thm:trunc-mfpt}
+	沿用上面的设定，设截断半径 \(h(\Delta)\) 使得在 \([x-\delta,x]\) 内截断生效（即 \(x\gg h(\Delta)\)）。
+	则存在常数 \(c>0\) 使得
+	\begin{equation}\label{eq:trunc-expansion}
+		t^{\Delta}(x,\delta;\Delta)
+		\;=\;
+		\frac{\delta}{\lvert \mu\!\big(h(\Delta)\big)\rvert}
+		\;+\;\mathcal O\!\Big(\delta^{2}\Big),
+	\end{equation}
+	并与 \(t^{e}\) 比较有
+	\begin{equation}\label{eq:trunc-vs-te}
+		t^{\Delta}(x,\delta;\Delta)-t^{e}(x,\delta)
+		\;=\;
+		\delta\!\left(
+		\frac{1}{\lvert \mu\!\big(h(\Delta)\big)\rvert}
+		-\frac{1}{\lvert \mu(x)\rvert}
+		\right)
+		\;+\;\mathcal O\!\Big(\delta^{2}\Big).
+	\end{equation}
+	若 \(\mu(y)=-y^{3}\) 且采用常用的约束 \(\Delta^{1/4}h(\Delta)\le1\) 并取饱和值
+	\(h(\Delta)\asymp \Delta^{-1/4}\)，则
+	\[
+	t^{\Delta}\asymp \delta\,\Delta^{1/4},
+	\qquad
+	\frac{t^{\Delta}}{t^{e}}
+	\asymp
+	\Big(\frac{x}{h(\Delta)}\Big)^{3}
+	\asymp x^{3}\,\Delta^{1/4}.
+	\]
+	因此要使相对误差不超过 \(\varepsilon\in(0,1)\)，充分条件是
+	\begin{equation}\label{eq:trunc-stepsize}
+		\Delta\ \lesssim\ \varepsilon^{4}\,x^{-12}.
+	\end{equation}
+\end{theorem}
+
+\begin{proof}
+	当 \(x\gg h(\Delta)\) 时，截断区间内 \(\mu_{\Delta}(y)=\mu(h(\Delta))\) 近似为常数，
+	相应有效速度 \(v_{\mathrm{trunc}}(y)=\lvert\mu(h(\Delta))\rvert\)。
+	故 \(\int_{x-\delta}^{x} v_{\mathrm{trunc}}(y)^{-1}dy=\delta/\lvert \mu(h(\Delta))\rvert\)，得 \eqref{eq:trunc-expansion}。
+	与 \(t^{e}\) 相减即得 \eqref{eq:trunc-vs-te}。
+	当 \(\mu(y)=-y^{3}\) 时
+	\(\lvert\mu(h(\Delta))\rvert=h(\Delta)^{3}\)，
+	代入给出所述量级估计，并由 \(\Delta^{1/4}h(\Delta)\le1\) 推出 \eqref{eq:trunc-stepsize}。
+\end{proof}
+
+\begin{corollary}[\(\mu(y)=-y^{3}\) 的显式比较]\label{cor:cubic}
+	当 \(\mu(y)=-y^{3}\) 时，
+	\begin{align*}
+		t^{e}(x,\delta)
+		&=\frac{\delta}{x^{3}}+\frac{3}{2}\frac{\delta^{2}}{x^{4}}
+		+\mathcal O\!\Big(\frac{\delta^{3}}{x^{5}}\Big),\\
+		t^{\delta}(x,\delta;\Delta)-t^{e}(x,\delta)
+		&=\delta\,\Delta-\frac{3}{2}\frac{\delta^{2}}{x^{4}}
+		+o\!\big(\Delta\delta\big)+o\!\big(\delta^{2}\big),\\
+		t^{\Delta}(x,\delta;\Delta)-t^{e}(x,\delta)
+		&=\delta\!\left(\frac{1}{h(\Delta)^{3}}-\frac{1}{x^{3}}\right)
+		+\mathcal O\!\big(\delta^{2}\big).
+	\end{align*}
+\end{corollary}
+
+\begin{remark}
+	(1) 上述估计是在“顺漂移+\ 小位移”下的\emph{系统性}偏差。噪声带来的随机修正对 MFPT 的影响在该极限下为更高阶（对 \(\mu=-x^{3}\) 可估为 \(\mathcal O(\sigma^{2}\delta/x^{9})\)），不影响主导项比较。\;
+	(2) 若 Truncated--EM 在区间 \([x-\delta,x]\) 内\emph{不}触发截断（即 \(h(\Delta)\gtrsim x\)），则 \(t^{\Delta}\) 与 \(t^{e}\) 具有与 EM 同阶的局部一致性，此时 \eqref{eq:trunc-stepsize} 可放宽。
+\end{remark}
+
+
+
+
 
 \subsection{一维立方振子上的时间尺度比较的数值实验}\label{subsec:cubic-numerics}
 
