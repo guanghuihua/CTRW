@@ -8,51 +8,59 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: references.bib
+I was expecting a `,' or a `}'---line 250 of file references.bib
+ :   
+ :   author={Miranda Holmes-Cerfon},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 Warning--empty journal in hutzenthaler2012strong
+Warning--empty author and editor in HolmesCerfon2022Lecture11
+Warning--missing publisher in HolmesCerfon2022Lecture11
+Warning--empty year in HolmesCerfon2022Lecture11
 
 Done.
-You've used 17 entries,
+You've used 19 entries,
             4087 wiz_defined-function locations,
-            933 strings with 10214 characters,
-and the built_in function-call counts, 12300 in all, are:
-= -- 1042
-> -- 234
-< -- 116
-+ -- 134
-- -- 35
-* -- 581
-:= -- 1894
-add.period$ -- 35
-call.type$ -- 17
-change.case$ -- 13
-chr.to.int$ -- 252
-cite$ -- 18
-duplicate$ -- 876
-empty$ -- 963
-format.name$ -- 45
-if$ -- 2858
+            946 strings with 10507 characters,
+and the built_in function-call counts, 13801 in all, are:
+= -- 1165
+> -- 264
+< -- 135
++ -- 153
+- -- 38
+* -- 652
+:= -- 2101
+add.period$ -- 38
+call.type$ -- 19
+change.case$ -- 15
+chr.to.int$ -- 300
+cite$ -- 23
+duplicate$ -- 981
+empty$ -- 1070
+format.name$ -- 49
+if$ -- 3208
 int.to.chr$ -- 0
-int.to.str$ -- 17
-missing$ -- 138
-newline$ -- 74
-num.names$ -- 17
-pop$ -- 285
+int.to.str$ -- 19
+missing$ -- 149
+newline$ -- 80
+num.names$ -- 18
+pop$ -- 312
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 986
+skip$ -- 1102
 stack$ -- 0
-substring$ -- 613
-swap$ -- 735
-text.length$ -- 32
+substring$ -- 727
+swap$ -- 826
+text.length$ -- 35
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 17
-warning$ -- 1
-while$ -- 58
-width$ -- 19
-write$ -- 187
-(There was 1 warning)
+type$ -- 19
+warning$ -- 4
+while$ -- 67
+width$ -- 21
+write$ -- 203
+(There was 1 error message)
