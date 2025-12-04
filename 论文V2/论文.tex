@@ -1477,14 +1477,15 @@ X_n+\mu_{\Delta}(X_n)\,\Delta+\sigma_{\Delta}(X_n)\,\Delta W_n,
 	t^{\delta}=\int_{x-\delta}^{x} v_{\mathrm{tame}}(y)^{-1}\,dy
 	\).
 	对 \(y\in[x-\delta,x]\) 以 \(x\) 为中心展开：
-	\[
-	v_{\mathrm{tame}}(y)^{-1}	\frac{1+\Delta\lvert\mu(y)\rvert}{\lvert\mu(y)\rvert}
-	=
+	\begin{align}
+	v_{\mathrm{tame}}(y)^{-1} 
+%	&=\frac{1+\Delta\lvert\mu(y)\rvert}{\lvert\mu(y)\rvert}\\
+	&=
 	\frac{1+\Delta\lvert\mu(x)\rvert}{\lvert\mu(x)\rvert}
 	\;-\;\frac{\mu'(x)}{\mu(x)^{2}}\,(x-y)
 	\;+\;\mathcal O\!\big((x-y)^{2}\big)
 	\;+\;\mathcal O(\Delta\,(x-y)).
-	\]
+	\end{align}
 	对 \(y\) 积分并用
 	\(\int_{x-\delta}^{x}dy=\delta\),\(\int_{x-\delta}^{x}(x-y)\,dy=\delta^{2}/2\)，即得
 	\eqref{eq:tamed-expansion}。

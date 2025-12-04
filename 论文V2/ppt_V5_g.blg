@@ -1,0 +1,72 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: ppt_V5_g.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: references.bib
+Repeated entry---line 242 of file references.bib
+ : @book{oksendal2013stochastic
+ :                             ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 250 of file references.bib
+ :   
+ :   author={Miranda Holmes-Cerfon},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+** IEEEtran BST control entry "IEEEexample:BSTcontrol" detected.
+Warning--empty journal in hutzenthaler2012strong
+Warning--empty journal in sabanis2016euler
+Warning--empty author and editor in HolmesCerfon2022Lecture11
+Warning--missing publisher in HolmesCerfon2022Lecture11
+Warning--empty year in HolmesCerfon2022Lecture11
+
+Done.
+You've used 28 entries,
+            4087 wiz_defined-function locations,
+            985 strings with 11804 characters,
+and the built_in function-call counts, 18942 in all, are:
+= -- 1595
+> -- 357
+< -- 180
++ -- 205
+- -- 52
+* -- 884
+:= -- 2901
+add.period$ -- 54
+call.type$ -- 28
+change.case$ -- 21
+chr.to.int$ -- 396
+cite$ -- 33
+duplicate$ -- 1351
+empty$ -- 1504
+format.name$ -- 67
+if$ -- 4410
+int.to.chr$ -- 0
+int.to.str$ -- 27
+missing$ -- 210
+newline$ -- 104
+num.names$ -- 26
+pop$ -- 441
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 4
+skip$ -- 1529
+stack$ -- 0
+substring$ -- 956
+swap$ -- 1122
+text.length$ -- 48
+text.prefix$ -- 0
+top$ -- 6
+type$ -- 28
+warning$ -- 5
+while$ -- 91
+width$ -- 29
+write$ -- 277
+(There were 2 error messages)

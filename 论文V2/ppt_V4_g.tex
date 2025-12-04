@@ -1,0 +1,647 @@
+\documentclass[UTF8]{ctexbeamer}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{cite}
+
+\graphicspath{{fig/}}
+
+\title[时间离散 vs 空间离散]{基于时间离散和空间离散的两类随机微分方程数值格式比较}
+\author[华光辉]{华光辉}
+\institute[东北师范大学]{东北师范大学~数学与统计学院}
+\date[2025年12月]{2025年12月}
+%
+%\titlegraphic{%
+%	\includegraphics[height=1.4cm]{xiaohui.png}\hspace{1em}%
+%	\includegraphics[height=1.4cm]{xiaoming.png}%
+%}
+
+\begin{document}
+	
+	%--------------------------------------
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{报告提纲}
+		\tableofcontents
+	\end{frame}
+	
+	%======================================
+	\section{引言}
+	%======================================
+	
+	\begin{frame}{研究背景与问题动机}
+		\begin{itemize}
+			\item 随机微分方程（SDE）
+			\begin{equation}
+			dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t,\quad X_0 = x_0,
+			\end{equation}
+			其中\( \mu(x)\)是漂移项（drift），\(\sigma(x)\)是扩散项（diffusion），\(W_t\)为标准布朗运动，
+			在金融、物理、生物、化学、神经科学等领域刻画含噪动力学行为。
+			\item Euler--Maruyama 方法\cite{Maruyama1955,higham2002strong}：在全局 Lipschitz 情形下具有 $1/2$ 阶强收敛、1 阶弱收敛；
+			\item 结合 Milstein 等高阶方法\cite{Milstein1975,weinan2021applied}，可提高收敛阶。
+			\item 实际模型中漂移 $\mu$、扩散 $\sigma$ 往往只满足局部 Lipschitz 条件，甚至具有超线性增长，经典 Euler--Maruyama 格式可能发散\cite{hutzenthaler2011strong,higham2002strong}。
+%			\item 常见数值方法综述可见 Higham\cite{higham2002strong}，E \& Li\cite{weinan2021applied}，Kloeden \& Platen\cite{kloeden1992stochastic} 等。
+			
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{两类典型数值方法：时间离散与空间离散}
+		\begin{itemize}
+			\item 空间离散方法：
+			\begin{itemize}
+				\item 基于生成元的连续时间随机游走（CTRW）方法，由 Bou-Rabee 和 Vanden-Eijnden 系统发展\cite{bou2018continuous,brereton2014stochastic}；
+				\item 在空间网格上离散生成元 $L$ 得到 $Q$ 矩阵，再用 SSA 等算法模拟跳跃过程。
+			\end{itemize}
+			\item 改进的显式时间离散方法，如驯服Euler-Maruyama方法、截断Euler-Maruyama方法\cite{ mao2015truncated, Hu2018}
+			\item 问题：设置合理的比较准则来进行两种数值方法的比较
+%			\item 本文重点：
+%			\begin{itemize}
+%				\item 在一维立方振子模型中比较固定空间距离跨越时间；
+%				\item 在随机 Canard 快--慢系统中，通过 逃逸概率 和 MFPT 比较两类方法的性能；
+%				\item 基于 work--error 曲线进行系统的效率比较。
+%			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{本文研究内容与主要贡献}
+		\begin{itemize}
+			\item 在一维立方振子模型中，引入漂移主导时间 $t^e$，比较：
+			\begin{itemize}
+				\item 空间离散 CTRW 的平均驻留时间 $t^u$；
+				\item 时间离散驯服/截断 EM 格式下的 MFPT $t^\delta,t^\Delta$。
+			\end{itemize}
+			\item 理论贡献：
+			\begin{itemize}
+				\item 证明在强漂移极限下，$t^u$ 与 $t^e$ 的渐近一致性；
+				\item 在多项式漂移情形下给出相对误差估计；
+				\item 给出驯服 Euler 与截断 EM 在固定空间跨越时间上的 MFPT 渐近展开和误差估计。
+			\end{itemize}
+			\item 在随机 Canard 系统中：
+			\begin{itemize}
+				\item 基于生成元建立 逃逸概率 和 MFPT 的空间离散收敛性；
+				\item 比较时间离散与空间离散在 逃逸概率、MFPT 以及 work--error 指标下的表现%，相关背景见\cite{EV_TPT,EV_TowardsTP,Metzner_TPT_MJP,zu2023random}。
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	%======================================
+	\section{预备知识}
+	%======================================
+	
+	\begin{frame}{It\^o 扩散与无穷小生成元}
+		\begin{itemize}
+			\item 考虑 $\mathbb R^d$ 上的 It\^o 扩散
+			\[
+			dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t,\qquad X_0=x.
+			\]
+			\item 对 $f\in C^2(\mathbb R^d)$，无穷小生成元为
+			\[
+			(Lf)(x)
+			= \sum_i \mu_i(x)\,\partial_i f(x)
+			+ \frac12\sum_{i,j}a_{ij}(x)\partial_{ij} f(x),
+			\quad a = \sigma\sigma^{\mathsf T}.
+			\]
+%			\item 生成元在半群理论中具有统一刻画作用，详细理论可参见 Yosida\cite{Yos95} 以及相关讲义\cite{HolmesCerfon2022Lecture11}。
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{空间离散：连续时间随机游走（CTRW）}
+		\begin{itemize}
+			\item 在空间网格 $\{x_i\}$ 上离散生成元 $L$，得到 $Q$ 矩阵：
+			\[
+			(Qf)_i = \sum_j q_{ij} f(x_j),
+			\quad q_{ij}\ge 0,\ \sum_{j\neq i}q_{ij} = -q_{ii}.
+			\]
+			\item 由此得到有限状态空间上的 $Q$ 过程 $X_t$：
+			\begin{itemize}
+				\item 状态 $x_i$ 的跳出速率 $\lambda_i = -q_{ii}$；
+				\item 驻留时间服从 $\operatorname{Exp}(\lambda_i)$，跳转概率为 $q_{ij}/\lambda_i$。
+			\end{itemize}
+			\item 这是 Bou-Rabee 和 Vanden-Eijnden 提出的生成元离散方法的典型形式\cite{bou2018continuous}。
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{时间离散：驯服/截断 Euler--Maruyama}
+		\begin{itemize}
+			\item 对非全局 Lipschitz 系数，经典 EM 可能发散\cite{hutzenthaler2011strong}。
+			\item 驯服 Euler--Maruyama（tamed EM）\cite{hutzenthaler2012strong}：
+			\[
+			X_{k+1}
+			= X_k + \frac{\mu(X_k)}{1+\delta |\mu(X_k)|}\,\delta
+			+ \sigma(X_k)\Delta W_k.
+			\]
+			\item 截断 Euler--Maruyama（truncated EM）\cite{mao2015truncated,mao2016convergence}：
+			\begin{itemize}
+				\item 在 $B(0,h(\Delta))$ 内截断漂移和扩散，使其有界且满足全局 Lipschitz；
+				\item 对截断后的系数使用标准 EM。
+			\end{itemize}
+			\item 在 Khasminskii 型条件下，两者均保持 $1/2$ 阶强收敛\cite{liu2013strong,Hu2018}。
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{本章小结：理论基础}
+		\begin{itemize}
+			\item It\^o 扩散的无穷小生成元 $L$ 将 SDE 与偏微分方程统一到同一框架\cite{weinan2021applied,kloeden1992stochastic}。
+			\item CTRW/$Q$ 过程通过离散生成元构造有限状态的马尔可夫跳跃过程\cite{bou2018continuous}。
+			\item 驯服/截断 EM 在局部 Lipschitz 和 Khasminskii 条件下仍具有良好的强收敛性质\cite{hutzenthaler2012strong,mao2015truncated,mao2016convergence}。
+			\item 这些结果为后续的 MFPT、逃逸概率 以及 work--error 比较提供了理论基础。
+		\end{itemize}
+	\end{frame}
+	
+	%======================================
+	\section{固定空间距离跨越时间的比较}
+	%======================================
+	
+	\begin{frame}{模型与顺漂移设定}
+		\begin{itemize}
+			\item 一维加性噪声 SDE：
+			\[
+			dX_t = \mu(X_t)\,dt + \sigma\,dW_t,\qquad X_0=x,\quad |x|\gg 1.
+			\]
+			\item 选取立方振子模型：
+			\[
+			\mu(x) = -x^3,\qquad \sigma>0.
+			\]
+			\item 研究从 $x$ 向左跨越固定距离 $\delta$ 的时间：
+			\[
+			L = x-\delta,\qquad 0<\delta\ll x,\ \mu(x)<0.
+			\]
+			\item 当漂移方向与目标一致（顺漂移）时，跨越时间由漂移主导，可由常微分方程
+			\[
+			\dot X_t = \mu(X_t),\ X(0)=x
+			\]
+			定义漂移主导时间 $t^{e}$。
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{漂移主导时间与空间离散平均驻留时间}
+		\begin{itemize}
+			\item 漂移主导时间
+			\[
+			t^{e} = \int_{x-\delta}^{x}\frac{ds}{|\mu(s)|},
+			\]
+			在 $\delta\ll x$ 下可展开为
+			\[
+			t^{e}
+			= \frac{\delta}{|\mu(x)|}
+			- \frac{\mu'(x)}{2\mu(x)^2}\,\delta^2 + \mathcal O(\delta^3),
+			\]
+			这一思想与 Kramers 反应率理论中的漂移主导项类似\cite{Hanggi1990ReactionRateKramers,HolmesCerfon2022Lecture11}。
+			\item CTRW 中，状态 $x_i$ 的跳出速率
+			\[
+			\lambda(x_i) \approx \frac{|\mu(x_i)|}{h},
+			\quad \Rightarrow\quad
+			\mathbb E S_i = \frac1{\lambda(x_i)} \approx \frac{h}{|\mu(x_i)|}.
+			\]
+			\item 空间离散平均驻留时间 $t^u$ 与 $t^{e}$ 的比较，是评估 CTRW 在强漂移极限下时间刻画能力的核心。
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{定理：空间离散平均驻留时间的渐近一致性}
+		\begin{theorem}
+			假设 $|\mu(x)|$ 足够大且
+			\[
+			\frac{\mu'(x)}{\mu(x)^2}
+			\sim o\!\left(\frac{1}{\mu(x)}\right),
+			\quad |x|\to\infty.
+			\]
+			则对任意 $h>0$，空间离散平均驻留时间 $t^u$ 与漂移主导时间 $t^{e}$ 满足
+			\[
+			\frac{|t^u - t^{e}|}{t^{e}}
+			\sim
+			O\!\left(\frac{\mu'(x)}{\mu(x)}\right)
+			\xrightarrow[|x|\to\infty]{} 0.
+			\]
+		\end{theorem}
+		\vspace{1ex}
+		该定理表明，在强漂移区域，CTRW 的平均驻留时间与解析漂移时间具有相同的主导标度。
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{定理：多项式漂移下的误差估计}
+		\begin{theorem}
+			假设
+			\[
+			\mu(x) = -a x^{2p+1},\quad p\ge 0,\ a>0,
+			\]
+			记漂移主导时间主部
+			\(
+			t^* = \delta/|\mu(x)|,
+			\)
+			则对任意固定 $h>0$，有
+			\[
+			\frac{|t^u - t^*|}{t^*}
+			\xrightarrow[|x|\to\infty]{} 0.
+			\]
+		\end{theorem}
+		\vspace{1ex}
+		特别地，对立方振子 $\mu(x)=-x^3$，空间离散在强漂移区域能高精度再现局部跨越时间的主导标度。
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{MFPT 与连续模型的 PDE 表述}
+		\begin{itemize}
+			\item 对一维 SDE，以区间端点为吸收边界，平均首达时间 $m(x)$ 满足
+			\[
+			\mu(x) m'(x) + \frac{\sigma^2}{2}m''(x) = -1,
+			\]
+			并配以吸收或反射边界条件\cite{Hanggi1990ReactionRateKramers}。
+			\item 漂移主导时间 $t^{e}$ 可视为该 PDE 解在强漂移极限下的主导项。
+			\item 空间离散 CTRW 对应在网格上求解线性方程
+			\[
+			Q m = -\mathbf 1,
+			\]
+			是 MFPT PDE 的有限维近似\cite{HolmesCerfon2022Lecture11}。
+			\item 时间离散驯服/截断 EM 通过时间步进模拟路径，统计首达时间样本得到 $t^\delta,t^\Delta$。
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{定理：驯服 Euler 方法的 MFPT 渐近与误差}
+		\begin{theorem}[驯服 Euler 方法的 MFPT 渐近与误差]
+			设 $\mu\in C^2$ 在 $x$ 的邻域内单调，且 $\mu(x)<0$，$\sigma$ 有界。
+			在极限 $x\to\infty,\ \delta/x\to 0,\ \Delta\to 0$ 下，驯服 EM 下从 $x$ 向左跨越距离 $\delta$ 的 MFPT $t^\delta$ 满足
+			\begin{align*}
+				t^\delta
+				&= \frac{\delta}{|\mu(x)|}
+				+ \delta\,\Delta
+				+ \mathcal O\big(\Delta^2\delta\big)
+				+ \mathcal O\big(\delta^{2}|\mu|^{-2}|\mu'|\big), \\
+				t^\delta - t^{e}
+				&= \delta\,\Delta
+				- \frac{\mu'(x)}{2\mu(x)^2}\,\delta^2
+				+ o(\Delta\delta) + o(\delta^2).
+			\end{align*}
+		\end{theorem}
+		以主导项 $\delta/|\mu(x)|$ 计，相对误差主要由 $\Delta |\mu(x)|$ 控制。
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{定理：截断 EM 方法的 MFPT 渐近与误差}
+		\begin{theorem}[截断 Euler--Maruyama 方法的 MFPT 渐近与误差]
+			沿用上面的设定，设截断半径 $h(\Delta)$ 使得在 $[x-\delta,x]$ 内截断生效（$x\gg h(\Delta)$）。
+			则存在常数 $c>0$ 使得
+			\[
+			t^{\Delta}
+			= \frac{\delta}{|\mu(h(\Delta))|}
+			+ \mathcal O(\delta^2),
+			\]
+			并且
+			\[
+			t^{\Delta}-t^{e}
+			= \delta\!\left(
+			\frac{1}{|\mu(h(\Delta))|}
+			- \frac{1}{|\mu(x)|}
+			\right)
+			+ \mathcal O(\delta^2).
+			\]
+		\end{theorem}
+		对立方漂移 $\mu(y)=-y^3$，若取常用约束 $\Delta^{1/4}h(\Delta)\le 1$，则要求 $\Delta$ 随 $x$ 急剧减小才能保持给定的相对误差，这限制了截断 EM 的适用范围\cite{mao2015truncated,mao2016convergence}。
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{一维立方振子数值实验设置}
+		\begin{itemize}
+			\item 模型：$dX_t = -X_t^3\,dt + \sigma\,dW_t$，初值 $X_0 = x\gg 1$。
+			\item 空间离散：
+			\begin{itemize}
+				\item 在一维网格上构造 $Q_u$ 或改进的 $\widetilde Q_u$ 生成元\cite{bou2018continuous,Hu2018,zu2023random}；
+				\item 通过 SSA 得到 CTRW 轨道，并利用平均驻留时间给出 $t^u$。
+			\end{itemize}
+			\item 时间离散：
+			\begin{itemize}
+				\item 采用驯服 EM 和截断 EM，时间步长取若干值 $\Delta$；
+				\item 通过 Monte Carlo 估计 MFPT $t^\delta,t^\Delta$。
+			\end{itemize}
+			\item 误差度量：
+			\begin{itemize}
+				\item 相对于 $t^{e}(x\to L)$ 的绝对误差和相对误差；
+				\item 时间离散误差与空间离散误差的比值。
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{平均时间误差比较}
+		\begin{center}
+			\includegraphics[width=0.48\textwidth]{Absolute_error.png}
+			\hfill
+			\includegraphics[width=0.48\textwidth]{Error_ratio.png}
+		\end{center}
+		\vspace{1ex}
+		左图：不同方法相对于 $t^{e}(x\to L)$ 的绝对误差；右图：时间离散误差与空间离散误差比值。
+		\begin{itemize}
+			\item 随着 $x$ 增大，三种方法的平均跨越时间均趋近 $t^{e}$，其中 CTRW/SSA 的误差衰减最快。
+			\item 大 $x$ 区域下，时间离散误差与空间离散误差的比值远大于 1，说明在固定空间跨越距离问题中，空间离散在强漂移极限下具有明显优势。
+		\end{itemize}
+	\end{frame}
+	
+	%======================================
+	\section{随机 Canard 快--慢系统的动力学行为}
+	%======================================
+	
+	\begin{frame}{随机 Canard 快--慢系统模型}
+		\begin{itemize}
+			\item 考虑一类具有 Canard 结构的二维快--慢系统
+			\[
+			\begin{cases}
+				dX_t = f(X_t,Y_t)\,dt + \sigma_x\,dW^1_t,\\
+				dY_t = \varepsilon g(X_t,Y_t)\,dt + \sigma_y\,dW^2_t,
+			\end{cases}
+			\]
+			其中 $0<\varepsilon\ll 1$。
+			\item 相空间结构：
+			\begin{itemize}
+				\item 存在吸引/排斥慢流形及折叠点；
+				\item 轨道沿慢流形缓慢演化，在折叠附近发生快跳，形成 Canard 轨道。
+			\end{itemize}
+			\item 噪声引入随机性：快跳时间与位置呈分布，慢流形附近存在驻留与穿越的统计结构，相关随机 Canard 模型可参见\cite{zu2023random}。
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{逃逸概率与 MFPT：连续模型}
+		\begin{itemize}
+			\item 在相空间 $D$ 中选取两个不相交区域 $A,B\subset D$：
+			\begin{itemize}
+				\item $A$：左侧稳态或代谢态；
+				\item $B$：右侧目标区域。
+			\end{itemize}
+			\item 逃逸概率（committor）定义为
+			\[
+			q(z) = \mathbb P^z\{\tau_B < \tau_A\},\quad z\in D\setminus(A\cup B),
+			\]
+			满足
+			\[
+			L q = 0\ \text{in }D\setminus(A\cup B),\quad
+			q|_A = 0,\ q|_B = 1,
+			\]
+			这是过渡路径理论中的核心量\cite{EV_TPT,EV_TowardsTP,Metzner_TPT_MJP}。
+			\item 平均首达时间 $m(z) = \mathbb E^z[\tau_{A\cup B}]$ 满足
+			\[
+			Lm = -1,\quad m|_{A\cup B}=0.
+			\]
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{空间离散下 逃逸概率 的收敛性}
+		\begin{itemize}
+			\item 在二维网格 $D_h$ 上离散生成元 $L$，得到 CTRW 生成元 $Q_h$。
+			\item 空间离散 逃逸概率 $q_h$ 满足线性方程
+			\[
+			Q_h q_h = 0\ \text{on 内点},\quad
+			q_h|_A = 0,\ q_h|_B = 1.
+			\]
+		\end{itemize}
+		\begin{theorem}[空间离散下 逃逸概率 的收敛]
+			在适当正则性与逼近假设下，存在常数 $C>0$，当 $h>0$ 足够小时，有
+			\[
+			\max_{z_i\in D_h} |q_h(z_i)-q(z_i)| \le C h^p,
+			\]
+			其中 $p$ 由局部离散逼近阶决定。对改进的 $\widetilde Q_u$ 方案有 $p=2$。
+		\end{theorem}
+		这说明改进的空间离散在 逃逸概率 上可达到二阶空间精度。
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{时间离散下 逃逸概率 估计的收敛性}
+		\begin{itemize}
+			\item 基于驯服/截断 EM 的 Monte Carlo：
+			\begin{itemize}
+				\item 在网格节点上发射大量样本路径；
+				\item 统计从 $z$ 出发首先到达 $B$ 的频率，得到 $q_\Delta(z)$。
+			\end{itemize}
+			\item 在 Khasminskii 型条件下，路径强收敛
+			\[
+			\max_{0\le k\le N}
+			\Big(\mathbb E |X_{t_k}-X_k^\Delta|^p\Big)^{1/p}\le C\Delta^{1/2}
+			\]
+			可以推广为对 逃逸概率 的弱收敛控制：
+			\[
+			|q_\Delta(z)-q(z)|
+			\le C\,\Delta^{1/2},
+			\]
+			误差阶受限于时间步进的强收敛阶\cite{higham2002strong,hutzenthaler2012strong,mao2015truncated,mao2016convergence}。
+			\item 从生成元角度看，空间离散在 逃逸概率 这类长期弱量上具有更高阶的空间精度。
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{随机 Canard 系统数值实验设置}
+		\begin{itemize}
+			\item 模型参数与区域 $A,B$ 的选取与论文正文保持一致\cite{zu2023random}。
+			\item 空间离散：
+			\begin{itemize}
+				\item 在相空间矩形区域上构造规则网格；
+				\item 利用 $\widetilde Q_u$ 生成元构造 CTRW，直接求解线性方程得到 $q_h,m_h$。
+			\end{itemize}
+			\item 时间离散：
+			\begin{itemize}
+				\item 使用驯服 EM 与截断 EM，时间步长 $\Delta$ 取若干值；
+				\item 在所有网格节点上独立发射 Monte Carlo 轨道，估计 $q_\Delta,m_\Delta$。
+			\end{itemize}
+			\item 工作量（work）：
+			\begin{itemize}
+				\item CTRW：求解稀疏线性方程的操作数；
+				\item 时间离散：所有路径的总时间步数。
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{样本路径与快跳时间分布}
+		\begin{center}
+			\includegraphics[width=0.48\textwidth]{Sample_trajectories_100.png}
+			\hfill
+			\includegraphics[width=0.48\textwidth]{Fast_jump_time_distribution_100.png}
+		\end{center}
+		\vspace{1ex}
+		左：三种数值方法在 $T=40$ 内的样本路径；右：对应的快跳时间分布直方图。
+		\begin{itemize}
+			\item 三种方法均能再现贴靠慢流形、折叠附近快跳的几何结构。
+			\item 快跳时间主要集中在有限区间内，各方法的分布区间相互重叠，峰值位置略有差异。
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{占据度热图}
+		\begin{center}
+			\includegraphics[width=0.7\textwidth]{Occupancy_100.png}
+		\end{center}
+		\vspace{1ex}
+		占据度热图刻画轨道在相空间不同区域出现的相对频率。
+		\begin{itemize}
+			\item 两种方法均在慢流形附近给出较高占据度。
+			\item 在折叠附近的边界层结构上，CTRW 给出的驻留分布更平滑，更接近生成元刻画的理论结构。
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+
+	\begin{frame}{逃逸概率与 MFPT 热图}
+		\small
+		\centering
+		
+		\includegraphics[height=0.32\textheight,keepaspectratio]{committor_heatmap.jpg}%
+		\hspace{0.5em}%
+		\includegraphics[height=0.32\textheight,keepaspectratio]{committor_trunc_heatmap.png}
+		
+		\vspace{-0.4em}
+		
+		\includegraphics[height=0.32\textheight,keepaspectratio]{mfpt_heatmap.jpg}%
+		\hspace{0.5em}%
+		\includegraphics[height=0.32\textheight,keepaspectratio]{mfpt_trunc_heatmap.png}
+		
+		\vspace{0.2em}
+		
+		上： 逃逸概率 函数 $q$ 的空间结构；下：MFPT $m$ 的空间结构。左列为 CTRW/SSA，右列为截断 EM Monte Carlo。
+		
+%		\begin{itemize}\setlength{\itemsep}{2pt}
+%			\item 逃逸概率 在左侧区域接近 0，在右侧目标区域接近 1，在折叠附近形成明显概率边界层。
+%			\item MFPT 在慢流形上缓慢变化，在快跳之后迅速下降。
+%			\item CTRW 结果整体更平滑，空间结构与 PDE 理论解更加一致。
+%		\end{itemize}
+	\end{frame}
+
+	
+	%--------------------------------------
+	\begin{frame}{逃逸概率的 work--error 曲线}
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{work_error_committor_trunc_vs_ctrw.pdf}
+		\end{center}
+		\vspace{1ex}
+		截断 EM 方法与 CTRW在逃逸概率 RMS 误差下的 work--error 比较
+		\begin{itemize}
+			\item 在相同工作量下，CTRW 通常能提供更小的 RMS 误差。
+			\item 时间离散方法的误差随工作量单调减小，但斜率受限于强收敛阶和 Monte Carlo 方差。
+			\item 在随机 Canard 系统这种快--慢模型中，空间离散更适合求解 逃逸概率 和 MFPT 等弱/长期指标。
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{本文提出的主要定理概览}
+		\begin{itemize}
+			\item 固定空间跨越时间方面：
+			\begin{itemize}
+				\item 空间离散平均驻留时间 $t^u$ 与漂移主导时间 $t^{e}$ 渐近一致；
+				\item 多项式漂移下 $t^u$ 与主部 $t^*$ 的相对误差估计；
+				\item 驯服 Euler 与截断 EM 的 MFPT 渐近展开与步长约束条件。
+			\end{itemize}
+			\item 随机 Canard 系统方面：
+			\begin{itemize}
+				\item 基于生成元的 逃逸概率 和 MFPT 空间收敛定理；
+				\item 时间离散下 逃逸概率 估计的弱收敛分析；
+				\item 基于 逃逸概率/MFPT 的 work--error 数值比较。
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{时间离散与空间离散方法的特点对比}
+		\begin{itemize}
+			\item 时间离散（驯服/截断 EM）：
+			\begin{itemize}
+				\item 优点：实现简单，易与现有代码库兼容；适合关注少量初值的路径级分析；
+				\item 缺点：步长受稳定性与收敛阶限制，对弱量需要大量 Monte Carlo 降低方差。
+			\end{itemize}
+			\item 空间离散（CTRW/$Q$ 矩阵）：
+			\begin{itemize}
+				\item 优点：直接在生成元层面离散，适合求解全场的 逃逸概率 和 MFPT，空间精度高；
+				\item 缺点：高维问题中网格数目巨大，需要稀疏线性代数和多重网格等技术支持。
+			\end{itemize}
+			\item 本文通过理论定理与数值实验，展示了两类方法在不同指标下的适用场景。
+		\end{itemize}
+	\end{frame}
+	
+	%======================================
+	\section{综合比较与结论}
+	%======================================
+	
+	\begin{frame}{固定空间距离跨越时间上的比较小结}
+		\begin{itemize}
+			\item 理论上，空间离散平均驻留时间 $t^u$ 与漂移主导时间 $t^{e}$ 在强漂移极限下渐近一致。
+			\item 多项式漂移 $\mu(x)=-ax^{2p+1}$ 下，$t^u$ 相比主部 $t^*$ 的相对误差随 $|x|$ 增大而消失。
+			\item 驯服/截断 EM 的 MFPT $t^\delta,t^\Delta$ 虽然可以给出渐近展开，但相对误差受限于时间步长的选取。
+			\item 一维立方振子数值实验表明，在相同空间跨越距离与相近计算代价下，CTRW/SSA 的平均时间估计更稳定、更精确。
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{随机 Canard 系统上的比较小结}
+		\begin{itemize}
+			\item 在有限时间窗口和路径几何上：
+			\begin{itemize}
+				\item 驯服 Euler 与截断 EM 更擅长再现 Canard 轨道的几何细节；
+				\item CTRW 也能保持整体几何结构。
+			\end{itemize}
+			\item 在 逃逸概率 和 MFPT 等弱/长期指标上：
+			\begin{itemize}
+				\item CTRW 通过一次稀疏线性求解即可获得全场解，空间精度高、噪声小；
+				\item 时间离散方法在给定工作量下误差较大，受限于强收敛阶与 Monte Carlo 方差。
+			\end{itemize}
+			\item work--error 曲线显示，在逃逸概率 RMS 误差固定时，空间离散往往具有更低的计算代价。
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{本文主要结论}
+		\begin{itemize}
+			\item 针对具有局部 Lipschitz 漂移的 SDE，系统比较了：
+			\begin{itemize}
+				\item 驯服 EM、截断 EM 等时间离散方法；
+				\item 基于生成元的 CTRW 空间离散方法。
+			\end{itemize}
+			\item 在固定空间跨越时间问题中：
+			\begin{itemize}
+				\item 空间离散平均驻留时间在强漂移极限下与漂移主导时间一致；
+				\item 给出了时间离散 MFPT 的误差估计和适用步长约束。
+			\end{itemize}
+			\item 在随机 Canard 系统中：
+			\begin{itemize}
+				\item 建立了 逃逸概率 和 MFPT 的空间离散收敛性；
+				\item 展示了空间离散在弱量上的优势以及时间离散在路径级分析中的作用。
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}{展望与进一步工作}
+		\begin{itemize}
+			\item 将 CTRW/生成元离散方法推广到更高维、具有复杂几何约束的相空间。
+			\item 结合自适应网格与自适应时间步长，提高长时间模拟效率。
+			\item 探索时间离散与空间离散的混合策略，例如在关键区域采用高精度空间离散，在其余区域使用时间离散。
+			\item 将 逃逸概率/MFPT 分析与机器学习方法（如 PINN、深度强化学习）结合，用于复杂随机系统的稀有事件分析。
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}[allowframebreaks]{参考文献}
+		\tiny
+		\bibliographystyle{IEEEtran}
+		\bibliography{references}
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}
+		\centering
+		\Huge 谢谢大家！
+	\end{frame}
+	
+\end{document}

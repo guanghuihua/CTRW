@@ -1,0 +1,311 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usetheme{Madrid}
+\usecolortheme{whale}
+\setbeamertemplate{navigation symbols}{} % 隐藏导航符号
+\setbeamertemplate{footline}[frame number] % 显示页码
+\setbeamerfont{footnote}{size=\tiny}
+
+\title{基于时间离散和空间离散的两类随机微分方程数值格式比较}
+\subtitle{硕士毕业论文预答辩}
+\author{华光辉}
+\institute{东北师范大学数学与统计学院}
+\date{2026年5月}
+
+\AtBeginSection[]{
+	\begin{frame}
+		\frametitle{目录}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+
+\begin{document}
+	
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+	\begin{frame}{目录}
+		\tableofcontents
+	\end{frame}
+	
+	\section{研究背景与意义}
+	\begin{frame}{研究背景}
+		\begin{itemize}
+			\item 随机微分方程（SDE）在分子动力学、数理金融、生物系统等领域广泛出现
+			\item 对于仅满足局部Lipschitz条件且漂移具有超线性增长的方程，经典Euler–Maruyama格式可能数值发散
+			\item 基于无穷小生成元的空间离散方法（如连续时间随机游走）在稳定性和长期统计性质上往往更可靠
+			\item \textbf{核心问题}：时间离散与空间离散哪一种更适合刻画给定SDE的长期行为？
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{研究意义}
+		\begin{itemize}
+			\item 在统一框架下比较两类数值格式的精度与计算代价
+			\item 为复杂随机动力系统中选择和设计合适的数值格式提供参考
+			\item 对具有超线性增长和非全局Lipschitz系数的SDE数值方法研究具有理论价值
+		\end{itemize}
+	\end{frame}
+	
+	\section{主要研究内容}
+	\begin{frame}{研究内容概述}
+		\begin{enumerate}
+			\item \textbf{模型选取}：
+			\begin{itemize}
+				\item 一维立方振子
+				\item 随机Canard快-慢系统
+			\end{itemize}
+			\item \textbf{数值格式}：
+			\begin{itemize}
+				\item 时间离散：驯服Euler-Maruyama、截断Euler-Maruyama
+				\item 空间离散：连续时间游走格式$Q_u$及其改进格式$\widetilde{Q}_u$
+			\end{itemize}
+			\item \textbf{比较指标}：
+			\begin{itemize}
+				\item 固定空间跨越距离的时间尺度
+				\item 逃逸概率函数（committor function）
+				\item 平均首达时间（MFPT）
+			\end{itemize}
+		\end{enumerate}
+	\end{frame}
+	
+	\section{理论基础}
+	\begin{frame}{Itô扩散的无穷小生成元}
+		\begin{definition}[Itô扩散的无穷小生成元]
+			考虑$n$维SDE：
+			\begin{equation*}
+				dX_t = \mu(X_t) dt + \sigma(X_t) dW_t
+			\end{equation*}
+			其无穷小生成元为：
+			\begin{equation*}
+				Lf(x) = \sum_{i=1}^n \mu_i(x) \frac{\partial f}{\partial x_i} + \sum_{i,j=1}^n M_{ij}(x) \frac{\partial^2 f}{\partial x_i \partial x_j}
+			\end{equation*}
+			其中$M(x) = \frac{1}{2}\sigma(x)\sigma(x)^T$。
+		\end{definition}
+	\end{frame}
+	
+	\begin{frame}{空间离散格式}
+		\begin{itemize}
+			\item \textbf{Bou-Rabee和Vanden-Eijnden (2018)}提出：
+			\begin{itemize}
+				\item 有限差分离散化$Q_u$格式
+				\item 有限体积离散化$Q_c$格式
+			\end{itemize}
+			\item \textbf{Zu (2023)改进格式}：$\widetilde{Q}_u$，补偿了额外扩散项
+		\end{itemize}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.8\textwidth]{fig/Q_formats_comparison.png}
+			\caption{不同空间离散格式示意图}
+		\end{figure}
+	\end{frame}
+	
+	\begin{frame}{改进的时间离散格式}
+		\begin{itemize}
+			\item \textbf{驯服Euler-Maruyama格式}：
+			\begin{equation*}
+				X_{k+1} = X_k + \frac{\mu(X_k)\Delta}{1+\|\mu(X_k)\|\Delta} + \sigma(X_k)\Delta W_k
+			\end{equation*}
+			\item \textbf{截断Euler-Maruyama格式}：
+			\begin{equation*}
+				X_{k+1} = X_k + \mu_\Delta(X_k)\Delta + \sigma_\Delta(X_k)\Delta W_k
+			\end{equation*}
+			其中$\mu_\Delta,\sigma_\Delta$为截断后的系数。
+		\end{itemize}
+	\end{frame}
+	
+	\section{固定空间距离跨越时间比较}
+	\begin{frame}{一维立方振子模型}
+		\begin{itemize}
+			\item 模型方程：$dX_t = -X_t^3 dt + \sqrt{2} dW_t$
+			\item 研究目标：从$x$向左跨越固定距离$\delta$的时间比较
+			\item 比较基准：
+			\begin{itemize}
+				\item 精确漂移时间：$t^e = \int_{x-\delta}^x \frac{ds}{|\mu(s)|}$
+				\item 空间离散平均驻留时间：$t^u$
+				\item 时间离散平均首达时间：$t^\delta, t^\Delta$
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{主要定理（时间比较）}
+		\begin{theorem}[空间离散平均驻留时间与精确漂移时间的比较]
+			假设$|\mu(x)|$足够大且$\frac{\mu'(x)}{\mu(x)^2} \sim o\left(\frac{1}{\mu(x)}\right)$，则对于任意$h>0$，
+			\[
+			\frac{|t^u - t^e|}{t^e} \sim O\left(\frac{\mu'(x)}{\mu(x)}\right) \to 0, \quad |x| \to \infty
+			\]
+		\end{theorem}
+		
+		\begin{theorem}[驯服Euler方法的MFPT渐近]
+			设$\mu\in C^2$且在$x$的邻域内单调并满足$\mu(x)<0$，$\sigma$有界，则
+			\[
+			t^{\delta} = \frac{\delta}{|\mu(x)|} + \delta\Delta + \mathcal{O}(\Delta^2\delta) + \mathcal{O}(\delta^2|\mu|^{-2}|\mu'|)
+			\]
+		\end{theorem}
+	\end{frame}
+	
+	\begin{frame}{数值实验结果}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.9\textwidth]{fig/Absolute_error.png}
+			\caption{不同方法相对于$t^e$的绝对误差}
+		\end{figure}
+	\end{frame}
+	
+	\begin{frame}{数值实验结果}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.9\textwidth]{fig/Error_ratio.png}
+			\caption{时间离散误差与空间离散误差比值}
+		\end{figure}
+	\end{frame}
+	
+	\section{随机Canard系统分析}
+	\begin{frame}{随机Canard快-慢系统}
+		\begin{itemize}
+			\item 模型方程：
+			\begin{align*}
+				dx_t &= \left(y_t - \left(\frac{x_t^3}{3} - x_t\right)\right) dt + \sigma_x dW_t^{(x)} \\
+				dy_t &= \varepsilon(a - x_t) dt + \sigma_y dW_t^{(y)}
+			\end{align*}
+			\item 参数：$\varepsilon=10^{-2}, a=1.0, \sigma_x=0, \sigma_y=0.08$
+			\item 特征：具有典型的Canard现象，在折叠点附近发生快速跃迁
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{逃逸概率函数}
+		\begin{definition}[逃逸概率]
+			给定两个互不相交的集合$A,B\subset D$，逃逸概率函数定义为：
+			\[
+			q(x) := \mathbb{P}_x(\tau_B < \tau_A)
+			\]
+			满足椭圆边值问题：
+			\[
+			\begin{cases}
+				L q(x) = 0, & x\in D\setminus(A\cup B) \\
+				q(x) = 0, & x\in A \\
+				q(x) = 1, & x\in B
+			\end{cases}
+			\]
+		\end{definition}
+	\end{frame}
+	
+	\begin{frame}{空间离散下的收敛性定理}
+		\begin{theorem}[空间离散下逃逸概率的收敛]
+			在适当正则性假设下，存在常数$C>0$，当$h>0$足够小时，
+			\[
+			\max_{z_i\in D_h} |q_h(z_i) - q(z_i)| \le C h^p
+			\]
+			其中$p$为逼近阶，对改进的$\widetilde{Q}_u$格式有$p=2$。
+		\end{theorem}
+	\end{frame}
+	
+	\begin{frame}{时间离散下的收敛性}
+		\begin{theorem}[时间离散下逃逸概率的收敛]
+			在Khasminskii型条件下，驯服Euler和截断Euler-Maruyama方法近似$Z_t^\Delta$满足强收敛：
+			\[
+			\mathbb{E}\left(\sup_{0\le t\le T}\|Z_t - Z_t^\Delta\|^q\right) \le C\Delta^{q\gamma}, \quad \gamma=\frac{1}{2}
+			\]
+			相应地，离散逃逸概率$q_\Delta$收敛到$q$，但误差阶不超过$O(\Delta^{1/2})$。
+		\end{theorem}
+	\end{frame}
+	
+	\begin{frame}{数值实验：样本轨道}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.9\textwidth]{fig/Sample_trajectories_100.png}
+			\caption{随机Canard系统的典型样本轨道}
+		\end{figure}
+	\end{frame}
+	
+	\begin{frame}{数值实验：快跳时间分布}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.9\textwidth]{fig/Fast_jump_time_distribution_100.png}
+			\caption{首次满足$x\ge x_{\text{th}}$的时间直方图}
+		\end{figure}
+	\end{frame}
+	
+	\begin{frame}{数值实验：占据度热图}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.9\textwidth]{fig/Occupancy_100.png}
+			\caption{长期驻留分布（占据度热图）}
+		\end{figure}
+	\end{frame}
+	
+	\begin{frame}{数值实验：逃逸概率热图}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.45\textwidth]{fig/committor_heatmap.jpg}
+			\includegraphics[width=0.45\textwidth]{fig/committor_trunc_heatmap.png}
+			\caption{逃逸概率热图：左为CTRW/$Q$-解，右为截断EM Monte Carlo}
+		\end{figure}
+	\end{frame}
+	
+	\begin{frame}{数值实验：MFPT热图}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.45\textwidth]{fig/mfpt_heatmap.jpg}
+			\includegraphics[width=0.45\textwidth]{fig/mfpt_trunc_heatmap.png}
+			\caption{MFPT热图：左为CTRW/$Q$-解，右为截断EM Monte Carlo}
+		\end{figure}
+	\end{frame}
+	
+	\begin{frame}{work-error曲线比较}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.8\textwidth]{fig/work_error_committor_trunc_vs_ctrw.pdf}
+			\caption{逃逸概率的work-error曲线：空间离散与时间离散对比}
+		\end{figure}
+	\end{frame}
+	
+	\section{结论与展望}
+	\begin{frame}{主要结论}
+		\begin{enumerate}
+			\item \textbf{固定空间跨越时间}：在漂移主导区域，空间离散方法对局部时间的刻度更精确，误差随$x$增大快速衰减；时间离散方法的误差受限于时间步长。
+			\item \textbf{逃逸概率与MFPT}：对于生成元型弱量，空间离散方法通过一次线性求解即可获得全场解，误差阶可达$O(h^2)$；时间离散方法需要通过Monte Carlo模拟，误差阶不超过$O(\Delta^{1/2})$。
+			\item \textbf{计算效率}：在同等精度要求下，空间离散方法通常具有更低的计算代价，特别适用于长期统计性质的计算。
+			\item \textbf{适用场景}：时间离散方法在捕捉单条样本轨道和短时动力学方面更具灵活性；空间离散方法在长期统计方面更高效。
+		\end{enumerate}
+	\end{frame}
+	
+	\begin{frame}{创新点}
+		\begin{itemize}
+			\item 提出了固定空间跨越距离的时间比较框架，统一了时间离散与空间离散的性能评估
+			\item 在一维立方振子和随机Canard系统上，分别从时间尺度和动力学行为两个角度系统比较了两类方法
+			\item 给出了空间离散格式在平均驻留时间、逃逸概率和MFPT上的收敛性理论分析
+			\item 通过数值实验验证了理论分析，并提供了误差-代价的定量比较
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{未来工作展望}
+		\begin{itemize}
+			\item 将理论分析推广到高维、退化扩散或具有复杂边界条件的随机系统
+			\item 设计更高阶的显式或半隐式时间离散算法，保持强收敛与矩有界性
+			\item 研究时间离散与空间离散的自适应混合策略，发挥两类方法的互补优势
+			\item 在更多具有代表性的模型（如多稳态反应网络、高维随机梯度系统等）上验证比较框架
+		\end{itemize}
+	\end{frame}
+	
+	\section{致谢}
+	\begin{frame}{致谢}
+		\begin{itemize}
+			\item 感谢导师祖建副教授的悉心指导
+			\item 感谢评阅专家和答辩委员会各位老师的宝贵意见
+			\item 感谢东北师范大学数学与统计学院提供的学习和科研环境
+			\item 感谢家人和朋友的支持与鼓励
+		\end{itemize}
+		\vspace{1cm}
+		\centering
+		\LARGE 谢谢！
+	\end{frame}
+	
+\end{document}

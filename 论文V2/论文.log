@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  1 DEC 2025 12:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  3 DEC 2025 15:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1895,7 +1895,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 [21]
 
 [22]
-Overfull \hbox (5.75372pt too wide) in paragraph at lines 1694--1695
+Overfull \hbox (5.75372pt too wide) in paragraph at lines 1695--1696
 \OML/cmm/m/it/12.045 E[]\OT1/cmr/m/n/12.045 (\OML/cmm/m/it/12.045 x\OT1/cmr/m/n
 /12.045 )$|\C70/rm/m/n/12.045/30 ^^A| $\OML/cmm/m/it/12.045 E[]\OT1/cmr/m/n/12.
 045 (\OML/cmm/m/it/12.045 x\OT1/cmr/m/n/12.045 )$ \C70/zhsong/m/n/12.045/96 è $
@@ -1910,15 +1910,15 @@ cmm/m/it/12.045 R[]\OT1/cmr/m/n/12.045 (\OML/cmm/m/it/12.045 x\OT1/cmr/m/n/12.0
 \OML/cmm/m/it/12.045 x\OT1/cmr/m/n/12.045 )$
  []
 
-<fig/Absolute_error.png, id=919, 505.89pt x 361.35pt>
+<fig/Absolute_error.png, id=921, 505.89pt x 361.35pt>
 File: fig/Absolute_error.png Graphic file (type png)
 <use fig/Absolute_error.png>
-Package pdftex.def Info: fig/Absolute_error.png  used on input line 1700.
+Package pdftex.def Info: fig/Absolute_error.png  used on input line 1701.
 (pdftex.def)             Requested size: 204.85846pt x 146.3294pt.
-<fig/Error_ratio.png, id=920, 505.89pt x 361.35pt>
+<fig/Error_ratio.png, id=922, 505.89pt x 361.35pt>
 File: fig/Error_ratio.png Graphic file (type png)
 <use fig/Error_ratio.png>
-Package pdftex.def Info: fig/Error_ratio.png  used on input line 1703.
+Package pdftex.def Info: fig/Error_ratio.png  used on input line 1704.
 (pdftex.def)             Requested size: 204.85846pt x 146.3294pt.
 
 
@@ -1927,12 +1927,12 @@ Package pdftex.def Info: fig/Error_ratio.png  used on input line 1703.
 [24]
 
 LaTeX Warning: Reference `eq:committor-PDE' on page 25 undefined on input line 
-1790.
+1791.
 
 
 
 [25]
-Overfull \hbox (64.13417pt too wide) in paragraph at lines 1826--1827
+Overfull \hbox (64.13417pt too wide) in paragraph at lines 1827--1828
 []\C70/rm/m/n/12.045/9a o \C70/rm/m/n/12.045/67 ^^M\T1/ptm/m/n/12.045 Euler\C70
 /rm/m/n/12.045/4e ^^N \C70/rm/m/n/12.045/62 * \C70/rm/m/n/12.045/65 ≠\T1/ptm/m/
 n/12.045 Euler^^UMaruyama\C70/rm/m/n/12.045/65 π \C70/rm/m/n/12.045/6c ’ \C70/r
@@ -1948,7 +1948,7 @@ g/m/n/12.045/72 ∂ \C70/rm/m/n/12.045/60 ^^A \C70/rm/m/n/12.045/8f € \C70/zhsong
 
 
 [26]
-Overfull \hbox (4.52934pt too wide) in paragraph at lines 1894--1896
+Overfull \hbox (4.52934pt too wide) in paragraph at lines 1895--1897
 \C70/zhsong/m/n/12.045/57 (\T1/ptm/m/n/12.045 Canard\C70/zhsong/m/n/12.045/7c ˚
  \C70/rm/m/n/12.045/7e ﬂ \C70/rm/m/n/12.045/4e -|\C70/rm/m/n/12.045/ff ^^L| \C7
 0/zhsong/m/n/12.045/96 ∆ \C70/rm/m/n/12.045/54 ^^H $\OML/cmm/m/it/12.045 A; B$ 
@@ -1965,7 +1965,7 @@ OT1/cmr/m/n/12.045 (\OML/cmm/m/it/12.045 A; B\OT1/cmr/m/n/12.045 )$|\C70/rm/m/n
 
 
 [27]
-Overfull \hbox (32.90802pt too wide) in paragraph at lines 1944--1945
+Overfull \hbox (32.90802pt too wide) in paragraph at lines 1945--1946
 []\C70/rm/m/n/12.045/5b ˘ \C70/zhsong/m/n/12.045/96 è \C70/rm/m/n/12.045/67 :\T
 1/ptm/m/n/12.045 Canard\C70/zhsong/m/n/12.045/7c ˚ \C70/rm/m/n/12.045/7e ﬂ \C70
 /rm/m/n/12.045/80 ^^L \C70/zhsong/m/n/12.045/8a ^^@|\C70/rm/m/n/12.045/ff ^^L| 
@@ -1982,7 +1982,7 @@ n/12.045/95 ^^?|\C70/rm/m/n/12.045/ff ^^L| \C70/rm/m/n/12.045/62 i \C70/rm/m/n/
 
 
 [28]
-Overfull \hbox (5.06631pt too wide) in paragraph at lines 1987--1988
+Overfull \hbox (5.06631pt too wide) in paragraph at lines 1988--1989
 []\C70/rm/m/n/12.045/56 ˛ []\T1/ptm/m/n/12.045 4.2[] \C70/rm/m/n/12.045/7e Ÿ \C
 70/rm/m/n/12.045/51 ˙ \C70/rm/m/n/12.045/4e Ü \C70/zhsong/m/n/12.045/57 ( \C70/
 rm/m/n/12.045/65 ˆ \C70/rm/m/n/12.045/95 Ù \C70/rm/m/n/12.045/7a ó $\OML/cmm/m/
@@ -1994,54 +1994,54 @@ it/12.045 T \OT1/cmr/m/n/12.045 = 40$ \C70/rm/m/n/12.045/51 Ö|\C70/rm/m/n/12.04
 
 
 [29]
-<fig/Sample_trajectories_100.png, id=1030, 433.62pt x 361.35pt>
+<fig/Sample_trajectories_100.png, id=1031, 433.62pt x 361.35pt>
 File: fig/Sample_trajectories_100.png Graphic file (type png)
 <use fig/Sample_trajectories_100.png>
 Package pdftex.def Info: fig/Sample_trajectories_100.png  used on input line 19
-94.
+95.
 (pdftex.def)             Requested size: 204.85846pt x 170.71672pt.
-<fig/Fast_jump_time_distribution_100.png, id=1031, 433.62pt x 289.08pt>
+<fig/Fast_jump_time_distribution_100.png, id=1032, 433.62pt x 289.08pt>
 File: fig/Fast_jump_time_distribution_100.png Graphic file (type png)
 <use fig/Fast_jump_time_distribution_100.png>
 Package pdftex.def Info: fig/Fast_jump_time_distribution_100.png  used on input
- line 1998.
+ line 1999.
 (pdftex.def)             Requested size: 204.85846pt x 136.57336pt.
-<fig/Occupancy_100.png, id=1034, 794.97pt x 289.08pt>
+<fig/Occupancy_100.png, id=1035, 794.97pt x 289.08pt>
 File: fig/Occupancy_100.png Graphic file (type png)
 <use fig/Occupancy_100.png>
-Package pdftex.def Info: fig/Occupancy_100.png  used on input line 2008.
+Package pdftex.def Info: fig/Occupancy_100.png  used on input line 2009.
 (pdftex.def)             Requested size: 273.14923pt x 99.32689pt.
 
 
 [30 <./fig/Sample_trajectories_100.png> <./fig/Fast_jump_time_distribution_100.
 png> <./fig/Occupancy_100.png>]
-Overfull \hbox (4.49904pt too wide) detected at line 2028
+Overfull \hbox (4.49904pt too wide) detected at line 2029
 [][][][]  []
  []
 
-<fig/committor_heatmap.jpg, id=1045, 434.3427pt x 339.669pt>
+<fig/committor_heatmap.jpg, id=1046, 434.3427pt x 339.669pt>
 File: fig/committor_heatmap.jpg Graphic file (type jpg)
 <use fig/committor_heatmap.jpg>
-Package pdftex.def Info: fig/committor_heatmap.jpg  used on input line 2050.
+Package pdftex.def Info: fig/committor_heatmap.jpg  used on input line 2051.
 (pdftex.def)             Requested size: 204.85846pt x 160.20938pt.
-<fig/committor_trunc_heatmap.png, id=1046, 434.3427pt x 339.669pt>
+<fig/committor_trunc_heatmap.png, id=1047, 434.3427pt x 339.669pt>
 File: fig/committor_trunc_heatmap.png Graphic file (type png)
 <use fig/committor_trunc_heatmap.png>
 Package pdftex.def Info: fig/committor_trunc_heatmap.png  used on input line 20
-54.
+55.
 (pdftex.def)             Requested size: 204.85846pt x 160.20938pt.
-<fig/mfpt_heatmap.jpg, id=1047, 431.4519pt x 339.669pt>
+<fig/mfpt_heatmap.jpg, id=1048, 431.4519pt x 339.669pt>
 File: fig/mfpt_heatmap.jpg Graphic file (type jpg)
 <use fig/mfpt_heatmap.jpg>
-Package pdftex.def Info: fig/mfpt_heatmap.jpg  used on input line 2060.
+Package pdftex.def Info: fig/mfpt_heatmap.jpg  used on input line 2061.
 (pdftex.def)             Requested size: 204.85846pt x 161.28226pt.
-<fig/mfpt_trunc_heatmap.png, id=1048, 436.5108pt x 339.669pt>
+<fig/mfpt_trunc_heatmap.png, id=1049, 436.5108pt x 339.669pt>
 File: fig/mfpt_trunc_heatmap.png Graphic file (type png)
 <use fig/mfpt_trunc_heatmap.png>
-Package pdftex.def Info: fig/mfpt_trunc_heatmap.png  used on input line 2064.
+Package pdftex.def Info: fig/mfpt_trunc_heatmap.png  used on input line 2065.
 (pdftex.def)             Requested size: 204.85846pt x 159.41121pt.
 
-Overfull \hbox (0.56061pt too wide) in paragraph at lines 2085--2089
+Overfull \hbox (0.56061pt too wide) in paragraph at lines 2086--2090
 \C70/rm/m/n/12.045/7b , \C70/rm/m/n/12.045/4e å \C70/rm/m/n/12.045/6b e|\C70/rm
 /m/n/12.045/ff ^^Z| \C70/rm/m/n/12.045/5b ˘ \C70/rm/m/n/12.045/4e é \C70/rm/m/n
 /12.045/65 ˆ \C70/rm/m/n/12.045/95 Ù \C70/rm/m/n/12.045/79 ª \C70/rm/m/n/12.045
@@ -2060,19 +2060,19 @@ A|
 
 [32 <./fig/committor_heatmap.jpg> <./fig/committor_trunc_heatmap.png> <./fig/mf
 pt_heatmap.jpg> <./fig/mfpt_trunc_heatmap.png>]
-<fig/work_error_committor_trunc_vs_ctrw.pdf, id=1064, 427.40387pt x 317.11801pt
+<fig/work_error_committor_trunc_vs_ctrw.pdf, id=1065, 427.40387pt x 317.11801pt
 >
 File: fig/work_error_committor_trunc_vs_ctrw.pdf Graphic file (type pdf)
 <use fig/work_error_committor_trunc_vs_ctrw.pdf>
 Package pdftex.def Info: fig/work_error_committor_trunc_vs_ctrw.pdf  used on in
-put line 2092.
+put line 2093.
 (pdftex.def)             Requested size: 282.24911pt x 209.42917pt.
 
 
 [33 <./fig/work_error_committor_trunc_vs_ctrw.pdf>]
 
 [34]
-Overfull \hbox (1.66331pt too wide) in paragraph at lines 2162--2163
+Overfull \hbox (1.66331pt too wide) in paragraph at lines 2163--2164
 []\C70/zhsong/m/n/12.045/57 ( \C70/rm/m/n/12.045/65 p \C70/zhsong/m/n/12.045/50
  < \C70/rm/m/n/12.045/5b û \C70/rm/m/n/12.045/9a å \C70/rm/m/n/12.045/65 π \C70
 /rm/m/n/12.045/97 b|\C70/rm/m/n/12.045/ff ^^L| \C70/rm/m/n/12.045/67 , \C70/rm/
@@ -2102,7 +2102,7 @@ Underfull \vbox (badness 1769) has occurred while \output is active []
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \hskip 12.045pt
-(hyperref)                replaced by space on input line 2223.
+(hyperref)                replaced by space on input line 2224.
 
 
 
@@ -2110,7 +2110,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \hskip 12.045pt
-(hyperref)                replaced by space on input line 2230.
+(hyperref)                replaced by space on input line 2231.
 
 
 
@@ -2147,8 +2147,8 @@ Package rerunfilecheck Info: File `ËÆ∫Êñá.out' has not changed.
 (rerunfilecheck)             Checksum: 6248F59E1B4AAE57F3E57CC2602B1160;5763.
  ) 
 Here is how much of TeX's memory you used:
- 63434 strings out of 473190
- 1567290 string characters out of 5719980
+ 63435 strings out of 473190
+ 1567303 string characters out of 5719980
  2252155 words of memory out of 5000000
  84871 multiletter control sequences out of 15000+600000
  758796 words of font info for 642 fonts, out of 8000000 for 9000
@@ -2255,10 +2255,10 @@ nts/type1/public/rsfs/rsfs10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/urw/ti
 mes/utmb8a.pfb><d:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><d:
 /texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb><d:/texlive/2025/tex
 mf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on ËÆ∫Êñá.pdf (56 pages, 1590144 bytes).
+Output written on ËÆ∫Êñá.pdf (56 pages, 1590191 bytes).
 PDF statistics:
- 1951 PDF objects out of 2073 (max. 8388607)
- 1426 compressed objects within 15 object streams
- 246 named destinations out of 1000 (max. 500000)
+ 1953 PDF objects out of 2073 (max. 8388607)
+ 1428 compressed objects within 15 object streams
+ 247 named destinations out of 1000 (max. 500000)
  693 words of extra memory for PDF output out of 10000 (max. 10000000)
 
