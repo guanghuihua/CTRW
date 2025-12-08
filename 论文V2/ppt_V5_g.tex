@@ -99,8 +99,410 @@
 	
 	%======================================
 	\section{预备知识}
+	
+		%--------------------------------------
+	\begin{frame}{时间离散：驯服/截断 Euler--Maruyama}
+		\begin{itemize}
+			\item 	\( [\text{Hutzenthaler--Jentzen--Kloeden, 2011, Proc. R. Soc. A}]. \)
+			对非全局 Lipschitz 系数，经典 EM 可能发散
+			
+			
+			\item 		\( [\text{Hutzenthaler--Jentzen--Kloeden, 2012, Ann. Appl. Probab.}] \) 驯服 Euler--Maruyama（tamed EM）：
+			\[
+			X_{k+1}
+			= X_k + \frac{\mu(X_k)}{1+\delta |\mu(X_k)|}\,\delta
+			+ \sigma(X_k)\Delta W_k.
+			\]
+			
+			
+			\item 			\(
+			[\text{ Mao, 2015, J. Comput. Appl. Math.}] \) 截断 Euler--Maruyama（truncated EM）：
+			\begin{itemize}
+				\item 在 $B(0,h(\Delta))$ 内截断漂移和扩散，使其有界且满足全局 Lipschitz；
+				\item 对截断后的系数使用标准 EM.
+			\end{itemize}
+			
+			\item 在 Khasminskii 型条件下，两者均保持 $1/2$ 阶强收敛.
+		\end{itemize}
+	\end{frame}
+	
 	%======================================
 	
+		\begin{frame}
+		\begin{theorem}[驯服 Euler 方法的 MFPT 渐近与误差]
+			设 $\mu\in C^2$ 在 $x$ 的邻域内单调，且 $\mu(x)<0$，$\sigma$ 有界.
+			在极限 $x\to\infty,\ \delta/x\to 0,\ \Delta\to 0$ 下，驯服 EM 下从 $x$ 向左跨越距离 $\delta$ 的 MFPT $t^\delta$ 满足
+			\begin{align*}
+				t^\delta
+				&= \frac{\delta}{|\mu(x)|}
+				+ \delta\,\Delta
+				+ \mathcal O\big(\Delta^2\delta\big)
+				+ \mathcal O\big(\delta^{2}|\mu|^{-2}|\mu'|\big), \\
+				t^\delta - t^{e}
+				&= \delta\,\Delta
+				- \frac{\mu'(x)}{2\mu(x)^2}\,\delta^2
+				+ o(\Delta\delta) + o(\delta^2).
+			\end{align*}
+		\end{theorem}
+		以主导项 $\delta/|\mu(x)|$ 计，相对误差主要由 $\Delta |\mu(x)|$ 控制.
+	\end{frame}
+	
+	%--------------------------------------
+	\begin{frame}
+		\begin{theorem}[截断 Euler--Maruyama 方法的 MFPT 渐近与误差]
+			沿用上面的设定，设截断半径 $h(\Delta)$ 使得在 $[x-\delta,x]$ 内截断生效（$x\gg h(\Delta)$）.
+			则存在常数 $c>0$ 使得
+			\[
+			t^{\Delta}
+			= \frac{\delta}{|\mu(h(\Delta))|}
+			+ \mathcal O(\delta^2),
+			\]
+			并且
+			\[
+			t^{\Delta}-t^{e}
+			= \delta\!\left(
+			\frac{1}{|\mu(h(\Delta))|}
+			- \frac{1}{|\mu(x)|}
+			\right)
+			+ \mathcal O(\delta^2).
+			\]
+		\end{theorem}
+		对立方漂移 $\mu(y)=-y^3$，若取常用约束 $\Delta^{1/4}h(\Delta)\le 1$，则要求 $\Delta$ 随 $x$ 急剧减小才能保持给定的相对误差，这限制了截断 EM 的适用范围.
+	\end{frame}
+	
+%--------------------------------------
+	
+	
+	%------------------------------------------------
+	\begin{frame}
+		\frametitle{SSA（Gillespie）算法与等待时间}
+		
+		\begin{itemize}
+			\item \textbf{连续时间马尔可夫链}视角：
+			\begin{itemize}
+				\item 在当前状态 $x$ 下，各反应道具有速率 $q_i(x)$。
+				\item \textbf{等待时间} $\tau$ 服从参数为 $\lambda(x) = \sum_i q_i(x)$ 的指数分布。
+				\item 下一次反应类型根据权重 $q_i(x)$ 随机选取。
+			\end{itemize}
+			\item 这正是 Gillespie SSA 算法的核心思想。
+		\end{itemize}
+		
+		\vspace{0.5em}
+		
+		\textbf{SSA 算法伪代码（单对细菌–病毒）示意：}
+		
+		\begin{enumerate}
+			\item 初始化：$t \leftarrow 0$, $X \leftarrow x_0$, $Y \leftarrow y_0$。
+			\item 计算各反应速率 $q_0,q_1,q_2,q_3$，并令 $\lambda = q_0+q_1+q_2+q_3$。
+			\item 生成 $\xi_1,\xi_2 \sim U(0,1)$，令
+			$\tau = -\ln(1-\xi_1)/\lambda$，更新 $t \leftarrow t+\tau$。
+			\item 根据 $\xi_2$ 与累积概率选择发生的反应，并更新 $(X,Y)$。
+			\item 重复上述步骤直到 $t\ge T$。
+		\end{enumerate}
+		
+		SSA 的优点：精确但在大体系和高反应速率情形下计算成本高。
+	\end{frame}
+	
+	
+	%------------------------------------------------
+	\begin{frame}
+		\frametitle{随机微分方程与数值离散：时间 vs 空间}
+		
+		考虑 $n$ 维随机微分方程
+		\[
+		\mathrm{d}X_t = \mu(X_t)\,\mathrm{d}t + \sigma(X_t)\,\mathrm{d}W_t,
+		\]
+		其中 $W_t$ 为 $n$ 维 Wiener 过程，$\mu:\mathbb{R}^n\to\mathbb{R}^n$，
+		$\sigma:\mathbb{R}^n\to\mathbb{R}^{n\times n}$。
+		
+		\textbf{常用假设：}
+		\begin{itemize}
+			\item 全局 Lipschitz 条件：
+			\[
+			|\mu(x)-\mu(y)| + |\sigma(x)-\sigma(y)|
+			\le K_1 |x-y|.
+			\]
+			\item 线性增长条件：
+			\[
+			|\mu(x)|^2 + |\sigma(x)|^2 \le K_2(1+|x|^2).
+			\]
+			\item 在上述条件下，可证明解的存在唯一性。
+		\end{itemize}
+		
+		\vspace{0.5em}
+		
+		\textbf{数值近似的两种思路：}
+		\begin{itemize}
+			\item 时间离散格式（time-discretization scheme）。
+			\item 空间离散格式（space-discretization scheme）。
+		\end{itemize}
+	\end{frame}
+	
+	%------------------------------------------------
+	\begin{frame}
+		\frametitle{时间离散：Euler--Maruyama 方法与发散例子}
+		
+		\textbf{Euler--Maruyama 方法：} 令时间步长为 $\Delta$，$t_k = t_0 + k\Delta$，
+		近似解满足
+		\[
+		\hat X^\Delta_{t_{k+1}} 
+		= \hat X^\Delta_{t_k} 
+		+ \mu(\hat X^\Delta_{t_k})\Delta
+		+ \sigma(\hat X^\Delta_{t_k})(W_{t_{k+1}} - W_{t_k}),
+		\]
+		其中 $W_{t_{k+1}} - W_{t_k} \sim N(0,\Delta)$ 彼此独立。
+		
+		\vspace{0.5em}
+		
+		\textbf{一维立方振子（Cubic Oscillator）加性噪声：}
+		\[
+		\mathrm{d}X_t = -X_t^3\,\mathrm{d}t + \sigma\,\mathrm{d}W_t,\quad X(0)\in\mathbb{R}.
+		\]
+		该系统具有几何遍历性，其平稳密度为
+		\[
+		\nu(x) = Z^{-1}\exp\!\left(-\frac{x^4}{2\sigma^2}\right),
+		\]
+		其中 $Z$ 为归一化常数。
+		
+		然而，由于漂移项只满足局部 Lipschitz 条件，经典 EM 方法在长时间模拟中会发散
+		（Mattingly, Stuart and Higham, 2002）：
+		\[
+		\mathbb{E}\big[|\hat X^\Delta_{\lfloor t/\Delta\rfloor}|^2\big] \to \infty,\quad t\to\infty.
+		\]
+		
+		因此需要截断 EM、tamed EM 等改进格式。
+	\end{frame}
+	
+	%------------------------------------------------
+	\begin{frame}
+		\frametitle{空间离散：Kolmogorov 方程与生成元}
+		
+		\textbf{生成元（infinitesimal generator）：}
+		
+		设 $f:\mathbb{R}^n\to\mathbb{R}$ 为 $C^2$ 函数，
+		对应 SDE 的生成元为
+		\[
+		L f(x) = \sum_{i=1}^n \mu_i(x)\,\frac{\partial f}{\partial x_i}(x)
+		+ \sum_{i,j=1}^n M_{ij}(x)\,\frac{\partial^2 f}{\partial x_i\partial x_j}(x),
+		\]
+		其中 $M(x) = \tfrac12 \sigma(x)\sigma(x)^\mathsf{T}$。
+		
+		\textbf{Kolmogorov 方程：}
+		\[
+		\frac{\partial u}{\partial t}(t,x) = L u(t,x),\quad
+		u(0,x) = f(x).
+		\]
+		解具有随机表示
+		\[
+		u(t,x) = \mathbb{E}_x[f(X_t)],
+		\]
+		即条件在 $X_0 = x$ 下的期望。
+		
+		\vspace{0.5em}
+		
+		\textbf{空间离散思想：} 通过构造一个离散空间生成元 $Q$ 来近似 $L$，
+		然后使用连续时间随机游走（CTRW）在离散格点上模拟轨道，从而实现
+		SDE 的数值解。
+	\end{frame}
+	
+	%------------------------------------------------
+	\begin{frame}
+		\frametitle{离散生成元 $Q$ 与 CTRW 算法}
+		
+		\textbf{离散生成元：} 选定若干“反应通道” $x\to y_i(x)$，$1\le i\le K$，定义
+		\[
+		Q f(x) := \sum_{i=1}^K q(x,y_i(x))\big(f(y_i(x)) - f(x)\big),
+		\]
+		其中 $q(x,y)$ 为从 $x$ 跳到 $y$ 的速率函数。
+		
+		\vspace{0.5em}
+		
+		\textbf{连续时间随机游走（CTRW）算法：} 给定当前状态 $X(t)=x$。
+		
+		\begin{enumerate}
+			\item 生成指数分布等待时间：
+			\[
+			\tau \sim \mathrm{Exp}(\lambda(x)),\quad
+			\lambda(x) = \sum_{i=1}^K q(x,y_i(x)).
+			\]
+			\item 以概率
+			\[
+			\mathbb{P}(X(t+\tau)=y_i(x)\mid X(t)=x)
+			= \frac{q(x,y_i(x))}{\lambda(x)}
+			\]
+			更新状态 $x\to y_i(x)$。
+		\end{enumerate}
+		
+		该过程对应一个具有生成元 $Q$ 的连续时间马尔可夫链，用来近似原 SDE 的路径行为。
+	\end{frame}
+	
+	%------------------------------------------------
+	\begin{frame}
+		\frametitle{空间离散格式：$Q_u$ 与 $Q_c$（Bou-Rabee \& Vanden-Eijnden, 2018）}
+		
+		考虑对角扩散矩阵情形，令 $M_{ii}(x) = \sigma^2_{ii}(x)/2$，$h_i^+(x)$ 和 $h_i^-(x)$
+		为第 $i$ 方向上的前/后向网格步长，$h_i(x)$ 为它们的平均值。
+		
+		\textbf{有限差分离散（$Q_u$）：}
+		\[
+		\begin{aligned}
+			Q_u f(x)
+			= \sum_{i=1}^n &
+			\Bigg[ \Big( \frac{\mu_i(x)\vee 0}{h_i^+(x)}
+			+ \frac{M_{ii}(x)}{h_i(x)h_i^+(x)} \Big)
+			\big(f(x + h_i^+(x) e_i) - f(x)\big) \\
+			&\quad + \Big( \frac{-\mu_i(x)\wedge 0}{h_i^-(x)}
+			+ \frac{M_{ii}(x)}{h_i(x)h_i^-(x)} \Big)
+			\big(f(x - h_i^-(x) e_i) - f(x)\big) \Bigg].
+		\end{aligned}
+		\]
+		
+		\textbf{有限体积离散（$Q_c$）：}
+		\[
+		\begin{aligned}
+			Q_c f(x)
+			= \sum_{i=1}^n &\,
+			\frac{M_{ii}(x)}{h_i(x)h_i^+(x)}
+			\exp\!\Big(\frac{\mu_i(x) h_i^+(x)}{2M_{ii}(x)}\Big)
+			\big(f(x + h_i^+(x)e_i) - f(x)\big) \\
+			&+ \frac{M_{ii}(x)}{h_i(x)h_i^-(x)}
+			\exp\!\Big(-\frac{\mu_i(x) h_i^-(x)}{2M_{ii}(x)}\Big)
+			\big(f(x - h_i^-(x)e_i) - f(x)\big).
+		\end{aligned}
+		\]
+		
+		$Q_c$ 具有二阶精度，$Q_u$ 为一阶精度。
+	\end{frame}
+	
+	%------------------------------------------------
+	\begin{frame}
+		\frametitle{空间离散方法的优缺点与改进需求}
+		
+		\textbf{优点：}
+		\begin{itemize}
+			\item 对 SDE 的有限时间和长时间模拟都具有数值稳定性。
+			\item 在一定意义上可以缓解维数灾难（特别是与混合方法结合时）。
+			\item 在构造上可以实现“无网格”（gridless）或自适应网格。
+		\end{itemize}
+		
+		\textbf{缺点：}
+		\begin{itemize}
+			\item $Q_c$ 具备二阶精度，但其平均等待时间的渐近行为较差，
+			在小噪声情形下不适用。
+			\item $Q_u$ 在平均等待时间上表现较好，但只有一阶精度，
+			并可能引入额外的人工扩散。
+		\end{itemize}
+		
+		\vspace{0.5em}
+		
+		\textbf{结论：} 需要寻找一种兼具精度和良好渐近性质的改进 $Q$ 格式。
+		这也是后面 $Q_{\tilde u}$ 格式的出发点。
+	\end{frame}
+	
+	%------------------------------------------------
+	\begin{frame}
+		\frametitle{$Q_{\tilde u}$ 格式（Zu, 2023）}
+		
+		为了补偿 $Q_u$ 中由泊松近似引入的人工扩散，可以通过“减小有效扩散系数”来构造
+		改进格式 $Q_{\tilde u}$。
+		
+		定义
+		\[
+		\begin{aligned}
+			Q_{\tilde u} f(x) 
+			= \sum_{i=1}^n &\Big[
+			\big(\frac{\mu_i(x)\vee 0}{h_i(x)}
+			+ \frac{M_{ii}^+(x)}{h_i(x)h_i^+(x)}\big)
+			\big(f(x+h_i^+(x)e_i) - f(x)\big) \\
+			&\quad +
+			\big(\frac{-\mu_i(x)\wedge 0}{h_i(x)}
+			+ \frac{M_{ii}^-(x)}{h_i(x)h_i^-(x)}\big)
+			\big(f(x-h_i^-(x)e_i) - f(x)\big)\Big],
+		\end{aligned}
+		\]
+		其中
+		\[
+		M_{ii}^+(x) = \frac12\big(\sigma_{ii}^2(x) - |\mu_i(x)| h_i^+(x)\big)\vee 0,
+		\]
+		\[
+		M_{ii}^-(x) = \frac12\big(\sigma_{ii}^2(x) - |\mu_i(x)| h_i^-(x)\big)\vee 0.
+		\]
+		
+		该格式在保留二阶精度的同时，改进了平均等待时间的渐近性质，
+		尤其适合小噪声情形。
+	\end{frame}
+	
+	%------------------------------------------------
+	\begin{frame}
+		\frametitle{CTRW 算法（以 $h = \delta x_i^\pm = \delta x_i$ 为例）}
+		
+		\textbf{输入：} 网格上的初始值 $x_0$，终止时间 $T$。
+		
+		\textbf{输出：} 一条随机轨线 $X = \{\tilde X_t^{h}\}_{0\le t\le T}$。
+		
+		\begin{enumerate}
+			\item 置 $t \leftarrow 0$, $X \leftarrow x_0$。
+			\item \textbf{循环：} 当 $t < T$ 时
+			\begin{enumerate}
+				\item 对 $i=1,\dots,n$，根据选用的 $Q$ 格式
+				（$Q_{\tilde u}$ 或 $Q_c$ 或 $Q_u$）计算 $q_{i1},q_{i2}$。
+				\item 令 
+				\[
+				\lambda \leftarrow \sum_{i=1}^n (q_{i1} + q_{i2}).
+				\]
+				\item 生成 $\xi_1,\xi_2 \sim U(0,1)$，计算
+				$\tau \leftarrow -\ln(1-\xi_1)/\lambda$，更新 $t \leftarrow t + \tau$。
+				\item 根据 $\xi_2$ 和权重 $\{q_{i1},q_{i2}\}$ 选定要跳的坐标方向 $i$ 和前/后向
+				$j\in\{1,2\}$，并更新
+				\[
+				X \leftarrow X + (-1)^{j-1} h e_i.
+				\]
+			\end{enumerate}
+			\item 结束循环。
+		\end{enumerate}
+		
+		在实际实现中可使用 C++(Ofast, OpenMP 并行) 或 Python(numba 并行) 来加速。
+	\end{frame}
+	
+	%------------------------------------------------
+	\begin{frame}
+		\frametitle{$Q_{\tilde u}$ 与 $Q_c$ 的二阶矩比较与平均等待时间}
+		
+		设 $\{\tilde X_t^{h}\}_{t\ge 0}$ 与 $\{\hat X_t^{h}\}_{t\ge 0}$ 分别为
+		$Q_{\tilde u}$ 与 $Q_c$ 生成的马尔可夫过程，假设 $\tilde X_t^{h} = \hat X_t^{h} = x$，
+		且 $\sigma(x)$ 对角、步长 $h$ 足够小并满足
+		\[
+		\sigma^2_{ii}(x) > |\mu_i(x)|h.
+		\]
+		
+		\textbf{定理（Zu, 2023）：}
+		记 $\tau_u$ 与 $\tau_c$ 为对应的平均等待时间，则有
+		\[
+		\mathbb{E}\tilde X^{h}_{t+\tau_u} 
+		= \mathbb{E}\hat X^{h}_{t+\tau_c} + O(h^4),
+		\]
+		且
+		\[
+		\mathbb{E}\big|\tilde X^{h}_{t+\tau_u}
+		- \mathbb{E}\tilde X^{h}_{t+\tau_u}\big|^2
+		= \mathbb{E}\big|\hat X^{h}_{t+\tau_c}
+		- \mathbb{E}\hat X^{h}_{t+\tau_c}\big|^2 + O(h^4).
+		\]
+		
+		\vspace{0.5em}
+		
+		\textbf{平均等待时间的渐近分析：} 对于一维 SDE
+		\[
+		\mathrm{d}X_t = \mu(X_t)\,\mathrm{d}t + \sigma\,\mathrm{d}W_t,
+		\]
+		若 $\mathrm{sign}(x)\mu(x) \to -\infty$（$|x|\to\infty$），则
+		\begin{itemize}
+			\item $Q_{\tilde u}$ 与 $Q_u$ 的平均等待时间渐近上与真实过程一致；
+			\item $Q_c$ 的平均等待时间渐近行为不正确（Bou-Rabee \& Vanden-Eijnden, 2018）。
+		\end{itemize}
+	\end{frame}
+	
+% ===============================================
 	\begin{frame}{It\^o 扩散与无穷小生成元}
 		\begin{itemize}
 			\item 考虑 $\mathbb R^d$ 上的 It\^o 扩散
@@ -137,50 +539,25 @@
 		\end{itemize}
 	\end{frame}
 	
+
 	%--------------------------------------
-	\begin{frame}{时间离散：驯服/截断 Euler--Maruyama}
-		\begin{itemize}
-			\item 	\( [\text{Hutzenthaler--Jentzen--Kloeden, 2011, Proc. R. Soc. A}]. \)
-			对非全局 Lipschitz 系数，经典 EM 可能发散
-
-			
-			\item 		\( [\text{Hutzenthaler--Jentzen--Kloeden, 2012, Ann. Appl. Probab.}] \) 驯服 Euler--Maruyama（tamed EM）：
-			\[
-			X_{k+1}
-			= X_k + \frac{\mu(X_k)}{1+\delta |\mu(X_k)|}\,\delta
-			+ \sigma(X_k)\Delta W_k.
-			\]
-	
-			
-			\item 			\(
-			 [\text{ Mao, 2015, J. Comput. Appl. Math.}] \) 截断 Euler--Maruyama（truncated EM）：
-			\begin{itemize}
-				\item 在 $B(0,h(\Delta))$ 内截断漂移和扩散，使其有界且满足全局 Lipschitz；
-				\item 对截断后的系数使用标准 EM.
-			\end{itemize}
-			
-			\item 在 Khasminskii 型条件下，两者均保持 $1/2$ 阶强收敛.
-		\end{itemize}
-	\end{frame}
-	
-	%--------------------------------------
-	\begin{frame}{本章小结：理论基础}
-		\begin{itemize}
-			\item \( [\text{E--Li--Vanden-Eijnden, 2019, Applied Stochastic Analysis, AMS}]. \) It\^o 扩散的无穷小生成元 $L$ 将 SDE 与偏微分方程统一到同一框架
-
-			
-			CTRW/$Q$ 过程通过离散生成元构造有限状态的马尔可夫跳跃过程
-
-			
-			\item \( [\text{Hutzenthaler--Jentzen--Kloeden, 2012, Ann. Appl. Probab.;} \)
-			\(\text{ Mao--Szpruch, 2013, Ann. Appl. Probab.;}\)
-			\(\text{ Mao, 2015, J. Comput. Appl. Math.}]. \)
-			
-			驯服/截断 EM 在局部 Lipschitz 和 Khasminskii 条件下仍具有良好的强收敛性质
-			
-			\item 这些结果为后续的 MFPT、逃逸概率 以及 work--error 比较提供了理论基础.
-		\end{itemize}
-	\end{frame}
+%	\begin{frame}{本章小结：理论基础}
+%		\begin{itemize}
+%			\item \( [\text{E--Li--Vanden-Eijnden, 2019, Applied Stochastic Analysis, AMS}]. \) It\^o 扩散的无穷小生成元 $L$ 将 SDE 与偏微分方程统一到同一框架
+%
+%			
+%			CTRW/$Q$ 过程通过离散生成元构造有限状态的马尔可夫跳跃过程
+%
+%			
+%			\item \( [\text{Hutzenthaler--Jentzen--Kloeden, 2012, Ann. Appl. Probab.;} \)
+%			\(\text{ Mao--Szpruch, 2013, Ann. Appl. Probab.;}\)
+%			\(\text{ Mao, 2015, J. Comput. Appl. Math.}]. \)
+%			
+%			驯服/截断 EM 在局部 Lipschitz 和 Khasminskii 条件下仍具有良好的强收敛性质
+%			
+%			\item 这些结果为后续的 MFPT、逃逸概率 以及 work--error 比较提供了理论基础.
+%		\end{itemize}
+%	\end{frame}
 	
 	%======================================
 	\section{固定空间距离跨越时间的比较}
@@ -211,7 +588,7 @@
 	%--------------------------------------
 	\begin{frame}{漂移主导时间与空间离散平均驻留时间}
 		\begin{itemize}
-			\item  			\( [\text{Hanggi--Talkner--Borkovec, 1990, Rev. Mod. Phys.}]. \)
+			\item  			%\( [\text{Hanggi--Talkner--Borkovec, 1990, Rev. Mod. Phys.}]. \)
 			
 			漂移主导时间
 			\[
@@ -223,8 +600,7 @@
 			= \frac{\delta}{|\mu(x)|}
 			- \frac{\mu'(x)}{2\mu(x)^2}\,\delta^2 + \mathcal O(\delta^3),
 			\]
-			这一思想与 Kramers 反应率理论中的漂移主导项类似
-
+			%这一思想与 Kramers 反应率理论中的漂移主导项类似
 			
 			\item CTRW 中，状态 $x_i$ 的跳出速率
 			\[
@@ -233,10 +609,29 @@
 			t^u = \frac1{\lambda(x_i)} \approx \frac{h}{|\mu(x_i)|}.
 			\]
 			
-			\item 空间离散平均驻留时间 $t^u$ 与 $t^{e}$ 的比较，是评估 CTRW 在强漂移极限下时间刻画能力的核心.
+			\item 空间离散平均驻留时间 $t^u$ 与 $t^{e}$ 的比较，是评估 CTRW在大漂移情况下模型刻画能力的核心.
 		\end{itemize}
 	\end{frame}
 	
+	\begin{frame}{MFPT 与连续模型的 PDE 表述}
+		\begin{itemize}
+			\item 	\( [\text{Weinan E等, 2021, Applied Stochastic Analysis, Amer. Math.
+			}] .\)
+			
+			对一维 SDE，以区间端点为吸收边界，平均首达时间 $m(x)$ 满足
+			\[
+			\mu(x) m'(x) + \frac{\sigma^2}{2}m''(x) = -1,
+			\]
+			并配以吸收或反射边界条件
+			
+			
+			\item 漂移主导时间 $t^{e}$ 可视为该 PDE 解在强漂移极限下的主导项.
+			
+			\item 时间离散驯服/截断 EM 通过时间步进模拟路径，统计首达时间样本得到 $t^\delta,t^\Delta$.
+		\end{itemize}
+	\end{frame}
+	
+	%--------------------------------------
 	%--------------------------------------
 	\begin{frame}
 		\begin{theorem}[空间离散平均驻留时间的渐近一致性]
@@ -281,66 +676,8 @@
 	\end{frame}
 	
 	%--------------------------------------
-	\begin{frame}{MFPT 与连续模型的 PDE 表述}
-		\begin{itemize}
-			\item 			\( [\text{Hanggi--Talkner--Borkovec, 1990, Rev. Mod. Phys.}] .\)
-			
-			对一维 SDE，以区间端点为吸收边界，平均首达时间 $m(x)$ 满足
-			\[
-			\mu(x) m'(x) + \frac{\sigma^2}{2}m''(x) = -1,
-			\]
-			并配以吸收或反射边界条件
+	
 
-			
-			\item 漂移主导时间 $t^{e}$ 可视为该 PDE 解在强漂移极限下的主导项.
-			
-			\item 时间离散驯服/截断 EM 通过时间步进模拟路径，统计首达时间样本得到 $t^\delta,t^\Delta$.
-		\end{itemize}
-	\end{frame}
-	
-	%--------------------------------------
-	\begin{frame}
-		\begin{theorem}[驯服 Euler 方法的 MFPT 渐近与误差]
-			设 $\mu\in C^2$ 在 $x$ 的邻域内单调，且 $\mu(x)<0$，$\sigma$ 有界.
-			在极限 $x\to\infty,\ \delta/x\to 0,\ \Delta\to 0$ 下，驯服 EM 下从 $x$ 向左跨越距离 $\delta$ 的 MFPT $t^\delta$ 满足
-			\begin{align*}
-				t^\delta
-				&= \frac{\delta}{|\mu(x)|}
-				+ \delta\,\Delta
-				+ \mathcal O\big(\Delta^2\delta\big)
-				+ \mathcal O\big(\delta^{2}|\mu|^{-2}|\mu'|\big), \\
-				t^\delta - t^{e}
-				&= \delta\,\Delta
-				- \frac{\mu'(x)}{2\mu(x)^2}\,\delta^2
-				+ o(\Delta\delta) + o(\delta^2).
-			\end{align*}
-		\end{theorem}
-		以主导项 $\delta/|\mu(x)|$ 计，相对误差主要由 $\Delta |\mu(x)|$ 控制.
-	\end{frame}
-	
-	%--------------------------------------
-	\begin{frame}
-		\begin{theorem}[截断 Euler--Maruyama 方法的 MFPT 渐近与误差]
-			沿用上面的设定，设截断半径 $h(\Delta)$ 使得在 $[x-\delta,x]$ 内截断生效（$x\gg h(\Delta)$）.
-			则存在常数 $c>0$ 使得
-			\[
-			t^{\Delta}
-			= \frac{\delta}{|\mu(h(\Delta))|}
-			+ \mathcal O(\delta^2),
-			\]
-			并且
-			\[
-			t^{\Delta}-t^{e}
-			= \delta\!\left(
-			\frac{1}{|\mu(h(\Delta))|}
-			- \frac{1}{|\mu(x)|}
-			\right)
-			+ \mathcal O(\delta^2).
-			\]
-		\end{theorem}
-		对立方漂移 $\mu(y)=-y^3$，若取常用约束 $\Delta^{1/4}h(\Delta)\le 1$，则要求 $\Delta$ 随 $x$ 急剧减小才能保持给定的相对误差，这限制了截断 EM 的适用范围.
-	\end{frame}
-	
 	
 	\begin{frame}{一维立方振子模型不同格式的比较}
 		在一维立方振子模型中，即\(\mu(x)=-x^{3}\) 时，

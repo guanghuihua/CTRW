@@ -1,7 +1,0 @@
-\beamer@sectionintoc {1}{研究背景与意义}{3}{0}{1}
-\beamer@sectionintoc {2}{主要研究内容}{6}{0}{2}
-\beamer@sectionintoc {3}{理论基础}{8}{0}{3}
-\beamer@sectionintoc {4}{固定空间距离跨越时间比较}{12}{0}{4}
-\beamer@sectionintoc {5}{随机Canard系统分析}{17}{0}{5}
-\beamer@sectionintoc {6}{结论与展望}{28}{0}{6}
-\beamer@sectionintoc {7}{致谢}{32}{0}{7}
