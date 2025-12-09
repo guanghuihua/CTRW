@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  10 DEC 2025 02:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  10 DEC 2025 03:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1264,26 +1264,28 @@ Overfull \vbox (11.24506pt too high) detected at line 261
 [13
 
 ]
-<fig/cubic_ssa_stationary.png, id=305, 462.528pt x 346.896pt>
+<fig/cubic_ssa_stationary.png, id=305, 578.16pt x 361.35pt>
 File: fig/cubic_ssa_stationary.png Graphic file (type png)
 <use fig/cubic_ssa_stationary.png>
-Package pdftex.def Info: fig/cubic_ssa_stationary.png  used on input line 462.
-(pdftex.def)             Requested size: 164.30028pt x 123.22568pt.
+Package pdftex.def Info: fig/cubic_ssa_stationary.png  used on input line 449.
+(pdftex.def)             Requested size: 147.86923pt x 92.41595pt.
 <fig/cubic_em_stationary.png, id=307, 578.16pt x 361.35pt>
 File: fig/cubic_em_stationary.png Graphic file (type png)
 <use fig/cubic_em_stationary.png>
-Package pdftex.def Info: fig/cubic_em_stationary.png  used on input line 462.
-(pdftex.def)             Requested size: 164.30028pt x 102.68808pt.
+Package pdftex.def Info: fig/cubic_em_stationary.png  used on input line 449.
+(pdftex.def)             Requested size: 147.86923pt x 92.41595pt.
 
-Overfull \hbox (162.84328pt too wide) detected at line 462
-[]\OML/cmm/m/it/10 ^^Z[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 ^^W[][] \OT1/cms
-s/m/n/10 = []\OML/cmm/m/it/10 ;  []^^Z[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 
-^^W[][] \OT1/cmss/m/n/10 = []\OML/cmm/m/it/10 ;  []^^Z[] \OMS/cmsy/m/n/10 ^^@ \
-OML/cmm/m/it/10 ^^W[][] \OT1/cmss/m/n/10 = []\OML/cmm/m/it/10 :
+Overfull \hbox (117.28444pt too wide) detected at line 449
+\OMS/cmsy/m/n/10 k\OML/cmm/m/it/10 ^^Z[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 
+^^W\OMS/cmsy/m/n/10 k[] ^^Y \OT1/cmss/m/n/10 2\OML/cmm/m/it/10 :\OT1/cmss/m/n/1
+0 422 \OMS/cmsy/m/n/10 ^^B \OT1/cmss/m/n/10 10[]\OML/cmm/m/it/10 ;  \OMS/cmsy/m
+/n/10 k\OML/cmm/m/it/10 ^^Z[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 ^^W\OMS/cms
+y/m/n/10 k[] ^^Y \OT1/cmss/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmss/m/n/10 134 \OMS/
+cmsy/m/n/10 ^^B \OT1/cmss/m/n/10 10[]\OML/cmm/m/it/10 :
  []
 
 
-Overfull \vbox (253.85745pt too high) detected at line 462
+Overfull \vbox (20.10095pt too high) detected at line 449
  []
 
 
@@ -1291,6 +1293,29 @@ Overfull \vbox (253.85745pt too high) detected at line 462
 [14
 
  <./fig/cubic_ssa_stationary.png> <./fig/cubic_em_stationary.png>]
+File: fig/cubic_ssa_stationary.png Graphic file (type png)
+<use fig/cubic_ssa_stationary.png>
+Package pdftex.def Info: fig/cubic_ssa_stationary.png  used on input line 508.
+(pdftex.def)             Requested size: 147.86923pt x 92.41595pt.
+File: fig/cubic_em_stationary.png Graphic file (type png)
+<use fig/cubic_em_stationary.png>
+Package pdftex.def Info: fig/cubic_em_stationary.png  used on input line 508.
+(pdftex.def)             Requested size: 147.86923pt x 92.41595pt.
+
+Overfull \hbox (95.38438pt too wide) detected at line 508
+\OMS/cmsy/m/n/10 k\OML/cmm/m/it/10 ^^Z[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 
+^^W\OMS/cmsy/m/n/10 k[] ^^Y \OT1/cmss/m/n/10 2\OML/cmm/m/it/10 :\OT1/cmss/m/n/1
+0 422 \OMS/cmsy/m/n/10 ^^B \OT1/cmss/m/n/10 10[]\OML/cmm/m/it/10 ;  \OMS/cmsy/m
+/n/10 k\OML/cmm/m/it/10 ^^Z[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 ^^W\OMS/cms
+y/m/n/10 k[] ^^Y \OT1/cmss/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmss/m/n/10 134 \OMS/
+cmsy/m/n/10 ^^B \OT1/cmss/m/n/10 10[]\OML/cmm/m/it/10 :
+ []
+
+
+Overfull \vbox (30.10095pt too high) detected at line 508
+ []
+
+
 
 [15
 
@@ -1331,15 +1356,15 @@ Overfull \vbox (253.85745pt too high) detected at line 462
 [24
 
 ]
-<fig/Absolute_error.png, id=482, 505.89pt x 361.35pt>
+<fig/Absolute_error.png, id=478, 505.89pt x 361.35pt>
 File: fig/Absolute_error.png Graphic file (type png)
 <use fig/Absolute_error.png>
-Package pdftex.def Info: fig/Absolute_error.png  used on input line 712.
+Package pdftex.def Info: fig/Absolute_error.png  used on input line 738.
 (pdftex.def)             Requested size: 164.30028pt x 117.36017pt.
-<fig/Error_ratio.png, id=483, 505.89pt x 361.35pt>
+<fig/Error_ratio.png, id=479, 505.89pt x 361.35pt>
 File: fig/Error_ratio.png Graphic file (type png)
 <use fig/Error_ratio.png>
-Package pdftex.def Info: fig/Error_ratio.png  used on input line 712.
+Package pdftex.def Info: fig/Error_ratio.png  used on input line 738.
 (pdftex.def)             Requested size: 164.30028pt x 117.36017pt.
 
 
@@ -1366,17 +1391,17 @@ Package pdftex.def Info: fig/Error_ratio.png  used on input line 712.
 [30
 
 ]
-<fig/Sample_trajectories_100.png, id=549, 433.62pt x 361.35pt>
+<fig/Sample_trajectories_100.png, id=547, 433.62pt x 361.35pt>
 File: fig/Sample_trajectories_100.png Graphic file (type png)
 <use fig/Sample_trajectories_100.png>
-Package pdftex.def Info: fig/Sample_trajectories_100.png  used on input line 86
-6.
+Package pdftex.def Info: fig/Sample_trajectories_100.png  used on input line 89
+2.
 (pdftex.def)             Requested size: 164.30028pt x 136.91743pt.
-<fig/Fast_jump_time_distribution_100.png, id=550, 433.62pt x 289.08pt>
+<fig/Fast_jump_time_distribution_100.png, id=548, 433.62pt x 289.08pt>
 File: fig/Fast_jump_time_distribution_100.png Graphic file (type png)
 <use fig/Fast_jump_time_distribution_100.png>
 Package pdftex.def Info: fig/Fast_jump_time_distribution_100.png  used on input
- line 866.
+ line 892.
 (pdftex.def)             Requested size: 164.30028pt x 109.53394pt.
 
 
@@ -1384,36 +1409,36 @@ Package pdftex.def Info: fig/Fast_jump_time_distribution_100.png  used on input
 
  <./fig/Sample_trajectories_100.png> <./fig/Fast_jump_time_distribution_100.png
 >]
-<fig/Occupancy_100.png, id=561, 794.97pt x 289.08pt>
+<fig/Occupancy_100.png, id=559, 794.97pt x 289.08pt>
 File: fig/Occupancy_100.png Graphic file (type png)
 <use fig/Occupancy_100.png>
-Package pdftex.def Info: fig/Occupancy_100.png  used on input line 879.
+Package pdftex.def Info: fig/Occupancy_100.png  used on input line 905.
 (pdftex.def)             Requested size: 239.60567pt x 87.13048pt.
 
 
 [32
 
  <./fig/Occupancy_100.png>]
-<fig/committor_heatmap.jpg, id=570, 434.3427pt x 339.669pt>
+<fig/committor_heatmap.jpg, id=568, 434.3427pt x 339.669pt>
 File: fig/committor_heatmap.jpg Graphic file (type jpg)
 <use fig/committor_heatmap.jpg>
-Package pdftex.def Info: fig/committor_heatmap.jpg  used on input line 899.
+Package pdftex.def Info: fig/committor_heatmap.jpg  used on input line 925.
 (pdftex.def)             Requested size: 106.5839pt x 83.3555pt.
-<fig/committor_trunc_heatmap.png, id=571, 434.3427pt x 339.669pt>
+<fig/committor_trunc_heatmap.png, id=569, 434.3427pt x 339.669pt>
 File: fig/committor_trunc_heatmap.png Graphic file (type png)
 <use fig/committor_trunc_heatmap.png>
-Package pdftex.def Info: fig/committor_trunc_heatmap.png  used on input line 89
-9.
+Package pdftex.def Info: fig/committor_trunc_heatmap.png  used on input line 92
+5.
 (pdftex.def)             Requested size: 106.5839pt x 83.3555pt.
-<fig/mfpt_heatmap.jpg, id=572, 431.4519pt x 339.669pt>
+<fig/mfpt_heatmap.jpg, id=570, 431.4519pt x 339.669pt>
 File: fig/mfpt_heatmap.jpg Graphic file (type jpg)
 <use fig/mfpt_heatmap.jpg>
-Package pdftex.def Info: fig/mfpt_heatmap.jpg  used on input line 899.
+Package pdftex.def Info: fig/mfpt_heatmap.jpg  used on input line 925.
 (pdftex.def)             Requested size: 105.87451pt x 83.3555pt.
-<fig/mfpt_trunc_heatmap.png, id=573, 436.5108pt x 339.669pt>
+<fig/mfpt_trunc_heatmap.png, id=571, 436.5108pt x 339.669pt>
 File: fig/mfpt_trunc_heatmap.png Graphic file (type png)
 <use fig/mfpt_trunc_heatmap.png>
-Package pdftex.def Info: fig/mfpt_trunc_heatmap.png  used on input line 899.
+Package pdftex.def Info: fig/mfpt_trunc_heatmap.png  used on input line 925.
 (pdftex.def)             Requested size: 107.11592pt x 83.3555pt.
 
 
@@ -1421,12 +1446,12 @@ Package pdftex.def Info: fig/mfpt_trunc_heatmap.png  used on input line 899.
 
  <./fig/committor_heatmap.jpg> <./fig/committor_trunc_heatmap.png> <./fig/mfpt_
 heatmap.jpg> <./fig/mfpt_trunc_heatmap.png>]
-<fig/work_error_committor_trunc_vs_ctrw.pdf, id=583, 427.40387pt x 317.11801pt>
+<fig/work_error_committor_trunc_vs_ctrw.pdf, id=581, 427.40387pt x 317.11801pt>
 
 File: fig/work_error_committor_trunc_vs_ctrw.pdf Graphic file (type pdf)
 <use fig/work_error_committor_trunc_vs_ctrw.pdf>
 Package pdftex.def Info: fig/work_error_committor_trunc_vs_ctrw.pdf  used on in
-put line 913.
+put line 939.
 (pdftex.def)             Requested size: 171.14764pt x 126.98528pt.
 
 
@@ -1485,13 +1510,13 @@ Package rerunfilecheck Info: File `ppt_V5_g.out' has not changed.
 (rerunfilecheck)             Checksum: C3F353DFB1EA49F73721D17405123F38;514.
  ) 
 Here is how much of TeX's memory you used:
- 28429 strings out of 473190
- 555485 string characters out of 5719980
- 894241 words of memory out of 5000000
- 50507 multiletter control sequences out of 15000+600000
- 667338 words of font info for 418 fonts, out of 8000000 for 9000
+ 28447 strings out of 473190
+ 555891 string characters out of 5719980
+ 888241 words of memory out of 5000000
+ 50514 multiletter control sequences out of 15000+600000
+ 670410 words of font info for 429 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 142i,16n,137p,693b,748s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 142i,16n,137p,693b,759s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/s
 imhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows
 /Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:
@@ -1548,13 +1573,12 @@ f-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb><d:/texlive/2025/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmssi8.pfb><d:/texlive/2025/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmsy10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmsy7.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmsy8.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.p
-fb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><
-d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on ppt_V5_g.pdf (42 pages, 910342 bytes).
+m/cmsy8.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
+m10.pfb>
+Output written on ppt_V5_g.pdf (42 pages, 911305 bytes).
 PDF statistics:
- 1185 PDF objects out of 1200 (max. 8388607)
- 750 compressed objects within 8 object streams
+ 1175 PDF objects out of 1200 (max. 8388607)
+ 744 compressed objects within 8 object streams
  116 named destinations out of 1000 (max. 500000)
  667 words of extra memory for PDF output out of 10000 (max. 10000000)
 

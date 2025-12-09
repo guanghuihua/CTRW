@@ -390,79 +390,123 @@
 	
 %--------------------------------------
 
-
-\begin{frame}{一维立方振子平稳分布的数值验证}
+\begin{frame}{一维立方振子平稳分布的比较}
 	
-	\begin{columns}[c]
-		%----------------------------------------------------- 左图：空间离散 SSA
+	\small
+	\begin{columns}[T,totalwidth=\textwidth]
+		
+		%====================== 左列：空间离散 ======================
 		\column{0.48\textwidth}
 		\centering
-		% 用 SSA/CTRW 代码画出的“数值平稳分布 vs 精确平稳分布”
-		\includegraphics[width=\linewidth]{cubic_ssa_stationary.png}
+		\includegraphics[width=0.9\linewidth]{cubic_ssa_stationary}
 		\vspace{0.3em}
 		
-		{\small 空间离散 SSA：$\rho_{\mathrm{SSA}}$ 与精确平稳分布 $\nu$ 的比较}
+		{\scriptsize 空间离散格式（CTRW/SSA）}
 		
-		%----------------------------------------------------- 右图：时间离散 EM
+		\vspace{0.3em}
+		\small
+		\begin{itemize}\itemsep2pt
+			\item 区间 \([-3,3]\) 上均匀网格，\(N=120\)，\(h=0.05\)。
+			\item 在网格上使用 SSA得到离散平稳密度近似 \(\rho_{\mathrm{SSA}}(x_i)\)。
+			\item 在同一网格上与精确平稳密度比较，离散 \(L^{1}\) 误差
+			\(\|\rho_{\mathrm{SSA}}-\nu\|_{L^{1}}
+			\approx 6.206\times 10^{-3}\)。
+		\end{itemize}
+		
+		%====================== 右列：时间离散 ======================
 		\column{0.48\textwidth}
 		\centering
-		% 用 tamed EM + truncated EM 代码画出的“数值平稳分布 vs 精确平稳分布”
-		\includegraphics[width=\linewidth]{cubic_em_stationary.png}
+		\includegraphics[width=0.9\linewidth]{cubic_em_stationary}
 		\vspace{0.3em}
 		
-		{\small 时间离散 tamed / truncated EM：$\rho_{\mathrm{tamed}}$, $\rho_{\mathrm{trunc}}$ 与 $\nu$ 的比较}
+		{\scriptsize 时间离散格式（tamed EM / truncated EM）}
+		
+		\vspace{0.3em}
+		\small
+		\begin{itemize}\itemsep2pt
+%			\item 使用相同的空间网格 \([-3,3]\)，\(N=120\)，\(h=0.05\)，
+			\item 仅在时间方向离散，时间步长 \(\Delta t = 0.001\)。
+			
+			\item 对两种时间离散轨道在相同网格上做直方图统计并归一化，
+			得到 \(\rho_{\mathrm{tamed}}(x_i)\)、\(\rho_{\mathrm{trunc}}(x_i)\)。
+%			\item 与精确平稳密度在同一网格上比较，
+			\item 离散 \(L^{1}\) 误差为
+			\[
+			\|\rho_{\mathrm{tamed}}-\nu\|_{L^{1}}
+			\approx 2.422\times 10^{-2},\quad
+			\|\rho_{\mathrm{trunc}}-\nu\|_{L^{1}}
+			\approx 1.134\times 10^{-2}.
+			\]
+		\end{itemize}
 		
 	\end{columns}
 	
-	\vspace{0.6em}
-	
-	\small
-	\begin{itemize}
-		\item 模型：一维立方振子
-		\[
-		dX_t = -X_t^{3}\,dt + \sqrt{2}\,dW_t,
-		\]
-		其精确平稳密度为
-		\[
-		\nu(x) = Z^{-1} \exp\!\bigl(-\tfrac{1}{4}x^{4}\bigr), 
-		\qquad
-		Z = \int_{\mathbb{R}} \exp\!\bigl(-\tfrac{1}{4}x^{4}\bigr)\,dx,
-		\]
-		在代码中用数值积分函数 \texttt{KK()} 进行计算。
-		\item 比较方法（空间与时间离散统一到同一空间网格上）：
-		\begin{itemize}
-			\item 取区间 $[-3,3]$，网格数 $N=120$，网格宽度 $h = \tfrac{6}{120}$，
-			网格节点取为 $x_i = -3 + (i+\tfrac12)h$，$i=0,\dots,N-1$。
-			\item 空间离散（CTRW/SSA）：在网格上构造马尔可夫链，长时间运行 SSA，
-			统计落入每个网格单元的访问频率，得到离散平稳密度近似
-			$\rho_{\mathrm{SSA}}(x_i)$。
-			\item 时间离散（tamed EM / truncated EM）：在连续空间中用步长 $\Delta t$
-			进行时间步进，长时间轨道上对 $X_t$ 做直方图统计（只在同一网格上计数），
-			得到 $\rho_{\mathrm{tamed}}(x_i)$、$\rho_{\mathrm{trunc}}(x_i)$。
-		\end{itemize}
-		\item 在同一网格 $\{x_i\}$ 上，对数值平稳密度与精确平稳密度的差计算离散的
-		$L^1$ 误差：
-		\[
-		\bigl\|\rho_{\mathrm{num}} - \nu\bigr\|_{L^1}
-		\approx
-		\sum_{i=0}^{N-1} 
-		\bigl|\rho_{\mathrm{num}}(x_i) - \nu(x_i)\bigr|\,h.
-		\]
-		\item 数值结果（把自己代码算出的数值填入下面的占位符）：
-		\[
-		\bigl\|\rho_{\mathrm{SSA}}   - \nu\bigr\|_{L^1} 
-		= \text{(SSA 的误差)},\quad
-		\bigl\|\rho_{\mathrm{tamed}} - \nu\bigr\|_{L^1} 
-		= \text{(tamed EM 的误差)},\quad
-		\bigl\|\rho_{\mathrm{trunc}} - \nu\bigr\|_{L^1} 
-		= \text{(truncated EM 的误差)}.
-		\]
-	\end{itemize}
+	\vspace{0.2em}
+	\scriptsize
+	在该一维立方振子例子中，空间离散 SSA 给出的平稳密度最接近精确分布；
+	时间离散方法中 truncated EM 明显优于 tamed EM，但整体误差仍略大于 SSA。
 	
 \end{frame}
 
-
 %--------------------------------------
+
+\begin{frame}{一维立方振子平稳分布的比较}
+	
+	\small
+	\begin{columns}[T,totalwidth=\textwidth]
+		
+		%====================== 左列：空间离散 ======================
+		\column{0.48\textwidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{cubic_ssa_stationary}
+		\vspace{0.3em}
+		
+		{\scriptsize 空间离散格式（CTRW/SSA）}
+		
+		\vspace{0.3em}
+		\small
+			区间 \([-3,3]\) 上均匀网格，\(N=120\)，\(h=0.05\)
+			
+			在网格上构造连续时间马尔可夫链，使用 SSA 产生长时间轨道。
+			
+			统计轨道落入每个网格单元的访问次数，并按总访问次数与 \(h\) 归一化，得到离散平稳密度近似 \(\rho_{\mathrm{SSA}}(x_i)\)。在同一网格上与精确平稳密度比较，离散 \(L^{1}\) 误差
+			\(\|\rho_{\mathrm{SSA}}-\nu\|_{L^{1}}
+			\approx 6.206\times 10^{-3}\)。
+	
+		
+		%====================== 右列：时间离散 ======================
+		\column{0.48\textwidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{cubic_em_stationary}
+		\vspace{0.3em}
+		
+		{\scriptsize 时间离散格式（tamed EM / truncated EM）}
+		
+		\vspace{0.3em}
+		\small
+
+			使用相同的空间网格 \([-3,3]\)，\(N=120\)，\(h=0.05\)，
+			仅在时间方向离散，时间步长 \(\Delta t = 0.001\)。
+			
+			 对两种时间离散轨道在相同网格上做直方图统计并归一化，
+			得到 \(\rho_{\mathrm{tamed}}(x_i)\)、\(\rho_{\mathrm{trunc}}(x_i)\)。
+			与精确平稳密度在同一网格上比较，离散 \(L^{1}\) 误差为
+			\[
+			\|\rho_{\mathrm{tamed}}-\nu\|_{L^{1}}
+			\approx 2.422\times 10^{-2},\quad
+			\|\rho_{\mathrm{trunc}}-\nu\|_{L^{1}}
+			\approx 1.134\times 10^{-2}.
+			\]
+		
+	\end{columns}
+	
+	\vspace{0.2em}
+	\scriptsize
+	在该一维立方振子例子中，空间离散 SSA 给出的平稳密度最接近精确分布；
+	时间离散方法中 truncated EM 明显优于 tamed EM，但整体误差仍略大于 SSA。
+	
+\end{frame}
+%------------------------------------------------
 \begin{frame}{本文研究内容与主要贡献}
 	\begin{itemize}
 		\item 问题：设置合理的比较准则来进行两种数值方法的比较.
@@ -587,25 +631,7 @@
 		\end{itemize}
 	\end{frame}
 	
-	\begin{frame}{MFPT 与连续模型的 PDE 表述}
-		\begin{itemize}
-			\item 	\( [\text{Weinan E等, 2021, Applied Stochastic Analysis, Amer. Math.
-			}] .\)
-			
-			对一维 SDE，以区间端点为吸收边界，平均首达时间 $m(x)$ 满足
-			\[
-			\mu(x) m'(x) + \frac{\sigma^2}{2}m''(x) = -1,
-			\]
-			并配以吸收或反射边界条件
-			
-			
-			\item 漂移主导时间 $t^{e}$ 可视为该 PDE 解在强漂移极限下的主导项.
-			
-			\item 时间离散驯服/截断 EM 通过时间步进模拟路径，统计首达时间样本得到 $t^\delta,t^\Delta$.
-		\end{itemize}
-	\end{frame}
-	
-	%--------------------------------------
+
 	%--------------------------------------
 	\begin{frame}
 		\begin{theorem}[空间离散平均驻留时间的渐近一致性]
