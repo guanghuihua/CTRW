@@ -156,7 +156,7 @@ def run_experiment(x_list: List[float],
     return results
 
 # Run demo
-x_list = [5.0, 8.0, 12.0, 16.0, 20.0]
+x_list = [1.0, 50.0, 150.0, 200.0, 250.0, 300.0]
 delta = 0.1
 h = 1e-3
 dt_tamed = 1e-5

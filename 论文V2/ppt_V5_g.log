@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  9 DEC 2025 00:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  10 DEC 2025 02:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1177,30 +1177,35 @@ e.sfd}) [1
 [2
 
 ]
-Package CJKpunct Info: use punctuation spaces for family 'zhhei' with punctstyl
-e (quanjiao) on input line 53.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 53.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 68.
 
  (d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 53.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 68.
 
 
 (d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 53.
+ut line 68.
 
 (d:/texlive/2025/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
 )
+Package CJKpunct Info: use punctuation spaces for family 'zhhei' with punctstyl
+e (quanjiao) on input line 68.
+
 
 [3
 
 ]
+Overfull \vbox (2.62433pt too high) detected at line 103
+ []
+
+
 
 [4
 
@@ -1217,10 +1222,28 @@ thkerncmss.
 [7
 
 ]
+Overfull \vbox (8.10147pt too high) detected at line 223
+ []
+
+
 
 [8
 
 ]
+Overfull \hbox (1.54301pt too wide) detected at line 261
+[][]
+ []
+
+
+Overfull \hbox (2.70377pt too wide) detected at line 261
+[][]
+ []
+
+
+Overfull \vbox (11.24506pt too high) detected at line 261
+ []
+
+
 
 [9
 
@@ -1237,32 +1260,37 @@ thkerncmss.
 [12
 
 ]
-Overfull \vbox (8.10147pt too high) detected at line 337
- []
-
-
 
 [13
 
 ]
-Overfull \hbox (1.54301pt too wide) detected at line 375
-[][]
+<fig/cubic_ssa_stationary.png, id=305, 462.528pt x 346.896pt>
+File: fig/cubic_ssa_stationary.png Graphic file (type png)
+<use fig/cubic_ssa_stationary.png>
+Package pdftex.def Info: fig/cubic_ssa_stationary.png  used on input line 462.
+(pdftex.def)             Requested size: 164.30028pt x 123.22568pt.
+<fig/cubic_em_stationary.png, id=307, 578.16pt x 361.35pt>
+File: fig/cubic_em_stationary.png Graphic file (type png)
+<use fig/cubic_em_stationary.png>
+Package pdftex.def Info: fig/cubic_em_stationary.png  used on input line 462.
+(pdftex.def)             Requested size: 164.30028pt x 102.68808pt.
+
+Overfull \hbox (162.84328pt too wide) detected at line 462
+[]\OML/cmm/m/it/10 ^^Z[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 ^^W[][] \OT1/cms
+s/m/n/10 = []\OML/cmm/m/it/10 ;  []^^Z[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 
+^^W[][] \OT1/cmss/m/n/10 = []\OML/cmm/m/it/10 ;  []^^Z[] \OMS/cmsy/m/n/10 ^^@ \
+OML/cmm/m/it/10 ^^W[][] \OT1/cmss/m/n/10 = []\OML/cmm/m/it/10 :
  []
 
 
-Overfull \hbox (2.70377pt too wide) detected at line 375
-[][]
- []
-
-
-Overfull \vbox (11.24506pt too high) detected at line 375
+Overfull \vbox (253.85745pt too high) detected at line 462
  []
 
 
 
 [14
 
-]
+ <./fig/cubic_ssa_stationary.png> <./fig/cubic_em_stationary.png>]
 
 [15
 
@@ -1303,10 +1331,21 @@ Overfull \vbox (11.24506pt too high) detected at line 375
 [24
 
 ]
+<fig/Absolute_error.png, id=482, 505.89pt x 361.35pt>
+File: fig/Absolute_error.png Graphic file (type png)
+<use fig/Absolute_error.png>
+Package pdftex.def Info: fig/Absolute_error.png  used on input line 712.
+(pdftex.def)             Requested size: 164.30028pt x 117.36017pt.
+<fig/Error_ratio.png, id=483, 505.89pt x 361.35pt>
+File: fig/Error_ratio.png Graphic file (type png)
+<use fig/Error_ratio.png>
+Package pdftex.def Info: fig/Error_ratio.png  used on input line 712.
+(pdftex.def)             Requested size: 164.30028pt x 117.36017pt.
+
 
 [25
 
-]
+ <./fig/Absolute_error.png> <./fig/Error_ratio.png>]
 
 [26
 
@@ -1315,21 +1354,10 @@ Overfull \vbox (11.24506pt too high) detected at line 375
 [27
 
 ]
-<fig/Absolute_error.png, id=503, 505.89pt x 361.35pt>
-File: fig/Absolute_error.png Graphic file (type png)
-<use fig/Absolute_error.png>
-Package pdftex.def Info: fig/Absolute_error.png  used on input line 738.
-(pdftex.def)             Requested size: 164.30028pt x 117.36017pt.
-<fig/Error_ratio.png, id=505, 505.89pt x 361.35pt>
-File: fig/Error_ratio.png Graphic file (type png)
-<use fig/Error_ratio.png>
-Package pdftex.def Info: fig/Error_ratio.png  used on input line 738.
-(pdftex.def)             Requested size: 164.30028pt x 117.36017pt.
-
 
 [28
 
- <./fig/Absolute_error.png> <./fig/Error_ratio.png>]
+]
 
 [29
 
@@ -1338,117 +1366,105 @@ Package pdftex.def Info: fig/Error_ratio.png  used on input line 738.
 [30
 
 ]
-
-[31
-
-]
-
-[32
-
-]
-
-[33
-
-]
-<fig/Sample_trajectories_100.png, id=571, 433.62pt x 361.35pt>
+<fig/Sample_trajectories_100.png, id=549, 433.62pt x 361.35pt>
 File: fig/Sample_trajectories_100.png Graphic file (type png)
 <use fig/Sample_trajectories_100.png>
-Package pdftex.def Info: fig/Sample_trajectories_100.png  used on input line 88
-3.
+Package pdftex.def Info: fig/Sample_trajectories_100.png  used on input line 86
+6.
 (pdftex.def)             Requested size: 164.30028pt x 136.91743pt.
-<fig/Fast_jump_time_distribution_100.png, id=572, 433.62pt x 289.08pt>
+<fig/Fast_jump_time_distribution_100.png, id=550, 433.62pt x 289.08pt>
 File: fig/Fast_jump_time_distribution_100.png Graphic file (type png)
 <use fig/Fast_jump_time_distribution_100.png>
 Package pdftex.def Info: fig/Fast_jump_time_distribution_100.png  used on input
- line 883.
+ line 866.
 (pdftex.def)             Requested size: 164.30028pt x 109.53394pt.
 
 
-[34
+[31
 
  <./fig/Sample_trajectories_100.png> <./fig/Fast_jump_time_distribution_100.png
 >]
-<fig/Occupancy_100.png, id=582, 794.97pt x 289.08pt>
+<fig/Occupancy_100.png, id=561, 794.97pt x 289.08pt>
 File: fig/Occupancy_100.png Graphic file (type png)
 <use fig/Occupancy_100.png>
-Package pdftex.def Info: fig/Occupancy_100.png  used on input line 896.
+Package pdftex.def Info: fig/Occupancy_100.png  used on input line 879.
 (pdftex.def)             Requested size: 239.60567pt x 87.13048pt.
 
 
-[35
+[32
 
  <./fig/Occupancy_100.png>]
-<fig/committor_heatmap.jpg, id=591, 434.3427pt x 339.669pt>
+<fig/committor_heatmap.jpg, id=570, 434.3427pt x 339.669pt>
 File: fig/committor_heatmap.jpg Graphic file (type jpg)
 <use fig/committor_heatmap.jpg>
-Package pdftex.def Info: fig/committor_heatmap.jpg  used on input line 916.
+Package pdftex.def Info: fig/committor_heatmap.jpg  used on input line 899.
 (pdftex.def)             Requested size: 106.5839pt x 83.3555pt.
-<fig/committor_trunc_heatmap.png, id=592, 434.3427pt x 339.669pt>
+<fig/committor_trunc_heatmap.png, id=571, 434.3427pt x 339.669pt>
 File: fig/committor_trunc_heatmap.png Graphic file (type png)
 <use fig/committor_trunc_heatmap.png>
-Package pdftex.def Info: fig/committor_trunc_heatmap.png  used on input line 91
-6.
+Package pdftex.def Info: fig/committor_trunc_heatmap.png  used on input line 89
+9.
 (pdftex.def)             Requested size: 106.5839pt x 83.3555pt.
-<fig/mfpt_heatmap.jpg, id=593, 431.4519pt x 339.669pt>
+<fig/mfpt_heatmap.jpg, id=572, 431.4519pt x 339.669pt>
 File: fig/mfpt_heatmap.jpg Graphic file (type jpg)
 <use fig/mfpt_heatmap.jpg>
-Package pdftex.def Info: fig/mfpt_heatmap.jpg  used on input line 916.
+Package pdftex.def Info: fig/mfpt_heatmap.jpg  used on input line 899.
 (pdftex.def)             Requested size: 105.87451pt x 83.3555pt.
-<fig/mfpt_trunc_heatmap.png, id=594, 436.5108pt x 339.669pt>
+<fig/mfpt_trunc_heatmap.png, id=573, 436.5108pt x 339.669pt>
 File: fig/mfpt_trunc_heatmap.png Graphic file (type png)
 <use fig/mfpt_trunc_heatmap.png>
-Package pdftex.def Info: fig/mfpt_trunc_heatmap.png  used on input line 916.
+Package pdftex.def Info: fig/mfpt_trunc_heatmap.png  used on input line 899.
 (pdftex.def)             Requested size: 107.11592pt x 83.3555pt.
 
 
-[36
+[33
 
  <./fig/committor_heatmap.jpg> <./fig/committor_trunc_heatmap.png> <./fig/mfpt_
 heatmap.jpg> <./fig/mfpt_trunc_heatmap.png>]
-<fig/work_error_committor_trunc_vs_ctrw.pdf, id=604, 427.40387pt x 317.11801pt>
+<fig/work_error_committor_trunc_vs_ctrw.pdf, id=583, 427.40387pt x 317.11801pt>
 
 File: fig/work_error_committor_trunc_vs_ctrw.pdf Graphic file (type pdf)
 <use fig/work_error_committor_trunc_vs_ctrw.pdf>
 Package pdftex.def Info: fig/work_error_committor_trunc_vs_ctrw.pdf  used on in
-put line 930.
+put line 913.
 (pdftex.def)             Requested size: 171.14764pt x 126.98528pt.
 
 
-[37
+[34
 
  <./fig/work_error_committor_trunc_vs_ctrw.pdf>]
 
-[38
+[35
 
 ]
+
+[36
+
+]
+
+[37
+
+]
+
+[38
+
+] (./ppt_V5_g.bbl)
 
 [39
 
-]
+ <d:/texlive/2025/texmf-dist/tex/latex/beamer/beamericonarticle.pdf>]
 
 [40
+
 
 ]
 
 [41
 
-] (./ppt_V5_g.bbl)
+
+]
 
 [42
-
- <d:/texlive/2025/texmf-dist/tex/latex/beamer/beamericonarticle.pdf>]
-
-[43
-
-
-]
-
-[44
-
-
-]
-
-[45
 
 ]
 \tf@nav=\write6
@@ -1466,20 +1482,23 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/07/14>
  ***********
 Package rerunfilecheck Info: File `ppt_V5_g.out' has not changed.
-(rerunfilecheck)             Checksum: EBDCC009CEEE01FA76EE6AA690EE4E2F;573.
+(rerunfilecheck)             Checksum: C3F353DFB1EA49F73721D17405123F38;514.
  ) 
 Here is how much of TeX's memory you used:
- 28422 strings out of 473190
- 554975 string characters out of 5719980
- 888240 words of memory out of 5000000
- 50498 multiletter control sequences out of 15000+600000
- 665550 words of font info for 411 fonts, out of 8000000 for 9000
+ 28429 strings out of 473190
+ 555485 string characters out of 5719980
+ 894241 words of memory out of 5000000
+ 50507 multiletter control sequences out of 15000+600000
+ 667338 words of font info for 418 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  142i,16n,137p,693b,748s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{Navigation46} has been referenced but does not exis
-t, replaced by a fixed one
-
+<c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/s
+imhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows
+/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:
+/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei
+.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Font
+s/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Wind
+ows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf>
 <c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/sim
 hei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/F
 onts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/W
@@ -1514,33 +1533,28 @@ hei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/F
 onts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/W
 indows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.t
 tf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/
-simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Window
-s/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c
-:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhe
-i.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fon
-ts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Win
-dows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf
-><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/si
-mhei.ttf><c:/Windows/Fonts/simhei.ttf><d:/texlive/2025/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmex10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmmi10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmmi12.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
-><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/texli
-ve/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/texlive/2025/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><d:/texlive/2025/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmss12.pfb><d:/texlive/2025/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmss8.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmssbx10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmssi10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-si12.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb>
-<d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/texli
-ve/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><d:/texlive/2025/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/texlive/2025/texmf-dist/f
-onts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on ppt_V5_g.pdf (45 pages, 837812 bytes).
+simhei.ttf><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pf
+b><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/tex
+live/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><d:/texlive/2025
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><d:/texlive/2025/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/texlive/2025/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr7.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmss10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.
+pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><d:/te
+xlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><d:/texlive/2
+025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb><d:/texlive/2025/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb><d:/texlive/2025/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmssi8.pfb><d:/texlive/2025/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy7.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy8.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.p
+fb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><
+d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on ppt_V5_g.pdf (42 pages, 910342 bytes).
 PDF statistics:
- 1200 PDF objects out of 1200 (max. 8388607)
- 767 compressed objects within 8 object streams
- 124 named destinations out of 1000 (max. 500000)
- 669 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1185 PDF objects out of 1200 (max. 8388607)
+ 750 compressed objects within 8 object streams
+ 116 named destinations out of 1000 (max. 500000)
+ 667 words of extra memory for PDF output out of 10000 (max. 10000000)
 
