@@ -1,4 +1,4 @@
 \beamer@sectionintoc {1}{预备知识}{3}{0}{1}
-\beamer@sectionintoc {2}{固定空间距离跨越时间的比较}{19}{0}{2}
-\beamer@sectionintoc {3}{随机 Canard 快--慢系统的动力学行为}{26}{0}{3}
-\beamer@sectionintoc {4}{综合比较与结论}{35}{0}{4}
+\beamer@sectionintoc {2}{固定空间距离跨越时间的比较}{17}{0}{2}
+\beamer@sectionintoc {3}{随机 Canard 快--慢系统的动力学行为}{25}{0}{3}
+\beamer@sectionintoc {4}{综合比较与结论}{34}{0}{4}
