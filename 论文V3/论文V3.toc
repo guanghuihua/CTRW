@@ -45,8 +45,8 @@
 \contentsline {paragraph}{整体比较与讨论}{40}{paragraph*.20}%
 \contentsline {subsection}{\numberline {5.6\hspace {-0.5\ccwd }}小结}{40}{subsection.5.6}%
 \contentsline {section}{\numberline {6\hspace {-0.5\ccwd }}结论}{41}{section.6}%
-\contentsline {section}{附录\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{45}{section*.22}%
-\contentsline {section}{附录\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{46}{section*.23}%
-\contentsline {section}{后记}{47}{section*.24}%
-\contentsline {section}{在学期间取得创新性成果情况}{48}{section*.25}%
+\contentsline {section}{附录\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{46}{section*.22}%
+\contentsline {section}{附录\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{47}{section*.23}%
+\contentsline {section}{后记}{48}{section*.24}%
+\contentsline {section}{在学期间取得创新性成果情况}{49}{section*.25}%
 \contentsfinish 
