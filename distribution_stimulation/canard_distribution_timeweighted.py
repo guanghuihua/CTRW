@@ -130,6 +130,19 @@ def main() -> None:
     ax.set_ylabel("Y")
     plt.show()
 
+    fig = plt.figure(figsize=(10, 8))
+    ax = fig.add_subplot(1, 1, 1, projection="3d")
+    ax.plot_surface(
+        *np.meshgrid(np.arange(out_n), np.arange(out_n), indexing="ij"),
+        data2.reshape((out_n, out_n)),
+        cmap="viridis",
+        edgecolor="none",
+    )
+    ax.set_title("SSA 2D Time-Weighted Density Surface Plot")
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    plt.show()
+
 
 if __name__ == "__main__":
     main()
