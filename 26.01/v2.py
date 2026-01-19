@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import time
 import numba as nb
 
-nb.config.NUMBA_DEFAULT_NUM_THREADS = 16
+nb.config.NUMBA_DEFAULT_NUM_THREADS = 24
 
 @nb.njit(fastmath=True)
 def ssa_canard(
@@ -142,12 +142,12 @@ def main():
     lowx = -3.0
     lowy = -3.0
     span = 6.0
-    n = 600
+    n = 6000
     eps = 0.3
     # sample_size = 1_000_000
-    sample_size = int(1E9)
+    sample_size = int(5E9)
     loops = 5
-    out_n = 100
+    out_n = 600
     if n % out_n != 0:
         raise ValueError("n must be divisible by out_n")
     bin_factor = n // out_n
@@ -180,7 +180,7 @@ def main():
     X, Y = np.meshgrid(x, y, indexing='ij')
 
     fig = plt.figure(figsize=(8, 6))
-    ax1 = fig.add_subplot(211, projection="3d")
+    ax1 = fig.add_subplot(111, projection="3d")
     ax1.plot_surface(X, Y, data, cmap='viridis')
     ax1.set_xlabel('X-axis')
     ax1.set_ylabel('Y-axis')
@@ -194,7 +194,7 @@ def main():
     # ax2.set_xlabel('X-axis')
     # ax2.set_ylabel('Y-axis')
     # ax2.set_title('SSA Canard Density Contour')
-    # plt.show()
+    plt.show()
 
 if __name__ == "__main__":
     main()
