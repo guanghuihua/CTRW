@@ -2,80 +2,57 @@ This is BibTeX, Version 0.99d (TeX Live 2025)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: 论文V3.aux
 The style file: IEEEtran.bst
-I couldn't open database file references.bib
----line 219 of file 论文V3.aux
- : \bibdata{references
- :                    }
-I'm skipping whatever remains of this command
-I found no database files---while reading file 论文V3.aux
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Warning--I didn't find a database entry for "bou2018continuous"
-Warning--I didn't find a database entry for "Maruyama1955"
-Warning--I didn't find a database entry for "Milstein1975"
-Warning--I didn't find a database entry for "weinan2021applied"
-Warning--I didn't find a database entry for "kloeden1992stochastic"
-Warning--I didn't find a database entry for "higham2002strong"
-Warning--I didn't find a database entry for "hutzenthaler2011strong"
-Warning--I didn't find a database entry for "hutzenthaler2012strong"
-Warning--I didn't find a database entry for "mao2015truncated"
-Warning--I didn't find a database entry for "liu2013strong"
-Warning--I didn't find a database entry for "mao2016convergence"
-Warning--I didn't find a database entry for "Hu2018"
-Warning--I didn't find a database entry for "zu2023random"
-Warning--I didn't find a database entry for "brereton2014stochastic"
-Warning--I didn't find a database entry for "HolmesCerfon2022Lecture11"
-Warning--I didn't find a database entry for "Hanggi1990ReactionRateKramers"
-Warning--I didn't find a database entry for "EV_TPT"
-Warning--I didn't find a database entry for "EV_TowardsTP"
-Warning--I didn't find a database entry for "Metzner_TPT_MJP"
+Database file #1: references.bib
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty journal in hutzenthaler2012strong
 
 Done.
-You've used 0 entries,
+You've used 18 entries,
             4087 wiz_defined-function locations,
-            848 strings with 7721 characters,
-and the built_in function-call counts, 104 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 19
-:= -- 27
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 3
+            943 strings with 10420 characters,
+and the built_in function-call counts, 13587 in all, are:
+= -- 1156
+> -- 263
+< -- 135
++ -- 152
+- -- 38
+* -- 643
+:= -- 2071
+add.period$ -- 37
+call.type$ -- 18
+change.case$ -- 15
+chr.to.int$ -- 300
+cite$ -- 19
+duplicate$ -- 961
+empty$ -- 1037
+format.name$ -- 49
+if$ -- 3158
 int.to.chr$ -- 0
-int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 23
-num.names$ -- 0
-pop$ -- 0
+int.to.str$ -- 18
+missing$ -- 147
+newline$ -- 77
+num.names$ -- 18
+pop$ -- 301
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1
+skip$ -- 1081
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
-text.length$ -- 0
+substring$ -- 727
+swap$ -- 819
+text.length$ -- 35
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 0
-warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 22
-(There were 2 error messages)
+type$ -- 18
+warning$ -- 1
+while$ -- 67
+width$ -- 20
+write$ -- 198
+(There was 1 warning)

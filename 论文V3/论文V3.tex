@@ -658,52 +658,65 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	dX_t = \mu(X_t)\,dt + \sigma(X_t)\,dW_t, \quad X_0 = x_0,  
 	\end{equation}
 	
-	其中\( \mu(x)\)是漂移项（drift），\(\sigma(x)\)是扩散项（diffusion），\(W_t\)为标准布朗运动。由于SDE通常难以求得解析解，我们不得不借助数值方法对其求解轨道进行近似。在数值方法的发展脉络上，SDE领域与常微分方程（ODE）领域有一定相似之处，例如基于时间离散化的Euler–Maruyama方法、Milstein方法等经典算法被提出用于求解SDE。但由于随机微积分的特殊性，SDE数值解法与ODE方法仍存在重要差异。ODE解在给定初值时通常光滑且唯一，因此可在离散时间点之间使用插值来近似连续轨道，这使得通过时间步进得到高阶方法成为可能。而SDE的解尽管形式上看似类似于对应的确定性系统，但其样本路径连续而处处不可导，并且针对每一不同的布朗运动轨道，同一初值可产生一族随机样本路径。因此，直接套用标准的时间步进积分方法来模拟SDE，将面临比ODE情形更多的挑战。
+	其中\( \mu(x)\)是漂移项（drift），\(\sigma(x)\)是扩散项（diffusion），\(W_t\)为标准布朗运动。由于SDE通常难以求得解析解，因此构造合理有效的数值方法寻求数值解来替代精确解是十分有必要的。在数值方法的发展脉络上，SDE领域与常微分方程（ODE）领域有一定相似之处，例如基于时间离散化的Euler–Maruyama方法、Milstein方法等经典算法被提出用于求解SDE。但由于随机微积分的特殊性，SDE数值解法与ODE方法仍存在重要差异。ODE解在给定初值时通常光滑且唯一，因此可在离散时间点之间使用插值来近似连续轨道，这使得通过时间步进得到高阶方法成为可能。而SDE的解尽管形式上看似类似于对应的确定性系统，但其样本路径连续而处处不可导，并且针对每一不同的布朗运动轨道，同一初值可产生一族随机样本路径。因此，直接套用标准的时间步进积分方法来模拟SDE，将面临比ODE情形更多的挑战。
 	
 	其中一个突出挑战在于长时间稳定性及对不变分布的采样能力。对于具有平稳分布的随机系统，希望数值解在长时间模拟下能保持对该分布的正确采样。然而，传统数值积分方案往往难以满足这一点。事实上，即使原始SDE是遍历的（存在唯一的平稳分布并且解遍历于此分布），其对应的数值离散方案通常并不遍历，无法保证收敛到正确的稳态分布。另外，在漂移项仅满足局部Lipschitz连续（而非全局）的常见情形下，数值解可能会出现发散或爆炸。例如，Euler–Maruyama显式方法在漂移或扩散项具有超线性增长时可能失稳：仿真得到的Markov链轨道可能偏离真实解并发散，其高阶矩甚至可能在有限时间内趋于无穷，而真实解的矩仍保持有限值。这表明，当漂移系数不满足线性增长条件时，即使SDE本身存在唯一解，显式Euler方法也可能不收敛于真解的轨道。这样的不稳定不仅影响长期模拟结果的可信度，也会削弱有限时间区间内的数值精度。为此，我们需要发展更稳健的数值方法来处理此类非全局Lipschitz情形。
 	
 	隐式方法（如Implicit Euler）在理论上可以处理非Lipschitz驱动的SDE并保持收敛性，但每一步都需解非线性方程，计算代价高昂。因此，研究者们倾向于通过改造显式方法来提升其鲁棒性和稳定性。近年来出现了两类主要思路：其一是改进的时间离散算法，通过调整步进公式使显式方法也能在非全局Lipschitz条件下稳定收敛；其二是全新的空间离散算法，通过对SDE的生成元进行空间离散来得到马尔可夫跳跃过程，以避开直接的时间积分。
 	
-	\subsection{随机微分方程数值解的研究现状}
-	
-	随着随机微分方程被广泛地应用到金融学、化学、生物学、种群动力学、物理学 、神经科学等诸多领域中，人们渐渐发现大多数随机微分方程很难求出精确解，因此通过构造合理有效的数值方法寻求数值解来替代精确解是十分有必要的。迄今为止关于随机微分方程数值解的研究已经取得一定的研究成果。随机微分方程解的近似主要有两种不同的方式：时间离散方法和空间离散方法。
-	
-	对于时间离散方法，1955年，Maruyama \cite{Maruyama1955}首次提出了 Euler- Maruyama 方法，其数值方法如下：
-	\begin{equation}
-	X_{k+1}=X_{k}+ \mu \left(X_{k}\right) \Delta +\sigma \left(X_{k}\right)\left(W_{k+1}-W_{k}\right)
-	\end{equation}
-	Euler-Maruyama 方法是 0.5 阶强收敛和 1.0 阶弱收敛的。1974年，Milstein \cite{Milstein1975}通过对随机 Taylor 展开式在一阶处截断得到了 Milstein 方法，该方法是对 Euler-Maruyama 方法的一个重要改进，其数值方法如下：
-	\begin{equation}
-	X_{k+1}=X_{k}+\mu \left(X_{k}\right) \Delta +\sigma \left(X_{k}\right)\left(W_{k+1}-W_{k}\right)+\frac{1}{2} \sigma\left(X_{k}\right) \sigma^{\prime}\left(X_{k}\right)\left[\left(W_{k+1}-W_{k}\right)^{2}-\Delta \right]
-	\end{equation}
-	Milstein 方法是 1.0 阶强收敛和 1.0 阶弱收敛的\cite{weinan2021applied}，但 Milstein 方法中需要计算导数，即使在一维情况下，计算量也很大。1999 年学者 Kloeden 和 Platen\cite{kloeden1992stochastic}系统描述了具有不同收敛阶的求解随机微分方程的数值方法。
-	
-	Euler-Maruyama 方法最常用于近似具有全局 Lipschitz 连续系数的随机微分方程。对于非全局 Lipschitz 连续的情形，2002年学者 Higham,Mao 和 Stuart \cite{higham2002strong} 在随机微分方程满足局部 Lipschitz 条件和 \(p\) 阶矩有界条件下，证明了通过 Euler-Maruyama 方法得到的数值解强均方收敛到精确解，并给出了方程漂移系数满足单边 Lipschitz 条件且方程扩散系数满足全局 Lipschitz 条件下，隐式 Euler 方法具有强收敛性，但没有解决对于具有超线性增长和单侧 Lipschitz 连续漂移系数的随机微分方程，Euler-Maruyama 方法在强均方意义下的有限时间收敛的问题。2011年，学者 Hutzenthaler，Jentzen 和 Kloeden \cite{hutzenthaler2011strong} 对这一问题给出了否定的答案，并证明了对于一类具有非全局 Lipschitz 连续的随机微分方程，在有限时间点 $T \in(0, \infty)$ ，Euler-Maruyama 近似无论是在强均方意义还是在数值弱意义下都不收敛，甚至更糟糕的是，在强均方意义下和数值弱意义下，在有限时间点的精确解和数值近似的差发散到无穷。随后在2012年，他们 \cite{hutzenthaler2012strong}通过对 Euler-Maruyama方法进行改进得到了驯服欧拉方法
-	\begin{equation} \label{tamed EM}
-	X_{k+1}=X_{k}+\frac{\mu \left(X_{k}\right)   \Delta }{1+\left\| \mu \left(X_{k}\right)\right\| \Delta}+\sigma \left(X_{k}\right)\left(W_{k+1}-W_{k}\right)
-	\end{equation}
-	该方法在Euler–Maruyama方案的基础上对漂移项进行了驯服处理，从而将数值增量中的漂移量限制在一个上界以内。这种处理避免了漂移过大导致的单步跳跃失控，从而抑制了解的发散。值得注意的是，驯服欧拉方法仍保持与EM相同的强收敛阶（$1/2$阶），适用于具有超线性增长和全局单侧 Lipschitz 连续漂移系数和全局Lipschitz的扩散系数情形。
-	模拟结果表明，这种显式强收敛的 Tamed Euler-Maruyama 方法比隐式 Euler 方法要快得多。2015 年，Mao \cite{mao2015truncated}对于具有局部 Lipschitz 条件和 Khasminskii 型条件
-	\begin{equation}\label{Khasminskii}
-		x^{T} \mu(x)+\frac{p-1}{2}|\sigma(x)|^{2} \leq K\left(1+|x|^{2}\right) \quad p > 2
-	\end{equation}
-	的非线性随机微分方程，提出了一种新的显式数值方法即截断Euler-Maruyama方法，并证明了该方法的强收敛性，通过对漂移项$\mu(x)$和扩散项$\sigma(x)$实施适度的截断来处理超线性增长的情形，核心思想是为数值方法引入一个依赖步长$\Delta$的阈值，将状态空间中超过阈值的区域裁剪掉，在计算时用阈值处的函数值替代原函数值。这样可强制将漂移和扩散限制在有界范围内，避免显式EM在超线性漂移下可能出现的爆炸。在局部Lipschitz条件及Khasminskii型线性增长条件下，截断Euler-Maruyama方法被证明在均方意义下是收敛的；进一步地，如果扩散项满足多项式增长条件，还可以推得其路径依赖的强收敛性（即几乎必然收敛）。另外有研究指出，相较于驯服Euler，截断方法在相同误差控制下允许使用更大的步长，从而提高了效率。除了上述两种，Liu \cite{liu2013strong}等人提出的停止时间Euler方法通过引入随机停时，在数值解进入非物理区域（例如变量变为负值）之前终止模拟，从而保证了解的有界性和物理合理性。这进一步丰富了非Lipschitz情形下显式方法的改进手段。随后在2016年，Mao \cite{mao2016convergence} 给出了截断 Euler-Maruyama 方法的 $L^{q}(q \geq 2)$ 收敛速度，并表明在某些附加条件下，$L^{q}$ 收敛阶可以任意接近 $q / 2$ 。然而，截断函数存在一些限制，这些限制可能会迫使步长太小以致截断 Euler-Maruyama 方法不适用。2018 年， $\mathrm{Hu}, \mathrm{Li}$ 和 $\mathrm{Mao}$ \cite{Hu2018} 建立了不受这些限制的收敛速度，并研究了截断 Euler-Maruyama 方法的稳定性。但是以上方法对随机微分方程长时间的数值模拟效果仍有局限性。
-	
-	在另一方向，2018年，Bou-Rabee和 Vanden-Eijnden \cite{bou2018continuous} 提出了随机微分方程的连续时间数值方法。他们不再沿用传统的时间步进，而是从SDE的无穷小生成元入手，采用有限差分或有限体积等方法对其进行离散近似，从而构造出在离散状态空间上演化的马尔可夫过程。只要离散算子满足所谓的可实现性条件，即它可以解释为某离散Markov链的生成元（迁移率矩阵满足非负性和行和为零），那么便可以借助随机模拟算法来精确地模拟该Markov跳跃过程。这种方法的显著优点在于：数值解的空间步长是离散的且受控的，每次跳跃的幅度由网格间距$\delta $决定，因此数值解始终被限制在SDE定义域内，不会越过物理边界条件；同时，由于跳跃速率可以随状态自适应调整，空间离散方法天然地对不同状态区域的刚性具有自适应性，在漂移变化剧烈的区域会发生更频繁的小步跳跃，在平稳区域则长时间驻留，这在一定程度上缓解了多尺度问题带来的困难。此外，通过精心设计跳跃率满足平衡条件，离散方案可以保证原SDE的平稳分布正是该马尔可夫链的稳定分布，从而理论上严格保证对稳态分布的采样。Bou-Rabee和Vanden-Eijnden在相关工作中分别提出了基于有限差分的$Q_u$方案和基于有限体积的$Q_c$方案，它们在弱意义下对SDE具有高阶准确性，并能较好保持SDE的几何性质。
 
-	需要指出的是，这类连续时间随机行走（CTRW）方法在逼近漂移项时是通过泊松过程实现的：漂移引起的确定性运动被离散化为一系列随机跳跃及等待时间。这意味着漂移贡献被引入了一定的人工扩散，因为泊松过程的等待时间是随机的，会带来方差。对于噪声强度较大的系统，这一影响可以忽略，但当原SDE扩散项很小，如噪声标准差与网格步长同阶甚至更小时，这种人工扩散将显著扭曲数值解，导致模拟结果偏离真实行为。例如下面我们考虑具有加性噪声的随机微分方程
-	\begin{equation} \label{add noise equation}
-		dX_{t}=\mu\left(X_{t}\right) d t+\sigma d W_{t}
-	\end{equation}
-	其中$\sigma=\operatorname{diag}\left(\sigma_{11}, \sigma_{22}, \ldots, \sigma_{n n}\right)$ 是噪声强度，并且对于 $i=1,2, \ldots, n, \sigma_{i i} \in \mathbb{R}^{+}$。当对方程\eqref{add noise equation}应用连续时间随机游走方法$Q_{u}$时漂移项会产生额外的扩散项。针对这一不足，Zu\cite{zu2023random}提出了一种改进的$Q_u$跳跃格式。该方法在原有$Q_u$方案基础上，通过减小式\eqref{add noise equation}中的 $\sigma$ 来补偿这种额外的扩散项，等价于对跳跃过程附加了校正的扩散项。理论分析表明，$\tilde{Q}_u$格式相较原始的$Q_u$和$Q_c$方案在精度上表现更好，特别是在小噪声情形下依然适用。进一步地，$\tilde{Q}_u$方案在平均驻留时间的渐近展开上具有良好的性质，可保证当网格加密时数值平均步长逼近解析值并达到高阶收敛。
-	
-	综上所述，针对具有局部Lipschitz而非全局Lipschitz漂移的随机系统，当前主要有两类数值离散途径：一是改进的时间离散方法（如截断Euler-Maruyama格式和驯服Euler-Maruyama格式），二是基于生成元的空间离散方法（$Q_u$跳跃方案及其改进）。而在实际数值模拟中，一个亟待解决的问题是：对于给定的SDE模型，哪种离散方式能以更小的误差或更高的效率获得可靠结果。为此，本文旨在比较时间离散与空间离散两类方法在稳定性、精度、收敛性等方面的差异。
-	
+\subsection{随机微分方程数值解的研究现状}
+
+由于多数 SDE 难以获得闭式精确解，研究者通常转向构造稳定且高效的数值算法，以数值近似替代解析表达，现有的工作可以分为两种离散方法：其一是基于时间步进的时间离散方法，其二是基于无穷小生成元离散化的空间离散方法。
+时间离散框架中，Maruyama 于 1955 年提出 Euler--Maruyama（EM）格式\cite{Maruyama1955}。对一般形式的 SDE，其基本递推可写为
+\begin{equation}
+	X_{k+1}=X_{k}+ \mu \left(X_{k}\right) \Delta
+	+\sigma \left(X_{k}\right)\left(W_{k+1}-W_{k}\right).
+\end{equation}
+经典结果表明，EM 方法在强意义下具有 $0.5$ 阶收敛、在弱意义下具有 $1.0$ 阶收敛。随后 Milstein 于 1974 年基于随机 Taylor 展开在一阶处截断，提出 Milstein 方法\cite{Milstein1975}，其格式为
+\begin{equation}
+	\begin{aligned}
+		X_{k+1}=X_{k}+\mu \left(X_{k}\right) \Delta
+		+\sigma \left(X_{k}\right)\left(W_{k+1}-W_{k}\right)
+		+\frac{1}{2} \sigma\left(X_{k}\right) \sigma^{\prime}\left(X_{k}\right)
+		\left[\left(W_{k+1}-W_{k}\right)^{2}-\Delta \right].
+	\end{aligned}
+\end{equation}
+该方法在强、弱意义下均可达到 $1.0$ 阶收敛\cite{weinan2021applied}。需要注意的是，Milstein 格式通常涉及导数项的计算，即便在一维情形下也会显著增加实现与计算成本。更系统的数值方法谱系及其收敛阶框架，可见 Kloeden 与 Platen 的专著\cite{kloeden1992stochastic}。
+
+在理论假设方面，EM 方法对全局 Lipschitz 连续系数的 SDE 近似效果较为稳健。针对非全局 Lipschitz 情形，Higham、Mao 与 Stuart\cite{higham2002strong}在漂移与扩散满足局部 Lipschitz 条件并具有 $p$ 阶矩有界等假设下，证明了 EM 数值解在强均方意义下收敛到精确解；同时在漂移满足单边 Lipschitz、扩散满足全局 Lipschitz 的框架下，给出了隐式 Euler 方法的强收敛性结论。然而，对于漂移具有超线性增长并仅满足单边 Lipschitz 连续的更一般模型，EM 在有限时间强均方意义下的收敛性并不能得到保证。Hutzenthaler、Jentzen 与 Kloeden\cite{hutzenthaler2011strong}进一步指出：对一类非全局 Lipschitz 的 SDE，EM 近似在有限时间点 $T\in(0,\infty)$ 下可能既不强收敛也不弱收敛，甚至数值误差会在强、弱意义下发散。
+
+为克服上述困难，Hutzenthaler 等人在 2012 年提出驯服 Euler（tamed Euler）思想\cite{hutzenthaler2012strong}，其代表性格式为
+\begin{equation}\label{eq:tamed_EM}
+	X_{k+1}
+	= X_{k}
+	+\frac{\mu \left(X_{k}\right)\Delta}{1+\left\| \mu \left(X_{k}\right)\right\|\Delta}
+	+\sigma \left(X_{k}\right)\left(W_{k+1}-W_{k}\right).
+\end{equation}
+该方法通过对漂移增量进行有界化处理，将单步更新中的漂移贡献限制在可控范围内，从而抑制因超线性漂移导致的数值爆炸。在全局单侧 Lipschitz 漂移与全局 Lipschitz 扩散等条件下，驯服 Euler 仍可保持与 EM 相同的强收敛阶（$1/2$ 阶），并且作为显式格式在计算效率上通常优于隐式 Euler。
+
+另一类重要改进是截断方法，Mao\cite{mao2015truncated}在局部 Lipschitz 条件与 Khasminskii 型条件
+\begin{equation}\label{eq:Khasminskii}
+	x^{T} \mu(x)+\frac{p-1}{2}|\sigma(x)|^{2} \leq K\left(1+|x|^{2}\right), \quad p > 2
+\end{equation}
+下提出截断 Euler--Maruyama 方法，并证明其强收敛性。其核心做法是引入与步长 $\Delta$ 相关的阈值，对漂移 $\mu(x)$ 与扩散 $\sigma(x)$ 在大状态区域进行适度截断：当数值状态超出阈值范围时，用阈值边界处的函数值替代原函数值，从而强制漂移与扩散在计算中保持有界，避免显式 EM 在超线性增长下出现爆炸。在局部 Lipschitz 与 Khasminskii 型线性增长条件下，该方法在均方意义下可证收敛；在扩散项满足多项式增长等附加条件时，还可得到更强的路径型收敛结论。除此之外，停止时间 Euler 方法\cite{liu2013strong}通过引入停时机制，使得当数值轨道即将进入不合理区域时终止或修正模拟，从而增强有界性与物理合理性。进一步地，Mao\cite{mao2016convergence}给出了截断 EM 在 $L^{q}(q\ge 2)$ 意义下的收敛速度，并指出在某些条件下收敛阶可任意接近 $q/2$；Hu等人\cite{Hu2018}则在更一般条件下改进了相关收敛速度估计并讨论了稳定性问题。尽管如此，上述时间离散显式格式在长时间模拟或多尺度刚性问题中仍可能面临效率与误差积累方面的局限。
+除时间步进外，Bou-Rabee 与 Vanden-Eijnden\cite{bou2018continuous}于 2018 年提出从无穷小生成元出发构造连续时间数值方法的思路。其基本框架是：先对生成元采用有限差分或有限体积等方式离散，得到定义在离散网格上的离散算子；若该离散算子满足可实现性条件（可解释为某连续时间马尔可夫链的生成元，即迁移率矩阵满足非负性与行和为零），则可用随机模拟算法精确生成该跳跃过程的样本路径。该类方法的一个突出优点是空间步长由网格尺度 $\delta$ 直接控制，单次跳跃幅度受限，从而数值轨道可被严格约束在指定定义域内，避免越过物理边界；同时，跳跃率可随状态自适应变化，使得在漂移变化剧烈区域产生更频繁的小步跳跃，而在相对平稳区域长时间驻留，从而在一定程度上缓解多尺度刚性带来的困难。若进一步设计跳跃率满足相应平衡条件，还可使离散马尔可夫链的稳定分布与原 SDE 的平稳分布一致，从而在稳态采样意义下具有严格的理论保证。相关工作中，作者提出了基于有限差分的 $Q_u$ 方案与基于有限体积的 $Q_c$ 方案，它们在弱意义下具有较高精度并能较好地保持某些几何性质。
+
+需要强调的是，连续时间随机行走（CTRW）类方法在刻画漂移效应时往往借助泊松跳跃机制：确定性漂移被等效为随机跳跃与随机等待时间的组合。由于等待时间具有随机性，漂移贡献可能引入额外方差，从而表现为一定程度的人工扩散。当系统噪声较强时，该影响通常相对次要；但在扩散项很小的情形，人工扩散可能显著扭曲数值行为。为说明这一现象，考虑加性噪声 SDE
+\begin{equation}\label{eq:add_noise}
+	dX_{t}=\mu\left(X_{t}\right) d t+\sigma d W_{t},
+\end{equation}
+其中 $\sigma=\operatorname{diag}\left(\sigma_{11}, \sigma_{22}, \ldots, \sigma_{nn}\right)$，并且对 $i=1,2,\ldots,n$ 有 $\sigma_{ii}\in\mathbb{R}^{+}$。当对方程\eqref{eq:add_noise}应用 $Q_u$ 类 CTRW 方案时，漂移离散化会带来额外的扩散效应。针对这一不足，Zu\cite{zu2023random}提出改进的 $\tilde{Q}_u$ 跳跃格式：在保留 $Q_u$ 基本结构的同时，通过对\eqref{eq:add_noise}中的噪声强度 $\sigma$ 作相应修正以补偿额外扩散，等价于为跳跃过程加入校正后的扩散项。相关分析表明，$\tilde{Q}_u$ 相较原始 $Q_u$ 与 $Q_c$ 在精度上更具优势，尤其在小噪声情形下仍能保持良好适用性；并且在平均驻留时间的渐近展开方面，该格式具有更好的性质，可在网格加密时实现较高阶的逼近效果。
+
+综上，对于漂移仅满足局部 Lipschitz（而非全局 Lipschitz）并可能具有超线性增长的随机系统，现有研究主要形成两类离散策略：一类是通过驯服、截断、停时等机制改造的时间离散显式格式；另一类是基于生成元离散的空间离散 CTRW/SSA 跳跃格式（包括 $Q_u$、$Q_c$ 及其改进形式）。在实际计算中，一个关键问题是：对给定 SDE，何种离散方式能够在稳定性、精度与计算效率之间取得更优平衡。本文将围绕这一问题，对时间离散与空间离散两类方法在稳定性、精度与收敛性等方面进行对比分析。
+
+
+
 	\subsection{本文的主要研究内容}
 	
 	本文围绕随机微分方程的数值模拟，分别从时间尺度与空间尺度两个角度，对两类离散格式的性能进行系统比较。具体而言，一方面，我们通过考察系统在跨越固定空间距离 \(h\) 时所需的时间，并与连续模型的真实时间进行对比，用以评估两种格式在时间尺度上的逼近能力；另一方面，我们通过分析典型快-慢随机系统的相空间动力学行为，借助逃逸概率函数作为弱量指标，比较两类格式在长期行为和转迁结构上的刻画效果。
 	
-	在时间尺度的比较方面，本文首先选取一维立方振子模型作为原型问题。在该模型中，当 \(|X_t| \gg 1 \)时，方程~\eqref{add noise equation} 的演化主要由漂移项主导，此时可用
+	在时间尺度的比较方面，本文首先选取一维立方振子模型作为原型问题。在该模型中，当 \(|X_t| \gg 1 \)时，方程~\eqref{eq:add_noise} 的演化主要由漂移项主导，此时可用
 	\begin{equation}\label{drift dominated}
 		d X_{t}=\mu\left(X_{t}\right)\, d t
 	\end{equation}
@@ -897,46 +910,70 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	 \end{equation}
 	 描述，其中 $p_{0}(x)$ 是 $X_{0}$ 的概率密度函数。
 
-	 Bou-Rabee 和 Vanden-Eijnden \cite{bou2018continuous} 提出可以基于空间离散化的 Kolmogorov 方程和随机游走方法来模拟随机微分方程的演化。首先，构造一个具有 $K$ 个反应通道 $x \rightarrow y_{i}, 1 \leq i \leq K$ 的离散空间生成元 $Q$ ：
-	 \begin{equation}\label{eq:Qf(x)}
-	 Q f(x):=\sum_{i=1}^{K} q\left(x, y_{i}(x)\right)\left(f\left(y_{i}(x)\right)-f(x)\right), 
-	 \end{equation}
-	 其中 $q: \Omega \times \Omega \rightarrow[0, \infty)$ 是反应速率函数。假设 $Q$ 是无穷小生成元 $L$ 的好的近似，那么基于随机模拟算法的连续时间随机游走方法描述如下。给定当前状态 $X(t)=x$.\\
-	 第一步：通过生成参数为
-	 \[  \lambda(x)=\sum_{i=1}^{K} q\left(x, y_{i}(x)\right) \]
-	 的指数分布随机变量得到状态更新时间 $\tau$ 。\\
-	 第二步：对 $1 \leq i \leq K$ ，通过假设过程以概率
-	 \[ 
-	 \mathbb{P}\left(Y(t+\tau)=y_{i}(x) \mid Y(t)=x\right)=\frac{q\left(x, y_{i}(x)\right)}{\lambda(x)}
-	 \]
-	 从状态 $x$ 移动到状态 $y_{i}(x)$ 来更新系统状态。
-	 
-	 以 $n$ 维随机微分方程\eqref{eq:SDE}为例，Bou-Rabee 和 Vanden-Eijnden\cite{bou2018continuous}提出了有限差分离散化 $Q_{u}$ 方法和有限体积离散化 \(Q_c\)方法。设 $\left\{e_{i}\right\}_{i=1}^{n}$ 为 $\mathbb{R}^{n}$ 上的标准基，有 $n$ 个反应通道方向。在每个反应通道方向上，允许向前／后跳。因此反应通道的总数为 $2 n$ 。设 $h_{i}^{ \pm}(x), h_{i}(x)=\frac{h_{i}^{+}(x)+h_{i}^{-}(x)}{2}$ 为在状态 $x$ 处的向前／后以及平均空间步长。设 $\left\{\sigma_{i}(x)=\sigma e_{i}\right\}_{i=1}^{n}$ 是噪声矩阵 $\sigma(x)$ 的列，且 $\sigma_{i}(x)$ 为第 $i$ 个通道方向。记$\tilde{\mu}(x)$ 为变换后的漂移场，逐点定义为 $M(x) \tilde{\mu}(x)=\mu(x)$,其中 $M(x)=0.5 * \sigma(x) \sigma(x)^{T}$ 是 $n \times n$ 扩散矩阵，则有	
-	 \begin{align} \label{algorithm:Q_u}
-	 Q_{u} f(x)= & \sum_{i=1}^{n}\left(\frac{\left(\tilde{\mu}(x)^{T} \sigma_{i}(x)\right) \vee 0}{h_{i}^{+}(x)}+\frac{1}{h_{i}^{+}(x) h_{i}(x)}\right)\left(f\left(x+h_{i}^{+}(x) \sigma_{i}(x)\right)-f(x)\right) \notag \\
-	 & +\left(-\frac{\left(\tilde{\mu}(x)^{T} \sigma_{i}(x)\right) \wedge 0}{h_{i}^{-}(x)}+\frac{1}{h_{i}^{-}(x) h_{i}(x)}\right)\left(f\left(x-h_{i}^{-}(x) \sigma_{i}(x)\right)-f(x)\right),
-	 \end{align}	
-	 其中 $a \vee b=\max (a, b), a \wedge b=\min (a, b)$ ．
-	 
-	 有限体积离散化 $Q_{c}$
-	 	 
-	 \begin{align}\label{algorithm:Q_c}
-	 	Q_{c} f(x)= & \sum_{i=1}^{n} \frac{1}{h_{i}^{+}(x) h_{i}(x)} \exp \left(\frac{h_{i}^{+}(x)}{2} \tilde{\mu}(x)^{T} \sigma_{i}(x)\right)\left(f\left(x+h_{i}^{+}(x) \sigma_{i}(x)\right)-f(x)\right) \notag \\
-	 	& +\frac{1}{h_{i}^{-}(x) h_{i}(x)} \exp \left(-\frac{h_{i}^{-}(x)}{2} \tilde{\mu}(x)^{T} \sigma_{i}(x)\right)\left(f\left(x-h_{i}^{-}(x) \sigma_{i}(x)\right)-f(x)\right) 
-	 \end{align}
-	 
-	 而对于在 $\mathbb{R}^{n}$ 上边长为 $h$ 的 Cartesian 网格上考虑具有加性噪声的随机微分方程
-	 \begin{equation*}
-	 d X_{t}=\mu\left(X_{t}\right) d t+\sigma d W_{t} 
-	 \end{equation*}
-	 其中 $\sigma=\operatorname{diag}\left(\sigma_{11}, \sigma_{22}, \ldots, \sigma_{n n}\right)$ 是噪声强度，并且对于 $i=1,2, \ldots, n, \sigma_{i i} \in \mathbb{R}^{+}$，Zu\cite{zu2023random} 提出的改进的有限差分离散化 $\tilde{Q_{u}}$ 表示如下：
-	
-	 \begin{align}
-	 \widetilde{Q}_{u} f(x)= & \sum_{i=1}^{n}\left(\frac{\mu_{i}(x) \vee 0}{h}+\frac{M_{i i}}{h^{2}}\right)\left(f\left(x+h e_{i}\right)-f(x)\right)  \\
-	 & +\left(-\frac{\mu_{i}(x) \wedge 0}{h}+\frac{M_{i i}}{h^{2}}\right)\left(f\left(x-h e_{i}\right)-f(x)\right), 
-	 \end{align}
-	 其中 $M_{i i}=0.5 *\left(\sigma_{i i}^{2}-\left|\mu_{i}(x)\right| h\right) \vee 0$ ．
-	
+Bou-Rabee 与 Vanden-Eijnden\cite{bou2018continuous}指出，除了传统的时间步进格式之外，还可以从 Kolmogorov 方程出发，通过对空间变量进行离散化来构造一类连续时间随机过程，用以近似描述随机微分方程的演化。其基本思路是：先在离散状态空间上建立一个可实现的生成元矩阵 $Q$，再用随机模拟算法精确生成由 $Q$ 所诱导的连续时间马尔可夫跳跃过程，从而得到对原 SDE 轨道的数值近似。
+
+具体而言，设在离散状态空间中，每个状态 $x$ 具有 $K$ 个可能的跳跃通道
+\[
+x\rightarrow y_i(x),\qquad 1\le i\le K.
+\]
+据此定义离散空间生成元 $Q$ 对测试函数 $f$ 的作用为
+\begin{equation}\label{eq:Qf(x)_rewrite}
+	Q f(x):=\sum_{i=1}^{K} q\left(x, y_{i}(x)\right)\Bigl(f\left(y_{i}(x)\right)-f(x)\Bigr),
+\end{equation}
+其中 $q:\Omega\times\Omega\to[0,\infty)$ 为跳跃速率函数。若 $Q$ 可视为连续系统无穷小生成元 $L$ 的良好近似，则可将 $Q$ 理解为某连续时间马尔可夫链的生成元，并据此采用标准随机模拟生成样本路径。给定当前时刻状态 $X(t)=x$，算法可概括为以下两步：
+
+\emph{(i) 生成等待时间.} 计算总跳跃率
+\[
+\lambda(x)=\sum_{i=1}^{K} q\left(x, y_{i}(x)\right),
+\]
+并取等待时间 $\tau$ 为参数 $\lambda(x)$ 的指数分布随机变量。
+
+\emph{(ii) 选择跳跃通道并更新状态.} 在条件 $Y(t)=x$ 下，以
+\[
+\mathbb{P}\!\left(Y(t+\tau)=y_{i}(x)\mid Y(t)=x\right)
+=\frac{q\left(x, y_{i}(x)\right)}{\lambda(x)}
+\]
+选择通道 $i$，并令系统从 $x$ 跳至 $y_i(x)$。
+
+以 $n$ 维随机微分方程\eqref{eq:SDE}为例，Bou-Rabee 与 Vanden-Eijnden\cite{bou2018continuous}分别给出了基于有限差分离散的 $Q_u$ 方案与基于有限体积离散的 $Q_c$ 方案。设 $\{e_i\}_{i=1}^n$ 为 $\mathbb{R}^n$ 的标准基向量，则每个坐标方向对应一个通道方向，并允许沿该方向前向或后向跳跃，因此通道总数为 $2n$。记 $h_i^{\pm}(x)$ 为状态 $x$ 处沿第 $i$ 个通道方向的前向/后向空间步长，并令
+\[
+h_i(x)=\frac{h_i^{+}(x)+h_i^{-}(x)}{2}
+\]
+为平均步长。设 $\sigma_i(x)=\sigma e_i$ 表示噪声矩阵 $\sigma(x)$ 的第 $i$ 列向量（即第 $i$ 个通道方向），并引入变换后的漂移场 $\tilde{\mu}(x)$，其逐点由
+\[
+M(x)\tilde{\mu}(x)=\mu(x),\qquad M(x)=0.5\,\sigma(x)\sigma(x)^T
+\]
+定义，其中 $M(x)$ 为 $n\times n$ 的扩散矩阵。于是，有限差分离散化得到的 $Q_u$ 生成元写为
+\begin{align}\label{algorithm:Q_u_rewrite}
+	Q_{u} f(x)= & \sum_{i=1}^{n}\left(\frac{\left(\tilde{\mu}(x)^{T} \sigma_{i}(x)\right) \vee 0}{h_{i}^{+}(x)}+\frac{1}{h_{i}^{+}(x) h_{i}(x)}\right)\Bigl(f\bigl(x+h_{i}^{+}(x) \sigma_{i}(x)\bigr)-f(x)\Bigr) \notag \\
+	& +\left(-\frac{\left(\tilde{\mu}(x)^{T} \sigma_{i}(x)\right) \wedge 0}{h_{i}^{-}(x)}+\frac{1}{h_{i}^{-}(x) h_{i}(x)}\right)\Bigl(f\bigl(x-h_{i}^{-}(x) \sigma_{i}(x)\bigr)-f(x)\Bigr),
+\end{align}
+其中 $a\vee b=\max(a,b)$，$a\wedge b=\min(a,b)$。
+
+相应地，有限体积离散所得到的 $Q_c$ 方案为
+\begin{align}\label{algorithm:Q_c_rewrite}
+	Q_{c} f(x)= & \sum_{i=1}^{n} \frac{1}{h_{i}^{+}(x) h_{i}(x)}
+	\exp \left(\frac{h_{i}^{+}(x)}{2} \tilde{\mu}(x)^{T} \sigma_{i}(x)\right)
+	\Bigl(f\bigl(x+h_{i}^{+}(x) \sigma_{i}(x)\bigr)-f(x)\Bigr) \notag \\
+	& +\frac{1}{h_{i}^{-}(x) h_{i}(x)}
+	\exp \left(-\frac{h_{i}^{-}(x)}{2} \tilde{\mu}(x)^{T} \sigma_{i}(x)\right)
+	\Bigl(f\bigl(x-h_{i}^{-}(x) \sigma_{i}(x)\bigr)-f(x)\Bigr).
+\end{align}
+
+进一步地，考虑在 $\mathbb{R}^n$ 上边长为 $h$ 的 Cartesian 网格上，具有加性噪声的随机微分方程
+\[
+d X_{t}=\mu\left(X_{t}\right) d t+\sigma d W_{t},
+\]
+其中 $\sigma=\operatorname{diag}(\sigma_{11},\sigma_{22},\ldots,\sigma_{nn})$ 为噪声强度，且对 $i=1,2,\ldots,n$ 有 $\sigma_{ii}\in\mathbb{R}^+$。Zu\cite{zu2023random}在该设置下提出改进的有限差分离散化格式 $\widetilde{Q}_u$，其生成元可写为
+\begin{align}\label{algorithm:Q_u_tilde_rewrite}
+	\widetilde{Q}_{u} f(x)= & \sum_{i=1}^{n}\left(\frac{\mu_{i}(x) \vee 0}{h}+\frac{M_{i i}}{h^{2}}\right)\Bigl(f\left(x+h e_{i}\right)-f(x)\Bigr) \notag \\
+	& +\left(-\frac{\mu_{i}(x) \wedge 0}{h}+\frac{M_{i i}}{h^{2}}\right)\Bigl(f\left(x-h e_{i}\right)-f(x)\Bigr),
+\end{align}
+其中
+\[
+M_{ii}=0.5\left(\sigma_{ii}^{2}-\left|\mu_{i}(x)\right| h\right)\vee 0.
+\]
+
 	 \subsubsection{连续时间随机游走方法的算法}
 	 
 	 定义 $Q_{u}$ 步骤，$Q_{c}$ 步骤，$\tilde{Q}_u$ 步骤如下：
@@ -1164,7 +1201,7 @@ Research Area~~\underline{\hspace{10mm}  \Emyresearcharea  \hspace{19.5mm}}
 	\[
 	\mu(x)\,u'(x)+\tfrac12\sigma^2(x)\,u''(x)=-1,\quad u(L)=0,
 	\]
-可得 $u(x)$ 的主导项为 $u(x)\approx\int\frac{dx}{|\mu(x)|}$，与 $t^e$ 同标度\cite{HolmesCerfon2022Lecture11}。 若存在非零测度的“逆漂移”区间（漂移把样本点推离目标），则到达事件转为噪声主导的罕见激活，其MFPT呈Kramers–Arrhenius型指数律增长，不再与代数量级的 $t^e$ 可比\cite{Hanggi1990ReactionRateKramers}。 另一方面，在可实现的空间离散（CTRW）框架中，状态 $x_i$ 的跳出速率为 $\lambda(x_i)=\sum_{j\ne i}q_{ij}$、驻留时间为 $\mathrm{Exp}(\lambda)$，故 $\mathbb E[S_i]=1/\lambda(x_i)$；采用与流向一致的上风构造时，$\lambda(x_i)\approx|\mu(x_i)|/h$，于是平均驻留时间 $h/|\mu(x_i)|$ 与 $t^e$ 的主导标度一致\cite{bou2018continuous}}并且小位移的情形下采用该基准，%并且小位移对流主导（$\mathrm{Pe}\gg1$）的情形下采用该基准。
+可得 $u(x)$ 的主导项为 $u(x)\approx\int\frac{dx}{|\mu(x)|}$，与 $t^e$ 同标度。 若存在非零测度的“逆漂移”区间（漂移把样本点推离目标），则到达事件转为噪声主导的罕见激活，其MFPT呈Kramers–Arrhenius型指数律增长，不再与代数量级的 $t^e$ 可比\cite{Hanggi1990ReactionRateKramers}。 另一方面，在可实现的空间离散（CTRW）框架中，状态 $x_i$ 的跳出速率为 $\lambda(x_i)=\sum_{j\ne i}q_{ij}$、驻留时间为 $\mathrm{Exp}(\lambda)$，故 $\mathbb E[S_i]=1/\lambda(x_i)$；采用与流向一致的上风构造时，$\lambda(x_i)\approx|\mu(x_i)|/h$，于是平均驻留时间 $h/|\mu(x_i)|$ 与 $t^e$ 的主导标度一致\cite{bou2018continuous}}并且小位移的情形下采用该基准，%并且小位移对流主导（$\mathrm{Pe}\gg1$）的情形下采用该基准。
 为此设置目标阈值 $L=x-h$，且
 \begin{equation}\label{eq:assum-local}
 	0< h \ll x,\quad \mu(x)<0,\quad \text{并在 }[L,x]\text{ 上 }\mu\ \text{光滑}.
@@ -1788,14 +1825,14 @@ R_{\mathrm{tame}}(x),\ R_{\mathrm{trunc}}(x) \gg 1,
 	\begin{assumption}\label{ass:L-Qh}
 		假设如下条件成立：
 		\begin{enumerate}
-			\item 系统\eqref{eq:canard-SDE}的漂移与扩散系数在 \(D\) 内 \(C^{4}\) 光滑，且扩散矩阵在 \(D\setminus(A\cup B)\) 上一致椭圆（或满足适当的H\"ormander条件），从而\eqref{eq:committor-PDE}存在唯一解 \(q\in C^{2+\alpha}(D\setminus(A\cup B))\cap C(\overline{D})\)。
+			\item 系统\eqref{eq:canard-SDE}的漂移与扩散系数在 \(D\) 内 \(C^{4}\) 光滑，且扩散矩阵在 \(D\setminus(A\cup B)\) 上一致椭圆，从而\eqref{eq:committor_PDE}存在唯一解 \(q\in C^{2+\alpha}(D\setminus(A\cup B))\cap C(\overline{D})\)。
 			
 			\item 空间离散生成元 \(Q_h\) 对 \(\mathcal{L}\) 一致逼近。具体地，对任意 \(\varphi\in C_c^{4}(D)\)，存在常数 \(C>0\) 和 \(p\ge1\) 使得
 			\begin{equation}\label{eq:Qh-consistency}
 				\big\| Q_h\varphi - \mathcal{L}\varphi \big\|_{L^\infty(D_h^\circ)}
 				\le C h^p.
 			\end{equation}
-			对于Zu提出的改进 \(\widetilde{Q}_u\) 格式，可取 \(p=2\)。
+			对于Zu\cite{zu2023random}提出的改进 \(\widetilde{Q}_u\) 格式，可取 \(p=2\)。
 			
 			\item \(Q_h\) 满足离散最大值原理：若 \(u:\{z_i\}\to\mathbb{R}\) 在内部点上满足 \((Q_h u)(z_i)\ge0\)，且在边界上 \(u(z_i)\le 0\)，则对所有网格点有 \(u(z_i)\le0\)。
 		\end{enumerate}
@@ -1973,9 +2010,9 @@ x_{\mathrm{th}}=1.5,
 \]
 即首次满足 \(x_t\ge x_{\mathrm{th}}\) 的时刻被视为离开左侧慢流形并完成一次快跳。
 
-在数值方法方面，选取如下两大类：时间离散方法（简记为TD）：采用 驯服Euler方法（简记 tamed-Euler-Maruyama）与 截断Euler-Maruyama方法（简记 Truncated Euler-Maruyama）两种稳定格式，在统一的时间步长 \(\Delta t\) 下对 SDE 进行路径模拟。通过镜像反射实现边界处理，从给定起点发射多条样本路径，根据首次满足 \(x_t\ge x_{\mathrm{th}}\) 或首次进入集合 \(A,B\) 的时间，统计快跳时间分布、逃逸概率 与 MFPT。空间离散方法（简记为SD）：采用基于生成元的一致离散 CTRW/SSA 框架（记为 \(Q_u\) 格式）。在矩形网格上装配离散生成元 \(Q\)，构造最近邻非负跳率，利用 SSA 模拟跳时与通道；对于 逃逸概率或MFPT等弱量，则直接求解离散生成元方程获得全场解。
+在数值方法方面，选取如下两大类：时间离散方法（简记为TD）：采用 驯服Euler方法与 截断Euler-Maruyama方法两种稳定格式，在统一的时间步长 \(\Delta t\) 下对 SDE 进行路径模拟。通过镜像反射实现边界处理，从给定起点发射多条样本路径，根据首次满足 \(x_t\ge x_{\mathrm{th}}\) 或首次进入集合 \(A,B\) 的时间，统计快跳时间分布、逃逸概率 与 MFPT。空间离散方法（简记为SD）：采用基于生成元的一致离散 CTRW/SSA 框架（记为 \(Q_u\) 格式）。在矩形网格上装配离散生成元 \(Q\)，构造最近邻非负跳率，利用 SSA 模拟跳时与通道；对于 逃逸概率或MFPT等弱量，则直接求解离散生成元方程获得全场解。
 
-对于弱量比较，以离散生成元 \(Q\) 上求解的 \(Q\)-解作为参考（ref），在若干评价点 \(\{z_i\}_{i=1}^{N_p}\) 上，以均方根误差
+对于弱量比较，以离散生成元 \(Q\) 上求解的 \(Q\)-解作为参考，在若干评价点 \(\{z_i\}_{i=1}^{N_p}\) 上，以均方根误差
 \[
 E_q=\Big(\tfrac1{N_p}\sum_{i=1}^{N_p}\lvert \hat q(z_i)-q_{\mathrm{ref}}(z_i)\rvert^2\Big)^{1/2}
 \]
@@ -2256,7 +2293,7 @@ m_{\mathrm{jump}} := \mathbb{E}[\tau_{\mathrm{jump}}\mid\tau_{\mathrm{jump}}\le 
 (Lf)(x) = \sum_{i=1}^2 \mu_i(x)\,\partial_{x_i}f(x)
 + \frac12\sum_{i=1}^2\sigma_i^2(x)\,\partial_{x_i}^2 f(x),
 \]
-本文采用 Zu 等人提出的改进 \(Q_u\) 格式在二维正方网格上对 \(L\) 进行离散。设计算域
+本文采用 \cite{zu2023random} 提出的改进 \(Q_u\) 格式在二维正方网格上对 \(L\) 进行离散。设计算域
 \[
 \Omega = [-2.5,2.5]\times[-1,3],
 \]
@@ -2430,17 +2467,17 @@ E_m^{\mathrm{CTRW}}
 
 首先，在一维加性噪声 SDE 的漂移主导情形下，本文从固定空间跨越距离所需时间的视角出发，引入了以 ODE 漂移主导时间 \(t^e\) 为参照的时间比较框架。通过对一维立方振子模型的局部渐近分析，证明了在 \(x\gg 1\)、\(\delta\ll x\) 的极限下，改进的 \(Q_u\) 生成元所对应的平均驻留时间 \(t^u\) 与精确漂移时间 \(t^e\) 在主阶与次阶上逐项一致，其相对误差随 \(|x|\to\infty\) 收敛至零，定量说明了空间离散在强漂移区间对局部时间的高精度刻度。相比之下，时间离散方法虽然在强收敛意义下能够逼近真实轨道，但其在固定空间跨越时间上的误差阶受限于时间步进的强收敛阶，通常不优于 \(\mathrm{O}(\Delta^{1/2})\)，要获得与空间离散相当的精度需要更小的时间步长和更高的计算代价。
 
-其次，针对随机 Canard 快-慢系统，本文系统引入了 逃逸概率 函数 \(q\) 与平均首达时间（MFPT）\(m\) 这两类生成元型弱量，并将其作为比较时间离散与空间离散优劣的核心指标。在理论方面，一方面，基于随机分析与椭圆型偏微分方程理论，证明了在适当正则性与非退化条件下，CTRW 生成元 \(Q_h\) 所给出的离散 逃逸概率 解 \(q_h\) 以 \(\mathrm{O}(h^p)\) 的阶数一致收敛到连续解 \(q\)，对改进的 \(\widetilde Q_u\) 格式可达到二阶空间精度；另一方面，在 Khasminskii 型条件下，分别建立了 Tamed Euler-Maruyama 与 truncated Euler-Maruyama 对原系统的强收敛估计，并基于路径强收敛和首次到达时间尾部估计，证明了时间离散下的离散 逃逸概率 \(q_\Delta\) 收敛到 \(q\)，但其误差阶仍受限于时间步进的强收敛阶，只能得到次优的弱收敛控制。这一理论结果从生成元角度揭示了两类方法在 逃逸概率 这样的长期弱指标上的本质差异。
+其次，针对随机 Canard 快-慢系统，本文系统引入了 逃逸概率 函数 \(q\) 与平均首达时间\(m\) 这两类生成元型弱量，并将其作为比较时间离散与空间离散优劣的核心指标。在理论方面，一方面，基于随机分析与椭圆型偏微分方程理论，证明了在适当正则性与非退化条件下，CTRW 生成元 \(Q_h\) 所给出的离散 逃逸概率 解 \(q_h\) 以 \(\mathrm{O}(h^p)\) 的阶数一致收敛到连续解 \(q\)，对改进的 \(\widetilde Q_u\) 格式可达到二阶空间精度；另一方面，在 Khasminskii 型条件下，分别建立了 Tamed Euler-Maruyama 与 truncated Euler-Maruyama 对原系统的强收敛估计，并基于路径强收敛和首次到达时间尾部估计，证明了时间离散下的离散 逃逸概率 \(q_\Delta\) 收敛到 \(q\)，但其误差阶仍受限于时间步进的强收敛阶，只能得到次优的弱收敛控制。本文表明在逃逸概率和首次到达时间这两个弱量上空间离散格式优于时间离散格式。
 
-在数值实验方面，本文首先在一维立方振子模型上，通过 SSA（基于 \(\widetilde Q_u\) 的 CTRW）与 tamed/truncated Euler-Maruyama 的 Monte Carlo 模拟，系统比较了数值平均跨越时间与精确漂移时间 \(t^e\) 的偏差。数值结果表明：在强漂移区域，空间离散所得的平均驻留时间相对于 \(t^e\) 的绝对误差随 \(x\) 增大快速衰减，与理论渐近一致，而时间离散方法的误差在一定步长下则显著受限于时间步进和统计方差。在随机 Canard 系统上，本文分别从路径几何、快跳时间分布、占据度热图以及 逃逸概率/MFPT 的空间结构等角度，给出了时间离散方法与 CTRW/\(Q_u\) 的对比。数值结果显示：在有限时间路径级强误差下，驯服Euler方法 与 truncated Euler-Maruyama 更擅长再现 Canard 轨道的几何细节；而在 逃逸概率 与 MFPT 等弱/长期指标上，空间离散方法通过一次稀疏线性求解即可获得全场解，且误差–代价曲线明显优于基于 Monte Carlo 的时间离散方法。
+在数值实验方面，本文首先在一维立方振子模型上，通过 SSA 与 基于截断和驯服 Euler-Maruyama 格式，系统比较了固定距离下平均跨越时间与精确漂移时间 \(t^e\) 的偏差。数值结果表明在初值较大的强漂移区域，时间离散方法的误差在一定步长下则显著受限于统计方差，而空间离散所得的平均驻留时间相对于 \(t^e\) 的绝对误差随 \(X_t\) 增大而快速衰减，与理论渐近一致。在随机 Canard 系统上，本文分别从路径几何、快跳时间分布、占据度热图以及 逃逸概率和首达时间等角度，给出了时间离散方法与 CTRW的对比。数值结果显示：在有限时间条件下驯服Euler方法 与 truncated Euler-Maruyama 更擅长再现 Canard 轨道的几何细节；而在 逃逸概率 与 MFPT 等长期指标上，由于空间离散方法是从总体上对真实解的逼近，通过求解线性方程组就可一次获得全场解，明显优于基于Monte Carlo的时间离散方法。
 
 进一步的 work–error 曲线定量比较表明：在 逃逸概率 的 RMS 误差为例的工作量相同甚至更低的情况下，CTRW/\(Q_u\) 生成元离散往往能够提供远优于 truncated Euler-Maruyama Monte Carlo 的数值精度；而在以路径级强误差为度量的有限时间窗内，时间离散方法的误差随 work 单调衰减，并在相同代价下显著优于 CTRW/SSA。这说明在随机 Canard 系统这类典型快-慢模型中，时间离散与空间离散各自适合不同的指标与应用场景：前者适用于追踪单条轨道的几何演化与局部瞬态行为，后者更适用于求解由生成元刻画的弱量与长期统计性质。
 
-综上，本文的主要贡献可概括为三点：其一，提出以固定空间跨越距离所需时间构建了时间离散与空间离散两类数值方法的统一比较框架；其二，在一维立方振子与随机 Canard 系统上，分别给出了空间离散与时间离散在漂移主导时间和 逃逸概率/MFPT 等弱量上的理论收敛分析；其三，通过一系列数值实验，系统验证了理论分析并给出了误差–代价层面的定量对比，从而对两类方法的适用范围与优势场景给出了较为清晰的判断。
+综上，本文的主要贡献可概括为三点：其一，提出以固定空间跨越距离所需时间构建了时间离散与空间离散两类数值方法的统一比较框架；其二，在一维立方振子与随机 Canard 系统上，分别给出了空间离散与时间离散在漂移主导时间和 逃逸概率/MFPT 等弱量上的理论收敛分析；其三，通过理论分析，并且设计相对应的数值实验，从而对两类方法的适用范围与优势场景给出了相关的结论。
 
-需要指出的是，本文仍有若干局限与可拓展方向。理论方面，目前对空间离散方法的误差分析主要局限于低维、扩散非退化且系数足够光滑的情形，对于高维、退化扩散或具有复杂边界条件的随机系统，生成元离散的稳定性与收敛性仍有待进一步严格证明。时间离散方面，如何在保持强收敛与矩有界性的前提下，设计更高阶的显式或半隐式算法，以及如何在复杂几何域中处理反射与吸收边界，也是值得深入研究的问题。数值方面，可以在更多具有代表性的模型（如多稳态反应网络、高维随机梯度系统等）上验证本文的比较框架，并考虑时间离散与空间离散的自适应与混合策略，例如在不同空间区域或不同方程部分采用不同的离散技术，以充分发挥两类方法的互补优势。
+%需要指出的是，本文仍有若干局限与可拓展方向。理论方面，目前对空间离散方法的误差分析主要局限于低维、扩散非退化且系数足够光滑的情形，对于高维、退化扩散或具有复杂边界条件的随机系统，生成元离散的稳定性与收敛性仍有待进一步严格证明。时间离散方面，如何在保持强收敛与矩有界性的前提下，设计更高阶的显式或半隐式算法，以及如何在复杂几何域中处理反射与吸收边界，也是值得深入研究的问题。数值方面，可以在更多具有代表性的模型（如多稳态反应网络、高维随机梯度系统等）上验证本文的比较框架，并考虑时间离散与空间离散的自适应与混合策略，例如在不同空间区域或不同方程部分采用不同的离散技术，以充分发挥两类方法的互补优势。
 
-总的来看，本文所建立的时间离散与空间离散比较框架，以及在典型模型上的理论与数值分析，为理解随机微分方程数值方法在强精度与弱精度、短时行为与长期统计之间的权衡提供了一个较为清晰的视角。随着数值分析理论与计算资源的不断发展，结合生成元离散、改进时间步进及机器学习等新技术，有望构造出既稳健又高效的随机模拟算法，为更复杂的随机动力系统的定量研究提供有力工具。
+总的来看，本文所建立的时间离散与空间离散比较框架，以及在典型模型上的理论与数值分析，在随机微分方程的数值求解方法在强收敛和弱收敛、短时间的局部行为和长期总体行为之间的比较提供了两种离散格式的不同表现的判断，为在不同场景选取不同的数值格式提供了参考。随着数值分析理论与计算资源的不断发展，结合生成元离散、改进时间步进及机器学习等新技术，有望构造出既稳健又高效的随机模拟算法，为更复杂的随机动力系统的定量研究提供有力工具。
 
 
 
