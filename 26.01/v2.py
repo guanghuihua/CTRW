@@ -145,7 +145,7 @@ def main():
     n = 6000
     eps = 0.3
     # sample_size = 1_000_000
-    sample_size = int(5E9)
+    sample_size = int(1E6)
     loops = 5
     out_n = 600
     if n % out_n != 0:
