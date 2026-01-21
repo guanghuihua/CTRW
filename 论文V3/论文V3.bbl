@@ -93,6 +93,12 @@ J.~Zu, ``Random walk numerical scheme for the steady-state of stochastic
 T.~Brereton, ``Stochastic simulation of processes, fields and structures,''
   \emph{Institute of Stochastic}, 2014.
 
+<<<<<<< HEAD
+=======
+\bibitem{HolmesCerfon2022Lecture11}
+\emph{Applied Stochastic Analysis (UBC) lecture}.
+
+>>>>>>> de3fbd3b88cef5b4eeb28a8dbbbcc702ec61e2a6
 \bibitem{Hanggi1990ReactionRateKramers}
 P.~H{\"a}nggi, P.~Talkner, and M.~Borkovec, ``Reaction-rate theory: Fifty years
   after kramers,'' \emph{Reviews of Modern Physics}, vol.~62, no.~2, pp.

@@ -3,20 +3,23 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+try:
+    from numba import njit, prange
+    NUMBA_AVAILABLE = True
+except ImportError:
+    NUMBA_AVAILABLE = False
+
 rng = np.random.default_rng(42)
 
-# ---------- System definition (stochastic canard / van der Pol-FHN style) ----------
-# Fast variable x, slow variable y
-# dx = (y - (x^3/3 - x)) dt + sigma_x dW_x   (we set sigma_x = 0 by default)
-# dy = eps*(a - x) dt + sigma_y dW_y
-eps = 0.01
-a = 1.0
+# ---------- System definition (stochastic canard) ----------
+delta = 0.1
+a = 1 - delta/8 - 3*delta**2/32 - 173*delta**3/1024 - 0.01
 sigma_x = 0.0
 sigma_y = 0.08  # small noise in slow variable
 
 def drift(x, y):
-    fx = y - (x**3/3.0 - x)
-    fy = eps*(a - x)
+    fx = (x + y - x**3/3.0)/delta
+    fy = a - x
     return np.array([fx, fy])
 
 def diffusion():
@@ -28,16 +31,19 @@ def slow_manifold_xnull(x):
     return x**3/3.0 - x
 
 # ---------- Time-discretization: Tamed EM ----------
-def simulate_tamed(Npaths=20, dt=1e-3, T=5.0, x0=-1.5, y0=slow_manifold_xnull(-1.5)):
+def simulate_tamed_py(Npaths=20, dt=1e-3, T=5.0, x0=-1.5, y0=None, seed=42):
+    if y0 is None:
+        y0 = slow_manifold_xnull(x0)
     steps = int(np.ceil(T/dt))
     t = np.linspace(0, steps*dt, steps+1)
     X = np.zeros((Npaths, steps+1, 2))
     X[:,0,0] = x0
     X[:,0,1] = y0
     sig = diffusion()
+    rng_local = np.random.default_rng(seed)
     for n in range(steps):
         # independent gaussians per path for y only (sigma_x may be zero)
-        dW = rng.standard_normal((Npaths,2))*np.sqrt(dt)
+        dW = rng_local.standard_normal((Npaths,2))*np.sqrt(dt)
         dW *= sig  # scale by diffusion
         x = X[:,n,0]; y = X[:,n,1]
         mu = np.vstack(drift(x, y)).T  # (Npaths,2)
@@ -47,17 +53,20 @@ def simulate_tamed(Npaths=20, dt=1e-3, T=5.0, x0=-1.5, y0=slow_manifold_xnull(-1
     return t, X
 
 # ---------- Time-discretization: Truncated EM (simplified, radius depending on dt) ----------
-def simulate_truncated(Npaths=20, dt=1e-3, T=5.0, x0=-1.5, y0=slow_manifold_xnull(-1.5), R0=2.0):
+def simulate_truncated_py(Npaths=20, dt=1e-3, T=5.0, x0=-1.5, y0=None, R0=2.0, seed=42):
+    if y0 is None:
+        y0 = slow_manifold_xnull(x0)
     steps = int(np.ceil(T/dt))
     t = np.linspace(0, steps*dt, steps+1)
     X = np.zeros((Npaths, steps+1, 2))
     X[:,0,0] = x0
     X[:,0,1] = y0
     sig = diffusion()
+    rng_local = np.random.default_rng(seed)
     # Mao's h(Δ) ~ Δ^{-1/4}; we emulate with RΔ = R0 * Δ^{-1/4}
     R = R0 * (dt**(-0.25))
     for n in range(steps):
-        dW = rng.standard_normal((Npaths,2))*np.sqrt(dt)
+        dW = rng_local.standard_normal((Npaths,2))*np.sqrt(dt)
         dW *= sig
         x = X[:,n,0]; y = X[:,n,1]
         # truncate the state before computing drift
@@ -76,7 +85,7 @@ def build_grid(xmin=-2.5, xmax=2.5, ymin=-2.0, ymax=3.0, hx=0.05, hy=0.05):
     nx, ny = len(xs), len(ys)
     return xs, ys, nx, ny, hx, hy
 
-def precompute_rates(xs, ys, hx, hy):
+def precompute_rates_py(xs, ys, hx, hy):
     # Qu rates for uniform grid: for each node (i,j), rates to (i+1,j), (i-1,j), (i,j+1), (i,j-1)
     nx, ny = len(xs), len(ys)
     rates = np.zeros((nx, ny, 4))  # [rx+, rx-, ry+, ry-]
@@ -96,6 +105,122 @@ def precompute_rates(xs, ys, hx, hy):
             rym = max(-mu[1], 0.0)/hy + (My/(hi_y*hy) if My>0 else 0.0)
             rates[i,j,:] = [rxp, rxm, ryp, rym]
     return rates
+
+if NUMBA_AVAILABLE:
+    @njit
+    def _drift_pair_numba(x, y):
+        fx = (x + y - x**3/3.0)/delta
+        fy = a - x
+        return fx, fy
+
+    @njit(parallel=True)
+    def simulate_tamed_numba(Npaths, dt, T, x0, y0, seed):
+        steps = int(np.ceil(T/dt))
+        t = np.linspace(0.0, steps*dt, steps+1)
+        X = np.zeros((Npaths, steps+1, 2))
+        X[:,0,0] = x0
+        X[:,0,1] = y0
+        sqrt_dt = np.sqrt(dt)
+        np.random.seed(seed)
+        for n in range(steps):
+            for p in prange(Npaths):
+                x = X[p,n,0]
+                y = X[p,n,1]
+                mu0, mu1 = _drift_pair_numba(x, y)
+                norm_mu = np.sqrt(mu0*mu0 + mu1*mu1)
+                denom = 1.0 + dt*norm_mu
+                dWx = np.random.standard_normal() * sqrt_dt * sigma_x
+                dWy = np.random.standard_normal() * sqrt_dt * sigma_y
+                X[p,n+1,0] = x + (dt*mu0)/denom + dWx
+                X[p,n+1,1] = y + (dt*mu1)/denom + dWy
+        return t, X
+
+    @njit(parallel=True)
+    def simulate_truncated_numba(Npaths, dt, T, x0, y0, R0, seed):
+        steps = int(np.ceil(T/dt))
+        t = np.linspace(0.0, steps*dt, steps+1)
+        X = np.zeros((Npaths, steps+1, 2))
+        X[:,0,0] = x0
+        X[:,0,1] = y0
+        R = R0 * (dt**(-0.25))
+        sqrt_dt = np.sqrt(dt)
+        np.random.seed(seed)
+        for n in range(steps):
+            for p in prange(Npaths):
+                x = X[p,n,0]
+                y = X[p,n,1]
+                r = np.sqrt(x*x + y*y)
+                scale = R/ r if r > 1e-12 else R
+                if scale > 1.0:
+                    scale = 1.0
+                xtr = x * scale
+                ytr = y * scale
+                mu0, mu1 = _drift_pair_numba(xtr, ytr)
+                dWx = np.random.standard_normal() * sqrt_dt * sigma_x
+                dWy = np.random.standard_normal() * sqrt_dt * sigma_y
+                X[p,n+1,0] = x + dt*mu0 + dWx
+                X[p,n+1,1] = y + dt*mu1 + dWy
+        return t, X
+
+    @njit(parallel=True)
+    def precompute_rates_numba(xs, ys, hx, hy):
+        nx = xs.shape[0]
+        ny = ys.shape[0]
+        rates = np.zeros((nx, ny, 4))
+        Mx = sigma_x**2/2.0
+        My = sigma_y**2/2.0
+        hi_x = hx
+        hi_y = hy
+        for i in prange(nx):
+            for j in range(ny):
+                x = xs[i]
+                y = ys[j]
+                fx = y - (x*x*x/3.0 - x)
+                fy = eps*(a - x)
+                if fx > 0.0:
+                    rxp = fx/hx
+                    rxm = 0.0
+                else:
+                    rxp = 0.0
+                    rxm = -fx/hx
+                if fy > 0.0:
+                    ryp = fy/hy
+                    rym = 0.0
+                else:
+                    ryp = 0.0
+                    rym = -fy/hy
+                if Mx > 0.0:
+                    diffx = Mx/(hi_x*hx)
+                    rxp += diffx
+                    rxm += diffx
+                if My > 0.0:
+                    diffy = My/(hi_y*hy)
+                    ryp += diffy
+                    rym += diffy
+                rates[i, j, 0] = rxp
+                rates[i, j, 1] = rxm
+                rates[i, j, 2] = ryp
+                rates[i, j, 3] = rym
+        return rates
+
+def simulate_tamed(Npaths=20, dt=1e-3, T=5.0, x0=-1.5, y0=None, seed=42, use_numba=NUMBA_AVAILABLE):
+    if y0 is None:
+        y0 = slow_manifold_xnull(x0)
+    if use_numba and NUMBA_AVAILABLE:
+        return simulate_tamed_numba(Npaths, dt, T, x0, y0, seed)
+    return simulate_tamed_py(Npaths, dt, T, x0, y0, seed)
+
+def simulate_truncated(Npaths=20, dt=1e-3, T=5.0, x0=-1.5, y0=None, R0=2.0, seed=42, use_numba=NUMBA_AVAILABLE):
+    if y0 is None:
+        y0 = slow_manifold_xnull(x0)
+    if use_numba and NUMBA_AVAILABLE:
+        return simulate_truncated_numba(Npaths, dt, T, x0, y0, R0, seed)
+    return simulate_truncated_py(Npaths, dt, T, x0, y0, R0, seed)
+
+def precompute_rates(xs, ys, hx, hy, use_numba=NUMBA_AVAILABLE):
+    if use_numba and NUMBA_AVAILABLE:
+        return precompute_rates_numba(xs, ys, hx, hy)
+    return precompute_rates_py(xs, ys, hx, hy)
 
 def ssa_paths(Npaths=15, T=5.0, x0=-1.5, y0=None, xs=None, ys=None, rates=None, hx=0.05, hy=0.05):
     if y0 is None:
@@ -164,11 +289,10 @@ def detect_fast_jump_times_ssa(paths, x_threshold=1.5):
         if len(hit)>0:
             Tjump[k] = path[hit[0],0]
     return Tjump
-
 # ---------- Run experiments ----------
 # Parameters
 # T_end = 5.0
-T_end = 100
+T_end = 1000
 dt_ref = 1e-3
 
 # Time-discretization simulations

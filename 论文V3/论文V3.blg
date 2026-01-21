@@ -8,10 +8,19 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: references.bib
+<<<<<<< HEAD
+=======
+I was expecting a `,' or a `}'---line 499 of file references.bib
+ :   
+ :   author={Miranda Holmes-Cerfon},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+>>>>>>> de3fbd3b88cef5b4eeb28a8dbbbcc702ec61e2a6
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 Warning--empty journal in hutzenthaler2012strong
+<<<<<<< HEAD
 
 Done.
 You've used 18 entries,
@@ -56,3 +65,52 @@ while$ -- 67
 width$ -- 20
 write$ -- 198
 (There was 1 warning)
+=======
+Warning--empty author and editor in HolmesCerfon2022Lecture11
+Warning--missing publisher in HolmesCerfon2022Lecture11
+Warning--empty year in HolmesCerfon2022Lecture11
+
+Done.
+You've used 19 entries,
+            4087 wiz_defined-function locations,
+            946 strings with 10511 characters,
+and the built_in function-call counts, 13801 in all, are:
+= -- 1165
+> -- 264
+< -- 135
++ -- 153
+- -- 38
+* -- 652
+:= -- 2101
+add.period$ -- 38
+call.type$ -- 19
+change.case$ -- 15
+chr.to.int$ -- 300
+cite$ -- 23
+duplicate$ -- 981
+empty$ -- 1070
+format.name$ -- 49
+if$ -- 3208
+int.to.chr$ -- 0
+int.to.str$ -- 19
+missing$ -- 149
+newline$ -- 80
+num.names$ -- 18
+pop$ -- 312
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 1102
+stack$ -- 0
+substring$ -- 727
+swap$ -- 826
+text.length$ -- 35
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 19
+warning$ -- 4
+while$ -- 67
+width$ -- 21
+write$ -- 203
+(There was 1 error message)
+>>>>>>> de3fbd3b88cef5b4eeb28a8dbbbcc702ec61e2a6
