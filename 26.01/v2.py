@@ -16,7 +16,6 @@ def ssa_canard(
     eps:float,
     t_stop:float,
     burn_time:float,
-    out_n:int,
     ) -> np.ndarray:
     """
     Stochastic Stimulation Algorithm for canard system with random perturbations
@@ -48,12 +47,11 @@ def ssa_canard(
     ------------------------------------------------------------------------------
     """
 
-    counts = np.zeros((out_n, out_n), dtype=np.float64)
+    counts = np.zeros((n, n), dtype=np.float64)
     h = span / n
     inv_h = 1.0 / h
     lowx_center = lowx + h / 2.0
     lowy_center = lowy + h / 2.0
-    h_eff = span / out_n
     delta = 0.1
     a = 1 - delta / 8 - 3 * delta**2 / 32 - 173 * delta**3 / 1024 - 0.01
     out_of_bounds_counts = 0
@@ -66,8 +64,10 @@ def ssa_canard(
         mu_2 = a - trajectory_point_x
         m1 = (eps ** 2) * max(2 - abs(mu_1) * h, 0.0) / 2.0
         m2 = (eps ** 2) * max(2 - abs(mu_2) * h, 0.0) / 2.0
-        trajectory_point_x = lowx_center + round((trajectory_point_x - lowx_center) * inv_h) * h
-        trajectory_point_y = lowy_center + round((trajectory_point_y - lowy_center) * inv_h) * h
+        ix = int(round((trajectory_point_x - lowx_center) * inv_h))
+        iy = int(round((trajectory_point_y - lowy_center) * inv_h))
+        trajectory_point_x = lowx_center + ix * h
+        trajectory_point_y = lowy_center + iy * h
 
         q0 = max(mu_1, 0.0) / h + m1 / ( h ** 2)
         q1 = - min( mu_1, 0.0) / h + m1 / ( h ** 2)
@@ -81,9 +81,7 @@ def ssa_canard(
         tau = -np.log(r2) / lam
 
         if t >= burn_time:
-            ix = int((trajectory_point_x - lowx) / h_eff)
-            iy = int((trajectory_point_y - lowy) / h_eff)
-            if 0 <= ix < out_n and 0 <= iy < out_n:
+            if 0 <= ix < n and 0 <= iy < n:
                 counts[ix, iy] += tau
             else:
                 out_of_bounds_counts += 1
@@ -97,19 +95,19 @@ def ssa_canard(
         else:
             trajectory_point_y -= h
 
-        x_n = int(round((trajectory_point_x - lowx_center) * inv_h)) + 1
-        y_n = int(round((trajectory_point_y - lowy_center) * inv_h)) + 1
-        if x_n < 1:
+        ix = int(round((trajectory_point_x - lowx_center) * inv_h))
+        iy = int(round((trajectory_point_y - lowy_center) * inv_h))
+        if ix < 0:
             trajectory_point_x = lowx_center
-        elif x_n > n + 1:
+        elif ix >= n:
             trajectory_point_x = lowx + span - h / 2.0
-        if y_n < 1:
+        if iy < 0:
             trajectory_point_y = lowy_center
-        elif y_n > n + 1:
+        elif iy >= n:
             trajectory_point_y = lowy + span - h / 2.0
 
         t += tau
-    return counts.T.ravel(), out_of_bounds_counts
+    return counts.ravel(), out_of_bounds_counts
 
 
 @nb.njit(fastmath=True, parallel=True)
@@ -122,18 +120,30 @@ def run_ensemble(
     t_stop: float,
     burn_time: float,
     loops: int,
-    out_n: int,
 ) -> tuple:
-    density_sum = np.zeros(out_n * out_n, dtype=np.float64)
+    density_sum = np.zeros(n * n, dtype=np.float64)
     out_total = 0
     for i in nb.prange(loops):
-        data, out_count = ssa_canard(
-            lowx, lowy, span, n, eps, t_stop, burn_time, out_n
-        )
+        data, out_count = ssa_canard(lowx, lowy, span, n, eps, t_stop, burn_time)
         density_sum += data
         out_total += out_count
     density_mean = density_sum / loops
     return density_mean, out_total
+
+@nb.njit(fastmath=True)
+def bin_coarse(fine: np.ndarray, n: int, bin_factor: int) -> np.ndarray:
+    out_n = n // bin_factor
+    coarse = np.zeros((out_n, out_n), dtype=np.float64)
+    for i in range(out_n):
+        i0 = i * bin_factor
+        for j in range(out_n):
+            j0 = j * bin_factor
+            s = 0.0
+            for di in range(bin_factor):
+                for dj in range(bin_factor):
+                    s += fine[i0 + di, j0 + dj]
+            coarse[i, j] = s
+    return coarse
 
 def main():
     nb.set_num_threads(os.cpu_count() or 24)
@@ -142,21 +152,25 @@ def main():
     span = 6.0
     n = 6000
     eps = 0.3
-    t_stop = 2.0e5
-    burn_time = 2.0e4
+    t_stop = 3.0e6
+    burn_time = 2.0e3
     loops = nb.get_num_threads()
     out_n = 600
+    if n % out_n != 0:
+        raise ValueError("n must be divisible by out_n")
+    bin_factor = n // out_n
 
     start_time = time.perf_counter()
     data, out_of_bounds_counts = run_ensemble(
-        lowx, lowy, span, n, eps, t_stop, burn_time, loops, out_n
+        lowx, lowy, span, n, eps, t_stop, burn_time, loops
     )
     end_time = time.perf_counter()
     print(f"SSA Canard Simulation Time: {end_time - start_time:.4f} seconds")
     print(f"Out of bounds counts: {out_of_bounds_counts}")
 
+    fine = data.reshape((n, n))
+    data = bin_coarse(fine, n, bin_factor)
     h_eff = span / out_n
-    data = data.reshape((out_n, out_n), order="F")
     total = data.sum()
     if total > 0:
         data /= (h_eff**2 * total)
