@@ -11,9 +11,9 @@
 \contentsline {subsection}{\numberline {2.1\hspace {-0.5\ccwd }}It\^{o}扩散的无穷小生成元}{6}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2\hspace {-0.5\ccwd }}空间离散格式}{8}{subsection.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.1\hspace {-0.5\ccwd }}连续时间随机游走方法的算法}{10}{subsubsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.3\hspace {-0.5\ccwd }}改进的 Euler--Maruyama 数值格式}{10}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1\hspace {-0.5\ccwd }}驯服 Euler 方法}{11}{subsubsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.2\hspace {-0.5\ccwd }}截断 Euler--Maruyama 方法}{12}{subsubsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3\hspace {-0.5\ccwd }}改进的 Euler--Maruyama 数值格式}{11}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1\hspace {-0.5\ccwd }}驯服 Euler 方法}{12}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2\hspace {-0.5\ccwd }}截断 Euler--Maruyama 方法}{13}{subsubsection.2.3.2}%
 \contentsline {section}{\numberline {3\hspace {-0.5\ccwd }}固定空间距离跨越时间的比较}{15}{section.3}%
 \contentsline {subsection}{\numberline {3.1\hspace {-0.5\ccwd }}空间离散方法的平均驻留时间分析}{15}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2\hspace {-0.5\ccwd }}平均首达时间（MFPT）与 \(t^e\)的一致渐近性分析}{17}{subsection.3.2}%

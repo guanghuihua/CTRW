@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  3 DEC 2025 15:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  10 DEC 2025 18:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1910,12 +1910,12 @@ cmm/m/it/12.045 R[]\OT1/cmr/m/n/12.045 (\OML/cmm/m/it/12.045 x\OT1/cmr/m/n/12.0
 \OML/cmm/m/it/12.045 x\OT1/cmr/m/n/12.045 )$
  []
 
-<fig/Absolute_error.png, id=921, 505.89pt x 361.35pt>
+<fig/Absolute_error.png, id=920, 505.89pt x 361.35pt>
 File: fig/Absolute_error.png Graphic file (type png)
 <use fig/Absolute_error.png>
 Package pdftex.def Info: fig/Absolute_error.png  used on input line 1701.
 (pdftex.def)             Requested size: 204.85846pt x 146.3294pt.
-<fig/Error_ratio.png, id=922, 505.89pt x 361.35pt>
+<fig/Error_ratio.png, id=921, 505.89pt x 361.35pt>
 File: fig/Error_ratio.png Graphic file (type png)
 <use fig/Error_ratio.png>
 Package pdftex.def Info: fig/Error_ratio.png  used on input line 1704.
@@ -2255,7 +2255,7 @@ nts/type1/public/rsfs/rsfs10.pfb><d:/texlive/2025/texmf-dist/fonts/type1/urw/ti
 mes/utmb8a.pfb><d:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><d:
 /texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb><d:/texlive/2025/tex
 mf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on 论文.pdf (56 pages, 1590191 bytes).
+Output written on 论文.pdf (56 pages, 1585891 bytes).
 PDF statistics:
  1953 PDF objects out of 2073 (max. 8388607)
  1428 compressed objects within 15 object streams

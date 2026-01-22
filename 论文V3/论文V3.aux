@@ -24,16 +24,16 @@
 \citation{hutzenthaler2012strong}
 \citation{mao2015truncated}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2\hspace  {-0.5\ccwd }}随机微分方程数值解的研究现状}{2}{subsection.1.2}\protected@file@percent }
-\newlabel{tamed EM}{{1.4}{2}{随机微分方程数值解的研究现状}{equation.1.4}{}}
+\newlabel{eq:tamed_EM}{{1.4}{2}{随机微分方程数值解的研究现状}{equation.1.4}{}}
 \citation{liu2013strong}
 \citation{mao2016convergence}
 \citation{Hu2018}
 \citation{bou2018continuous}
-\newlabel{Khasminskii}{{1.5}{3}{随机微分方程数值解的研究现状}{equation.1.5}{}}
 \citation{zu2023random}
-\newlabel{add noise equation}{{1.6}{4}{随机微分方程数值解的研究现状}{equation.1.6}{}}
+\newlabel{eq:Khasminskii}{{1.5}{3}{随机微分方程数值解的研究现状}{equation.1.5}{}}
+\newlabel{eq:add_noise}{{1.6}{3}{随机微分方程数值解的研究现状}{equation.1.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3\hspace  {-0.5\ccwd }}本文的主要研究内容}{4}{subsection.1.3}\protected@file@percent }
-\newlabel{drift dominated}{{1.7}{5}{本文的主要研究内容}{equation.1.7}{}}
+\newlabel{drift dominated}{{1.7}{4}{本文的主要研究内容}{equation.1.7}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2\hspace  {-0.5\ccwd }}预备知识}{6}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1\hspace  {-0.5\ccwd }}It\^{o}扩散的无穷小生成元}{6}{subsection.2.1}\protected@file@percent }
 \newlabel{def:q-matrix}{{2.3}{6}{无穷小生成元}{definition.2.3}{}}
@@ -49,39 +49,39 @@
 \newlabel{adjoint}{{2.5}{8}{空间离散格式}{equation.2.5}{}}
 \newlabel{eq:Fokker-Planck}{{2.6}{8}{空间离散格式}{equation.2.6}{}}
 \citation{bou2018continuous}
-\newlabel{eq:Qf(x)}{{2.7}{9}{空间离散格式}{equation.2.7}{}}
-\newlabel{algorithm:Q_u}{{2.8}{9}{空间离散格式}{equation.2.8}{}}
-\newlabel{algorithm:Q_c}{{2.9}{9}{空间离散格式}{equation.2.9}{}}
+\newlabel{eq:Qf(x)_rewrite}{{2.7}{9}{空间离散格式}{equation.2.7}{}}
 \citation{zu2023random}
+\newlabel{algorithm:Q_u_rewrite}{{2.8}{10}{空间离散格式}{equation.2.8}{}}
+\newlabel{algorithm:Q_c_rewrite}{{2.9}{10}{空间离散格式}{equation.2.9}{}}
+\newlabel{algorithm:Q_u_tilde_rewrite}{{2.10}{10}{空间离散格式}{equation.2.10}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1\hspace  {-0.5\ccwd }}连续时间随机游走方法的算法}{10}{subsubsection.2.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3\hspace  {-0.5\ccwd }}改进的 Euler--Maruyama 数值格式}{10}{subsection.2.3}\protected@file@percent }
-\newlabel{subsec:improved-em}{{2.3}{10}{改进的 Euler--Maruyama 数值格式}{subsection.2.3}{}}
 \citation{hutzenthaler2012strong}
 \citation{mao2015truncated}
-\citation{hutzenthaler2012strong}
 \citation{hutzenthaler2012strong}
 \@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces 连续时间随机游走方法的算法}}{11}{algocf.1}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{alg:ctrw}{{1}{11}{连续时间随机游走方法的算法}{algocf.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1\hspace  {-0.5\ccwd }}驯服 Euler 方法}{11}{subsubsection.2.3.1}\protected@file@percent }
-\newlabel{cond:onesided}{{2.12}{11}{驯服 Euler 方法}{equation.2.12}{}}
-\newlabel{cond:poly-growth}{{2.13}{11}{驯服 Euler 方法}{equation.2.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3\hspace  {-0.5\ccwd }}改进的 Euler--Maruyama 数值格式}{11}{subsection.2.3}\protected@file@percent }
+\newlabel{subsec:improved-em}{{2.3}{11}{改进的 Euler--Maruyama 数值格式}{subsection.2.3}{}}
+\citation{hutzenthaler2012strong}
 \citation{hutzenthaler2012strong}
 \citation{mao2015truncated}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1\hspace  {-0.5\ccwd }}驯服 Euler 方法}{12}{subsubsection.2.3.1}\protected@file@percent }
+\newlabel{cond:onesided}{{2.11}{12}{驯服 Euler 方法}{equation.2.11}{}}
+\newlabel{cond:poly-growth}{{2.12}{12}{驯服 Euler 方法}{equation.2.12}{}}
+\newlabel{scheme:tamed}{{2.14}{12}{驯服 Euler 方法}{equation.2.14}{}}
+\newlabel{eq:tamed-strong}{{2.15}{12}{Tamed Euler-Maruyama 的强收敛性，见 \cite {hutzenthaler2012strong}}{equation.2.15}{}}
 \citation{mao2015truncated}
-\newlabel{scheme:tamed}{{2.15}{12}{驯服 Euler 方法}{equation.2.15}{}}
-\newlabel{eq:tamed-strong}{{2.16}{12}{Tamed Euler-Maruyama 的强收敛性，见 \cite {hutzenthaler2012strong}}{equation.2.16}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2\hspace  {-0.5\ccwd }}截断 Euler--Maruyama 方法}{12}{subsubsection.2.3.2}\protected@file@percent }
-\newlabel{Khasminskii-again}{{2.17}{12}{截断 Euler--Maruyama 方法}{equation.2.17}{}}
-\newlabel{eq:phi-growth}{{2.18}{12}{截断 Euler--Maruyama 方法}{equation.2.18}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2\hspace  {-0.5\ccwd }}截断 Euler--Maruyama 方法}{13}{subsubsection.2.3.2}\protected@file@percent }
+\newlabel{Khasminskii-again}{{2.16}{13}{截断 Euler--Maruyama 方法}{equation.2.16}{}}
+\newlabel{eq:phi-growth}{{2.17}{13}{截断 Euler--Maruyama 方法}{equation.2.17}{}}
+\newlabel{eq:psi-cond}{{2.18}{13}{截断 Euler--Maruyama 方法}{equation.2.18}{}}
+\newlabel{eq:R-Delta}{{2.19}{13}{截断 Euler--Maruyama 方法}{equation.2.19}{}}
+\newlabel{eq:Pi-Delta}{{2.20}{13}{截断 Euler--Maruyama 方法}{equation.2.20}{}}
+\newlabel{eq:trunc-coeff}{{2.21}{13}{截断 Euler--Maruyama 方法}{equation.2.21}{}}
 \citation{mao2015truncated}
-\newlabel{eq:psi-cond}{{2.19}{13}{截断 Euler--Maruyama 方法}{equation.2.19}{}}
-\newlabel{eq:R-Delta}{{2.20}{13}{截断 Euler--Maruyama 方法}{equation.2.20}{}}
-\newlabel{eq:Pi-Delta}{{2.21}{13}{截断 Euler--Maruyama 方法}{equation.2.21}{}}
-\newlabel{eq:trunc-coeff}{{2.22}{13}{截断 Euler--Maruyama 方法}{equation.2.22}{}}
-\newlabel{scheme:trunc}{{2.23}{13}{截断 Euler--Maruyama 方法}{equation.2.23}{}}
-\newlabel{eq:trunc-strong}{{2.24}{13}{截断Euler-Maruyama方法的强收敛性，见 \cite {mao2015truncated}}{equation.2.24}{}}
-\citation{HolmesCerfon2022Lecture11}
+\newlabel{scheme:trunc}{{2.22}{14}{截断 Euler--Maruyama 方法}{equation.2.22}{}}
+\newlabel{eq:trunc-strong}{{2.23}{14}{截断Euler-Maruyama方法的强收敛性，见 \cite {mao2015truncated}}{equation.2.23}{}}
 \citation{Hanggi1990ReactionRateKramers}
 \citation{bou2018continuous}
 \@writefile{toc}{\contentsline {section}{\numberline {3\hspace  {-0.5\ccwd }}固定空间距离跨越时间的比较}{15}{section.3}\protected@file@percent }
@@ -143,6 +143,7 @@
 \newlabel{eq:committor_PDE}{{4.1}{24}{逃逸概率}{equation.4.1}{}}
 \newlabel{eq:canard-SDE}{{4.2}{24}{逃逸概率}{equation.4.2}{}}
 \citation{bou2018continuous}
+\citation{zu2023random}
 \citation{bou2018continuous}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2\hspace  {-0.5\ccwd }}CTRW生成元下的离散逃逸概率方程}{25}{subsection.4.2}\protected@file@percent }
 \newlabel{eq:disc-harmonic}{{4.3}{25}{CTRW生成元下的离散逃逸概率方程}{equation.4.3}{}}
@@ -206,6 +207,7 @@
 \newlabel{eq:canard-EM}{{5.3}{36}{时间离散格式：Euler--Maruyama 与驯服 EM}{equation.5.3}{}}
 \newlabel{eq:canard-tamed}{{5.4}{36}{时间离散格式：Euler--Maruyama 与驯服 EM}{equation.5.4}{}}
 \newlabel{eq:canard-dt-fast}{{5.5}{36}{时间离散格式：Euler--Maruyama 与驯服 EM}{equation.5.5}{}}
+\citation{zu2023random}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3\hspace  {-0.5\ccwd }}空间离散格式：基于生成元的 CTRW 跳跃过程}{37}{subsection.5.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.4\hspace  {-0.5\ccwd }}快跳事件对数值扰动的敏感性分析}{38}{subsection.5.4}\protected@file@percent }
 \pp@pagectr{footnote}{5}{52}{38}
@@ -217,28 +219,9 @@
 \@writefile{toc}{\contentsline {section}{\numberline {6\hspace  {-0.5\ccwd }}结论}{41}{section.6}\protected@file@percent }
 \bibstyle{IEEEtran}
 \bibdata{references}
-\bibcite{bou2018continuous}{1}
-\bibcite{Maruyama1955}{2}
-\bibcite{Milstein1975}{3}
-\bibcite{weinan2021applied}{4}
-\bibcite{kloeden1992stochastic}{5}
-\bibcite{higham2002strong}{6}
-\bibcite{hutzenthaler2011strong}{7}
-\bibcite{hutzenthaler2012strong}{8}
-\bibcite{mao2015truncated}{9}
-\bibcite{liu2013strong}{10}
-\bibcite{mao2016convergence}{11}
-\bibcite{Hu2018}{12}
-\bibcite{zu2023random}{13}
-\bibcite{brereton2014stochastic}{14}
-\bibcite{HolmesCerfon2022Lecture11}{15}
-\bibcite{Hanggi1990ReactionRateKramers}{16}
-\bibcite{EV_TPT}{17}
-\bibcite{EV_TowardsTP}{18}
-\bibcite{Metzner_TPT_MJP}{19}
-\@writefile{toc}{\contentsline {section}{附录\hspace  {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{46}{section*.22}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{附录\hspace  {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{47}{section*.23}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{后记}{48}{section*.24}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{在学期间取得创新性成果情况}{49}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{附录\hspace  {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{45}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{附录\hspace  {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{46}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{后记}{47}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{在学期间取得创新性成果情况}{48}{section*.25}\protected@file@percent }
 \ttl@finishall
 \gdef \@abspage@last{63}
