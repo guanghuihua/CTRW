@@ -67,8 +67,10 @@ def ssa_canard(
     while t < t_stop:
         mu_1  = (trajectory_point_y - np.power(trajectory_point_x, 3) / 3 + trajectory_point_x) / delta
         mu_2 = a - trajectory_point_x
-        m1 = (eps ** 2) * max(2 - abs(mu_1) * h, 0.0) / 2.0
-        m2 = (eps ** 2) * max(2 - abs(mu_2) * h, 0.0) / 2.0
+        m1 = max(2 - abs(mu_1) * h, 0.0) / 2.0
+        m2 = max(2 - abs(mu_2) * h, 0.0) / 2.0
+        # m1 = (eps ** 2) * max(2 - abs(mu_1) * h, 0.0) / 2.0
+        # m2 = (eps ** 2) * max(2 - abs(mu_2) * h, 0.0) / 2.0
         ix = int(round((trajectory_point_x - lowx_center) * inv_h))
         iy = int(round((trajectory_point_y - lowy_center) * inv_h))
         trajectory_point_x = lowx_center + ix * h
@@ -207,9 +209,3 @@ if __name__ == "__main__":
     main()
 
 
-"""
-1. 加上了numba的并行加速
-2. 使用多尺度方法
-3. 使用ensemble方法
-4. 使用时间统计的方法
-"""
