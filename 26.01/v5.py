@@ -41,8 +41,10 @@ def ssa_canard_coarse_stat(
     while t < t_stop:
         mu_1 = (y - np.power(x, 3) / 3 + x) / delta
         mu_2 = a - x
-        m1 = (eps ** 2) * max(2 - abs(mu_1) * h, 0.0) / 2.0
-        m2 = (eps ** 2) * max(2 - abs(mu_2) * h, 0.0) / 2.0
+        m1 = max(2 - abs(mu_1) * h, 0.0) / 2.0
+        m2 = max(2 - abs(mu_2) * h, 0.0) / 2.0
+        # m1 = (eps ** 2) * max(2 - abs(mu_1) * h, 0.0) / 2.0
+        # m2 = (eps ** 2) * max(2 - abs(mu_2) * h, 0.0) / 2.0
         ix = int(round((x - lowx_center) * inv_h))
         iy = int(round((y - lowy_center) * inv_h))
         x = lowx_center + ix * h
