@@ -7,6 +7,11 @@ import numpy as np
 
 nb.config.NUMBA_DEFAULT_NUM_THREADS = 28
 
+"""
+时间跑
+次数加权
+"""
+
 
 @nb.njit(fastmath=True)
 def ssa_canard_coarse_stat(
@@ -129,8 +134,8 @@ def main():
     lowx = -3.0
     lowy = -3.0
     span = 6.0
-    n_fine = 3000
-    out_n = 600
+    n_fine = 600
+    out_n = 100
     eps = 0.4
     t_stop = 2E5
     burn_time = 2E3
