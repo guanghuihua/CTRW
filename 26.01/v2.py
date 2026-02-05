@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numba as nb
 import numpy as np
 
-nb.config.NUMBA_DEFAULT_NUM_THREADS = 24
+nb.config.NUMBA_DEFAULT_NUM_THREADS = 28
 
 @nb.njit(fastmath=True)
 def ssa_canard(
@@ -151,9 +151,9 @@ def main():
     lowy = -3.0
     span = 6.0
     n = 6000
-    eps = 0.3
-    t_stop = 3.0e6
-    burn_time = 2.0e3
+    eps = 0.4
+    t_stop = 6.5e6
+    burn_time = 6.5e4
     loops = nb.get_num_threads()
     out_n = 600
     if n % out_n != 0:

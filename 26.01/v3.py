@@ -115,12 +115,12 @@ def main():
     lowx = -3.0
     lowy = -3.0
     span = 6.0
-    n = 6000
+    n = 600
     eps = 0.3
     # sample_size = 1_000_000
     sample_size = int(3E9)
     loops = 5
-    out_n = 600
+    out_n = 100
     if n % out_n != 0:
         raise ValueError("n must be divisible by out_n")
     bin_factor = n // out_n
