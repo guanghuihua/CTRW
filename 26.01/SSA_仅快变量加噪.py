@@ -4,10 +4,7 @@ import time
 import numba as nb
 
 nb.config.NUMBA_DEFAULT_NUM_THREADS = 28
-"""
-次数跑
-时间加权
-"""
+
 
 @nb.njit(fastmath=True)
 def ssa_canard_timeweighted(
@@ -34,8 +31,10 @@ def ssa_canard_timeweighted(
     while valid_count < sample_size:
         mu_1 = (trajectory_point_y - np.power(trajectory_point_x, 3) / 3 + trajectory_point_x) / delta
         mu_2 = a - trajectory_point_x
+
+        # Only add additive noise to the fast variable (x), keep y deterministic.
         m1 = max(2 - abs(mu_1) * h, 0.0) / 2.0
-        m2 = max(2 - abs(mu_2) * h, 0.0) / 2.0
+        m2 = 0.0
 
         trajectory_point_x = lowx_center + round((trajectory_point_x - lowx_center) * inv_h) * h
         trajectory_point_y = lowy_center + round((trajectory_point_y - lowy_center) * inv_h) * h
@@ -120,8 +119,7 @@ def main():
     span = 6.0
     n = 600
     eps = 0.3
-    # sample_size = 1_000_000
-    sample_size = int(3E9)
+    sample_size = int(3E7)
     loops = 5
     out_n = 100
     if n % out_n != 0:
@@ -161,17 +159,10 @@ def main():
     ax1.set_xlabel("X-axis")
     ax1.set_ylabel("Y-axis")
     ax1.set_zlabel("Density")
-    ax1.set_title("SSA Canard Time-Weighted Density")
+    ax1.set_title("SSA Canard Time-Weighted Density (Noise on Fast Variable)")
 
     plt.show()
 
 
 if __name__ == "__main__":
     main()
-
-"""
-1. 使用Numba加速
-2. 使用多尺度方法
-3. 使用ensemble方法
-4. 使用时间权重
-"""

@@ -5,6 +5,10 @@ import numba as nb
 
 nb.config.NUMBA_DEFAULT_NUM_THREADS = 28
 
+"""
+次数跑
+次数加权
+"""
 
 @nb.njit(fastmath=True)
 def ssa_canard_timeweighted(
@@ -49,7 +53,7 @@ def ssa_canard_timeweighted(
         x_n = int(round((trajectory_point_x - lowx_center) * inv_h)) + 1
         y_n = int(round((trajectory_point_y - lowy_center) * inv_h)) + 1
         if 1 <= x_n <= n + 1 and 1 <= y_n <= n + 1:
-            counts[x_n - 1, y_n - 1] += tau
+            counts[x_n - 1, y_n - 1] += 1.0
             valid_count += 1
         else:
             out_of_bounds_counts += 1
