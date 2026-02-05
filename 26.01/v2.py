@@ -155,12 +155,12 @@ def main():
     lowx = -3.0
     lowy = -3.0
     span = 6.0
-    n = 6000
+    n = 600
     eps = 0.4
     t_stop = 3e5
     burn_time = 5e3
     loops = nb.get_num_threads()
-    out_n = 600
+    out_n = 100
     if n % out_n != 0:
         raise ValueError("n must be divisible by out_n")
     bin_factor = n // out_n
