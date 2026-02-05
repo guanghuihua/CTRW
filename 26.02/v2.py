@@ -1,4 +1,5 @@
 import os
+os.chdir(os.path.dirname(__file__))
 import time
 
 import matplotlib.pyplot as plt
@@ -138,14 +139,14 @@ def main():
     lowx = -3.0
     lowy = -3.0
     span = 6.0
-    n = 600
+    n = 1800
     eps = 0.3
     t_stop = 5.0e4
     burn_time = 5.0e3
     tau = 1.0e-2
-    samples = 10_000_000
+    samples = 1000_000_000
     loops = nb.get_num_threads()
-    out_n = 100
+    out_n = 300
     if n % out_n != 0:
         raise ValueError("n must be divisible by out_n")
     bin_factor = n // out_n
@@ -172,24 +173,28 @@ def main():
     y = np.linspace(lowy + h_eff / 2.0, lowy + span - h_eff / 2.0, out_n)
     X, Y = np.meshgrid(x, y, indexing="ij")
 
-    fig = plt.figure(figsize=(10, 8))
-    ax1 = fig.add_subplot(2, 1, 1, projection="3d")
+    fig1 = plt.figure(figsize=(10, 8))
+    ax1 = fig1.add_subplot(111, projection="3d")
     ax1.plot_surface(X, Y, data, cmap="viridis")
     ax1.set_xlabel("X-axis")
     ax1.set_ylabel("Y-axis")
     ax1.set_zlabel("Density")
     ax1.set_title("Tau-leaping Canard Time-Weighted Density")
+    fig1.tight_layout()
+    fig1.savefig("tau_leaping_density_3d.png", dpi=300)
+    fig1.show()
 
-    ax2 = fig.add_subplot(2, 1, 2)
+    fig2 = plt.figure(figsize=(10, 8))
+    ax2 = fig2.add_subplot(111)
     extent = (x[0], x[-1], y[0], y[-1])
     im = ax2.imshow(data.T, origin="lower", extent=extent, cmap="viridis", aspect="auto")
     ax2.set_xlabel("X-axis")
     ax2.set_ylabel("Y-axis")
     ax2.set_title("Tau-leaping Canard Density Heatmap")
-    fig.colorbar(im, ax=ax2, label="Density")
-
-    plt.tight_layout()
-    plt.show()
+    fig2.colorbar(im, ax=ax2, label="Density")
+    fig2.tight_layout()
+    fig2.savefig("tau_leaping_density_heatmap.png", dpi=300)
+    fig2.show()
 
 
 if __name__ == "__main__":
