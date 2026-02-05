@@ -158,7 +158,7 @@ def main():
     eps = 0.4
     t_stop = 1e5
     burn_time = 5e3
-    tau = 1.0e-5
+    tau = 0.1
     loops = nb.get_num_threads()
     out_n = 100
     if n % out_n != 0:
