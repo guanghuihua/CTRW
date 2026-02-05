@@ -3,5 +3,96 @@
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \providecommand \oddpage@label [2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1\hspace  {-0.5\ccwd }}tau-leaping 原理}{1}{section.1}\protected@file@percent }
+\newlabel{eq:CME}{{1.1}{1}{tau-leaping 原理}{equation.1.1}{}}
+\newlabel{eq:SSA_time}{{{2.13}}{1}{tau-leaping 原理}{AMS.1}{}}
+\newlabel{eq:SSA_channel}{{{2.14}}{1}{tau-leaping 原理}{AMS.2}{}}
+\newlabel{eq:Poisson_leap}{{{2.15}}{1}{tau-leaping 原理}{AMS.3}{}}
+\newlabel{eq:leap_update}{{{2.16}}{1}{tau-leaping 原理}{AMS.4}{}}
+\newlabel{eq:leap_condition}{{{2.17}}{1}{tau-leaping 原理}{AMS.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1\hspace  {-0.5\ccwd }}基于空间离散格式的 tau-leaping 算法}{2}{subsection.1.1}\protected@file@percent }
+\newlabel{eq:SDE_1d}{{1.2}{2}{基于空间离散格式的 tau-leaping 算法}{equation.1.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{(1) 中心差分生成元 $Q_c$（两点跳跃）}{2}{paragraph*.6}\protected@file@percent }
+\newlabel{eq:Qc_rates}{{1.3}{2}{(1) 中心差分生成元 $Q_c$（两点跳跃）}{equation.1.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{(2) 迎风生成元 $Q_u$（保证非负性）}{2}{paragraph*.7}\protected@file@percent }
+\newlabel{eq:Qu_rates}{{1.4}{2}{(2) 迎风生成元 $Q_u$（保证非负性）}{equation.1.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{(3) 在 $Q$-跳过程上的 tau-leaping 更新}{2}{paragraph*.8}\protected@file@percent }
+\newlabel{eq:Q_tau_update}{{{3.2}}{2}{(3) 在 $Q$-跳过程上的 tau-leaping 更新}{AMS.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2\hspace  {-0.5\ccwd }}中点格式的 tau-leaping 算法}{2}{subsection.1.2}\protected@file@percent }
+\newlabel{eq:midpoint_predict}{{1.5}{2}{中点格式的 tau-leaping 算法}{equation.1.5}{}}
+\newlabel{eq:midpoint_update}{{1.6}{3}{中点格式的 tau-leaping 算法}{equation.1.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3\hspace  {-0.5\ccwd }}带拒绝机制的 tau-leaping 算法}{3}{subsection.1.3}\protected@file@percent }
+\newlabel{eq:reject_leap}{{1.7}{3}{带拒绝机制的 tau-leaping 算法}{equation.1.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2\hspace  {-0.5\ccwd }}随机Canard慢快系统的平稳密度计算}{3}{section.2}\protected@file@percent }
+\newlabel{subsec:canard}{{2}{3}{随机Canard慢快系统的平稳密度计算}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1\hspace  {-0.5\ccwd }}模型、参数与Canard爆炸背景}{3}{subsection.2.1}\protected@file@percent }
+\newlabel{eq:canard_sde}{{2.1}{3}{模型、参数与Canard爆炸背景}{equation.2.1}{}}
+\newlabel{eq:canard_standard}{{2.2}{4}{模型、参数与Canard爆炸背景}{equation.2.2}{}}
+\newlabel{eq:canard_param}{{2.3}{4}{模型、参数与Canard爆炸背景}{equation.2.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2\hspace  {-0.5\ccwd }}生成元与空间离散：四方向跳跃速率 \(q_1,\dots  ,q_4\)}{4}{subsection.2.2}\protected@file@percent }
+\newlabel{eq:canard_generator}{{2.4}{4}{生成元与空间离散：四方向跳跃速率 \(q_1,\dots ,q_4\)}{equation.2.4}{}}
+\newlabel{eq:canard_rates}{{2.5}{4}{生成元与空间离散：四方向跳跃速率 \(q_1,\dots ,q_4\)}{equation.2.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3\hspace  {-0.5\ccwd }}\textit  {tau-leaping}在随机Canard中的实现要点}{5}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(1) 步长 \(\tau \) 的自适应控制}{5}{paragraph*.10}\protected@file@percent }
+\newlabel{eq:tau_choice}{{2.6}{5}{(1) 步长 \(\tau \) 的自适应控制}{equation.2.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{(2) 拒绝机制与越界控制}{5}{paragraph*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(3) 平稳密度统计：burn-in 与占据时间加权}{5}{paragraph*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4\hspace  {-0.5\ccwd }}数值设置与结果展示}{5}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(1) 平稳密度的几何形状与慢快结构}{5}{paragraph*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(2) 与时间离散方法的对比（可选，用于投稿时强调优势）}{6}{paragraph*.14}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces 随机Canard系统的样本轨道与平稳密度示意图（左：相平面轨道；右：二维平稳密度热力图）。图由程序生成。}}{6}{figure.caption.15}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:canard_density}{{2.1}{6}{随机Canard系统的样本轨道与平稳密度示意图（左：相平面轨道；右：二维平稳密度热力图）。图由程序生成。}{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5\hspace  {-0.5\ccwd }}小结：平稳密度与Canard爆炸的联系}{6}{subsection.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3\hspace  {-0.5\ccwd }}模型与快慢分解}{6}{section.3}\protected@file@percent }
+\newlabel{eq:model}{{3.1}{6}{模型与快慢分解}{equation.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1\hspace  {-0.5\ccwd }}快时间与层系统（layer problem）}{6}{subsection.3.1}\protected@file@percent }
+\newlabel{eq:layer}{{3.2}{6}{快时间与层系统（layer problem）}{equation.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2\hspace  {-0.5\ccwd }}临界流形（critical manifold）与稳定性}{6}{subsection.3.2}\protected@file@percent }
+\newlabel{eq:C0}{{3.3}{6}{临界流形（critical manifold）与稳定性}{equation.3.3}{}}
+\newlabel{eq:folds}{{3.4}{7}{临界流形（critical manifold）与稳定性}{equation.3.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4\hspace  {-0.5\ccwd }}慢系统（reduced problem）与 Fenichel 慢流形}{7}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1\hspace  {-0.5\ccwd }}慢极限（$\varepsilon \to 0$）上的约化方程}{7}{subsection.4.1}\protected@file@percent }
+\newlabel{eq:reduced}{{4.1}{7}{慢极限（$\varepsilon \to 0$）上的约化方程}{equation.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2\hspace  {-0.5\ccwd }}Fenichel 理论给出的 $\mathcal  C_\varepsilon ^{a/r}$}{7}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5\hspace  {-0.5\ccwd }}确定性动力学：平衡点、松弛振荡、鸭解（regular duck / headless duck）}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1\hspace  {-0.5\ccwd }}平衡点与线性稳定性}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2\hspace  {-0.5\ccwd }}为什么会出现松弛振荡（relaxation oscillation）？}{8}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{奇异极限下的“跳跃落点”可以显式写出。}{8}{paragraph*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{周期的慢段可由积分近似。}{8}{paragraph*.17}\protected@file@percent }
+\newlabel{eq:period}{{5.1}{8}{周期的慢段可由积分近似。}{equation.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3\hspace  {-0.5\ccwd }}为什么会出现 regular duck 与 headless duck？（Canard 几何机制）}{8}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{核心几何：排斥慢流形附近的“指数放大”。}{8}{paragraph*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{regular duck vs headless duck（用“跳回哪条稳定支”区分）。}{8}{paragraph*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{与参数 $a,\varepsilon $ 的关系（定性结论）。}{9}{paragraph*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{（可用于写作的具体参数展开）}{9}{paragraph*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6\hspace  {-0.5\ccwd }}加入噪声后的 Canard：慢变量噪声 $\Rightarrow $ 随机选择；快变量噪声 $\Rightarrow $ 随机共振}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1\hspace  {-0.5\ccwd }}两种加噪方式}{9}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(A) 噪声加在慢变量（$y$）上：}{9}{paragraph*.22}\protected@file@percent }
+\newlabel{eq:slow-noise}{{6.1}{9}{(A) 噪声加在慢变量（$y$）上：}{equation.6.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{(B) 噪声加在快变量（$x$）上：}{9}{paragraph*.23}\protected@file@percent }
+\newlabel{eq:fast-noise}{{6.2}{9}{(B) 噪声加在快变量（$x$）上：}{equation.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2\hspace  {-0.5\ccwd }}慢变量噪声为什么会导致“随机选择”？}{9}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1\hspace  {-0.5\ccwd }}机制 1：排斥慢流形上的指数放大把噪声“放大成选择”}{9}{subsubsection.6.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2\hspace  {-0.5\ccwd }}机制 2：Sowers 的极限定理——分界量的符号趋于高斯分布}{10}{subsubsection.6.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.3\hspace  {-0.5\ccwd }}机制 3：折点附近的局部正则形（Berglund--Gentz 的样本路径推导）}{10}{subsubsection.6.2.3}\protected@file@percent }
+\newlabel{eq:BG-619}{{6.3}{10}{机制 3：折点附近的局部正则形（Berglund--Gentz 的样本路径推导）}{equation.6.3}{}}
+\newlabel{eq:BG-620}{{6.4}{10}{机制 3：折点附近的局部正则形（Berglund--Gentz 的样本路径推导）}{equation.6.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{“贴慢流形的绝热解”与偏差方程。}{10}{paragraph*.24}\protected@file@percent }
+\newlabel{eq:BG-621}{{6.5}{10}{“贴慢流形的绝热解”与偏差方程。}{equation.6.5}{}}
+\newlabel{eq:BG-622-623}{{6.6}{10}{“贴慢流形的绝热解”与偏差方程。}{equation.6.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{线性近似下的方差增长：解释“为何折点附近噪声影响被放大”。}{10}{paragraph*.25}\protected@file@percent }
+\newlabel{eq:BG-624}{{6.7}{10}{线性近似下的方差增长：解释“为何折点附近噪声影响被放大”。}{equation.6.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{与“regular/headless”的连接（写作建议）。}{11}{paragraph*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3\hspace  {-0.5\ccwd }}快变量噪声为什么会导致“随机共振（stochastic resonance）”？}{11}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.1\hspace  {-0.5\ccwd }}随机共振的标准定义}{11}{subsubsection.6.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2\hspace  {-0.5\ccwd }}用 Kramers 型速率解释“为何存在最优噪声强度”}{11}{subsubsection.6.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.3\hspace  {-0.5\ccwd }}与 Canard/van der Pol 几何的直接对应}{11}{subsubsection.6.3.3}\protected@file@percent }
+\bibcite{Sowers2008}{1}
+\bibcite{BerglundGentzBook}{2}
+\bibcite{Benoit1981}{3}
+\bibcite{KrupaSzmolyan}{4}
+\bibcite{Gammaitoni1998}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {7\hspace  {-0.5\ccwd }}在快变量和慢变量上分别加噪声}{12}{section.7}\protected@file@percent }
 \ttl@finishall
-\gdef \@abspage@last{8}
+\gdef \@abspage@last{12}
