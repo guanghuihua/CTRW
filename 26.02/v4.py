@@ -119,8 +119,8 @@ def main():
     span = 6.0
     n = 3000
     eps = 0.3
-    sample_size = 100_000_000
-    # sample_size = int(3E9)
+    # sample_size = 100_000_000
+    sample_size = int(3E9)
     tau = 0.01
     loops = nb.get_num_threads()
     out_n = 500
