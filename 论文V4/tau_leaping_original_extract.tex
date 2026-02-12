@@ -918,6 +918,261 @@
 		% 资料来源：式 (6.1.21)--(6.1.24) 与方差结论:contentReference[oaicite:12]{index=12}
 	\end{enumerate}
 	
+	% Ring density 模型：closed-form 平稳密度推导（中文整理）
+	% 说明：以下推导对应二维加性噪声 SDE：dZ_t = b(Z_t)dt + \sigma dW_t，
+	% 其中 W_t 为二维标准布朗运动，扩散矩阵为 \sigma I_2。
+	
+	\section{Ring density 模型的 closed-form 平稳密度推导}
+	
+	\subsection{模型设定}
+	
+	令随机过程 $Z_t=(X_t,Y_t)\in\mathbb{R}^2$ 满足二维随机微分方程
+	\begin{equation}\label{eq:ring_sde}
+		dZ_t=b(Z_t)\,dt+\sigma\,dW_t,
+	\end{equation}
+	其中 $W_t$ 是二维标准布朗运动，$\sigma>0$ 为常数。
+	
+	Ring density 模型的漂移项采取如下分解形式
+	\begin{equation}\label{eq:drift_decomp}
+		b(z)=-\nabla V(z)+R(z),\qquad z=(x,y),
+	\end{equation}
+	其中势函数取为
+	\begin{equation}\label{eq:potential}
+		V(x,y)=(x^2+y^2-1)^2,
+	\end{equation}
+	而 $R$ 是沿等势线方向的\textbf{旋转项}（与 $\nabla V$ 正交），典型选择为
+	\begin{equation}\label{eq:rotation}
+		R(x,y)=(y,-x).
+	\end{equation}
+	该 $R$ 满足 $\nabla\cdot R=0$ 且 $R\cdot \nabla V=0$，因此只产生``环向流''，不改变平稳密度的闭式表达。
+	
+	\subsection{Fokker--Planck 方程与平稳方程}
+	
+	令 $p(t,z)$ 表示 $Z_t$ 的概率密度，则对应的 Fokker--Planck 方程为
+	\begin{equation}\label{eq:FP}
+		\partial_t p(t,z)=-\nabla\cdot\big(b(z)p(t,z)\big)+\frac{\sigma^2}{2}\Delta p(t,z)
+		=-\nabla\cdot\left(b(z)p(t,z)-\frac{\sigma^2}{2}\nabla p(t,z)\right).
+	\end{equation}
+	记概率流（probability current）
+	\begin{equation}\label{eq:current}
+		J(t,z):=b(z)p(t,z)-\frac{\sigma^2}{2}\nabla p(t,z).
+	\end{equation}
+	平稳密度 $p^*(z)$ 满足 $\partial_t p=0$，即
+	\begin{equation}\label{eq:steady}
+		0=-\nabla\cdot J^*(z)
+		\quad\Longleftrightarrow\quad
+		\nabla\cdot\left(b(z)p^*(z)-\frac{\sigma^2}{2}\nabla p^*(z)\right)=0.
+	\end{equation}
+	
+	\subsection{梯度系统的闭式平稳密度}
+	
+	先考虑仅含梯度漂移 $b=-\nabla V$ 的情形。若要求平稳时\textbf{无概率流}（详细平衡）
+	\begin{equation}\label{eq:zero_current}
+		J^*(z)= -\nabla V(z)\,p^*(z)-\frac{\sigma^2}{2}\nabla p^*(z)\equiv 0,
+	\end{equation}
+	则由 \eqref{eq:zero_current} 得
+	\[
+	\nabla p^*(z)=-\frac{2}{\sigma^2}p^*(z)\nabla V(z)
+	\quad\Longrightarrow\quad
+	\nabla\big(\log p^*(z)\big)=-\frac{2}{\sigma^2}\nabla V(z).
+	\]
+	对空间积分可得
+	\begin{equation}\label{eq:boltzmann}
+		p^*(x,y)=\frac{1}{K}\exp\!\left(-\frac{2}{\sigma^2}V(x,y)\right),
+	\end{equation}
+	其中 $K$ 为归一化常数，使得 $\int_{\mathbb{R}^2}p^*(x,y)\,dx\,dy=1$。
+	
+	\subsection{旋转项 $R$ 不改变平稳密度的原因}
+	
+	将一般漂移 $b=-\nabla V+R$ 代入 \eqref{eq:current}，并取候选密度为 \eqref{eq:boltzmann}。
+	由于对该候选密度有
+	\[
+	-\nabla V\,p^*-\frac{\sigma^2}{2}\nabla p^*\equiv 0,
+	\]
+	因此平稳概率流化简为
+	\[
+	J^*(z)=R(z)\,p^*(z).
+	\]
+	于是平稳条件 \eqref{eq:steady} 等价于
+	\[
+	\nabla\cdot(Rp^*)=0.
+	\]
+	注意到
+	\[
+	\nabla\cdot(Rp^*)=(\nabla\cdot R)p^*+R\cdot\nabla p^*,
+	\qquad
+	\nabla p^*=-\frac{2}{\sigma^2}p^*\nabla V,
+	\]
+	因此
+	\[
+	\nabla\cdot(Rp^*)=(\nabla\cdot R)p^*-\frac{2}{\sigma^2}p^*(R\cdot\nabla V).
+	\]
+	若满足
+	\begin{equation}\label{eq:cond}
+		\nabla\cdot R=0,\qquad R\cdot\nabla V=0,
+	\end{equation}
+	则 $\nabla\cdot(Rp^*)=0$ 成立，说明旋转项 $R$ 仅引入非零环向概率流，不改变平稳密度的形状，
+	因此 \eqref{eq:boltzmann} 仍是 \eqref{eq:ring_sde} 的闭式平稳密度。
+	
+	对本模型 $V(x,y)=(x^2+y^2-1)^2$，
+	\[
+	\nabla V(x,y)=4(x^2+y^2-1)(x,y),
+	\]
+	而 $R(x,y)=(y,-x)$ 满足
+	\[
+	\nabla\cdot R=\partial_x(y)+\partial_y(-x)=0,\qquad
+	R\cdot\nabla V=4(x^2+y^2-1)\big(yx-xy\big)=0,
+	\]
+	因此条件 \eqref{eq:cond} 成立。
+	
+	\subsection{归一化常数 $K$ 的显式计算}
+	
+	由 \eqref{eq:boltzmann}，
+	\[
+	K=\int_{\mathbb{R}^2}\exp\!\left(-\frac{2}{\sigma^2}(x^2+y^2-1)^2\right)\,dx\,dy.
+	\]
+	改用极坐标 $x=r\cos\theta,\ y=r\sin\theta$，则 $V=(r^2-1)^2$ 且 $dx\,dy=r\,dr\,d\theta$，
+	\begin{align}
+		K
+		&=\int_{0}^{2\pi}\int_{0}^{\infty}
+		\exp\!\left(-\frac{2}{\sigma^2}(r^2-1)^2\right)\,r\,dr\,d\theta \notag\\
+		&=2\pi\int_{0}^{\infty}
+		\exp\!\left(-\frac{2}{\sigma^2}(r^2-1)^2\right)\,r\,dr.
+	\end{align}
+	令变量代换 $t=r^2-1$，则 $dt=2r\,dr$，并且当 $r:0\to\infty$ 时 $t:-1\to\infty$，因此
+	\begin{equation}\label{eq:K}
+		K
+		=2\pi\int_{-1}^{\infty}\exp\!\left(-\frac{2}{\sigma^2}t^2\right)\frac{1}{2}\,dt
+		=\pi\int_{-1}^{\infty}\exp\!\left(-\frac{2}{\sigma^2}t^2\right)\,dt.
+	\end{equation}
+	
+	\subsection{最终 closed-form 平稳密度}
+	
+	综上，Ring density 模型 \eqref{eq:ring_sde}--\eqref{eq:rotation} 的平稳密度为
+	\begin{equation}\label{eq:final}
+		p^*(x,y)=\frac{1}{K}\exp\!\left(-\frac{2}{\sigma^2}(x^2+y^2-1)^2\right),
+	\end{equation}
+	其中归一化常数 $K$ 由 \eqref{eq:K} 给出，即
+	\[
+	K=\pi\int_{-1}^{\infty}\exp\!\left(-\frac{2}{\sigma^2}t^2\right)\,dt.
+	\]
+	
+	% 退化噪声（degenerate noise）下 Ring density 模型的平稳密度：是否仍有闭式解？
+	% 说明：这里“闭式解”既可能指在 R^2 上对 Lebesgue 测度的光滑密度，
+	% 也可能指更一般的“不变测度”（可能是奇异测度，如集中在一条环上）。
+	
+	\section{退化噪声情形下 Ring density 平稳密度是否仍有闭式解？}
+	
+	总体结论是：\textbf{一般情况下不再有简单的闭式密度解}。
+	当扩散（噪声）是\textbf{退化的}（扩散矩阵不满秩）时，经典的 Ring-density ``Gibbs 型''闭式形式
+	\[
+	p^*(x,y)\propto \exp\!\left(-\frac{2}{\sigma^2}V(x,y)\right),
+	\qquad V(x,y)=(x^2+y^2-1)^2
+	\]
+	\textbf{不再自动成立}；并且很多时候甚至不存在相对于 $\mathbb{R}^2$ 上 Lebesgue 测度的
+	\textbf{光滑概率密度}（可能只存在奇异不变测度）。
+	
+	\subsection{1. 退化扩散下的平稳 Fokker--Planck 方程}
+	
+	考虑二维 SDE
+	\begin{equation}\label{eq:deg_sde}
+		dZ_t=b(Z_t)\,dt + G\,dW_t,\qquad Z_t\in\mathbb{R}^2,
+	\end{equation}
+	其中 $G\in\mathbb{R}^{2\times m}$ 的秩 $\mathrm{rank}(G)<2$，这表示噪声只作用在某些方向上。
+	令
+	\[
+	a:=GG^{\mathsf T},
+	\]
+	则 $a$ 是\textbf{秩亏}（rank-deficient）的扩散矩阵。
+	
+	若平稳密度 $\rho(z)$（作为函数）存在，则它应满足退化椭圆型的平稳 Fokker--Planck 方程
+	\begin{equation}\label{eq:deg_FP}
+		0=-\nabla\cdot\big(b(z)\rho(z)\big)
+		+\frac12\,\nabla\cdot\big(a\nabla\rho(z)\big).
+	\end{equation}
+	当 $a$ \textbf{满秩}（一致椭圆）时，梯度漂移往往导出 Gibbs 型闭式平稳密度；
+	但当 $a$ \textbf{退化}时，上式变为\textbf{退化椭圆}方程，经典 Gibbs 推导通常会失效，
+	除非漂移与扩散满足额外的结构兼容条件。
+	
+	\subsection{2. 什么时候仍可能保持 Gibbs 型闭式形式？}
+	
+	设我们希望平稳分布具有形式
+	\[
+	\rho(z)=Z^{-1}e^{-U(z)}.
+	\]
+	一个非常常用且足够的条件是：漂移可以写成
+	\begin{equation}\label{eq:structure}
+		b(z)= -\frac12\,a\nabla U(z) \;+\; c(z),
+		\qquad \text{并且}\quad \nabla\cdot\big(c(z)\rho(z)\big)=0.
+	\end{equation}
+	这里
+	\begin{itemize}
+		\item $-\frac12\,a\nabla U$ 是与扩散矩阵 $a$ 相匹配的\textbf{可逆（耗散）部分}；
+		\item $c$ 是\textbf{不可逆（环流）部分}：它可以产生非零概率流，但仍保持 $\rho$ 不变。
+	\end{itemize}
+	
+	\paragraph{为什么退化会破坏 Ring density 的闭式结果？}
+	在非退化 Ring 模型中，我们使用
+	\[
+	b(z)=-\nabla V(z)+R(z),
+	\]
+	其中 $R$ 常取为沿等势线的旋转场（例如 $(y,-x)$），并满足
+	$\nabla\cdot R=0$ 与 $R\cdot \nabla V=0$，从而不改变平稳密度。
+	
+	但若扩散退化，则要保持 Gibbs 型形式，必须能把 $-\nabla V$ 写成 $-\frac12 a\nabla U$ 的形式。
+	由于退化矩阵 $a$ 的像空间 $\mathrm{Range}(a)$ 是低维的，$-\frac12 a\nabla U$ 的方向
+	\textbf{只能落在} $\mathrm{Range}(a)$ 中；而一般的 $-\nabla V$ 在二维空间里通常同时包含两个方向的分量。
+	因此，除非 $V$ 或 $a$ 具有非常特殊的结构，否则这种匹配\textbf{无法成立}，
+	从而原先的闭式平稳密度通常\textbf{不再正确}。
+	
+	\subsection{3. 两类重要的“特殊情况下仍可写出闭式表达”的情形}
+	
+	\subsubsection{(A) 存在不变测度，但它是奇异的（例如集中在一条环上）}
+	
+	如果噪声只沿\textbf{切向}作用，而\textbf{径向}动力学是确定性的并把轨道吸引到 $r=1$，
+	则长期极限的不变对象可能是集中在单位圆上的测度，例如
+	\[
+	\mu^*(dr\,d\theta)=\delta(r-1)\,\frac{d\theta}{2\pi}.
+	\]
+	这在某种意义上也算“闭式解”，但它\textbf{不是} $\mathbb{R}^2$ 上的密度函数：
+	它对 Lebesgue 测度\textbf{不绝对连续}（是奇异测度）。
+	
+	\subsubsection{(B) 次椭圆/低秩但可平滑（hypoelliptic）的结构模型可能仍有显式 Gibbs 定律}
+	
+	一个经典例子是\textbf{欠阻尼 Langevin 动力学}（噪声只加在动量变量上，因此扩散退化），
+	但其不变分布仍是 Gibbs 型：
+	\[
+	\rho(q,p)\propto \exp\!\left(-\beta\left(V(q)+\frac12|p|^2\right)\right).
+	\]
+	原因在于该系统的漂移与扩散被\textbf{专门设计}成满足 \eqref{eq:structure} 的结构，
+	从而 Gibbs 不变测度可以严格成立。
+	
+	需要注意：你在二维 Ring density 中若仅对 $x$（或仅对 $y$）加噪声，
+	通常\textbf{并不自动}落入这种“仍保持 Gibbs 闭式密度”的结构类别。
+	
+	\subsection{4. ``只在一个变量上加噪声''时通常会发生什么？}
+	
+	如果噪声只作用于 $x$（或只作用于 $y$），一般可以期待：
+	\begin{itemize}
+		\item 仍可能存在\textbf{唯一}的不变测度；
+		\item 在满足 Hörmander 条件等情形下，测度可能仍有\textbf{光滑密度}（退化但可平滑）；
+		\item 但通常\textbf{很难得到简单显式的闭式公式}，往往需要数值方式求解，例如：
+		\begin{itemize}
+			\item 直接数值求解退化的平稳 Fokker--Planck 方程 \eqref{eq:deg_FP}；
+			\item 长时间模拟 + 遍历平均/直方图估计平稳密度；
+			\item 生成元离散（如 CTRW/SSA 的空间离散）后求解离散平稳方程 $Q^{\mathsf T}\nu=0$。
+		\end{itemize}
+	\end{itemize}
+	
+	\subsection{5. 小结}
+	
+	\begin{itemize}
+		\item \textbf{一般结论：}退化噪声下，Ring density 模型通常\textbf{不能}直接沿用
+		$p^*\propto e^{-2V/\sigma^2}$ 这样的闭式平稳密度。
+		\item \textbf{例外：}若漂移与退化扩散满足特殊结构（如 \eqref{eq:structure}），或不变对象为奇异测度，
+		则仍可能写出某种意义的“闭式表达”。
+	\end{itemize}
+	
 	
 	\begin{thebibliography}{99}
 		
