@@ -3,38 +3,33 @@ from __future__ import annotations
 import math
 from pathlib import Path
 
-try:
-    import numpy as np
-except Exception:
-    print("numpy is not available; install it with: py -m pip install numpy")
-    raise SystemExit(1)
-try:
-    import matplotlib.pyplot as plt
-
-    HAS_MPL = True
-except Exception:
-    HAS_MPL = False
-
+import matplotlib.pyplot as plt
+import numba as nb
+import numpy as np
 
 TWO_PI = 2.0 * math.pi
 
 
-def wrap_angle(theta: float) -> float:
+@nb.njit(cache=True, fastmath=True)
+def _drift_scalar(theta: float) -> float:
+    return math.sin(theta) + 0.3 * math.sin(2.0 * theta)
+
+
+@nb.njit(cache=True, fastmath=True)
+def _wrap_angle(theta: float) -> float:
     return theta % TWO_PI
 
 
 def drift(theta: np.ndarray | float) -> np.ndarray | float:
-    # Ring density model drift on S^1.
     return np.sin(theta) + 0.3 * np.sin(2.0 * theta)
 
 
 def stationary_density_reference(
-    theta_grid: np.ndarray, sigma: float, n_quad: int = 40000
+    theta_grid: np.ndarray, sigma: float, n_quad: int = 60000
 ) -> np.ndarray:
     """
-    Periodic Fokker-Planck reference for:
-        dtheta = f(theta) dt + sigma dW  (mod 2pi)
-    with constant diffusion.
+    Periodic Fokker-Planck reference density for
+        dtheta = f(theta) dt + sigma dW (mod 2pi).
     """
     s = np.linspace(0.0, TWO_PI, n_quad, endpoint=False)
     ds = TWO_PI / n_quad
@@ -61,48 +56,92 @@ def stationary_density_reference(
     return ref
 
 
+@nb.njit(cache=True, fastmath=True)
 def rates_midpoint(theta_i: float, h: float, sigma: float, tau_mid: float) -> tuple[float, float]:
-    """
-    Midpoint tau-leaping style local rates:
-      theta_mid = theta_i + 0.5 * tau_mid * f(theta_i)
-      b_mid = f(theta_mid)
-      q+ = max(b_mid,0)/h + sigma^2/(2 h^2)
-      q- = max(-b_mid,0)/h + sigma^2/(2 h^2)
-    """
-    theta_mid = wrap_angle(theta_i + 0.5 * tau_mid * float(drift(theta_i)))
-    b_mid = float(drift(theta_mid))
+    theta_mid = _wrap_angle(theta_i + 0.5 * tau_mid * _drift_scalar(theta_i))
+    b_mid = _drift_scalar(theta_mid)
     diff = (sigma * sigma) / (2.0 * h * h)
     q_plus = max(b_mid, 0.0) / h + diff
     q_minus = max(-b_mid, 0.0) / h + diff
     return q_plus, q_minus
 
 
-def _precompute_rates(k: int, sigma: float, tau_mid: float, mode: str) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+@nb.njit(cache=True, fastmath=True)
+def _precompute_rates_numba(
+    k: int, sigma: float, tau_mid: float, mode_flag: int
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
-    mode='Qu': midpoint rates
-    mode='Qc': exponential-fitted rates evaluated at midpoint drift
+    mode_flag=0 -> Qu midpoint upwind+diffusion
+    mode_flag=1 -> Qc midpoint exponential-fitted
     """
     h = TWO_PI / k
-    theta = np.arange(k, dtype=np.float64) * h
     q_plus = np.zeros(k, dtype=np.float64)
     q_minus = np.zeros(k, dtype=np.float64)
+    m = (sigma * sigma) / 2.0
 
     for i in range(k):
-        if mode == "Qu":
-            qp, qm = rates_midpoint(theta[i], h, sigma, tau_mid)
-        elif mode == "Qc":
-            theta_mid = wrap_angle(theta[i] + 0.5 * tau_mid * float(drift(theta[i])))
-            b_mid = float(drift(theta_mid))
-            m = (sigma * sigma) / 2.0
+        theta_i = i * h
+        theta_mid = _wrap_angle(theta_i + 0.5 * tau_mid * _drift_scalar(theta_i))
+        b_mid = _drift_scalar(theta_mid)
+        if mode_flag == 0:
+            diff = m / (h * h)
+            qp = max(b_mid, 0.0) / h + diff
+            qm = max(-b_mid, 0.0) / h + diff
+        else:
             qp = (m / (h * h)) * math.exp((b_mid * h) / (2.0 * m))
             qm = (m / (h * h)) * math.exp(-(b_mid * h) / (2.0 * m))
-        else:
-            raise ValueError("mode must be 'Qu' or 'Qc'")
         q_plus[i] = qp
         q_minus[i] = qm
 
     lam = q_plus + q_minus
     return q_plus, q_minus, lam
+
+
+@nb.njit(cache=True, fastmath=True)
+def _simulate_ssa_ctmc_numba(
+    k: int,
+    sigma: float,
+    t_burn: float,
+    t_sample: float,
+    tau_mid: float,
+    seed: int,
+    mode_flag: int,
+) -> np.ndarray:
+    np.random.seed(seed)
+    h = TWO_PI / k
+    q_plus, q_minus, lam = _precompute_rates_numba(k, sigma, tau_mid, mode_flag)
+
+    idx = int(np.random.randint(0, k))
+    t = 0.0
+    t_end = t_burn + t_sample
+    occ = np.zeros(k, dtype=np.float64)
+
+    while t < t_end:
+        li = lam[idx]
+        if li <= 0.0:
+            break
+        u = np.random.random()
+        if u < 1e-15:
+            u = 1e-15
+        tau = -math.log(u) / li
+        if t >= t_burn:
+            occ[idx] += tau
+
+        r = np.random.random() * li
+        if r < q_plus[idx]:
+            idx += 1
+            if idx == k:
+                idx = 0
+        else:
+            idx -= 1
+            if idx < 0:
+                idx = k - 1
+        t += tau
+
+    total = np.sum(occ)
+    if total <= 0.0:
+        return np.zeros(k, dtype=np.float64)
+    return occ / (total * h)
 
 
 def simulate_ssa_ctmc(
@@ -114,53 +153,22 @@ def simulate_ssa_ctmc(
     seed: int,
     mode: str = "Qu",
 ) -> np.ndarray:
-    """
-    Exact Gillespie simulation for the periodic CTMC generated by selected rates.
-    Returns time-weighted density estimate on the K-grid.
-    """
-    rng = np.random.default_rng(seed)
-    h = TWO_PI / k
-    q_plus, q_minus, lam = _precompute_rates(k, sigma, tau_mid, mode)
-
-    idx = int(rng.integers(0, k))
-    t = 0.0
-    t_end = t_burn + t_sample
-    occ = np.zeros(k, dtype=np.float64)
-
-    while t < t_end:
-        li = lam[idx]
-        if li <= 0.0:
-            break
-        u = max(rng.random(), 1e-15)
-        tau = -math.log(u) / li
-        if t >= t_burn:
-            occ[idx] += tau
-
-        r = rng.random() * li
-        if r < q_plus[idx]:
-            idx = (idx + 1) % k
-        else:
-            idx = (idx - 1) % k
-        t += tau
-
-    total = np.sum(occ)
-    if total <= 0.0:
+    mode_flag = 0 if mode == "Qu" else 1
+    pi_hat = _simulate_ssa_ctmc_numba(k, sigma, t_burn, t_sample, tau_mid, seed, mode_flag)
+    if np.sum(pi_hat) <= 0.0:
         raise ValueError("No occupancy recorded. Increase t_sample or reduce t_burn.")
-    pi_hat = occ / (total * h)
     return pi_hat
 
 
+@nb.njit(cache=True, fastmath=True)
 def l1_error_density(pi_hat: np.ndarray, pi_ref: np.ndarray, h: float) -> float:
-    return float(np.sum(np.abs(pi_hat - pi_ref)) * h)
+    return np.sum(np.abs(pi_hat - pi_ref)) * h
 
 
 def plot_accuracy(h_vals: np.ndarray, err_u: np.ndarray, err_c: np.ndarray, out_path: Path) -> None:
-    if not HAS_MPL:
-        raise RuntimeError("matplotlib is not available. Install matplotlib to plot/save the figure.")
-    # Align reference lines at middle scale and offset to avoid overlap.
     i0 = len(h_vals) // 2
-    c1 = 0.7 * err_u[i0] / h_vals[i0]
-    c2 = 0.7 * err_c[i0] / (h_vals[i0] ** 2)
+    c1 = 0.65 * err_u[i0] / h_vals[i0]
+    c2 = 0.65 * err_c[i0] / (h_vals[i0] ** 2)
 
     fig, ax = plt.subplots(figsize=(6.8, 5.8))
     ax.loglog(
@@ -168,7 +176,7 @@ def plot_accuracy(h_vals: np.ndarray, err_u: np.ndarray, err_c: np.ndarray, out_
         err_u,
         "o-",
         color="#0072E3",
-        ms=8,
+        ms=7,
         lw=0.8,
         mfc="none",
         mew=0.8,
@@ -179,7 +187,7 @@ def plot_accuracy(h_vals: np.ndarray, err_u: np.ndarray, err_c: np.ndarray, out_
         err_c,
         "o-",
         color="#E69F00",
-        ms=8,
+        ms=7,
         lw=0.8,
         mfc="none",
         mew=0.8,
@@ -209,58 +217,50 @@ def plot_accuracy(h_vals: np.ndarray, err_u: np.ndarray, err_c: np.ndarray, out_
     ax.set_ylabel(r"$l^1$-error")
     ax.grid(False)
     ax.legend(loc="lower right", frameon=True, fancybox=False, edgecolor="black")
-
     fig.tight_layout()
     fig.savefig(out_path, dpi=300)
     plt.show()
 
 
 def main() -> None:
-    if not HAS_MPL:
-        print("matplotlib is not available; install it with: py -m pip install matplotlib")
-        return
-    # Experiment configuration
-    K_list = [50, 100, 200, 400, 800]
+    # More robust defaults to reduce Monte Carlo crossing.
+    k_list = [50, 100, 200, 400, 800]
     sigma = 0.6
-    tau_mid = 0.02
-    t_burn = 200.0
-    t_sample = 4000.0
-    n_rep = 5
+    tau_mid = 0.01
+    t_burn = 500.0
+    t_sample = 20000.0
+    n_rep = 12
     base_seed = 20260212
 
-    ks = np.array(K_list, dtype=np.int64)
+    ks = np.array(k_list, dtype=np.int64)
     h_vals = TWO_PI / ks
     err_u = np.zeros_like(h_vals, dtype=np.float64)
     err_c = np.zeros_like(h_vals, dtype=np.float64)
+
+    # trigger JIT once
+    _ = rates_midpoint(0.1, TWO_PI / 50, sigma, tau_mid)
 
     for j, k in enumerate(ks):
         h = TWO_PI / k
         theta = np.arange(k, dtype=np.float64) * h
         pi_ref = stationary_density_reference(theta, sigma)
-        ref_mass = np.sum(pi_ref) * h
-        print(f"K={k:4d} | ref mass = {ref_mass:.12f}")
+        print(f"K={k:4d} | ref mass={np.sum(pi_ref) * h:.12f}")
 
-        e_u_rep = []
-        e_c_rep = []
+        e_u_rep = np.zeros(n_rep, dtype=np.float64)
+        e_c_rep = np.zeros(n_rep, dtype=np.float64)
         for r in range(n_rep):
-            seed_u = base_seed + 1000 * j + 2 * r
-            seed_c = base_seed + 1000 * j + 2 * r + 1
+            seed_u = base_seed + 10000 * j + 2 * r
+            seed_c = base_seed + 10000 * j + 2 * r + 1
             pi_u = simulate_ssa_ctmc(k, sigma, t_burn, t_sample, tau_mid, seed_u, mode="Qu")
             pi_c = simulate_ssa_ctmc(k, sigma, t_burn, t_sample, tau_mid, seed_c, mode="Qc")
-
-            mass_u = np.sum(pi_u) * h
-            mass_c = np.sum(pi_c) * h
-            if r == 0:
-                print(f"  rep0 mass: Qu={mass_u:.12f}, Qc={mass_c:.12f}")
-
-            e_u_rep.append(l1_error_density(pi_u, pi_ref, h))
-            e_c_rep.append(l1_error_density(pi_c, pi_ref, h))
+            e_u_rep[r] = l1_error_density(pi_u, pi_ref, h)
+            e_c_rep[r] = l1_error_density(pi_c, pi_ref, h)
 
         err_u[j] = float(np.mean(e_u_rep))
         err_c[j] = float(np.mean(e_c_rep))
         print(
-            f"  mean L1 errors: Qu={err_u[j]:.6e}, Qc={err_c[j]:.6e}, "
-            f"std(Qu)={np.std(e_u_rep):.2e}, std(Qc)={np.std(e_c_rep):.2e}"
+            f"  mean errors: Qu={err_u[j]:.6e}, Qc={err_c[j]:.6e}; "
+            f"std Qu={np.std(e_u_rep):.2e}, std Qc={np.std(e_c_rep):.2e}"
         )
 
     out_path = Path(__file__).resolve().parent / "ring_stationary_density_accuracy_fig3.png"
@@ -270,3 +270,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
