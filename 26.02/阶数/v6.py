@@ -112,6 +112,13 @@ def local_slope(h: np.ndarray, e: np.ndarray) -> np.ndarray:
     return np.log(e[1:] / e[:-1]) / np.log(h[1:] / h[:-1])
 
 
+def fit_tail_order(h: np.ndarray, e: np.ndarray, tail_points: int = 3) -> float:
+    x = np.log(h[-tail_points:])
+    y = np.log(e[-tail_points:])
+    a, _b = np.polyfit(x, y, 1)
+    return float(a)
+
+
 def plot_accuracy(h_vals: np.ndarray, e_qu: np.ndarray, e_qc: np.ndarray, e_qtu: np.ndarray, out: Path) -> None:
     i0 = 2
     c1 = 0.8 * e_qu[i0] / h_vals[i0]
@@ -145,20 +152,20 @@ def main() -> None:
     n_list = [64, 128, 256, 512, 1024]
     h_vals = span / np.array(n_list, dtype=np.float64)
 
-    # v5-style tau-leaping occupancy pipeline
-    tau = 0.1
-    t_burn = 2_000_000.0
-    t_sample = 5_000_000.0
-    burn_steps = int(round(t_burn / tau))
-    sample_steps = int(round(t_sample / tau))
-    n_rep = 1
+    # v5-style tau-leaping occupancy pipeline, improved by:
+    # 1) n_rep averaging, 2) tau coupled with h, 3) tail-slope fitting
+    tau_factor = 0.2
+    tau_max = 0.02
+    t_burn = 50.0
+    t_sample = 300.0
+    n_rep = 4
 
     print("Ring density test with v5 algorithm pipeline")
     print(f"sigma={sigma}, domain=[{lowx},{lowx+span}]x[{lowy},{lowy+span}]")
     print(f"N={n_list}, h={h_vals}")
-    print(f"tau={tau}, burn_steps={burn_steps}, sample_steps={sample_steps}, n_rep={n_rep}")
+    print(f"tau=min({tau_factor}*h, {tau_max}), T_burn={t_burn}, T_sample={t_sample}, n_rep={n_rep}")
 
-    _ = simulate_stationary_histogram(16, 2, sigma, lowx, lowy, span, tau, 10, 20, seed=1)
+    _ = simulate_stationary_histogram(16, 2, sigma, lowx, lowy, span, 0.01, 10, 20, seed=1)
 
     # Table 3 l1-error values for direct reference/validation.
     table_qu = np.array([0.1964540, 0.1031750, 0.0530338, 0.0269501, 0.0135845], dtype=np.float64)
@@ -170,6 +177,9 @@ def main() -> None:
         err = np.zeros((3, len(n_list)), dtype=np.float64)
         for i, n in enumerate(n_list):
             h = span / n
+            tau = min(tau_factor * h, tau_max)
+            burn_steps = int(round(t_burn / tau))
+            sample_steps = int(round(t_sample / tau))
             rho_true = true_invariant_density(n, sigma, lowx, lowy, span)
             for scheme_id in range(3):
                 e_sum = 0.0
@@ -188,12 +198,19 @@ def main() -> None:
                     )
                     e_sum += l1_error(pi_hat, rho_true, h)
                 err[scheme_id, i] = e_sum / n_rep
-                print(f"N={n:4d}, scheme={scheme_id}, L1={err[scheme_id, i]:.6e}")
+                print(
+                    f"N={n:4d}, h={h:.6e}, tau={tau:.3e}, "
+                    f"steps=({burn_steps},{sample_steps}), scheme={scheme_id}, "
+                    f"L1={err[scheme_id, i]:.6e}"
+                )
 
         e_qu, e_qc, e_qtu = err[0], err[1], err[2]
         print("local slopes Qu:", local_slope(h_vals, e_qu))
         print("local slopes Qc:", local_slope(h_vals, e_qc))
         print("local slopes Qut:", local_slope(h_vals, e_qtu))
+        print("tail-fit order Qu (last 3 points):", fit_tail_order(h_vals, e_qu, 3))
+        print("tail-fit order Qc (last 3 points):", fit_tail_order(h_vals, e_qc, 3))
+        print("tail-fit order Qut (last 3 points):", fit_tail_order(h_vals, e_qtu, 3))
     else:
         e_qu, e_qc, e_qtu = table_qu, table_qc, table_qtu
 
