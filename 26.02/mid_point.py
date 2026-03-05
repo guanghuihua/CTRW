@@ -31,7 +31,7 @@ def _rates(mu_x: float, mu_v: float, h: float, sigma: float, scheme_id: int) -> 
     qx_p = max(mu_x, 0.0) / h
     qx_m = max(-mu_x, 0.0) / h
 
-    m = 0.5 * sigma * sigma
+    m = 0.5 * sigma * sigma #!!!
     if scheme_id == 0:  # Q_u
         qv_p = max(mu_v, 0.0) / h + m / (h * h)
         qv_m = max(-mu_v, 0.0) / h + m / (h * h)
@@ -142,6 +142,7 @@ def adaptive_sample_steps(
     # tau scales linearly with h; sample steps are additionally scaled by 1/h
     # so the effective sample size per bin is more stable across grids.
     tau = tau_ref * (h / h_ref)
+
     base_steps = int(round(t_sample / tau))
     extra_scale = n / n_ref
     sample_steps = int(round(base_steps * extra_scale))
@@ -182,10 +183,11 @@ def main() -> None:
     n_list = [48, 96, 192, 384]
     h_vals = span / np.array(n_list, dtype=np.float64)
 
-    tau_ref = 0.02
+    tau_ref = 0.001
     t_burn = 1_000.0
     t_sample = 4_000.0
     sample_cap = 1_600_000
+    sample_cap = 160_000_000
     n_rep = 2
     n_ref = n_list[0]
     h_ref = span / n_ref
