@@ -187,7 +187,6 @@ def main() -> None:
     t_burn = 1_000.0
     t_sample = 4_000.0
     sample_cap = 1_600_000
-    sample_cap = 160_000_000
     n_rep = 2
     n_ref = n_list[0]
     h_ref = span / n_ref
