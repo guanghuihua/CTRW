@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.2)  12 MAR 2026 17:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.2)  12 MAR 2026 17:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**è®ºæ–‡V3.tex
-(./è®ºæ–‡V3.tex
+**è®ºæ–‡V4.tex
+(./è®ºæ–‡V4.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
 (d:/texlive/2025/texmf-dist/tex/latex/base/article.cls
@@ -1655,7 +1655,7 @@ File: UTF8.chr 2021/10/16 4.8.5
 LaTeX Warning: Unused global option(s):
     [openany].
 
-(./è®ºæ–‡V3.aux
+(./è®ºæ–‡V4.aux
 
 LaTeX Warning: Label `eq:Khasminskii' multiply defined.
 
@@ -1663,7 +1663,7 @@ LaTeX Warning: Label `eq:Khasminskii' multiply defined.
 LaTeX Warning: Label `eq:tail' multiply defined.
 
 )
-\openout1 = `è®ºæ–‡V3.aux'.
+\openout1 = `è®ºæ–‡V4.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 272.
 LaTeX Font Info:    ... okay on input line 272.
@@ -1820,9 +1820,9 @@ your preamble.
  on input line 272.
 
 Package hyperref Info: Link coloring OFF on input line 272.
-(./è®ºæ–‡V3.out) (./è®ºæ–‡V3.out)
+(./è®ºæ–‡V4.out) (./è®ºæ–‡V4.out)
 \@outlinefile=\write4
-\openout4 = `è®ºæ–‡V3.out'.
+\openout4 = `è®ºæ–‡V4.out'.
 
 LaTeX Font Info:    Trying to load font information for C70+zhsong on input lin
 e 359.
@@ -1923,7 +1923,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 558--560
 Underfull \vbox (badness 7203) has occurred while \output is active []
 
  [2]
-[3] (./è®ºæ–‡V3.toc
+[3] (./è®ºæ–‡V4.toc
 LaTeX Font Info:    Trying to load font information for C70+zhhei on input line
  1.
  (d:/texlive/2025/texmf-dist/tex/latex/zhmetrics/c70zhhei.fd
@@ -1990,15 +1990,15 @@ Overfull \hbox (6.02248pt too wide) detected at line 36
 
 )
 \tf@toc=\write5
-\openout5 = `è®ºæ–‡V3.toc'.
+\openout5 = `è®ºæ–‡V4.toc'.
 
- [5] (./è®ºæ–‡V3.lof)
+ [5] (./è®ºæ–‡V4.lof)
 \tf@lof=\write6
-\openout6 = `è®ºæ–‡V3.lof'.
+\openout6 = `è®ºæ–‡V4.lof'.
 
- [6] (./è®ºæ–‡V3.lot)
+ [6] (./è®ºæ–‡V4.lot)
 \tf@lot=\write7
-\openout7 = `è®ºæ–‡V3.lot'.
+\openout7 = `è®ºæ–‡V4.lot'.
 
  [7] [8]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
@@ -2145,256 +2145,4 @@ n/12.045/95 ^^?|\C70/rm/m/n/12.045/ff ^^L| \C70/rm/m/n/12.045/62 i \C70/rm/m/n/
 12.045/65 c $\OT1/cmr/m/n/12.045 ^^F$ \C70/rm/m/n/12.045/67 	 \C70/rm/m/n/12.04
 5/75 L \C70/rm/m/n/12.045/4e ^^T \C70/rm/m/n/12.045/51 I \C70/rm/m/n/12.045/6e 
 Ñ|\C70/rm/m/n/12.045/ff ^^L| \C70/rm/m/n/12.045/6e á \C70/rm/m/n/12.045/8d ³\T1
-/ptm/m/n/12.045 Khasminskii\C70/zhsong/m/n/12.045/57 ‹
- []
-
-[28]
-Overfull \hbox (5.06631pt too wide) in paragraph at lines 2025--2026
-[]\C70/rm/m/n/12.045/56 þ []\T1/ptm/m/n/12.045 4.2[] \C70/rm/m/n/12.045/7e Ù \C
-70/rm/m/n/12.045/51 ú \C70/rm/m/n/12.045/4e † \C70/zhsong/m/n/12.045/57 ( \C70/
-rm/m/n/12.045/65 ö \C70/rm/m/n/12.045/95 ô \C70/rm/m/n/12.045/7a — $\OML/cmm/m/
-it/12.045 T \OT1/cmr/m/n/12.045 = 40$ \C70/rm/m/n/12.045/51 …|\C70/rm/m/n/12.04
-5/ff ^^L| \T1/ptm/m/n/12.045 Tamed Euler-Maruyama|\C70/rm/m/n/12.045/30 ^^A| \T
-1/ptm/m/n/12.045 truncated Euler-Maruyama
- []
-
-[29]
-<fig/Sample_trajectories_100.png, id=1086, 433.62pt x 361.35pt>
-File: fig/Sample_trajectories_100.png Graphic file (type png)
-<use fig/Sample_trajectories_100.png>
-Package pdftex.def Info: fig/Sample_trajectories_100.png  used on input line 20
-32.
-(pdftex.def)             Requested size: 204.85846pt x 170.71672pt.
-<fig/Fast_jump_time_distribution_100.png, id=1087, 433.62pt x 289.08pt>
-File: fig/Fast_jump_time_distribution_100.png Graphic file (type png)
-<use fig/Fast_jump_time_distribution_100.png>
-Package pdftex.def Info: fig/Fast_jump_time_distribution_100.png  used on input
- line 2036.
-(pdftex.def)             Requested size: 204.85846pt x 136.57336pt.
-<fig/Occupancy_100.png, id=1090, 794.97pt x 289.08pt>
-File: fig/Occupancy_100.png Graphic file (type png)
-<use fig/Occupancy_100.png>
-Package pdftex.def Info: fig/Occupancy_100.png  used on input line 2046.
-(pdftex.def)             Requested size: 273.14923pt x 99.32689pt.
- [30 <./fig/Sample_trajectories_100.png> <./fig/Fast_jump_time_distribution_100
-.png> <./fig/Occupancy_100.png>]
-Overfull \hbox (4.49904pt too wide) detected at line 2066
-[][][][]  []
- []
-
-<fig/committor_heatmap.jpg, id=1101, 434.3427pt x 339.669pt>
-File: fig/committor_heatmap.jpg Graphic file (type jpg)
-<use fig/committor_heatmap.jpg>
-Package pdftex.def Info: fig/committor_heatmap.jpg  used on input line 2088.
-(pdftex.def)             Requested size: 204.85846pt x 160.20938pt.
-<fig/committor_trunc_heatmap.png, id=1102, 434.3427pt x 339.669pt>
-File: fig/committor_trunc_heatmap.png Graphic file (type png)
-<use fig/committor_trunc_heatmap.png>
-Package pdftex.def Info: fig/committor_trunc_heatmap.png  used on input line 20
-92.
-(pdftex.def)             Requested size: 204.85846pt x 160.20938pt.
-<fig/mfpt_heatmap.jpg, id=1103, 431.4519pt x 339.669pt>
-File: fig/mfpt_heatmap.jpg Graphic file (type jpg)
-<use fig/mfpt_heatmap.jpg>
-Package pdftex.def Info: fig/mfpt_heatmap.jpg  used on input line 2098.
-(pdftex.def)             Requested size: 204.85846pt x 161.28226pt.
-<fig/mfpt_trunc_heatmap.png, id=1104, 436.5108pt x 339.669pt>
-File: fig/mfpt_trunc_heatmap.png Graphic file (type png)
-<use fig/mfpt_trunc_heatmap.png>
-Package pdftex.def Info: fig/mfpt_trunc_heatmap.png  used on input line 2102.
-(pdftex.def)             Requested size: 204.85846pt x 159.41121pt.
-
-Overfull \hbox (0.56061pt too wide) in paragraph at lines 2123--2127
-\C70/rm/m/n/12.045/7b , \C70/rm/m/n/12.045/4e Œ \C70/rm/m/n/12.045/6b e|\C70/rm
-/m/n/12.045/ff ^^Z| \C70/rm/m/n/12.045/5b ù \C70/rm/m/n/12.045/4e Ž \C70/rm/m/n
-/12.045/65 ö \C70/rm/m/n/12.045/95 ô \C70/rm/m/n/12.045/79 » \C70/rm/m/n/12.045
-/65 c |\C70/rm/m/n/12.045/ff ^^H|\T1/ptm/m/n/12.045 TD|\C70/rm/m/n/12.045/ff 	|
-|^^L| \C70/rm/m/n/12.045/91 Ç \C70/rm/m/n/12.045/75 ( \T1/ptm/m/n/12.045 trun-c
-ated Euler-Maruyama|\C70/rm/m/n/12.045/ff ^^L| \C70/zhsong/m/n/12.045/57 ( \C70
-/rm/m/n/12.045/7e ß \C70/rm/m/n/12.045/4e ^^@ \C70/rm/m/n/12.045/6b e \C70/rm/m
-/n/12.045/95 ^^? $\OT1/cmr/m/n/12.045 ^^A\OML/cmm/m/it/12.045 t \OT1/cmr/m/n/12
-.045 = 0\OML/cmm/m/it/12.045 :\OT1/cmr/m/n/12.045 004$|\C70/rm/m/n/12.045/30 ^^
-A|
- []
-
-[31] [32 <./fig/committor_heatmap.jpg> <./fig/committor_trunc_heatmap.png> <./f
-ig/mfpt_heatmap.jpg> <./fig/mfpt_trunc_heatmap.png>]
-<fig/work_error_committor_trunc_vs_ctrw.pdf, id=1120, 427.40387pt x 317.11801pt
->
-File: fig/work_error_committor_trunc_vs_ctrw.pdf Graphic file (type pdf)
-<use fig/work_error_committor_trunc_vs_ctrw.pdf>
-Package pdftex.def Info: fig/work_error_committor_trunc_vs_ctrw.pdf  used on in
-put line 2130.
-(pdftex.def)             Requested size: 282.24911pt x 209.42917pt.
- [33 <./fig/work_error_committor_trunc_vs_ctrw.pdf>] [34] [35] [36] [37]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
-366.
-
-(d:/texlive/2025/texmf-dist/tex/latex/psnfss/ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [38] [39]
-Overfull \hbox (8.77498pt too wide) in paragraph at lines 2455--2456
-[]\C70/zhsong/m/n/12.045/57 ú \C70/rm/m/n/12.045/4e Ž \C70/rm/m/n/12.045/75 ^^_
- \C70/rm/m/n/12.045/62 ^^P \C70/rm/m/n/12.045/51 C \C70/rm/m/n/12.045/76 „ \T1/
-ptm/m/n/12.045 CTRW \C70/rm/m/n/12.045/7a z \C70/rm/m/n/12.045/95 ô \C70/rm/m/n
-/12.045/79 » \C70/rm/m/n/12.045/65 c ¹ \C70/rm/m/n/12.045/6c Õ \C70/zhsong/m/n/
-12.045/57 ( \C70/rm/m/n/12.045/5f ë \C70/rm/m/n/12.045/53 Ø \C70/rm/m/n/12.045/
-91 Ï \C70/rm/m/n/12.045/65 ¹ \C70/rm/m/n/12.045/54 ^^Q \C70/rm/m/n/12.045/51 w 
-\C70/rm/m/n/12.045/67 	 \C70/zhsong/m/n/12.045/81 ê \C70/rm/m/n/12.045/90 ^^B \
-C70/rm/m/n/12.045/5e ” \C70/rm/m/n/12.045/76 „ \C70/rm/m/n/12.045/67 	 \C70/rm/
-m/n/12.045/65 H ö \C70/rm/m/n/12.045/95 ô \C70/rm/m/n/12.045/6b e \C70/rm/m/n/1
-2.045/95 ^^? $\OT1/cmr/m/n/12.045 ^^A\OML/cmm/m/it/12.045 t[] \OMS/cmsy/m/n/12.
-045 ^^X
- []
-
-[40] [41] [42] (./è®ºæ–‡V3.bbl [43]) [44]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \hskip 12.045pt
-(hyperref)                replaced by space on input line 2533.
-
-[45]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \hskip 12.045pt
-(hyperref)                replaced by space on input line 2540.
-
-[46] [47] [48] (./è®ºæ–‡V3.aux)
- ***********
-LaTeX2e <2025-11-01>
-L3 programming layer <2022/07/14>
- ***********
-
-
-LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 0.47188pt have occurred.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package rerunfilecheck Info: File `è®ºæ–‡V3.out' has not changed.
-(rerunfilecheck)             Checksum: AF2FF91DEFC3DCE6ADF42676E24C902E;6992.
- ) 
-Here is how much of TeX's memory you used:
- 65166 strings out of 467533
- 1607014 string characters out of 5423669
- 2330278 words of memory out of 5000000
- 92186 multiletter control sequences out of 15000+600000
- 832199 words of font info for 670 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 88i,15n,106p,1377b,1467s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/s
-imsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows
-/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:
-/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai
-.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Font
-s/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simkai.ttf><c:/Wind
-ows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf>
-<c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/sim
-hei.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/F
-onts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/W
-indows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.t
-tc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/
-simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Window
-s/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c
-:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsu
-n.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fon
-ts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Win
-dows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf
-><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/si
-mkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/
-Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/
-Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.
-ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts
-/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windo
-ws/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><
-c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simk
-ai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fo
-nts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Wi
-ndows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.tt
-f><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/s
-imkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows
-/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:
-/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai
-.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Font
-s/simkai.ttf><c:/Windows/Fonts/simkai.ttf><c:/Windows/Fonts/simsun.ttc><c:/Wind
-ows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf>
-<c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/sim
-sun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/F
-onts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/W
-indows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.t
-tc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/
-simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Window
-s/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c
-:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhe
-i.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fon
-ts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Win
-dows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf
-><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/si
-mhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/
-Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/
-Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.
-ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts
-/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windo
-ws/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><
-c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/sims
-un.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fo
-nts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Wi
-ndows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.tt
-c><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/s
-imsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows
-/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:
-/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei
-.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Font
-s/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Wind
-ows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf>
-<c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/sim
-hei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/F
-onts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/W
-indows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.t
-tc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/
-simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Window
-s/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c
-:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsu
-n.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fon
-ts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Win
-dows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc
-><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/si
-msun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/
-Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/
-Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.
-ttc><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><d:/t
-exlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/texlive/20
-25/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb><d:/texlive/2025/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/texlive/2025/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmmi12.pfb><d:/texlive/2025/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmmi5.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi6.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmmi7.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pf
-b><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><d:/texl
-ive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><d:/texlive/2025
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/texlive/2025/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr12.pfb><d:/texlive/2025/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr6.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr7.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr8.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><
-d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb><d:/texliv
-e/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><d:/texlive/2025/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/texlive/2025/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmsy6.pfb><d:/texlive/2025/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy7.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy8.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmsy9.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam1
-0.pfb><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pf
-b><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><d:
-/texlive/2025/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb><d:/texlive/2025/te
-xmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/texlive/2025/texmf-dist/fonts/typ
-e1/urw/times/utmr8a.pfb><d:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri
-8a.pfb><d:/texlive/2025/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on è®ºæ–‡V3.pdf (62 pages, 1697157 bytes).
-PDF statistics:
- 2128 PDF objects out of 2487 (max. 8388607)
- 1568 compressed objects within 16 object streams
- 270 named destinations out of 1000 (max. 500000)
- 753 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+/ptm/m/n/12.045 Khasminskii\C70/zhsong/m/n/
