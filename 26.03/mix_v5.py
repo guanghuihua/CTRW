@@ -1,28 +1,15 @@
 ﻿from __future__ import annotations
 
 from pathlib import Path
+import numba as nb
 
 import matplotlib.pyplot as plt
 import numpy as np
-
-try:
-    import numba as nb
-except Exception:  # pragma: no cover
-    class _NB:
-        @staticmethod
-        def njit(*_args, **_kwargs):
-            def deco(func):
-                return func
-            return deco
-
-    nb = _NB()
-
 
 @nb.njit(cache=True)
 def U_prime(x: float) -> float:
     # U(x) = x^2 / 2
     return x
-
 
 @nb.njit(cache=True)
 def bernoulli_b(z: float) -> float:
@@ -32,61 +19,63 @@ def bernoulli_b(z: float) -> float:
         return 1.0 - 0.5 * z + (z * z) / 12.0
     return z / np.expm1(z)
 
-
 @nb.njit(cache=True)
 def rates_mixed_qc_qu(
     x: float,
     v: float,
-    h: float,
+    h_x: float,
+    h_v: float,
     gamma: float,
     sigma: float,
-    kappa_x: float,
 ) -> tuple[float, float, float, float]:
     """
     Mixed rates for underdamped Langevin:
-    - x direction (no noise): Q_c-like flux (with adaptive numerical diffusion)
-    - v direction (has noise): Q_u (upwind + physical diffusion)
+    - x direction (no noise): upwind
+    - v direction (has noise): Q_c (Scharfetter-Gummel/Chang-Cooper style)
     """
-    # ----- x direction: Q_c-like -----
+    # ----- x direction (no noise): upwind -----
     a = v
-    # No physical diffusion in x; add small adaptive viscosity for realizability.
-    d_x = 0.5 * kappa_x * abs(a) * h + 1e-14
-    z = a * h / d_x
-    r_xp = (d_x / (h * h)) * bernoulli_b(-z)
-    r_xm = (d_x / (h * h)) * bernoulli_b(z)
+    r_xp = 0.0
+    r_xm = 0.0
+    if a > 0.0:
+        r_xp = a / h_x
+    elif a < 0.0:
+        r_xm = -a / h_x
 
-    # ----- v direction: Q_u -----
+    # ----- v direction (has noise): Q_c -----
     b = -(U_prime(x) + gamma * v)
     d_v = 0.5 * sigma * sigma
-    r_vp = max(b, 0.0) / h + d_v / (h * h)
-    r_vm = max(-b, 0.0) / h + d_v / (h * h)
+    z = b * h_v / d_v
+    r_vp = (d_v / (h_v * h_v)) * bernoulli_b(-z)
+    r_vm = (d_v / (h_v * h_v)) * bernoulli_b(z)
 
     return r_xp, r_xm, r_vp, r_vm
 
 
 @nb.njit(cache=True)
 def simulate_ssa_stationary_density(
-    n: int,
+    n_x: int,
+    n_v: int,
     l_x: float,
     l_v: float,
     gamma: float,
     sigma: float,
     t_burn: float,
     t_sample: float,
-    kappa_x: float,
     seed: int,
-) -> tuple[np.ndarray, float]:
+) -> tuple[np.ndarray, float, float]:
     np.random.seed(seed)
 
-    x_grid = np.linspace(-l_x, l_x, n)
-    v_grid = np.linspace(-l_v, l_v, n)
-    h = x_grid[1] - x_grid[0]
+    x_grid = np.linspace(-l_x, l_x, n_x)
+    v_grid = np.linspace(-l_v, l_v, n_v)
+    h_x = x_grid[1] - x_grid[0]
+    h_v = v_grid[1] - v_grid[0]
 
     # Start from center
-    ix = n // 2
-    iv = n // 2
+    ix = n_x // 2
+    iv = n_v // 2
 
-    occ = np.zeros((n, n), dtype=np.float64)
+    occ = np.zeros((n_x, n_v), dtype=np.float64)
 
     t = 0.0
     t_end = t_burn + t_sample
@@ -95,14 +84,14 @@ def simulate_ssa_stationary_density(
         x = x_grid[ix]
         v = v_grid[iv]
 
-        r_xp, r_xm, r_vp, r_vm = rates_mixed_qc_qu(x, v, h, gamma, sigma, kappa_x)
+        r_xp, r_xm, r_vp, r_vm = rates_mixed_qc_qu(x, v, h_x, h_v, gamma, sigma)
 
         # Reflecting boundaries
-        if ix == n - 1:
+        if ix == n_x - 1:
             r_xp = 0.0
         if ix == 0:
             r_xm = 0.0
-        if iv == n - 1:
+        if iv == n_v - 1:
             r_vp = 0.0
         if iv == 0:
             r_vm = 0.0
@@ -132,34 +121,36 @@ def simulate_ssa_stationary_density(
 
     total = np.sum(occ)
     if total <= 0.0:
-        return np.zeros((n, n), dtype=np.float64), h
+        return np.zeros((n_x, n_v), dtype=np.float64), h_x, h_v
 
-    rho_hat = occ / (total * h * h)
-    return rho_hat, h
+    rho_hat = occ / (total * h_x * h_v)
+    return rho_hat, h_x, h_v
 
 
 def true_invariant_density(
-    n: int,
+    n_x: int,
+    n_v: int,
     l_x: float,
     l_v: float,
     gamma: float,
     sigma: float,
-) -> tuple[np.ndarray, float]:
-    x = np.linspace(-l_x, l_x, n)
-    v = np.linspace(-l_v, l_v, n)
-    h = x[1] - x[0]
+) -> tuple[np.ndarray, float, float]:
+    x = np.linspace(-l_x, l_x, n_x)
+    v = np.linspace(-l_v, l_v, n_v)
+    h_x = x[1] - x[0]
+    h_v = v[1] - v[0]
 
     beta = 2.0 * gamma / (sigma * sigma)
     x_mesh, v_mesh = np.meshgrid(x, v, indexing="ij")
     u = 0.5 * x_mesh * x_mesh
     rho = np.exp(-beta * (u + 0.5 * v_mesh * v_mesh))
-    rho /= np.sum(rho) * h * h
+    rho /= np.sum(rho) * h_x * h_v
 
-    return rho, h
+    return rho, h_x, h_v
 
 
-def l1_error(rho_hat: np.ndarray, rho_true: np.ndarray, h: float) -> float:
-    return float(np.sum(np.abs(rho_hat - rho_true)) * h * h)
+def l1_error(rho_hat: np.ndarray, rho_true: np.ndarray, h_x: float, h_v: float) -> float:
+    return float(np.sum(np.abs(rho_hat - rho_true)) * h_x * h_v)
 
 
 def fit_order_tail(h_vals: np.ndarray, err_vals: np.ndarray, tail_points: int = 3) -> float:
@@ -178,70 +169,79 @@ def main() -> None:
     l_x = 4.0
     l_v = 4.0
 
-    # Q_c-like strength in x direction (no-noise direction)
-    kappa_x = 1.0
-
-    # Grid refinement
-    n_list = [41, 61, 81, 101, 141]
+    # Refinement in noisy direction (v): h1.
+    # Non-noisy direction (x): h2 with h1 = 10 * h2.
+    # n_v_list = [41, 61, 81, 101, 121]
+    n_v_list = [100, 200, 400, 800, 1600]
 
     # SSA horizon
     t_burn = 100.0
-    t_sample = 400.0
-    n_rep = 4
+    t_sample = 10000.0
+    n_rep = 10
 
     # Warm-up (JIT)
-    _ = rates_mixed_qc_qu(0.0, 0.0, 0.1, gamma, sigma, kappa_x)
+    _ = rates_mixed_qc_qu(0.0, 0.0, 0.01, 0.1, gamma, sigma)
 
-    h_vals = np.zeros(len(n_list), dtype=np.float64)
-    err_vals = np.zeros(len(n_list), dtype=np.float64)
+    h1_vals = np.zeros(len(n_v_list), dtype=np.float64)
+    err_vals = np.zeros(len(n_v_list), dtype=np.float64)
 
-    print("Running mixed SSA: x-Q_c-like, v-Q_u")
+    print("Running mixed SSA: x-upwind (h2), v-Q_c (h1)")
     print(f"gamma={gamma}, sigma={sigma}, domain=[{-l_x},{l_x}]x[{-l_v},{l_v}]")
-    print(f"t_burn={t_burn}, t_sample={t_sample}, n_rep={n_rep}, kappa_x={kappa_x}")
+    print(f"t_burn={t_burn}, t_sample={t_sample}, n_rep={n_rep}, constraint: h2=h1^2")
 
-    for i, n in enumerate(n_list):
-        rho_true, h = true_invariant_density(n, l_x, l_v, gamma, sigma)
+    for i, n_v in enumerate(n_v_list):
+        # h1 = 2*L_v/(n_v-1), enforce h1 = 10*h2 exactly by construction.
+        h1 = (2.0 * l_v) / (n_v - 1)
+        n_x = 10 * (n_v - 1) + 1
+        if n_x < 3:
+            n_x = 3
+
+        rho_true, h_x, h_v = true_invariant_density(n_x, n_v, l_x, l_v, gamma, sigma)
 
         e_sum = 0.0
         for r in range(n_rep):
-            rho_hat, _ = simulate_ssa_stationary_density(
-                n=n,
+            rho_hat, _, _ = simulate_ssa_stationary_density(
+                n_x=n_x,
+                n_v=n_v,
                 l_x=l_x,
                 l_v=l_v,
                 gamma=gamma,
                 sigma=sigma,
                 t_burn=t_burn,
                 t_sample=t_sample,
-                kappa_x=kappa_x,
-                seed=10000 * n + 37 * r + 1,
+                seed=10000 * n_v + 37 * r + 1,
             )
-            e_sum += l1_error(rho_hat, rho_true, h)
+            e_sum += l1_error(rho_hat, rho_true, h_x, h_v)
 
-        h_vals[i] = h
+        h1_vals[i] = h_v
         err_vals[i] = e_sum / n_rep
-        print(f"N={n:4d}, h={h:.6e}, L1 error={err_vals[i]:.6e}")
+        print(
+            f"Nv={n_v:4d}, Nx={n_x:4d}, h1={h_v:.6e}, h2={h_x:.6e}, "
+            f"h1/h2={h_v/h_x:.3f}, L1 error={err_vals[i]:.6e}"
+        )
 
     # Reference slopes
-    i_anchor = len(h_vals) - 2
-    c1 = 0.8 * err_vals[i_anchor] / h_vals[i_anchor]
-    c2 = 0.8 * err_vals[i_anchor] / (h_vals[i_anchor] ** 2)
-    ref1 = c1 * h_vals
-    ref2 = c2 * (h_vals ** 2)
+    i_anchor = len(h1_vals) - 2
+    err_anchor = err_vals[i_anchor]
+    h_anchor = h1_vals[i_anchor]
+    
+    ref1 = err_anchor * (h1_vals / h_anchor)        # O(h1): parallel reference
+    ref2 = err_anchor * (h1_vals / h_anchor) ** 2   # O(h1²): parallel reference
 
-    local_slopes = np.log(err_vals[1:] / err_vals[:-1]) / np.log(h_vals[1:] / h_vals[:-1])
-    tail_order = fit_order_tail(h_vals, err_vals, tail_points=3)
+    local_slopes = np.log(err_vals[1:] / err_vals[:-1]) / np.log(h1_vals[1:] / h1_vals[:-1])
+    tail_order = fit_order_tail(h1_vals, err_vals, tail_points=3)
 
     print("Local slopes:", local_slopes)
     print("Tail fitted order (last 3 points):", tail_order)
 
     fig, ax = plt.subplots(figsize=(7.6, 5.6))
-    ax.loglog(h_vals, err_vals, "o-", color="#1f77b4", mfc="none", lw=1.0, ms=7,
-              label="mixed scheme (x: Q_c-like, v: Q_u)")
-    ax.loglog(h_vals, ref1, "--", color="#d95319", dashes=(7, 5), lw=0.9, label=r"$O(h)$")
-    ax.loglog(h_vals, ref2, "--", color="#7e2f8e", dashes=(7, 4), lw=0.9, label=r"$O(h^2)$")
+    ax.loglog(h1_vals, err_vals, "o-", color="#1f77b4", mfc="none", lw=1.0, ms=7,
+              label="mixed scheme (x: upwind h2, v: Q_c h1)")
+    ax.loglog(h1_vals, ref1, "--", color="#d95319", dashes=(7, 5), lw=0.9, label=r"$O(h_1)$")
+    ax.loglog(h1_vals, ref2, "--", color="#7e2f8e", dashes=(7, 4), lw=0.9, label=r"$O(h_1^2)$")
 
-    ax.set_title("Underdamped Langevin Invariant Density Accuracy")
-    ax.set_xlabel("grid size h")
+    ax.set_title("Underdamped Langevin Invariant Density Accuracy (h2=h1²)")
+    ax.set_xlabel("noisy-direction grid size h1")
     ax.set_ylabel(r"$L^1$ error")
     ax.grid(False)
     ax.legend(loc="lower right", frameon=True, fancybox=False, edgecolor="black")
