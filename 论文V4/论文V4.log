@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.2)  12 MAR 2026 17:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.2)  12 MAR 2026 17:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**论文V3.tex
-(./论文V3.tex
+**论文V4.tex
+(./论文V4.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
 (d:/texlive/2025/texmf-dist/tex/latex/base/article.cls
@@ -1655,7 +1655,7 @@ File: UTF8.chr 2021/10/16 4.8.5
 LaTeX Warning: Unused global option(s):
     [openany].
 
-(./论文V3.aux
+(./论文V4.aux
 
 LaTeX Warning: Label `eq:Khasminskii' multiply defined.
 
@@ -1663,7 +1663,7 @@ LaTeX Warning: Label `eq:Khasminskii' multiply defined.
 LaTeX Warning: Label `eq:tail' multiply defined.
 
 )
-\openout1 = `论文V3.aux'.
+\openout1 = `论文V4.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 272.
 LaTeX Font Info:    ... okay on input line 272.
@@ -1820,9 +1820,9 @@ your preamble.
  on input line 272.
 
 Package hyperref Info: Link coloring OFF on input line 272.
-(./论文V3.out) (./论文V3.out)
+(./论文V4.out) (./论文V4.out)
 \@outlinefile=\write4
-\openout4 = `论文V3.out'.
+\openout4 = `论文V4.out'.
 
 LaTeX Font Info:    Trying to load font information for C70+zhsong on input lin
 e 359.
@@ -1923,7 +1923,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 558--560
 Underfull \vbox (badness 7203) has occurred while \output is active []
 
  [2]
-[3] (./论文V3.toc
+[3] (./论文V4.toc
 LaTeX Font Info:    Trying to load font information for C70+zhhei on input line
  1.
  (d:/texlive/2025/texmf-dist/tex/latex/zhmetrics/c70zhhei.fd
@@ -1990,15 +1990,15 @@ Overfull \hbox (6.02248pt too wide) detected at line 36
 
 )
 \tf@toc=\write5
-\openout5 = `论文V3.toc'.
+\openout5 = `论文V4.toc'.
 
- [5] (./论文V3.lof)
+ [5] (./论文V4.lof)
 \tf@lof=\write6
-\openout6 = `论文V3.lof'.
+\openout6 = `论文V4.lof'.
 
- [6] (./论文V3.lot)
+ [6] (./论文V4.lot)
 \tf@lot=\write7
-\openout7 = `论文V3.lot'.
+\openout7 = `论文V4.lot'.
 
  [7] [8]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
@@ -2247,7 +2247,7 @@ m/n/12.045/65 H � \C70/rm/m/n/12.045/95 � \C70/rm/m/n/12.045/6b e \C70/rm/m/n/1
 045 ^^X
  []
 
-[40] [41] [42] (./论文V3.bbl [43]) [44]
+[40] [41] [42] (./论文V4.bbl [43]) [44]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \hskip 12.045pt
@@ -2259,7 +2259,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \hskip 12.045pt
 (hyperref)                replaced by space on input line 2540.
 
-[46] [47] [48] (./论文V3.aux)
+[46] [47] [48] (./论文V4.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2022/07/14>
@@ -2272,14 +2272,14 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package rerunfilecheck Info: File `论文V3.out' has not changed.
+Package rerunfilecheck Info: File `论文V4.out' has not changed.
 (rerunfilecheck)             Checksum: AF2FF91DEFC3DCE6ADF42676E24C902E;6992.
  ) 
 Here is how much of TeX's memory you used:
- 65166 strings out of 467533
- 1607014 string characters out of 5423669
- 2330278 words of memory out of 5000000
- 92186 multiletter control sequences out of 15000+600000
+ 65165 strings out of 467533
+ 1606987 string characters out of 5423669
+ 2330230 words of memory out of 5000000
+ 92185 multiletter control sequences out of 15000+600000
  832199 words of font info for 670 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  88i,15n,106p,1377b,1467s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2391,7 +2391,7 @@ b><d:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><d:
 xmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/texlive/2025/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb><d:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri
 8a.pfb><d:/texlive/2025/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on 论文V3.pdf (62 pages, 1697157 bytes).
+Output written on 论文V4.pdf (62 pages, 1697164 bytes).
 PDF statistics:
  2128 PDF objects out of 2487 (max. 8388607)
  1568 compressed objects within 16 object streams
