@@ -1,16 +1,15 @@
 ﻿from __future__ import annotations
 
 from pathlib import Path
+import numba as nb
 
 import matplotlib.pyplot as plt
 import numpy as np
-
 
 @nb.njit(cache=True)
 def U_prime(x: float) -> float:
     # U(x) = x^2 / 2
     return x
-
 
 @nb.njit(cache=True)
 def bernoulli_b(z: float) -> float:
@@ -19,7 +18,6 @@ def bernoulli_b(z: float) -> float:
     if az < 1e-8:
         return 1.0 - 0.5 * z + (z * z) / 12.0
     return z / np.expm1(z)
-
 
 @nb.njit(cache=True)
 def rates_mixed_qc_qu(
@@ -178,7 +176,7 @@ def main() -> None:
 
     # SSA horizon
     t_burn = 100.0
-    t_sample = 1000.0
+    t_sample = 10000.0
     n_rep = 10
 
     # Warm-up (JIT)
@@ -189,7 +187,7 @@ def main() -> None:
 
     print("Running mixed SSA: x-upwind (h2), v-Q_c (h1)")
     print(f"gamma={gamma}, sigma={sigma}, domain=[{-l_x},{l_x}]x[{-l_v},{l_v}]")
-    print(f"t_burn={t_burn}, t_sample={t_sample}, n_rep={n_rep}, constraint: h1=10*h2")
+    print(f"t_burn={t_burn}, t_sample={t_sample}, n_rep={n_rep}, constraint: h2=h1^2")
 
     for i, n_v in enumerate(n_v_list):
         # h1 = 2*L_v/(n_v-1), enforce h1 = 10*h2 exactly by construction.
@@ -242,7 +240,7 @@ def main() -> None:
     ax.loglog(h1_vals, ref1, "--", color="#d95319", dashes=(7, 5), lw=0.9, label=r"$O(h_1)$")
     ax.loglog(h1_vals, ref2, "--", color="#7e2f8e", dashes=(7, 4), lw=0.9, label=r"$O(h_1^2)$")
 
-    ax.set_title("Underdamped Langevin Invariant Density Accuracy (h1=10*h2)")
+    ax.set_title("Underdamped Langevin Invariant Density Accuracy (h2=h1²)")
     ax.set_xlabel("noisy-direction grid size h1")
     ax.set_ylabel(r"$L^1$ error")
     ax.grid(False)
