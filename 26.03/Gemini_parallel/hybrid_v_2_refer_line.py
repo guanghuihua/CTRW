@@ -198,10 +198,25 @@ def main():
     err_vals = err_vals[sort_idx]
 
     # --- 参考线计算 (仿照 MATLAB 的系数) ---
-    # MATLAB: 10 * x 和 100 * x^2
     # 我们根据你的数据范围动态调整系数，或者直接用固定值
-    ref_h = 1.0 * h_v_vals           # 对应 O(h)
-    ref_h2 = 10.0 * (h_v_vals**2)    # 对应 O(h^2)
+    # ref_h = 1.0 * h_v_vals           # 对应 O(h)
+    # ref_h2 = 10.0 * (h_v_vals**2)    # 对应 O(h^2)
+
+    # 找到数据中最细网格的点（h 最小，误差最小的点）作为锚点
+    h_anchor = h_v_vals[0]
+    err_anchor = err_vals[0]
+
+    # --- 设置 O(h^2) 参考线 ---
+    # 我们希望它经过锚点，或者比锚点稍微高一点点（让线条贴合）
+    offset_o2 = 1.0 # 如果你想让线在数据点正上方，可以设为 1.5 或 2.0
+    C_o2 = (err_anchor / (h_anchor**2)) * offset_o2
+    ref_o2 = C_o2 * (h_v_vals**2)
+
+    # --- 设置 O(h) 参考线 ---
+    # 为了让它位于最上方且不相交，我们必须手动给它一个很大的 C 值
+    # 观察你的 ylim，最大误差在 1 左右。我们设一个 C 让线从图中顶部出发。
+    C_o1 = 10.0 # 这个数越大，线越靠上。你可以试着填 20.0
+    ref_o1 = C_o1 * h_v_vals
 
     # 开始绘图
     plt.rcParams.update({'text.usetex': False, 'font.family': 'serif'}) # 如果环境没装Latex，usetex设为False
@@ -211,14 +226,10 @@ def main():
     ax.loglog(h_v_vals, err_vals, 'o-', color='#1f77b4', label='$hybrid$', lw=1.5, ms=7, mfc='none')
 
     # 2. 绘制 O(h) 参考线
-    ax.loglog(h_v_vals, ref_h, '--', color='#ff7f0e', label='$O(h)$', lw=1.2)
+    ax.loglog(h_v_vals, ref_o1, '--', color='#ff7f0e', label='$O(h)$', lw=1.2)
 
     # 3. 绘制 O(h^2) 参考线 (如果你有Qc的数据可以再画一条，这里演示参考线)
-    ax.loglog(h_v_vals, ref_h2, '--', color='#9467bd', label='$O(h^2)$', lw=1.2)
-
-    # --- 设置坐标轴范围 (仿照 MATLAB) ---
-    # ax.set_xlim([0.005, 0.5])
-    # ax.set_ylim([1e-5, 1.0])
+    ax.loglog(h_v_vals, ref_o2, '--', color='#9467bd', label='$O(h^2)$', lw=1.2)
 
     # --- 标签和标题 ---
     ax.set_xlabel('spatial stepsize h', fontsize=12)
