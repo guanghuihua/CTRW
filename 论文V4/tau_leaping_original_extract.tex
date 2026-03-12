@@ -274,9 +274,50 @@
 	
 	\begin{document}
 		
-	%=========================================================
-	%  §2.3 tau-leaping 原理（恢复公式版）
-	%=========================================================
+
+	\section{二阶格式的推导}
+	
+	The infinitesimal generator $L$ for a diffusion process is defined as:
+	\begin{equation}
+		Lf(x) = \mu(x) \cdot Df(x) + \frac{1}{2} \sigma \sigma^\top D^2 f(x)
+	\end{equation}
+	
+	Using the central difference scheme (中点格式), we define the discrete operator $Qf(x)$ as follows:
+	\begin{equation}
+		\begin{aligned}
+			Qf(x) = & \sum_{i} \mu_i(x) \cdot \frac{f(x+he_i) - f(x-he_i)}{2h} \\
+			& + \sum_{i} \frac{1}{2} \sigma_{ii}^2 \cdot \frac{f(x+he_i) + f(x-he_i) - 2f(x)}{h^2}
+		\end{aligned}
+	\end{equation}
+	
+	By rearranging the terms to group them by the increments $[f(x \pm he_i) - f(x)]$, the expression becomes:
+	\begin{equation}
+		\begin{aligned}
+			Qf(x) = & \sum_{i} \left( \frac{\mu_i(x)}{2h} + \frac{\sigma_{ii}^2}{2h^2} \right) \left[ f(x+he_i) - f(x) \right] \\
+			& + \sum_{i} \left( -\frac{\mu_i(x)}{2h} + \frac{\sigma_{ii}^2}{2h^2} \right) \left[ f(x-he_i) - f(x) \right]
+		\end{aligned}
+	\end{equation}
+	
+	\vspace{1em}
+	\noindent \textbf{Note on Drift Decomposition (Upwind logic):} \\
+	The draft notes indicate the decomposition of the drift term $\mu$, which is essential for ensuring the stability (positivity) of the coefficients:
+	\begin{align}
+		\frac{\mu}{2} &= \mu \vee 0 - \frac{|\mu|}{2} \\
+		-\frac{\mu}{2} &= \mu \wedge 0 - \frac{|\mu|}{2}
+	\end{align}
+	
+	\begin{equation}
+		\begin{aligned}
+			Q_u^{LZ} f(x) = & \sum_{i=1}^{n} \left( \frac{\mu_i(x) \vee 0}{h} + \frac{M_{ii}(x)}{h^2} \right) \left( f(x+he_i) - f(x) \right) \\
+			& + \left( -\frac{\mu_i(x) \wedge 0}{h} + \frac{M_{ii}(x)}{h^2} \right) \left( f(x-he_i) - f(x) \right)
+		\end{aligned}
+	\end{equation}
+	
+	其中，$M_{ii}(x)$ 是为了修正扩散项而定义的：
+	\begin{equation}
+		M_{ii}(x) = 0.5 \times (\sigma_{ii}^2 - |\mu_i(x)|h) \vee 0
+	\end{equation}
+
 	\section{tau-leaping 原理}
 	
 	考虑搅拌均匀的化学反应系统，包含 $n$ 种反应物种 $\{S_i\}_{i=1}^n$，具有 $M$ 条反应通道。
