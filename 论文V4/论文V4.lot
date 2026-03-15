@@ -1,4 +1,5 @@
-\contentsline {table}{\numberline {5.1}{\ignorespaces SD（\(Q\)-解，GS 迭代）在不同网格下的 work--error}}{33}{table.caption.15}%
-\contentsline {table}{\numberline {5.2}{\ignorespaces TD（\(\Delta t=0.004\)）在不同样本数下的 work--error}}{34}{table.caption.16}%
-\contentsline {table}{\numberline {5.3}{\ignorespaces 同等代价的 RMS 误差对比}}{35}{table.caption.17}%
+\contentsline {table}{\numberline {4.1}{\ignorespaces 欠阻尼 Langevin 方程不变测度的 $L^1$ 误差比较（$\gamma =1,\,\sigma =1$， EM 方法在与混合格式相同的计算时间下运行）}}{28}{table.caption.11}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces SD（\(Q\)-解，GS 迭代）在不同网格下的 work--error}}{38}{table.caption.18}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces TD（\(\Delta t=0.004\)）在不同样本数下的 work--error}}{39}{table.caption.19}%
+\contentsline {table}{\numberline {5.4}{\ignorespaces 同等代价的 RMS 误差对比}}{40}{table.caption.20}%
 \contentsfinish 

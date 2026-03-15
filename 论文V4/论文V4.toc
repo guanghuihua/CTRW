@@ -1,8 +1,8 @@
 \contentsline {section}{摘要}{I}{section*.1}%
 \contentsline {section}{Abstract}{II}{section*.2}%
-\contentsline {section}{插图目录}{VI}{section*.4}%
-\contentsline {section}{附表目录}{VII}{section*.5}%
-\contentsline {section}{符号和缩略语说明}{VIII}{section*.6}%
+\contentsline {section}{插图目录}{VII}{section*.4}%
+\contentsline {section}{附表目录}{VIII}{section*.5}%
+\contentsline {section}{符号和缩略语说明}{IX}{section*.6}%
 \contentsline {section}{\numberline {1\hspace {-0.5\ccwd }}引言}{1}{section.1}%
 \contentsline {subsection}{\numberline {1.1\hspace {-0.5\ccwd }}随机微分方程的的起源与发展}{1}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2\hspace {-0.5\ccwd }}随机微分方程数值解的研究现状}{2}{subsection.1.2}%
@@ -22,32 +22,48 @@
 \contentsline {paragraph}{空间离散格式}{21}{paragraph*.8}%
 \contentsline {paragraph}{时间离散格式}{22}{paragraph*.9}%
 \contentsline {subsubsection}{\numberline {3.4.1\hspace {-0.5\ccwd }}误差度量与数值结果}{23}{subsubsection.3.4.1}%
-\contentsline {section}{\numberline {4\hspace {-0.5\ccwd }}关于退化噪声的随机系统的CTMC算法}{24}{section.4}%
-\contentsline {section}{\numberline {5\hspace {-0.5\ccwd }}随机 Canard 快-慢系统的动力学行为分析}{24}{section.5}%
-\contentsline {subsection}{\numberline {5.1\hspace {-0.5\ccwd }}逃逸概率}{24}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2\hspace {-0.5\ccwd }}CTRW生成元下的离散逃逸概率方程}{25}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3\hspace {-0.5\ccwd }}驯服/截断Euler-Maruyama格式下的逃逸概率收敛性}{26}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1\hspace {-0.5\ccwd }}驯服/截断 Euler-Maruyama格式与强收敛}{26}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2\hspace {-0.5\ccwd }}时间离散下的逃逸概率分析}{26}{subsubsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.4\hspace {-0.5\ccwd }}随机Canard系统中的比较与讨论}{28}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5\hspace {-0.5\ccwd }}数值实验}{29}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1\hspace {-0.5\ccwd }}实验设置与数值方法}{29}{subsubsection.5.5.1}%
-\contentsline {subsubsection}{\numberline {5.5.2\hspace {-0.5\ccwd }}系统路径与快跳时间分布}{30}{subsubsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.3\hspace {-0.5\ccwd }}逃逸概率 与 MFPT 的空间结构}{31}{subsubsection.5.5.3}%
-\contentsline {subsubsection}{\numberline {5.5.4\hspace {-0.5\ccwd }}基于 逃逸概率 的 work--error 比较}{33}{subsubsection.5.5.4}%
-\contentsline {section}{\numberline {6\hspace {-0.5\ccwd }}随机 Canard 快--慢系统中快跳行为的数值比较}{36}{section.6}%
-\contentsline {subsection}{\numberline {6.1\hspace {-0.5\ccwd }}快跳事件的定义与数值目标}{36}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2\hspace {-0.5\ccwd }}时间离散格式：Euler--Maruyama 与驯服 EM}{37}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3\hspace {-0.5\ccwd }}空间离散格式：基于生成元的 CTRW 跳跃过程}{38}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4\hspace {-0.5\ccwd }}快跳事件对数值扰动的敏感性分析}{39}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5\hspace {-0.5\ccwd }}数值实验与结果比较}{40}{subsection.6.5}%
-\contentsline {paragraph}{空间离散（CTRW--SSA）}{40}{paragraph*.18}%
-\contentsline {paragraph}{时间离散（驯服 EM）}{40}{paragraph*.19}%
-\contentsline {paragraph}{整体比较与讨论}{41}{paragraph*.20}%
-\contentsline {subsection}{\numberline {6.6\hspace {-0.5\ccwd }}小结}{41}{subsection.6.6}%
-\contentsline {section}{\numberline {7\hspace {-0.5\ccwd }}结论}{42}{section.7}%
-\contentsline {section}{附录\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{46}{section*.22}%
-\contentsline {section}{附录\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{47}{section*.23}%
-\contentsline {section}{后记}{48}{section*.24}%
-\contentsline {section}{在学期间取得创新性成果情况}{49}{section*.25}%
+\contentsline {section}{\numberline {4\hspace {-0.5\ccwd }}关于带退化噪声的随机系统的数值格式比较}{24}{section.4}%
+\contentsline {subsection}{\numberline {4.1\hspace {-0.5\ccwd }}模型与精确不变测度}{24}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2\hspace {-0.5\ccwd }}空间离散格式：混合（hybrid）$\setbox \z@ \hbox {\mathsurround \z@ $\textstyle Q$}\mathaccent "0365{Q}_u$ 方法}{24}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1\hspace {-0.5\ccwd }}离散生成元与转移矩阵的构造}{24}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2\hspace {-0.5\ccwd }}平稳分布的数值求解}{25}{subsubsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.3\hspace {-0.5\ccwd }}时间离散格式：Euler--Maruyama 方法}{26}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4\hspace {-0.5\ccwd }}公平比较的实验设置}{26}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1\hspace {-0.5\ccwd }}统一参数}{26}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2\hspace {-0.5\ccwd }}网格剖分策略}{27}{subsubsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.3\hspace {-0.5\ccwd }}计算量公平原则}{27}{subsubsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.5\hspace {-0.5\ccwd }}数值结果与分析}{27}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1\hspace {-0.5\ccwd }}精度随网格步长的收敛行为}{27}{subsubsection.4.5.1}%
+\contentsline {subsubsection}{\numberline {4.5.2\hspace {-0.5\ccwd }}误差--代价收敛曲线}{27}{subsubsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.3\hspace {-0.5\ccwd }}两类方法误差来源的本质差异}{28}{subsubsection.4.5.3}%
+\contentsline {paragraph}{混合格式（空间离散）}{28}{paragraph*.12}%
+\contentsline {paragraph}{EM 方法（时间离散）}{28}{paragraph*.13}%
+\contentsline {subsection}{\numberline {4.6\hspace {-0.5\ccwd }}小结}{28}{subsection.4.6}%
+\contentsline {section}{\numberline {5\hspace {-0.5\ccwd }}随机 Canard 快-慢系统的动力学行为分析}{29}{section.5}%
+\contentsline {subsection}{\numberline {5.1\hspace {-0.5\ccwd }}逃逸概率}{29}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2\hspace {-0.5\ccwd }}CTRW生成元下的离散逃逸概率方程}{30}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3\hspace {-0.5\ccwd }}驯服/截断Euler-Maruyama格式下的逃逸概率收敛性}{31}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1\hspace {-0.5\ccwd }}驯服/截断 Euler-Maruyama格式与强收敛}{31}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2\hspace {-0.5\ccwd }}时间离散下的逃逸概率分析}{31}{subsubsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.4\hspace {-0.5\ccwd }}随机Canard系统中的比较与讨论}{33}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5\hspace {-0.5\ccwd }}数值实验}{34}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1\hspace {-0.5\ccwd }}实验设置与数值方法}{34}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2\hspace {-0.5\ccwd }}系统路径与快跳时间分布}{35}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3\hspace {-0.5\ccwd }}逃逸概率 与 MFPT 的空间结构}{36}{subsubsection.5.5.3}%
+\contentsline {subsubsection}{\numberline {5.5.4\hspace {-0.5\ccwd }}基于 逃逸概率 的 work--error 比较}{38}{subsubsection.5.5.4}%
+\contentsline {section}{\numberline {6\hspace {-0.5\ccwd }}随机 Canard 快--慢系统中快跳行为的数值比较}{41}{section.6}%
+\contentsline {subsection}{\numberline {6.1\hspace {-0.5\ccwd }}快跳事件的定义与数值目标}{41}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2\hspace {-0.5\ccwd }}时间离散格式：Euler--Maruyama 与驯服 EM}{42}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3\hspace {-0.5\ccwd }}空间离散格式：基于生成元的 CTRW 跳跃过程}{43}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4\hspace {-0.5\ccwd }}快跳事件对数值扰动的敏感性分析}{44}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5\hspace {-0.5\ccwd }}数值实验与结果比较}{45}{subsection.6.5}%
+\contentsline {paragraph}{空间离散（CTRW--SSA）}{45}{paragraph*.21}%
+\contentsline {paragraph}{时间离散（驯服 EM）}{45}{paragraph*.22}%
+\contentsline {paragraph}{整体比较与讨论}{46}{paragraph*.23}%
+\contentsline {subsection}{\numberline {6.6\hspace {-0.5\ccwd }}小结}{46}{subsection.6.6}%
+\contentsline {section}{\numberline {7\hspace {-0.5\ccwd }}结论}{47}{section.7}%
+\contentsline {section}{附录\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{51}{section*.25}%
+\contentsline {section}{附录\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces A\hskip 1em\relax XXXX统计数据}{52}{section*.26}%
+\contentsline {section}{后记}{53}{section*.27}%
+\contentsline {section}{在学期间取得创新性成果情况}{54}{section*.28}%
 \contentsfinish 

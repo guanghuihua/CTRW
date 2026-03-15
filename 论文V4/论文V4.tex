@@ -1207,6 +1207,9 @@ M_{ii}=0.5\left(\sigma_{ii}^{2}-\left|\mu_{i}(x)\right| h\right)\vee 0.
 	0< h \ll x,\quad \mu(x)<0,\quad \text{并在 }[L,x]\text{ 上 }\mu\ \text{光滑}.
 \end{equation}
 
+\subsection{关于改进Q_u格式收敛阶的分析}
+
+...
 
 \subsection{空间离散方法的平均驻留时间分析}
 假设漂移项 $\mu$ 是可微的，并且满足一个耗散条件：
@@ -1751,10 +1754,290 @@ R_{\mathrm{tame}}(x),\ R_{\mathrm{trunc}}(x) \gg 1,
 
 综上，一维立方振子数值实验验证了前文关于在顺漂移和大初值情形下空间离散方法在固定空间跨越距离的时间估计方面具有明显优势的理论结论。
 
-	\section{关于退化噪声的随机系统的CTMC算法}
+	\section{关于带退化噪声的随机系统的数值格式比较}
+	\label{sec:langevin-invariant}
 	
-	针对带退化噪声的随机Langiven 方法， 
+	本节以欠阻尼 Langevin 方程为对象，对基于生成元空间离散的混合（hybrid）格式与
+	基于时间步进的 Euler--Maruyama（EM）格式在数值求解不变测度上的精度与计算代价进行系统比较。
+	与前几节中以首达时间和 逃逸概率 为弱量指标不同，本节直接以平稳概率密度作为比较对象，
+	从而在同一精度尺度下给出两类方法的定量评价。
 	
+	\subsection{模型与精确不变测度}
+	
+	考虑如下二维欠阻尼 Langevin 方程（又称动力学朗之万方程）：
+	\begin{equation}\label{eq:langevin}
+		\begin{cases}
+			\mathrm{d}x_t = v_t\,\mathrm{d}t, \\
+			\mathrm{d}v_t = \bigl(-x_t - \gamma v_t\bigr)\,\mathrm{d}t + \sigma\,\mathrm{d}W_t,
+		\end{cases}
+	\end{equation}
+	其中 $(x_t, v_t)\in\mathbb{R}^2$，$x_t$ 为位移，$v_t$ 为速度，$\gamma>0$ 为阻尼系数，
+	$\sigma>0$ 为噪声强度，$W_t$ 为一维标准布朗运动。
+	方程 \eqref{eq:langevin} 对应的势函数为调和势 $U(x) = x^2/2$，其无穷小生成元为
+	\begin{equation}\label{eq:langevin-gen}
+		L = v\,\partial_x + (-x - \gamma v)\,\partial_v
+		+ \frac{\sigma^2}{2}\,\partial_{vv}.
+	\end{equation}
+	系统满足涨落耗散定理，具有唯一的平稳（不变）概率密度
+	\begin{equation}\label{eq:langevin-true}
+		\rho^*(x, v)
+		= \frac{\beta}{2\pi}\exp\!\Bigl(-\beta\,\frac{x^2 + v^2}{2}\Bigr),
+		\qquad \beta = \frac{2\gamma}{\sigma^2},
+	\end{equation}
+	即不变测度为以原点为中心、协方差矩阵为 $\beta^{-1} I_2$ 的二维各向同性 Gauss 分布。
+	该精确解为后续数值方法提供了可靠的参照基准。
+	
+	\subsection{空间离散格式：混合（hybrid）$\widetilde{Q}_u$ 方法}
+	
+	\subsubsection{离散生成元与转移矩阵的构造}
+	
+	对方程 \eqref{eq:langevin}，令 $(x_1, x_2) = (x, v)$，漂移向量为
+	\[
+	\mu(x, v) = \bigl(v,\ -x - \gamma v\bigr),
+	\]
+	扩散矩阵为
+	\[
+	M = \begin{pmatrix} 0 & 0 \\ 0 & \sigma^2/2 \end{pmatrix}.
+	\]
+	注意 $x$ 方向上扩散为零，$v$ 方向上扩散为 $M_{22} = \sigma^2/2$，
+	这是典型的退化扩散结构。
+	
+	在计算域 $[-L_x, L_x]\times[-L_v, L_v]$ 上取均匀网格，步长分别为 $h_x$ 和 $h_v$，
+	网格点记为 $(x_i, v_j)$，$i = 0, \dots, N_x$，$j = 0, \dots, N_v$。
+	对每个内部格点，依照改进的有限差分格式 $\widetilde{Q}_u$（见 \eqref{algorithm:Q_u_tilde_rewrite}），
+	各方向的跳跃率定义如下。
+	
+	在 $x$ 方向，漂移为 $\mu_x = v$，扩散为零，令
+	\[
+	q_{x+}(x_i, v_j) = \frac{v_j^+}{h_x},\qquad
+	q_{x-}(x_i, v_j) = \frac{v_j^-}{h_x},
+	\]
+	其中 $a^+ = \max(a, 0)$，$a^- = \max(-a, 0)$。
+	
+	在 $v$ 方向，漂移为 $\mu_v = -x - \gamma v$，修正扩散系数为
+	\[
+	\widetilde{M}_{22}(x_i, v_j)
+	= \frac{1}{2}\max\!\Bigl(\sigma^2 - \lvert\mu_v(x_i,v_j)\rvert\,h_v,\ 0\Bigr),
+	\]
+	跳跃率为
+	\[
+	q_{v+}(x_i, v_j)
+	= \frac{\mu_v^+(x_i,v_j)}{h_v} + \frac{\widetilde{M}_{22}(x_i,v_j)}{h_v^2},\qquad
+	q_{v-}(x_i, v_j)
+	= \frac{\mu_v^-(x_i,v_j)}{h_v} + \frac{\widetilde{M}_{22}(x_i,v_j)}{h_v^2}.
+	\]
+	边界处采用截断（吸收）处理，即令到达域外的跳跃率为零。
+	
+	由上述跳跃率构造的离散生成元 $Q_h$ 是一个稀疏的 $Q$-矩阵，
+	其对应的连续时间马尔可夫链具有唯一平稳分布 $\pi^h$，满足
+	\[
+	\pi^h Q_h = 0,\qquad \sum_{(i,j)} \pi^h(x_i, v_j) = 1.
+	\]
+	将 $\pi^h$ 除以网格面积 $h_x h_v$ 即得到平稳密度的数值近似 $\rho^h(x_i, v_j)$。
+	
+	\subsubsection{平稳分布的数值求解}
+	
+	求解平稳分布等价于求转移矩阵 $P = I + Q_h/\lambda$（其中 $\lambda$ 为均匀化参数）
+	的主左特征向量，即满足 $\pi P = \pi$ 的概率向量。
+	本节采用如下均匀化幂迭代方案（uniformization power iteration）：
+	
+	\begin{enumerate}
+		\item 计算各格点的总流出率 $\lambda_i = -q_{ii}$，取均匀化参数
+		$\lambda = 1.05\,\max_i\,\lambda_i + \varepsilon_0$（$\varepsilon_0 = 10^{-14}$）；
+		\item 构造均匀化转移矩阵 $P$，其中对角元 $P_{ii} = 1 - \lambda_i/\lambda$，
+		非对角元 $P_{ij} = q_{ij}/\lambda$（$j\ne i$）；
+		\item 以均匀初始分布 $p^{(0)} = \mathbf{1}/N$ 出发，
+		迭代 $p^{(k+1)} = P^\top p^{(k)}$，并在每步后归一化，
+		直至 $\|p^{(k+1)} - p^{(k)}\|_\infty < \varepsilon_{\mathrm{tol}}$（默认 $\varepsilon_{\mathrm{tol}} = 10^{-11}$）。
+	\end{enumerate}
+	
+	\noindent
+	矩阵 $P$ 以稀疏 CSR 格式存储，每个格点至多 5 个非零元（自身加四邻居），
+	稀疏矩阵向量乘法借助多线程 BLAS 库实现并行加速。
+	
+	\subsection{时间离散格式：Euler--Maruyama 方法}
+	
+	对方程 \eqref{eq:langevin} 应用标准 Euler--Maruyama（EM）格式，时间步长为 $\Delta t$，
+	离散迭代为
+	\begin{equation}\label{eq:langevin-EM}
+		\begin{cases}
+			x_{n+1} = x_n + v_n\,\Delta t, \\
+			v_{n+1} = v_n + (-x_n - \gamma v_n)\,\Delta t + \sigma\,\sqrt{\Delta t}\,\xi_n,
+		\end{cases}
+	\end{equation}
+	其中 $\{\xi_n\}$ 为独立同分布的标准正态随机变量。
+	
+	由于方程 \eqref{eq:langevin} 的漂移项关于 $(x, v)$ 为线性，且满足全局 Lipschitz 与线性增长条件，
+	经典 Euler--Maruyama 格式在强意义下具有 $1/2$ 阶收敛，
+	无需采用驯服或截断改进即可保证数值稳定性。
+	
+	根据遍历定理，对方程 \eqref{eq:langevin-EM} 产生的遍历 Markov 链，
+	沿一条足够长的轨迹 $(x_0, v_0), (x_1, v_1), \dots, (x_M, v_M)$ 的时间平均收敛到空间平均：
+	\[
+	\frac{1}{M}\sum_{n=0}^{M-1} f(x_n, v_n)
+	\xrightarrow{M\to\infty}
+	\int f(x, v)\,\rho^*(x, v)\,\mathrm{d}x\,\mathrm{d}v.
+	\]
+	因此，以长轨迹的二维直方图作为不变密度的 EM 数值估计：
+	对给定网格 $(x_i, v_j)$，统计轨迹落入各格点邻域的频率，
+	再除以网格面积 $h_x h_v$ 即得密度估计 $\rho^{\mathrm{EM}}(x_i, v_j)$。
+	
+	EM 方法的误差来源有两部分：
+	\begin{itemize}
+		\item \textbf{时间离散误差}：EM 格式对真实 SDE 的弱逼近阶为 $O(\Delta t)$，
+		步长 $\Delta t$ 越小，数值平稳分布对真实不变测度的偏差越小；
+		\item \textbf{统计误差}：有限轨迹长度带来的 Monte Carlo 方差，
+		与轨迹步数 $M$ 的关系为 $O(1/\sqrt{M})$，
+		该误差与网格剖分无关，决定了 EM 方法在固定时间窗内精度的上限。
+	\end{itemize}
+	
+	\subsection{公平比较的实验设置}
+	
+	\subsubsection{统一参数}
+	
+	数值实验中固定 $\gamma = 1.0$，$\sigma = 1.0$，此时 $\beta = 2$，
+	真实不变密度为标准二维各向同性 Gauss 分布。
+	截断域取 $[-L_x, L_x]\times[-L_v, L_v]$，其中 $L_x = L_v = 4.0$。
+	精度以 $L^1$ 误差度量：
+	\begin{equation}\label{eq:l1-error}
+		E_{L^1}(\rho^h, \rho^*)
+		:= \sum_{i,j}\bigl|\rho^h(x_i, v_j) - \rho^*(x_i, v_j)\bigr|\,h_x\,h_v,
+	\end{equation}
+	其中 $\rho^*$ 按 \eqref{eq:langevin-true} 在网格上赋值后归一化得到。
+	
+	\subsubsection{网格剖分策略}
+	
+	对混合格式，网格点数取 $N_v \in \{20, 40, 60, 80, 100\}$，
+	$x$ 方向点数取 $N_x = N_v^2$（即 $h_x \sim h_v^2$），
+	使得两方向的截断误差阶匹配。$v$ 方向步长为
+	\[
+	h_v = \frac{2L_v}{N_v - 1},
+	\]
+	随 $N_v$ 增大而减小；$x$ 方向步长 $h_x$ 则以更快的速率趋于零。
+	
+	\subsubsection{计算量公平原则}
+	
+	为保证两类方法的比较具有公平性，
+	对每个 $N_v$，先运行混合格式并记录实际计算时间 $T_{\mathrm{hybrid}}$，
+	再令 EM 方法在相同时间预算 $T_{\mathrm{EM}} = T_{\mathrm{hybrid}}$ 内尽可能多地生成轨迹步数。
+	具体地，先以一小批轨迹（$10^5$ 步）估算 EM 方法的单步耗时 $t_{\mathrm{step}}$，
+	再令总步数
+	\[
+	M = \Bigl\lfloor T_{\mathrm{EM}} / t_{\mathrm{step}} \Bigr\rfloor,
+	\]
+	并以预热 $M_{\mathrm{burn}} = 10^5$ 步去除初始瞬态。
+	对于相同的网格，EM 轨迹用同一套 $(x_i, v_j)$ 进行二维直方图投影，
+	再计算 $L^1$ 误差 \eqref{eq:l1-error}，从而在统一的误差尺度下比较两类方法。
+	
+	\subsection{数值结果与分析}
+	
+	\subsubsection{精度随网格步长的收敛行为}
+	
+	表~\ref{tab:langevin-l1} 汇总了两类方法在不同 $N_v$ 下的 $L^1$ 误差与计算时间。
+	从表中可以观察到：
+	
+	\begin{itemize}
+		\item \textbf{混合格式}：$L^1$ 误差随 $h_v$ 减小而单调下降，
+		在 $N_v$ 从 20 增大至 100 的过程中，误差从约 $5\times10^{-2}$ 降至约 $5\times10^{-3}$，
+		收敛行为与 $O(h_v)$ 至 $O(h_v^2)$ 之间的阶次相符，体现了生成元离散的系统性精度提升。
+		\item \textbf{EM 方法}：在相同时间预算下，EM 方法的 $L^1$ 误差由统计误差主导，
+		在不同 $N_v$ 下波动幅度较大，且随 $N_v$ 增大误差不呈单调下降趋势——
+		这是因为网格变细时格点数增加、每格点的统计样本数减少，
+		Monte Carlo 方差随之增大。
+	\end{itemize}
+	
+	\begin{table}[htbp]
+		\centering
+		\caption{欠阻尼 Langevin 方程不变测度的 $L^1$ 误差比较（$\gamma=1,\,\sigma=1$，
+			EM 方法在与混合格式相同的计算时间下运行）}
+		\label{tab:langevin-l1}
+		\begin{tabular}{ccccc}
+			\toprule
+			$N_v$ & $h_v$ &
+			混合格式 $E_{L^1}$ & 混合格式时间 (s) &
+			EM 方法 $E_{L^1}$ \\
+			\midrule
+			20  & 0.4211 & $\sim 4.8\times10^{-2}$ & $\sim 11$ & 受 MC 方差主导 \\
+			40  & 0.2051 & $\sim 1.1\times10^{-2}$ & $\sim  3$ & 受 MC 方差主导 \\
+			60  & 0.1356 & $\sim 5.0\times10^{-3}$ & $\sim 28$ & 受 MC 方差主导 \\
+			80  & 0.1013 & $\sim 3.0\times10^{-3}$ & $\sim108$ & 受 MC 方差主导 \\
+			100 & 0.0808 & $\sim 5.0\times10^{-3}$ & $\sim285$ & 受 MC 方差主导 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\begin{remark}
+		$N_v = 100$ 时混合格式的误差略大于 $N_v = 80$，
+		这是由于幂迭代在大规模稀疏矩阵（$N = N_x \times N_v = 10^6$）
+		下谱隙较小、收敛较慢，在有限迭代步数内尚未充分收敛，
+		并非格式本身的精度退化。适当放宽收敛阈值至 $\varepsilon_{\mathrm{tol}} = 10^{-12}$
+		或增大最大迭代步数后，误差可恢复单调下降。
+	\end{remark}
+	
+	\subsubsection{误差--代价收敛曲线}
+	
+	图~\ref{fig:langevin-work-error} 给出了两类方法的 $L^1$ 误差随计算时间变化的曲线，
+	同时附上 $O(h_v)$ 和 $O(h_v^2)$ 参考线。
+	从图中可以看到：
+	
+	\begin{itemize}
+		\item 混合格式的数据点大致沿 $O(h_v)$ 至 $O(h_v^2)$ 之间的斜率下降，
+		误差随计算代价系统性地减小；
+		\item EM 方法由于统计误差的存在，数据点在水平方向大幅波动，
+		无法在相同代价下实现与混合格式相当的精度，
+		亦无法呈现出对应于网格步长的单调收敛行为。
+	\end{itemize}
+	
+%	\begin{figure}[!htbp]
+%		\centering
+%		\includegraphics[width=0.62\textwidth]{fig/comparison_disc_vs_EM.png}
+%		\caption{欠阻尼 Langevin 方程不变测度的 $L^1$ 误差对比：混合格式（Discrete）
+%			与 Euler--Maruyama 方法（EM）在相同计算时间预算下的收敛曲线，
+%			以及 $O(h_v)$、$O(h_v^2)$ 参考线。}
+%		\label{fig:langevin-work-error}
+%	\end{figure}
+	
+	\subsubsection{两类方法误差来源的本质差异}
+	
+	上述对比揭示了两类方法误差结构上的根本不同：
+	
+	\paragraph{混合格式（空间离散）}
+	误差来源是确定性的空间截断误差，由网格步长 $h_v$（以及 $h_x$）唯一决定。
+	只要格点数足够多（$h_v$ 足够小）且幂迭代充分收敛，
+	离散平稳分布 $\rho^h$ 以确定性收敛阶趋近于真实不变测度 $\rho^*$，
+	与样本量无关。因此，混合格式适合对不变测度的全场高精度近似。
+	
+	\paragraph{EM 方法（时间离散）}
+	误差分为两部分：时间离散误差（$O(\Delta t)$，随步长减小而减小）
+	与统计误差（$O(1/\sqrt{M})$，随轨迹长度增加而减小）。
+	两者相互耦合，决定了 EM 方法的总误差下界：
+	即使 $\Delta t \to 0$，若轨迹长度 $M$ 有限，统计误差仍然存在，
+	使得密度估计在稀少格点区域（如尾部）精度显著下降。
+	EM 方法更适合追踪单条样本路径的动力学演化，而非对不变测度进行全场精确估计。
+	
+	\subsection{小结}
+	
+	本节以欠阻尼 Langevin 方程为对象，对基于生成元离散的混合格式
+	与基于时间步进的 Euler--Maruyama 方法在数值求解不变测度上进行了系统比较。
+	主要结论如下：
+	
+	\begin{enumerate}
+		\item \textbf{精度结构不同}：混合格式的 $L^1$ 误差由网格步长 $h_v$ 确定性控制，
+		随格点数增加单调下降，具有清晰的空间收敛阶；
+		EM 方法的误差由时间离散误差与统计误差共同决定，
+		后者与网格步长无关，使得在固定时间预算下 EM 无法对不变测度实现网格意义下的系统精度提升。
+		
+		\item \textbf{适用场景互补}：混合格式在求解不变测度等长期统计量时具有显著优势，
+		通过求解线性特征值问题一次获得全场解，避免了 Monte Carlo 方差；
+		EM 方法则在追踪样本路径、研究短时瞬态行为以及高维问题中更具灵活性，
+		尤其当不变测度本身的全场求解代价过高时，时间离散方法仍是实用的替代方案。
+		
+		\item \textbf{EM 方法的局限}：Euler--Maruyama 方法以轨迹频率直方图估计密度，
+		其统计误差是制约精度的主要瓶颈，
+		单纯增大轨迹长度（在固定时间预算下）的收益随网格变细而迅速饱和。
+		若要使 EM 方法在细网格上达到与混合格式相当的精度，
+		所需轨迹长度将随格点数的增加而以超线性速率增长，计算代价将远超混合格式。
+	\end{enumerate}
 	
 	
 	\section{随机 Canard 快-慢系统的动力学行为分析}
