@@ -1187,6 +1187,68 @@ M_{ii}=0.5\left(\sigma_{ii}^{2}-\left|\mu_{i}(x)\right| h\right)\vee 0.
 	综上所述，驯服 Euler 与截断 Euler-Maruyama 都是在保持方法显式性的前提下，对漂移/扩散项进行适度修正，以恢复在非全局 Lipschitz 情形下的强收敛性。前者通过对漂移增量施加非线性缩放，后者则通过空间截断保证系数有界。本文后续章节将以 \eqref{scheme:tamed} 与 \eqref{scheme:trunc} 为时间离散的两种代表性的改进 Euler-Maruyama 格式，并在一维立方振子与随机 Canard 系统等模型上，从强收敛、长时间行为以及 逃逸概率/MFPT 等弱指标的角度，系统比较它们与空间离散方法的数值表现。
 	
 	
+	
+	\subsection{退化噪声的含义}
+	
+	考虑$d$维SDE
+	\begin{equation}
+		\mathrm{d}X_t = b(X_t)\,\mathrm{d}t + \Sigma(X_t)\,\mathrm{d}W_t,\qquad X_t\in\mathbb{R}^d,
+	\end{equation}
+	其中$W_t$为$m$维布朗运动，$b:\mathbb{R}^d\to\mathbb{R}^d$，$\Sigma:\mathbb{R}^d\to\mathbb{R}^{d\times m}$。
+	定义扩散矩阵
+	\[
+	a(x)=\Sigma(x)\Sigma(x)^{\mathsf T}\in\mathbb{R}^{d\times d}.
+	\]
+	
+	\begin{definition}[退化噪声]
+		若存在$x$使得$\mathrm{rank}(a(x))<d$（典型情形：$\mathrm{rank}(a(x))\equiv r<d$），则称噪声\textbf{退化}。
+		直观上表示噪声只直接作用于部分方向（子空间），其余方向由漂移$b$与耦合项“间接传播”随机性。
+	\end{definition}
+	
+
+	在退化噪声下，$L$通常不是椭圆型算子；因此平滑性、遍历性与稳态性质往往依赖更精细的结构（如H\"ormander括号条件、hypocoercivity等），而不是“扩散项正定”这一强假设。
+
+	
+	\subsubsection{（Hypoellipticity）平滑化与密度存在性}
+	
+	退化扩散的关键现象是：虽然扩散矩阵不满秩，但在一定结构下，解的转移密度仍可能变得光滑（hypoelliptic smoothing）。
+	
+	\begin{definition}[H\"ormander括号生成条件]
+		
+		设噪声向量场为$\sigma_1,\dots,\sigma_m$（$\Sigma=[\sigma_1,\dots,\sigma_m]$），漂移向量场为$b$。
+		若由$\{\sigma_i\}$及其与$b$反复取Lie括号生成的向量场在每个点张成整个$\mathbb{R}^d$，则称满足H\"ormander条件。
+	\end{definition}
+	
+
+	满足H\"ormander条件时，尽管扩散退化，Kolmogorov算子仍可能hypoelliptic，从而转移密度存在且光滑。这是“噪声通过漂移耦合传播到所有方向”的严格数学表述。
+
+	
+	\subsubsection{（Hypocoercivity）趋于平衡与收敛速率}
+	
+	在许多动力学模型（典型如欠阻尼Langevin/Kinetic Fokker--Planck）中，噪声只作用在速度变量上，但系统仍能指数趋于平衡。这类现象常用hypocoercivity框架解释：
+	
+	\begin{itemize} %[leftmargin=2em]
+		
+		\item 扩散只在部分变量上耗散；
+		
+		\item 漂移项提供变量间的混合/耦合；
+		
+		\item 组合后在合适的“改造能量范数”中产生整体耗散，从而得到指数收敛。
+		
+	\end{itemize}
+	
+	\subsection{遍历性（ergodicity）与稳态分布（invariant measure）}
+	
+	通常需要两类条件来保证存在唯一不变测度并遍历：
+	\begin{itemize} %[leftmargin=2em]
+		\item \textbf{Lyapunov漂移条件}：存在$V(x)\to\infty$使得$LV\le -cV + C$（或变体）。
+		\item \textbf{可达性/小集合条件}：退化情形下常与“噪声可控性/可达性”相关（例如满足H\"ormander条件或其弱化版本）。
+	\end{itemize}
+	
+		对数值方法而言，最重要的是：连续系统遍历并不自动推出离散方法遍历。
+		时间离散方案可能引入数值漂移导致“非物理爆炸”或失去不变测度，而空间离散/CTRW类方法可通过“有界跳步 + SSA”更容易维持长时间稳定采样能力。
+
+	
 	\newpage
 	
 \section{固定空间距离跨越时间的比较}
@@ -1207,9 +1269,9 @@ M_{ii}=0.5\left(\sigma_{ii}^{2}-\left|\mu_{i}(x)\right| h\right)\vee 0.
 	0< h \ll x,\quad \mu(x)<0,\quad \text{并在 }[L,x]\text{ 上 }\mu\ \text{光滑}.
 \end{equation}
 
-\subsection{关于改进Q_u格式收敛阶的分析}
+%\subsection{关于改进Q_u格式收敛阶的分析}
 
-...
+testtesttest
 
 \subsection{空间离散方法的平均驻留时间分析}
 假设漂移项 $\mu$ 是可微的，并且满足一个耗散条件：
@@ -1801,6 +1863,11 @@ R_{\mathrm{tame}}(x),\ R_{\mathrm{trunc}}(x) \gg 1,
 	\]
 	注意 $x$ 方向上扩散为零，$v$ 方向上扩散为 $M_{22} = \sigma^2/2$，
 	这是典型的退化扩散结构。
+	需要指出的是，方程 \eqref{eq:langevin} 的扩散仅作用于速度变量 $v$，
+	而位置变量 $x$ 仅通过漂移项与 $v$ 耦合，因此该系统属于典型的退化噪声随机系统。
+	尽管扩散矩阵是奇异的，但由于漂移与扩散之间存在耦合，
+	系统仍具有良好的长时间统计性质，并存在唯一不变测度。
+	这使其成为检验退化噪声情形下数值格式逼近平稳分布能力的一个标准模型。
 	
 	在计算域 $[-L_x, L_x]\times[-L_v, L_v]$ 上取均匀网格，步长分别为 $h_x$ 和 $h_v$，
 	网格点记为 $(x_i, v_j)$，$i = 0, \dots, N_x$，$j = 0, \dots, N_v$。
@@ -1826,7 +1893,7 @@ R_{\mathrm{tame}}(x),\ R_{\mathrm{trunc}}(x) \gg 1,
 	q_{v-}(x_i, v_j)
 	= \frac{\mu_v^-(x_i,v_j)}{h_v} + \frac{\widetilde{M}_{22}(x_i,v_j)}{h_v^2}.
 	\]
-	边界处采用截断（吸收）处理，即令到达域外的跳跃率为零。
+	边界处采用截断处理，即令到达域外的跳跃率为零。
 	
 	由上述跳跃率构造的离散生成元 $Q_h$ 是一个稀疏的 $Q$-矩阵，
 	其对应的连续时间马尔可夫链具有唯一平稳分布 $\pi^h$，满足
@@ -1835,25 +1902,25 @@ R_{\mathrm{tame}}(x),\ R_{\mathrm{trunc}}(x) \gg 1,
 	\]
 	将 $\pi^h$ 除以网格面积 $h_x h_v$ 即得到平稳密度的数值近似 $\rho^h(x_i, v_j)$。
 	
-	\subsubsection{平稳分布的数值求解}
-	
-	求解平稳分布等价于求转移矩阵 $P = I + Q_h/\lambda$（其中 $\lambda$ 为均匀化参数）
-	的主左特征向量，即满足 $\pi P = \pi$ 的概率向量。
-	本节采用如下均匀化幂迭代方案（uniformization power iteration）：
-	
-	\begin{enumerate}
-		\item 计算各格点的总流出率 $\lambda_i = -q_{ii}$，取均匀化参数
-		$\lambda = 1.05\,\max_i\,\lambda_i + \varepsilon_0$（$\varepsilon_0 = 10^{-14}$）；
-		\item 构造均匀化转移矩阵 $P$，其中对角元 $P_{ii} = 1 - \lambda_i/\lambda$，
-		非对角元 $P_{ij} = q_{ij}/\lambda$（$j\ne i$）；
-		\item 以均匀初始分布 $p^{(0)} = \mathbf{1}/N$ 出发，
-		迭代 $p^{(k+1)} = P^\top p^{(k)}$，并在每步后归一化，
-		直至 $\|p^{(k+1)} - p^{(k)}\|_\infty < \varepsilon_{\mathrm{tol}}$（默认 $\varepsilon_{\mathrm{tol}} = 10^{-11}$）。
-	\end{enumerate}
-	
-	\noindent
-	矩阵 $P$ 以稀疏 CSR 格式存储，每个格点至多 5 个非零元（自身加四邻居），
-	稀疏矩阵向量乘法借助多线程 BLAS 库实现并行加速。
+%	\subsubsection{平稳分布的数值求解}
+%	
+%	求解平稳分布等价于求转移矩阵 $P = I + Q_h/\lambda$（其中 $\lambda$ 为均匀化参数）
+%	的主左特征向量，即满足 $\pi P = \pi$ 的概率向量。
+%	本节采用如下均匀化幂迭代方案（uniformization power iteration）：
+%	
+%	\begin{enumerate}
+%		\item 计算各格点的总流出率 $\lambda_i = -q_{ii}$，取均匀化参数
+%		$\lambda = 1.05\,\max_i\,\lambda_i + \varepsilon_0$（$\varepsilon_0 = 10^{-14}$）；
+%		\item 构造均匀化转移矩阵 $P$，其中对角元 $P_{ii} = 1 - \lambda_i/\lambda$，
+%		非对角元 $P_{ij} = q_{ij}/\lambda$（$j\ne i$）；
+%		\item 以均匀初始分布 $p^{(0)} = \mathbf{1}/N$ 出发，
+%		迭代 $p^{(k+1)} = P^\top p^{(k)}$，并在每步后归一化，
+%		直至 $\|p^{(k+1)} - p^{(k)}\|_\infty < \varepsilon_{\mathrm{tol}}$（默认 $\varepsilon_{\mathrm{tol}} = 10^{-11}$）。
+%	\end{enumerate}
+%	
+%	\noindent
+%	矩阵 $P$ 以稀疏 CSR 格式存储，每个格点至多 5 个非零元（自身加四邻居），
+%	稀疏矩阵向量乘法借助多线程 BLAS 库实现并行加速。
 	
 	\subsection{时间离散格式：Euler--Maruyama 方法}
 	
@@ -1882,872 +1949,895 @@ R_{\mathrm{tame}}(x),\ R_{\mathrm{trunc}}(x) \gg 1,
 	对给定网格 $(x_i, v_j)$，统计轨迹落入各格点邻域的频率，
 	再除以网格面积 $h_x h_v$ 即得密度估计 $\rho^{\mathrm{EM}}(x_i, v_j)$。
 	
-	EM 方法的误差来源有两部分：
-	\begin{itemize}
-		\item \textbf{时间离散误差}：EM 格式对真实 SDE 的弱逼近阶为 $O(\Delta t)$，
-		步长 $\Delta t$ 越小，数值平稳分布对真实不变测度的偏差越小；
-		\item \textbf{统计误差}：有限轨迹长度带来的 Monte Carlo 方差，
-		与轨迹步数 $M$ 的关系为 $O(1/\sqrt{M})$，
-		该误差与网格剖分无关，决定了 EM 方法在固定时间窗内精度的上限。
-	\end{itemize}
+%	EM 方法的误差来源有两部分：
+%	\begin{itemize}
+%		\item \textbf{时间离散误差}：EM 格式对真实 SDE 的弱逼近阶为 $O(\Delta t)$，
+%		步长 $\Delta t$ 越小，数值平稳分布对真实不变测度的偏差越小；
+%		\item \textbf{统计误差}：有限轨迹长度带来的 Monte Carlo 方差，
+%		与轨迹步数 $M$ 的关系为 $O(1/\sqrt{M})$，
+%		该误差与网格剖分无关，决定了 EM 方法在固定时间窗内精度的上限。
+%	\end{itemize}
 	
-	\subsection{公平比较的实验设置}
 	
-	\subsubsection{统一参数}
 	
-	数值实验中固定 $\gamma = 1.0$，$\sigma = 1.0$，此时 $\beta = 2$，
-	真实不变密度为标准二维各向同性 Gauss 分布。
-	截断域取 $[-L_x, L_x]\times[-L_v, L_v]$，其中 $L_x = L_v = 4.0$。
-	精度以 $L^1$ 误差度量：
-	\begin{equation}\label{eq:l1-error}
-		E_{L^1}(\rho^h, \rho^*)
-		:= \sum_{i,j}\bigl|\rho^h(x_i, v_j) - \rho^*(x_i, v_j)\bigr|\,h_x\,h_v,
+	
+	\subsection{二阶格式的推导}
+	
+	扩散过程的无穷小生成元（Infinitesimal generator）$L$ 定义如下：
+	\begin{equation}
+		Lf(x) = \mu(x) \cdot Df(x) + \frac{1}{2} \sigma \sigma^\top D^2 f(x)
 	\end{equation}
-	其中 $\rho^*$ 按 \eqref{eq:langevin-true} 在网格上赋值后归一化得到。
 	
-	\subsubsection{网格剖分策略}
+	采用中心差分格式（Central difference scheme），我们定义离散算子 $Qf(x)$ 如下：
+	\begin{equation}
+		\begin{aligned}
+			Qf(x) = & \sum_{i} \mu_i(x) \cdot \frac{f(x+he_i) - f(x-he_i)}{2h} \\
+			& + \sum_{i} \frac{1}{2} \sigma_{ii}^2 \cdot \frac{f(x+he_i) + f(x-he_i) - 2f(x)}{h^2}
+		\end{aligned}
+	\end{equation}
 	
-	对混合格式，网格点数取 $N_v \in \{20, 40, 60, 80, 100\}$，
-	$x$ 方向点数取 $N_x = N_v^2$（即 $h_x \sim h_v^2$），
-	使得两方向的截断误差阶匹配。$v$ 方向步长为
-	\[
-	h_v = \frac{2L_v}{N_v - 1},
-	\]
-	随 $N_v$ 增大而减小；$x$ 方向步长 $h_x$ 则以更快的速率趋于零。
+	通过重新排列各项，并按增量 $[f(x \pm he_i) - f(x)]$ 进行归类，上述表达式可以改写为：
+	\begin{equation}
+		\begin{aligned}
+			Qf(x) = & \sum_{i} \left( \frac{\mu_i(x)}{2h} + \frac{\sigma_{ii}^2}{2h^2} \right) \left[ f(x+he_i) - f(x) \right] \\
+			& + \sum_{i} \left( -\frac{\mu_i(x)}{2h} + \frac{\sigma_{ii}^2}{2h^2} \right) \left[ f(x-he_i) - f(x) \right]
+		\end{aligned}
+	\end{equation}
 	
-	\subsubsection{计算量公平原则}
+	\vspace{1em}
+	\noindent \textbf{关于漂移项分解（上风逻辑）的说明：} \\
+	为了确保离散格式系数的稳定性（即保证跳跃速率的非负性），需要对漂移项 $\mu$ 进行如下分解：
+	\begin{align}
+		\frac{\mu}{2} &= \mu \vee 0 - \frac{|\mu|}{2} \\
+		-\frac{\mu}{2} &= \mu \wedge 0 - \frac{|\mu|}{2}
+	\end{align}
 	
-	为保证两类方法的比较具有公平性，
-	对每个 $N_v$，先运行混合格式并记录实际计算时间 $T_{\mathrm{hybrid}}$，
-	再令 EM 方法在相同时间预算 $T_{\mathrm{EM}} = T_{\mathrm{hybrid}}$ 内尽可能多地生成轨迹步数。
-	具体地，先以一小批轨迹（$10^5$ 步）估算 EM 方法的单步耗时 $t_{\mathrm{step}}$，
-	再令总步数
-	\[
-	M = \Bigl\lfloor T_{\mathrm{EM}} / t_{\mathrm{step}} \Bigr\rfloor,
-	\]
-	并以预热 $M_{\mathrm{burn}} = 10^5$ 步去除初始瞬态。
-	对于相同的网格，EM 轨迹用同一套 $(x_i, v_j)$ 进行二维直方图投影，
-	再计算 $L^1$ 误差 \eqref{eq:l1-error}，从而在统一的误差尺度下比较两类方法。
+	进而得到 $Q_u^{LZ}$ 格式的表达式：
+	\begin{equation}
+		\begin{aligned}
+			Q_u^{LZ} f(x) = & \sum_{i=1}^{n} \left( \frac{\mu_i(x) \vee 0}{h} + \frac{M_{ii}(x)}{h^2} \right) \left( f(x+he_i) - f(x) \right) \\
+			& + \left( -\frac{\mu_i(x) \wedge 0}{h} + \frac{M_{ii}(x)}{h^2} \right) \left( f(x-he_i) - f(x) \right)
+		\end{aligned}
+	\end{equation}
 	
-	\subsection{数值结果与分析}
+	其中，$M_{ii}(x)$ 是为了修正扩散项而定义的修正系数：
+	\begin{equation}
+		M_{ii}(x) = 0.5 \times (\sigma_{ii}^2 - |\mu_i(x)|h) \vee 0
+	\end{equation}
 	
-	\subsubsection{精度随网格步长的收敛行为}
 	
-	表~\ref{tab:langevin-l1} 汇总了两类方法在不同 $N_v$ 下的 $L^1$ 误差与计算时间。
-	从表中可以观察到：
+	\subsection{误差分析与数值实验结果}
 	
-	\begin{itemize}
-		\item \textbf{混合格式}：$L^1$ 误差随 $h_v$ 减小而单调下降，
-		在 $N_v$ 从 20 增大至 100 的过程中，误差从约 $5\times10^{-2}$ 降至约 $5\times10^{-3}$，
-		收敛行为与 $O(h_v)$ 至 $O(h_v^2)$ 之间的阶次相符，体现了生成元离散的系统性精度提升。
-		\item \textbf{EM 方法}：在相同时间预算下，EM 方法的 $L^1$ 误差由统计误差主导，
-		在不同 $N_v$ 下波动幅度较大，且随 $N_v$ 增大误差不呈单调下降趋势——
-		这是因为网格变细时格点数增加、每格点的统计样本数减少，
-		Monte Carlo 方差随之增大。
-	\end{itemize}
+	本小节将从理论一致性与数值实验两个维度，对混合 $\widetilde{Q}_u$ 格式与 Euler--Maruyama (EM) 格式在计算不变测度上的表现进行深入分析。
+	
+	
+	\subsubsection{误差来源理论分析}
+	
+	对于不变测度的数值计算，两类方法的误差来源具有本质区别：
+	
+	\begin{enumerate}
+		\item \textbf{EM 格式的弱误差与统计误差}：
+		对方程 \eqref{eq:langevin-EM}，其离散过程产生的马尔可夫链的不变测度 $\rho_{\Delta t}$ 与连续系统精确测度 $\rho^*$ 之间的误差通常满足弱收敛阶：
+		\[ \|\rho^* - \rho_{\Delta t}\| = O(\Delta t^k) \]
+		对于标准 EM 格式，在计算不变测度时通常具有 $k=1$ 阶精度。此外，由于采用长轨迹时间平均进行估计，其总误差还受限于统计波动误差 $O(T^{-1/2})$，其中 $T$ 为模拟总时长。
+		
+		\item \textbf{Hybrid 格式的截断误差}：
+		$\widetilde{Q}_u$ 格式的精度由离散生成元 $Q_h$ 对无穷小生成元 $L$ 的逼近程度决定。在 $v$ 方向，通过引入修正扩散项 $\widetilde{M}_{22}$，该格式在漂移项占优时退化为一阶上风格式，而在扩散项占优时接近二阶中心差分。在平稳分布求解中，其误差主要源于空间步长 $h = \max(h_x, h_v)$ 的幂次，通常表现为 $O(h)$ 至 $O(h^2)$ 之间的收敛阶。
+	\end{enumerate}
+	
+	\subsubsection{EM 格式收敛阶测试}
+	
+	在实验中，固定参数 $\gamma=1, \sigma=1$，设置总时间 $T_{\text{total}} = 5 \times 10^5$，利用 $20$ 条独立轨迹进行并行采样。表 \ref{tab:em-error} 展示了不同时间步长 $\Delta t$ 下的 $L^1$ 误差。
 	
 	\begin{table}[htbp]
 		\centering
-		\caption{欠阻尼 Langevin 方程不变测度的 $L^1$ 误差比较（$\gamma=1,\,\sigma=1$，
-			EM 方法在与混合格式相同的计算时间下运行）}
-		\label{tab:langevin-l1}
-		\begin{tabular}{ccccc}
+		\caption{EM 格式在不同时间步长下的 $L^1$ 误差（$T=5\times 10^5$）}
+		\label{tab:em-error}
+		\begin{tabular}{cccc}
 			\toprule
-			$N_v$ & $h_v$ &
-			混合格式 $E_{L^1}$ & 混合格式时间 (s) &
-			EM 方法 $E_{L^1}$ \\
+			步长 $\Delta t$ & $L^1$ 误差 & 局部收敛阶 & 计算耗时 (s) \\
 			\midrule
-			20  & 0.4211 & $\sim 4.8\times10^{-2}$ & $\sim 11$ & 受 MC 方差主导 \\
-			40  & 0.2051 & $\sim 1.1\times10^{-2}$ & $\sim  3$ & 受 MC 方差主导 \\
-			60  & 0.1356 & $\sim 5.0\times10^{-3}$ & $\sim 28$ & 受 MC 方差主导 \\
-			80  & 0.1013 & $\sim 3.0\times10^{-3}$ & $\sim108$ & 受 MC 方差主导 \\
-			100 & 0.0808 & $\sim 5.0\times10^{-3}$ & $\sim285$ & 受 MC 方差主导 \\
+			0.160 & $1.646\times 10^{-1}$ & — & 31.3 \\
+			0.080 & $8.104\times 10^{-2}$ & 1.022 & 62.0 \\
+			0.040 & $4.056\times 10^{-2}$ & 0.999 & 102.5 \\
+			0.020 & $2.115\times 10^{-2}$ & 0.939 & 177.2 \\
+			0.010 & $1.100\times 10^{-2}$ & 0.943 & 336.3 \\
+			0.005 & $6.921\times 10^{-3}$ & 0.669 & 645.5 \\
 			\bottomrule
 		\end{tabular}
 	\end{table}
 	
-	\begin{remark}
-		$N_v = 100$ 时混合格式的误差略大于 $N_v = 80$，
-		这是由于幂迭代在大规模稀疏矩阵（$N = N_x \times N_v = 10^6$）
-		下谱隙较小、收敛较慢，在有限迭代步数内尚未充分收敛，
-		并非格式本身的精度退化。适当放宽收敛阈值至 $\varepsilon_{\mathrm{tol}} = 10^{-12}$
-		或增大最大迭代步数后，误差可恢复单调下降。
-	\end{remark}
+	实验结果表明，当 $\Delta t \ge 0.01$ 时，EM 格式表现出稳定的 1 阶收敛。当步长减小至 $0.005$ 时，由于统计波动的量级逐渐接近离散截断误差，局部斜率出现下降，这说明单纯减小步长而不增加模拟时长已无法有效提升 EM 格式的精度。
 	
-	\subsubsection{误差--代价收敛曲线}
+	\subsubsection{Hybrid 格式收敛阶测试}
 	
-	图~\ref{fig:langevin-work-error} 给出了两类方法的 $L^1$ 误差随计算时间变化的曲线，
-	同时附上 $O(h_v)$ 和 $O(h_v^2)$ 参考线。
-	从图中可以看到：
+	针对同样的系统，采用混合 $\widetilde{Q}_u$ 格式，通过 ARPACK 特征值求解器计算离散生成元的主特征向量。实验取速度维网格数 $N_v \in [20, 80]$，位移维网格数对应取为 $N_x = N_v^2$ 以匹配退化方向的尺度。
 	
+	\begin{table}[htbp]
+		\centering
+		\caption{Hybrid $\widetilde{Q}_u$ 格式在不同空间步长下的 $L^1$ 误差}
+		\label{tab:hybrid-error}
+		\begin{tabular}{ccccc}
+			\toprule
+			网格数 $N_v$ & 步长 $h_v$ & $L^1$ 误差 & 局部收敛阶 & 计算耗时 (s) \\
+			\midrule
+			20 & 0.4211 & $4.81\times 10^{-2}$ & — & 11.51 \\
+			40 & 0.2051 & $1.12\times 10^{-2}$ & 2.03 & 3.69 \\
+			60 & 0.1356 & $4.87\times 10^{-3}$ & 2.02 & 26.95 \\
+			80 & 0.1013 & $2.71\times 10^{-3}$ & 2.01 & 193.34 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	从表 \ref{tab:hybrid-error} 可以看出，Hybrid 格式在处理欠阻尼 Langevin 方程时展现出了优异的 \textbf{2 阶收敛特性}。值得注意的是，$N_v=20$ 时的耗时略高（11.51s），主要源于 Numba 库的首次实时编译（JIT）开销；随着计算规模增加，该方法展现了极高的计算效率。
+	
+	\subsubsection{综合评价与结论}
+	
+	图 \ref{fig:comparison-loglog} 汇总了两类方法的收敛曲线对比。
+	
+	% 此处插入 log-log 误差对比图
+	% \begin{figure}[htbp]
+		% 	\centering
+		% 	\includegraphics[width=0.7\textwidth]{comparison_plot.png}
+		% 	\caption{EM 格式与 Hybrid 格式的 $L^1$ 误差收敛阶对比}
+		% 	\label{fig:comparison-loglog}
+		% \end{figure}
+	
+	综合上述分析，可得出如下结论：
 	\begin{itemize}
-		\item 混合格式的数据点大致沿 $O(h_v)$ 至 $O(h_v^2)$ 之间的斜率下降，
-		误差随计算代价系统性地减小；
-		\item EM 方法由于统计误差的存在，数据点在水平方向大幅波动，
-		无法在相同代价下实现与混合格式相当的精度，
-		亦无法呈现出对应于网格步长的单调收敛行为。
+		\item \textbf{精度效率比}：Hybrid 格式在较低的网格密度下即可达到 EM 格式极长模拟时间才能获取的精度。对于低维退化随机系统，Hybrid 格式在计算不变测度上具有绝对优势。
+		\item \textbf{统计稳定性}：Hybrid 格式作为一种确定性算法，避免了 EM 格式中由于随机采样带来的涨落，其结果具有极高的重现性。
+		\item \textbf{适用范围}：EM 格式虽然在本例中效率较低，但其无需构造大型矩阵，在处理高维系统（$d \ge 4$）时仍是唯一可行的方案；而 Hybrid 格式则更适用于需要高精度密度分布图景的低维动力学分析。
 	\end{itemize}
 	
-%	\begin{figure}[!htbp]
-%		\centering
-%		\includegraphics[width=0.62\textwidth]{fig/comparison_disc_vs_EM.png}
-%		\caption{欠阻尼 Langevin 方程不变测度的 $L^1$ 误差对比：混合格式（Discrete）
-%			与 Euler--Maruyama 方法（EM）在相同计算时间预算下的收敛曲线，
-%			以及 $O(h_v)$、$O(h_v^2)$ 参考线。}
-%		\label{fig:langevin-work-error}
-%	\end{figure}
-	
-	\subsubsection{两类方法误差来源的本质差异}
-	
-	上述对比揭示了两类方法误差结构上的根本不同：
-	
-	\paragraph{混合格式（空间离散）}
-	误差来源是确定性的空间截断误差，由网格步长 $h_v$（以及 $h_x$）唯一决定。
-	只要格点数足够多（$h_v$ 足够小）且幂迭代充分收敛，
-	离散平稳分布 $\rho^h$ 以确定性收敛阶趋近于真实不变测度 $\rho^*$，
-	与样本量无关。因此，混合格式适合对不变测度的全场高精度近似。
-	
-	\paragraph{EM 方法（时间离散）}
-	误差分为两部分：时间离散误差（$O(\Delta t)$，随步长减小而减小）
-	与统计误差（$O(1/\sqrt{M})$，随轨迹长度增加而减小）。
-	两者相互耦合，决定了 EM 方法的总误差下界：
-	即使 $\Delta t \to 0$，若轨迹长度 $M$ 有限，统计误差仍然存在，
-	使得密度估计在稀少格点区域（如尾部）精度显著下降。
-	EM 方法更适合追踪单条样本路径的动力学演化，而非对不变测度进行全场精确估计。
-	
-	\subsection{小结}
-	
-	本节以欠阻尼 Langevin 方程为对象，对基于生成元离散的混合格式
-	与基于时间步进的 Euler--Maruyama 方法在数值求解不变测度上进行了系统比较。
-	主要结论如下：
-	
-	\begin{enumerate}
-		\item \textbf{精度结构不同}：混合格式的 $L^1$ 误差由网格步长 $h_v$ 确定性控制，
-		随格点数增加单调下降，具有清晰的空间收敛阶；
-		EM 方法的误差由时间离散误差与统计误差共同决定，
-		后者与网格步长无关，使得在固定时间预算下 EM 无法对不变测度实现网格意义下的系统精度提升。
-		
-		\item \textbf{适用场景互补}：混合格式在求解不变测度等长期统计量时具有显著优势，
-		通过求解线性特征值问题一次获得全场解，避免了 Monte Carlo 方差；
-		EM 方法则在追踪样本路径、研究短时瞬态行为以及高维问题中更具灵活性，
-		尤其当不变测度本身的全场求解代价过高时，时间离散方法仍是实用的替代方案。
-		
-		\item \textbf{EM 方法的局限}：Euler--Maruyama 方法以轨迹频率直方图估计密度，
-		其统计误差是制约精度的主要瓶颈，
-		单纯增大轨迹长度（在固定时间预算下）的收益随网格变细而迅速饱和。
-		若要使 EM 方法在细网格上达到与混合格式相当的精度，
-		所需轨迹长度将随格点数的增加而以超线性速率增长，计算代价将远超混合格式。
-	\end{enumerate}
 	
 	
-	\section{随机 Canard 快-慢系统的动力学行为分析}
-	
-	\subsection{逃逸概率}
-	
-	对于随机微分方程~\eqref{eq:SDE}，给定两个互不相交的 Borel 集 $A,B\subset D$，通常被理解为两个稳态或代谢态，例如反应物与产物，定义首次到达时间
-	\[
-	\tau_A := \inf\{t\ge0 : X_t\in A\},\qquad 
-	\tau_B := \inf\{t\ge0 : X_t\in B\}.
-	\]
-	在此基础上，逃逸概率函数定义为
-	\[
-	q(x) := \mathbb{P}_x\big(\tau_B < \tau_A\big),\qquad x\in D.
-	\]
-	也就是说，$q(x)$ 描述了从 $x$ 出发的轨道先到达 $B$ 而不是 $A$的概率。经典结果表明，$q$ 是生成元 $L$ 的调和函数，满足如下椭圆型边值问题\cite{EV_TPT,EV_TowardsTP}：
-	\begin{equation}\label{eq:committor_PDE}
-		\begin{cases}
-			L q(x) = 0, & x\in D\setminus(A\cup B),\\[1mm]
-			q(x) = 0, & x\in A,\\[1mm]
-			q(x) = 1, & x\in B.
-		\end{cases}
-	\end{equation}
-	因此，逃逸概率 可以刻画从 $A$ 到 $B$ 的反应轨道的空间分布、流量以及转移速率等统计性质\cite{EV_TPT,EV_TowardsTP,Metzner_TPT_MJP}。
-	
-	Canard现象通常出现在二维的慢快平面系统中，当系统参数接近临界值时，解轨道会在吸引子与抑制子（稳定与不稳定慢流形）共存的区域滑行一段异常长的时间，然后突然跃迁。加入随机扰动后，Canard轨道仍可能出现，但噪声会使得轨道对初始条件和参数变化更加敏感，增加了数值模拟的难度。考虑二维快—慢随机系统：
-	\begin{equation}\label{eq:canard-SDE}
-		\begin{cases}
-			\mathrm{d}x_t &= \Big(y_t - \big(\tfrac{x_t^3}{3} - x_t\big)\Big)\,\mathrm{d}t + \sigma_x\,\mathrm{d}W_t^{(x)},\\
-			\mathrm{d}y_t &= \varepsilon\,(a - x_t)\,\mathrm{d}t + \sigma_y\,\mathrm{d}W_t^{(y)},
-		\end{cases}
-	\end{equation}
-	其中$0<\varepsilon \ll 1$为表征慢速变量演化的小参数，$x_t$为快变量，$y_t$为慢变量，$a$是系统参数（当$a$取特定值时出现Canard过渡）。
-	
-	\subsection{CTRW生成元下的离散逃逸概率方程}
-	
-	%\subsubsection{CTRW生成元离散与马尔可夫跳跃过程}
-	%
-	%在区域 \(D\subset\mathbb{R}^2\) 上取一族空间网格 \(\{z_i\}_{i\in\mathcal{I}}\subset D\)，网格尺寸记为 \(h>0\)。对于每个网格点 \(z_i\)，选定有限个跃迁方向 \(z_i\to z_j\) 及对应的跃迁速率 \(q_{ij}\ge 0\)，构造算子
-	%\begin{equation}\label{eq:Qh-def}
-	%	(Q_h\varphi)(z_i)
-	%	:= \sum_{j\neq i} q_{ij}\big(\varphi(z_j)-\varphi(z_i)\big),
-	%\end{equation}
-	%其中 \(Q_h=(q_{ij})_{i,j\in\mathcal{I}}\) 是一个保守的 \(Q\)-矩阵（对每个 \(i\) 有 \(\sum_{j}q_{ij}=0\)、\(q_{ij}\ge0\) 当 \(j\neq i\)）。
-	%
-	%Bou-Rabee–Vanden-Eijnden提出的 \(Q_u,Q_c\) 格式以及Zu提出的改进 \(Q_u\) 格式，都是通过适当构造 \(q_{ij}\) 使 \(Q_h\) 在生成元意义下逼近 \(\mathcal{L}\)。例如在扩散矩阵对角、系数足够光滑的场合，Zu证明了 \(\widetilde{Q}_u\) 在生成元意义具有二阶空间精度，即对足够光滑的 \(\varphi\) 有局部截断误差 \(O(h^2)\)。
-	%
-	%以 \eqref{eq:Qh-def} 为生成元，可以构造一个连续时间马尔可夫跳跃过程 \(\{Z_t^h\}_{t\ge0}\)：当过程处于状态 \(z_i\) 时，以总速率
-	%\[
-	%\lambda_i := \sum_{j\neq i} q_{ij}
-	%\]
-	%等待指数分布的停留时间，然后以概率 \(q_{ij}/\lambda_i\) 跳至状态 \(z_j\)。这就是基于生成元离散的连续时间随机游走（CTRW）格式。
-	
-	%\subsubsection{离散committor与线性方程组}
-	
-	令 \(A_h,B_h\subset\{z_i\}\) 分别为集合 \(A,B\) 在网格上的近似（例如取其内近邻或外近邻）。定义空间离散下的逃逸概率为
-	\[
-	q_h(z_i) := \mathbb{P}_{z_i}\big(\tau_B^h < \tau_A^h\big),
-	\]
-	其中 \(\tau_A^h,\tau_B^h\) 分别为CTRW过程 \(Z_t^h\) 到达 \(A_h,B_h\) 的首次到达时间。
-	
-	并且根据\cite{bou2018continuous}对任意内部网格点 \(z_i\in D_h^\circ\setminus(A_h\cup B_h)\)，离散逃逸概率满足
-		\begin{equation}\label{eq:disc-harmonic}
-			(Q_h q_h)(z_i) = 0,
-		\end{equation}
-		并满足边界条件
-		\begin{equation}\label{eq:disc-bc}
-			q_h(z_i) = 0,\quad z_i\in A_h;\qquad
-			q_h(z_i) = 1,\quad z_i\in B_h.
-		\end{equation}
-	
-	为了研究 \(q_h\) 与连续解 \(q\) 的误差，需要对生成元离散的逼近性质和连续问题的正则性作出假设。
-	
-	\begin{assumption}\label{ass:L-Qh}
-		假设如下条件成立：
-		\begin{enumerate}
-			\item 系统\eqref{eq:canard-SDE}的漂移与扩散系数在 \(D\) 内 \(C^{4}\) 光滑，且扩散矩阵在 \(D\setminus(A\cup B)\) 上一致椭圆，从而\eqref{eq:committor_PDE}存在唯一解 \(q\in C^{2+\alpha}(D\setminus(A\cup B))\cap C(\overline{D})\)。
-			
-			\item 空间离散生成元 \(Q_h\) 对 \(\mathcal{L}\) 一致逼近。具体地，对任意 \(\varphi\in C_c^{4}(D)\)，存在常数 \(C>0\) 和 \(p\ge1\) 使得
-			\begin{equation}\label{eq:Qh-consistency}
-				\big\| Q_h\varphi - \mathcal{L}\varphi \big\|_{L^\infty(D_h^\circ)}
-				\le C h^p.
-			\end{equation}
-			对于Zu\cite{zu2023random}提出的改进 \(\widetilde{Q}_u\) 格式，可取 \(p=2\)。
-			
-			\item \(Q_h\) 满足离散最大值原理：若 \(u:\{z_i\}\to\mathbb{R}\) 在内部点上满足 \((Q_h u)(z_i)\ge0\)，且在边界上 \(u(z_i)\le 0\)，则对所有网格点有 \(u(z_i)\le0\)。
-		\end{enumerate}
-	\end{assumption}
-	
-	在以上假设下，可以给出离散逃逸概率的误差界如下：
-	
-	\begin{theorem}[空间离散下逃逸概率的收敛,见\cite{bou2018continuous}]\label{thm:Qh-committor-convergence}
-		在假设\ref{ass:L-Qh}下，存在常数 \(C>0\)，当 \(h>0\) 足够小时，离散解 \(q_h\) 与连续解 \(q\) 满足
-		\begin{equation}\label{eq:Qh-error}
-			\max_{z_i\in D_h} \big|q_h(z_i)-q(z_i)\big|
-			\le C h^p,
-		\end{equation}
-		其中 \(p\) 由\eqref{eq:Qh-consistency}中的逼近阶决定。对改进的 \(\widetilde{Q}_u\) 格式有 \(p=2\)，因此空间离散下逃逸概率函数达到二阶精度。
-	\end{theorem}
-	
-	% 对随机Canard系统而言，漂移与扩散系数在有限区域 \(D\) 内通常是光滑的，扩散在感兴趣的慢流形附近区域非退化，且采用 \(\widetilde{Q}_u\) 之类构造时可以验证假设\ref{ass:L-Qh}。因此，在Canard模型上使用CTRW格式求解committor函数，其空间误差可以从理论上控制在 \(O(h^2)\) 量级。
-	
-	\subsection{驯服/截断Euler-Maruyama格式下的逃逸概率收敛性}
-	
-	\subsubsection{驯服/截断 Euler-Maruyama格式与强收敛}
-	
-	将\eqref{eq:canard-SDE}写成向量形式
-	\begin{equation}\label{eq:vector-SDE}
-		dZ_t = b(Z_t)\,dt + \Sigma(Z_t)\,dW_t,\qquad Z_0=z\in D,
-	\end{equation}
-	其中 \(b=(f,\varepsilon g)\)，\(\Sigma\) 将扩散系数整合成 \(2\times 2\) 矩阵。对于典型Canard模型，\(b\) 具有至多三次多项式增长，不满足全局Lipschitz及线性增长条件，经典Euler–Maruyama方法在此类模型上可能发散。
-	
-	驯服Euler与截断Euler–Maruyama方法通过对漂移或状态进行适度削弱或截断，在Khasminskii型条件下恢复全局矩有界性与强收敛性。下述表述为二者的统一结论。
-	
-	\begin{assumption}\label{ass:Khasminskii}
-		存在常数 \(p>2\) 与 \(K>0\)，对所有 \(z\in\mathbb{R}^2\) 有
-		\begin{equation}\label{eq:Khasminskii}
-			\langle z,b(z)\rangle + \frac{p-1}{2}\|\Sigma(z)\|^2 \le K\bigl(1+\|z\|^2\bigr),
-		\end{equation}
-		且 \(b,\Sigma\) 局部Lipschitz。
-	\end{assumption}
-	
-	在假设\ref{ass:Khasminskii}下，可以证明：对任意 \(T>0\) 和 \(q\in[2,p)\)，存在常数 \(C>0\) 与 \(\gamma>0\)，使得驯服Euler方法或截断Euler-Maruyama方法近似 \(Z_t^\Delta\) 满足
-	\begin{equation}\label{eq:strong-convergence}
-		\mathbb{E}\Big(\sup_{0\le t\le T}\|Z_t - Z_t^\Delta\|^q\Big)
-		\le C\,\Delta^{q\gamma},
-	\end{equation}
-	其中一般有 \(\gamma=\tfrac12\)。关于证明文献\cite{mao2015truncated}中已有详细论述，此处不赘述。对于随机Canard系统，多项式增长的漂移\(b\)和有界扩散\(\Sigma\)满足上述条件。
-	
-	\subsubsection{时间离散下的逃逸概率分析}
-	
-	令时间步长 \(\Delta>0\)，离散时刻 \(t_k:=k\Delta\)，截断Euler-Maruyama方法给出离散链
-	\[
-	Z_{k+1}^\Delta = Z_k^\Delta + \Phi_\Delta(Z_k^\Delta,\xi_{k+1}),
-	\]
-	其中 \(\xi_{k+1}\sim N(0,I)\) 独立同分布，\(\Phi_\Delta\) 由具体格式生成。可通过分段插值构造连续时间过程 \(\widetilde{Z}_t^\Delta\)，满足 \(\widetilde{Z}_{t_k}^\Delta = Z_k^\Delta\)。
-	
-	定义离散跳跃时间
-	\begin{equation}\label{eq:disc-tau}
-		\tau_A^\Delta := \inf\{k\ge0:\,Z_k^\Delta\in A\}\,\Delta,\qquad
-		\tau_B^\Delta := \inf\{k\ge0:\,Z_k^\Delta\in B\}\,\Delta,
-	\end{equation}
-	并定义时间离散下的逃逸概率函数
-	\begin{equation}\label{eq:qDelta-def}
-		q_\Delta(z) := \mathbb{P}_z\big(\tau_B^\Delta < \tau_A^\Delta\big).
-	\end{equation}
-	
-	记离散转移算子
-	\[
-	(P_\Delta\varphi)(z) := \mathbb{E}\big[\varphi(Z_1^\Delta)\mid Z_0^\Delta=z\big],
-	\]
-	以及对应的伪生成元
-	\begin{equation}\label{eq:LDelta-def}
-		\mathcal{L}_\Delta\varphi(z) := \frac{(P_\Delta\varphi)(z)-\varphi(z)}{\Delta}.
-	\end{equation}
-	则 \(q_\Delta\) 满足离散Dirichlet问题
-	\begin{equation}\label{eq:qDelta-PDE}
-		\begin{cases}
-			\mathcal{L}_\Delta q_\Delta(z) = 0, & z\in D\setminus(A\cup B),\\
-			q_\Delta(z) = 0, & z\in A,\\
-			q_\Delta(z) = 1, & z\in B.
-		\end{cases}
-	\end{equation}
-	可以将\eqref{eq:qDelta-PDE}看作对\eqref{eq:committor_PDE}的生成元层面的时间离散逼近。
-	
-	下面给出 \(q_\Delta\to q\) 的收敛性分析。首先对任意 \(T>0\)，定义截断事件指标
-	\[
-	H_T := \mathbf{1}_{\{\tau_B<\tau_A,\ \tau_B\le T\}},\qquad
-	H_T^\Delta := \mathbf{1}_{\{\tau_B^\Delta<\tau_A^\Delta,\ \tau_B^\Delta\le T\}}.
-	\]
-	于是
-	\[
-	q(z) = \lim_{T\to\infty} \mathbb{E}_z H_T,\qquad
-	q_\Delta(z) = \lim_{T\to\infty} \mathbb{E}_z H_T^\Delta.
-	\]
-	
-	由强收敛估计\eqref{eq:strong-convergence}，对任意 \(\eta>0\) 有
-	\begin{equation}\label{eq:strong-path}
-		\mathbb{P}_z\Big(\sup_{0\le t\le T}\|Z_t - \widetilde{Z}_t^\Delta\| \ge \eta\Big)
-		\le C\,\eta^{-q}\Delta^{q\gamma}.
-	\end{equation}
-	在Canard系统中，集合 \(A,B\) 之间距离严格正且边界光滑，可以选取 \(0<\eta<\frac12\mathrm{dist}(A,B)\)，使得若两条路径在\([0,T]\)上保持距离小于 \(\eta\)，则它们在先到达 \(A\) 还是先到达 \(B\)这一事件上是一致的。从而对任意 \(\varepsilon>0\)，可先选取\(\eta>0\) 足够小，使得擦边事件的概率不超过 \(\varepsilon\)，再利用\eqref{eq:strong-path} 得到
-	\[
-	\big|\mathbb{E}_z H_T - \mathbb{E}_z H_T^\Delta\big|
-	\le \mathbb{P}_z\Big(\sup_{0\le t\le T}\|Z_t - \widetilde{Z}_t^\Delta\| \ge \eta\Big) + \varepsilon
-	\le C\,\eta^{-q}\Delta^{q\gamma} + \varepsilon.
-	\]
-	在固定 \(T,\eta\) 下令 \(\Delta\to0\)，便有
-	\begin{equation}\label{eq:HT-conv}
-		\lim_{\Delta\to0}\big|\mathbb{E}_z H_T - \mathbb{E}_z H_T^\Delta\big| = 0.
-	\end{equation}
-	%\paragraph{首次到达时间的尾部与极限交换}
-	进一步假设SDE\eqref{eq:vector-SDE}在区域 \(D\) 内是适当意义下的正再生过程，\(\tau_A\wedge\tau_B\) 具有指数或多项式衰减的尾部：
-	\begin{equation}\label{eq:tail}
-		\mathbb{P}_z(\tau_A\wedge\tau_B > T) \le C_1 e^{-cT}
-		\quad\text{或}\quad
-		\mathbb{P}_z(\tau_A\wedge\tau_B > T) \le C_2 T^{-\beta},
-	\end{equation}
-	时间离散过程的首次到达时间 \(\tau_A^\Delta\wedge\tau_B^\Delta\) 也满足类似估计。当 \(T\) 足够大时，上述尾部概率可以任意小。
-	
-	因此，对任意 \(\varepsilon>0\)，可以找到 \(T\) 足够大，使得
-	\begin{equation}\label{eq:tail-H}
-		\big|\mathbb{E}_z H_T - q(z)\big| \le \varepsilon,\qquad
-		\big|\mathbb{E}_z H_T^\Delta - q_\Delta(z)\big| \le \varepsilon,
-	\end{equation}
-	即截断带来的误差不超过 \(\varepsilon\)。结合\eqref{eq:HT-conv}，存在 \(\Delta_0>0\)，当 \(0<\Delta<\Delta_0\) 时有
-	\[
-	\big|\mathbb{E}_z H_T - \mathbb{E}_z H_T^\Delta\big|\le\varepsilon.
-	\]
-	于是
-	\[
-	|q_\Delta(z)-q(z)|
-	\le \big|\mathbb{E}_z H_T^\Delta-\mathbb{E}_z H_T\big|
-	+ \big|\mathbb{E}_z H_T - q(z)\big|
-	+ \big|\mathbb{E}_z H_T^\Delta-q_\Delta(z)\big|
-	\le 3\varepsilon.
-	\]
-	由于 \(\varepsilon>0\) 任意，得到
-	\begin{equation}\label{eq:qDelta-to-q}
-		\lim_{\Delta\to0} q_\Delta(z) = q(z).
-	\end{equation}
-	
-	若进一步利用\eqref{eq:strong-path}中的定量估计以及\eqref{eq:tail}的尾部衰减，可以得到一个次优的误差阶
-	\[
-	|q_\Delta(z)-q(z)| \le C\,\Delta^{\theta},\qquad \theta<\gamma=\tfrac12,
-	\]
-	表明时间离散下逃逸概率的收敛阶不会优于驯服Euler方法或者截断Euler-Maruyama方法的强收敛阶。%这与逃逸概率作为长时间弱指标的直觉是一致的。
-	
-	\subsection{随机Canard系统中的比较与讨论}
-	
-	对随机Canard系统而言，漂移 \(b\) 具有多项式增长，扩散 \(\Sigma\) 有界且光滑，满足Khasminskii型条件\eqref{eq:Khasminskii}，因此驯服Euler方法或者截断Euler-Maruyama方法在有限时间区间内对真实轨道具有强收敛性质\eqref{eq:strong-convergence}。另一方面，在一个包含两个慢流形吸引区 \(A,B\) 的有界区域 \(D\) 内，生成元 \(\mathcal{L}\) 的系数光滑且扩散非退化，逃逸概率 PDE\eqref{eq:committor_PDE}存在唯一光滑解 \(q\)。
-	
-	在这样的背景下,空间离散在假设\ref{ass:L-Qh}下，\(q_h\) 以 \(O(h^p)\) 的速率一致收敛到 \(q\)；时间离散通过时间步进构造路径近似 \(Z_t^\Delta\)，再定义离散首次到达时间\eqref{eq:disc-tau}和逃逸概率 \(q_\Delta\)。利用强收敛\eqref{eq:strong-convergence}与首次到达时间尾部估计\eqref{eq:tail}，命题\eqref{eq:qDelta-to-q}说明 \(q_\Delta\to q\)，但误差阶被强收敛阶所限制，一般不优于 \(O(\Delta^{1/2})\)。要获得可见精度，需要较小时间步长和大量样本路径，因此在计算成本上相对昂贵。
-	
-	对Canard类快慢系统而言，逃逸概率函数度量的是从某一区域出发先落入哪一个慢流形吸引区的概率，这是高度敏感的长时间弱量。从理论收敛阶和结构保持的角度看，基于生成元离散的CTRW空间离散方法，在同等计算代价下更容易获得高精度的逃逸概率近似。
-	
+%============================================================
+% 替换原论文中"随机 Canard 快-慢系统的动力学行为分析"一章
+% 保留原有逃逸概率、CTRW方程等理论框架，
+% 新增：噪声强度分析（sigma_c理论）+ CTMC格式与EM格式数值比较
+% 图像命名与代码输出一致
+% ============================================================
 
-\subsection{数值实验}\label{sec:canard_cmp}
+\section{Canard}
 
-本节在随机 Canard 快-慢系统~\eqref{eq:canard-SDE} 上开展数值实验，旨在从逃逸概率比较基于生成元的空间离散方法与时间离散方法的数值表现与代价。通过一系列可重复的数值试验，验证前文关于两类格式收敛性质及适用场景的理论分析。
+\subsection{模型与快慢分解}
 
-\subsubsection{实验设置与数值方法}
-
-实验采用的随机 Canard 系统参数取为
-\[
-\varepsilon=10^{-2},\qquad a=1.0,\qquad (\sigma_x,\sigma_y)=(0,\,0.08),
-\]
-即仅在慢变量 \(y_t\) 上加入独立噪声，以尽量保持慢流形几何的清晰性。计算域取为
-\[
-\Omega=[-2.5,\,2.5]\times[-1,\,3],
-\]
-外边界施加反射条件。初值选在左侧慢流形邻域
-\[
-x_0=-1.5,\qquad y_0=\frac{x_0^3}{3}-x_0,
-\]
-用于观察典型的贴靠—折叠—快跳轨道。检测快跳事件的阈值固定为
-\[
-x_{\mathrm{th}}=1.5,
-\]
-即首次满足 \(x_t\ge x_{\mathrm{th}}\) 的时刻被视为离开左侧慢流形并完成一次快跳。
-
-在数值方法方面，选取如下两大类：时间离散方法（简记为TD）：采用 驯服Euler方法与 截断Euler-Maruyama方法两种稳定格式，在统一的时间步长 \(\Delta t\) 下对 SDE 进行路径模拟。通过镜像反射实现边界处理，从给定起点发射多条样本路径，根据首次满足 \(x_t\ge x_{\mathrm{th}}\) 或首次进入集合 \(A,B\) 的时间，统计快跳时间分布、逃逸概率 与 MFPT。空间离散方法（简记为SD）：采用基于生成元的一致离散 CTRW/SSA 框架（记为 \(Q_u\) 格式）。在矩形网格上装配离散生成元 \(Q\)，构造最近邻非负跳率，利用 SSA 模拟跳时与通道；对于 逃逸概率或MFPT等弱量，则直接求解离散生成元方程获得全场解。
-
-对于弱量比较，以离散生成元 \(Q\) 上求解的 \(Q\)-解作为参考，在若干评价点 \(\{z_i\}_{i=1}^{N_p}\) 上，以均方根误差
-\[
-E_q=\Big(\tfrac1{N_p}\sum_{i=1}^{N_p}\lvert \hat q(z_i)-q_{\mathrm{ref}}(z_i)\rvert^2\Big)^{1/2}
-\]
-度量各方法求得的 逃逸概率。空间离散的代价（work）以自由未知元数 \(\times\) 迭代轮数的总局部更新次数为 proxy；时间离散的代价则以所有评价点、所有样本路径的总时间步数计数，从而在统一的代价指标下绘制 work--error 曲线。
-
-\subsubsection{系统路径与快跳时间分布}
-
-方程~\eqref{eq:canard-SDE} 的 \(x\)-零流形为 \(y=x^3/3-x\)，在折叠点附近可分为吸引与反吸引两段慢流形。典型的 Canard 轨道表现为：轨道沿吸引慢流形缓慢贴靠，进入折叠附近后在反吸引分支短暂徘徊，随后发生快跳离开，该过程对噪声与数值扰动极为敏感。
-
-图~\ref{fig:canard_geom_jump} 给出了在时间窗 \(T=40\) 内，Tamed Euler-Maruyama、truncated Euler-Maruyama 与 CTRW/SSA 的代表性相图轨道以及对应的首次越阈时间直方图。可以看到，三种方法均能较好再现贴靠—折叠—快跳的典型几何结构：时间离散方法得到的轨道在相图上呈平滑曲线，而 CTRW/SSA 由于采用事件驱动的跳跃过程，在图像上呈现出明显的阶梯特征。
-
-\begin{figure}[!htbp]
-	\centering
-	\subfloat[典型样本轨道（背景为 $x$-零流形 $y=x^3/3-x$）]{%
-		\label{fig:canard_traj}
-		\includegraphics[width=0.45\textwidth]{fig/Sample_trajectories_100.png}
-	}\quad
-	\subfloat[首次满足 $x\ge x_{\mathrm{th}}$ 的时间直方图]{%
-		\label{fig:canard_jump_hist}
-		\includegraphics[width=0.45\textwidth]{fig/Fast_jump_time_distribution_100.png}
-	}
-	\caption{随机 Canard 系统的路径与快跳时间分布：三种数值方法在 \(T=40\) 内的对比。}
-	\label{fig:canard_geom_jump}
-\end{figure}
-
-从图~\ref{fig:canard_jump_hist} 的直方图可以看出，三种方法得到的快跳时间均集中在区间 \(t\in(10,\,30)\) 以内，分布区间相互重叠，峰值位置略有差异。
-
-图~\ref{fig:canard_occ} 展示了驯服Euler方法 与CTRW 在同一时间窗内的长期驻留直方图。可以看出，两者在整体形状上高度一致，概率质量主要集中在左侧慢流形附近；CTRW 的占据度在慢流形通道内相对更为集中，体现了事件驱动框架下等待时间显式抽样所带来的驻留拉长效应。
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.60\textwidth]{fig/Occupancy_100.png}
-	\caption{占据度热图（长期驻留分布）：左图为 驯服Euler方法，右图为 CTRW/SSA。可以看到，两者在慢流形通道内的概率质量分布总体一致。}
-	\label{fig:canard_occ}
-\end{figure}
-
-综合上述结果，在有限时间、以样本路径和快跳时间为指标比较下，时间离散方法在给定计算代价下更容易获得平滑轨道和较小的路径级误差；CTRW/SSA 在几何结构上也能保持 Canard 的关键特征，但由于跳跃路径的阶梯性，其在路径级强误差指标下并非优势所在。
-
-\subsubsection{逃逸概率 与 MFPT 的空间结构}
-
-为考察 Canard 系统在弱/长期统计量上的差异，本文进一步计算 逃逸概率函数 \(q\) 与平均首达时间（MFPT）\(m\)。它们满足如下生成元型边值问题：
-\begin{equation}\label{eq:committor-mfpt}
-	\begin{cases}
-		Lq = 0, & \text{in }\Omega\setminus(A\cup B),\\
-		q|_A=0,\ q|_B=1,\ \partial_{\boldsymbol n}q|_{\partial\Omega}=0,
-	\end{cases}
-	\qquad
-	\begin{cases}
-		Lm = -1, & \text{in }\Omega\setminus B,\\
-		m|_B=0,\ \partial_{\boldsymbol n}m|_{\partial\Omega}=0,
-	\end{cases}
+考虑二维快慢系统（$\varepsilon=\delta\in(0,1)$ 很小）：
+\begin{equation}\label{eq:model}
+	\varepsilon \dot x = y - f(x),\qquad \dot y = a-x,
+	\qquad f(x)=\frac{x^3}{3}-x .
 \end{equation}
-其中 \(L\) 为 Itô 生成元，\(A,B\) 分别为左、右慢流形附近的吸引区。
 
-空间离散方法中，以离散生成元 \(Q\) 近似 \(L\)，在网格上直接求解
+\subsection{快时间与层系统（layer problem）}
+引入快时间 $\tau=t/\varepsilon$，记 $\frac{d}{d\tau}(\cdot)=(\cdot)'$，则
+\begin{equation}\label{eq:layer}
+	x' = y-f(x),\qquad y'=0 .
+\end{equation}
+因此在快时间尺度上 $y$ 可视为参数；$x$ 很快被吸引/排斥到快子系统的平衡点集合。
+
+\subsection{临界流形（critical manifold）与稳定性}
+层系统平衡点满足 $y=f(x)$，得到临界流形
+\begin{equation}\label{eq:C0}
+	\mathcal C_0=\{(x,y): y=f(x)\}.
+\end{equation}
+线性化：$\partial_x(y-f(x)) = -f'(x)=-(x^2-1)$。
+因此
 \[
-Qq = 0,\ q|_A=0,\ q|_B=1;\qquad
-Qm = -\mathbf 1,\ m|_B=0,
+|x|>1\Rightarrow f'(x)>0 \Rightarrow \partial_x(y-f(x))<0 \ \text{（吸引支）},\qquad
+|x|<1\Rightarrow \partial_x(y-f(x))>0 \ \text{（排斥支）}.
 \]
-一次稀疏线性代数求解即可得到全场的 \(q(x,y)\) 与 \(m(x,y)\)。时间离散方法中，则在若干评价点 \(z\) 上，通过 Monte Carlo 估计
+折点（saddle--node/ fold）由 $f'(x)=0$ 给出：
+\begin{equation}\label{eq:folds}
+	x=\pm 1,\qquad y=f(\pm 1)=\mp\frac{2}{3}.
+\end{equation}
+
+\subsection{慢系统（reduced problem）与 Fenichel 慢流形}
+
+\subsection{慢极限（$\varepsilon\to0$）上的约化方程}
+在慢时间 $t$ 下，令 $\varepsilon=0$，得到代数约束 $y=f(x)$，并且
 \[
-\hat q(z)=\mathbb P_z(\tau_B<\tau_A)\approx
-\frac{1}{N}\sum_{k=1}^{N}\mathbf 1_{\{\tau_B^{(k)}<\tau_A^{(k)}\}},
+\dot y = f'(x)\dot x.
+\]
+由 $\dot y=a-x$ 得到约化慢方程（在 $\mathcal C_0$ 上）：
+\begin{equation}\label{eq:reduced}
+	\dot x = \frac{a-x}{f'(x)}=\frac{a-x}{x^2-1},
+	\qquad y=f(x).
+\end{equation}
+注意在折点 $x=\pm1$ 处分母为 $0$，意味着慢流在折点处“失效”，轨道会发生快跳。
+
+\subsection{Fenichel 理论给出的 $\mathcal C_\varepsilon^{a/r}$}
+当 $\varepsilon>0$ 足够小，远离折点的吸引支与排斥支会分别扰动为
+\[
+\mathcal C_\varepsilon^{a},\ \mathcal C_\varepsilon^{r},
+\]
+并保持与 $\mathcal C_0$ 同胚（光滑）且具有指数吸引/排斥性质（这就是 Canard 理论的几何骨架）。
+（Sowers 用一般三次型 $f$ 将 $\mathcal C_0$ 分成稳定支 $S_L,S_R$ 与不稳定支 $U$：稳定与不稳定的划分思想与此一致。）%
+% 资料来源（一般三次型的慢流形分支划分）：:contentReference[oaicite:0]{index=0}
+
+\subsection{确定性动力学：平衡点、松弛振荡、鸭解（regular duck / headless duck）}
+
+\subsection{平衡点与线性稳定性}
+由 \eqref{eq:model} 得平衡点
+\[
+x^\ast=a,\qquad y^\ast=f(a)=\frac{a^3}{3}-a.
+\]
+Jacobi 矩阵为
+\[
+J=
+\begin{pmatrix}
+	\frac{1}{\varepsilon}(1-a^2) & \frac{1}{\varepsilon}\\[3pt]
+	-1 & 0
+\end{pmatrix},
+\quad
+\mathrm{tr}(J)=\frac{1-a^2}{\varepsilon},\quad
+\det(J)=\frac{1}{\varepsilon}>0.
+\]
+故当 $|a|>1$ 时 $\mathrm{tr}(J)<0$，平衡点稳定；当 $|a|<1$ 时平衡点不稳定。
+特别地，$a=\pm1$ 是临界（“Hopf 型临界”）位置，并且在本快慢问题中它恰好与折点重合（$a=1$ 对应 $(1,-2/3)$，$a=-1$ 对应 $(-1,2/3)$），这正是 Canard 爆炸发生的典型几何情形。
+
+\subsection{为什么会出现松弛振荡（relaxation oscillation）？}
+当 $|a|<1$ 时，平衡点落在排斥区（因为 $|x^\ast|=|a|<1$），轨道不能收敛到平衡点。
+在 $\varepsilon\ll1$ 时，典型轨道呈现“两段慢爬 + 两次快跳”的结构：
+
+\begin{itemize}
+	\item 在吸引慢流形 $\mathcal C_\varepsilon^{a}$ 上按 \eqref{eq:reduced} 慢慢移动；
+	\item 接近折点 $x=1$（或 $x=-1$）时，吸引慢流形终止，轨道在快时间尺度上沿层系统 \eqref{eq:layer} 快速跳到另一条吸引支附近；
+	\item 重复上述过程形成闭合周期轨道（松弛振荡）。
+\end{itemize}
+
+\paragraph{奇异极限下的“跳跃落点”可以显式写出。}
+例如到达右折点 $(1,-2/3)$ 时，$y$ 近似保持 $y=-2/3$ 不变，快方程把 $x$ 拉到 $y=f(x)$ 的稳定根。
+解 $f(x)=-2/3$：
+\[
+\frac{x^3}{3}-x=-\frac{2}{3}
+\iff x^3-3x+2=0
+\iff (x-1)^2(x+2)=0.
+\]
+因此从 $x=1$ 会快跳到另一稳定根 $x=-2$（而不是停留在重根 $x=1$）。
+同理，在左折点 $(-1,2/3)$ 处解 $f(x)=2/3$：
+\[
+x^3-3x-2=0 \iff (x+1)^2(x-2)=0,
+\]
+故从 $x=-1$ 会快跳到 $x=2$。
+
+\paragraph{周期的慢段可由积分近似。}
+在右吸引支上 $x$ 从 $2$ 慢走到 $1$；在左吸引支上 $x$ 从 $-2$ 慢走到 $-1$。
+由 \eqref{eq:reduced} 得慢段时间近似
+\begin{equation}\label{eq:period}
+	T \approx \int_{1}^{2}\frac{x^2-1}{x-a}\,dx \;+\; \int_{-2}^{-1}\frac{x^2-1}{a-x}\,dx,
+	\qquad (|a|<1,\ \varepsilon\ll1).
+\end{equation}
+这体现了松弛振荡的“长时间慢漂移 + 短时间快跳”。
+
+\subsection{为什么会出现 regular duck 与 headless duck？（Canard 几何机制）}
+
+\paragraph{核心几何：排斥慢流形附近的“指数放大”。}
+当参数 $a$ 接近临界值（尤其在 $a\approx 1$ 且 $\varepsilon\ll1$）时，轨道可能在排斥慢流形 $\mathcal C_\varepsilon^{r}$ 附近停留一段时间。
+在排斥支上，快方向的线性化增长率约为
+\[
+\dot \xi \approx \frac{1}{\varepsilon}(1-x^2)\,\xi,
+\]
+而在 $|x|<1$ 时 $1-x^2>0$，因此任何微小偏差 $\xi$ 会以 $e^{c/\varepsilon}$ 的量级被放大。
+这导致一个著名现象：$a$ 只需发生极微小（常常是指数小窗口）的变化，周期轨道的幅值就会从“小振幅”突然跃迁到“松弛大振幅”（Canard explosion）。
+
+\paragraph{regular duck vs headless duck（用“跳回哪条稳定支”区分）。}
+沿排斥支走一段后，轨道终究会“跑不动”并从排斥区脱离，回到某条吸引支。
+如果它回到左吸引支，就得到 \textbf{regular duck}；若回到右吸引支，就得到 \textbf{headless duck}。
+Sowers 在一般三次型快慢系统中用图像语言明确指出：轨道在排斥慢流形 $U$ 上“绕行”后，最终回到稳定慢流形 $S$；
+回到 $S_L$ 是 regular duck，回到 $S_R$ 是 headless duck。%
+% 资料来源（regular/headless 的定义性描述）：:contentReference[oaicite:1]{index=1}
+
+\paragraph{与参数 $a,\varepsilon$ 的关系（定性结论）。}
+\begin{itemize}
+	\item 当 $|a|>1$：平衡点稳定，轨道通常收敛到平衡点（不振荡）。
+	\item 当 $|a|<1$ 且远离临界：存在稳定松弛振荡（大振幅）。
+	\item 当 $a$ 位于靠近 $1$（或 $-1$）的极窄窗口：出现 Canard 轨道；
+	窗口内随 $a$ 变化会出现 headless duck $\leftrightarrow$ regular duck $\leftrightarrow$ relaxation oscillation 的快速切换（Canard 爆炸）。
+\end{itemize}
+
+\paragraph{（可用于写作的具体参数展开）}
+经典 van der Pol/Canard 理论给出“canard 点”参数 $a=a_c(\varepsilon)$ 的渐近展开（你的代码里使用过）：
+\[
+a_c(\varepsilon)=1-\frac{\varepsilon}{8}-\frac{3\varepsilon^2}{32}-\frac{173\varepsilon^3}{1024}+\cdots,
+\]
+在 $a$ 穿过 $a_c(\varepsilon)$ 的极窄区间时，轨道从 headless 转向 regular，并迅速爆炸到松弛振荡。
+（该展开的严格推导通常用 blow-up/匹配渐近或正则形化方法完成，见参考文献中的 Krupa--Szmolyan 等。）
+
+\subsection{加入噪声后的 Canard：慢变量噪声 $\Rightarrow$ 随机选择；快变量噪声 $\Rightarrow$ 随机共振}
+
+\subsection{两种加噪方式}
+对 \eqref{eq:model} 常见的两种加性白噪声版本为：
+
+\paragraph{(A) 噪声加在慢变量（$y$）上：}
+\begin{equation}\label{eq:slow-noise}
+	dx_t=\frac{1}{\varepsilon}\bigl(y_t-f(x_t)\bigr)\,dt,\qquad
+	dy_t=(a-x_t)\,dt+\sigma\,dW_t .
+\end{equation}
+
+\paragraph{(B) 噪声加在快变量（$x$）上：}
+\begin{equation}\label{eq:fast-noise}
+	dx_t=\frac{1}{\varepsilon}\bigl(y_t-f(x_t)\bigr)\,dt+\frac{\sigma}{\varepsilon}\,dW_t,\qquad
+	dy_t=(a-x_t)\,dt .
+\end{equation}
+
+Sowers 明确说明：本文主要研究噪声进入慢变量时导致“regular vs headless”的\textbf{随机选择}；
+而把噪声放进快变量会出现\textbf{随机共振}等不同现象，并引用相关工作。%
+% 资料来源（慢变量噪声导致随机选择的研究目标；快变量噪声可致随机共振的说明）：:contentReference[oaicite:2]{index=2}:contentReference[oaicite:3]{index=3}
+
+\subsection{慢变量噪声为什么会导致“随机选择”？（数学机制）}
+
+\subsubsection{机制 1：排斥慢流形上的指数放大把噪声“放大成选择”}
+在 canard 瓶颈区域，轨道必须贴着排斥慢流形 $\mathcal C_\varepsilon^{r}$ 走一段。
+设与排斥慢流形的快向偏差为 $\xi$，其主导项满足（见上一节）
+\[
+\dot \xi \approx \frac{\lambda(t)}{\varepsilon}\xi,\qquad \lambda(t)>0.
+\]
+因此任何由噪声引入的、哪怕极微小的随机偏差，在时间推进中都会被放大为 $O(1)$ 的差异，
+从而决定轨道最终回到哪条吸引支（$S_L$ 或 $S_R$），即决定 \textbf{regular duck 或 headless duck}。
+这就是“随机选择”的本质：\textbf{确定性系统中由参数决定的极其敏感的分界，被噪声模糊成概率分界。}
+
+\subsubsection{机制 2：Sowers 的极限定理——分界量的符号趋于高斯分布}
+Sowers 构造了刻画“靠近慢流形时偏离量”的量 $D_\varepsilon(\cdot)$，
+并在合适缩放下证明它的极限分布含有高斯项，因而轨道以某个概率趋向 $+\infty$ 或 $-\infty$，
+对应“落到左支/右支”的随机选择概率（高斯分布函数 $\Phi$ 给出）。
+例如在其结论之一中，极限概率写成 $\int_{-\infty}^{m} e^{-z^2/2}dz$ 的形式。%
+% 资料来源（极限分布含高斯项，从而得到趋向 ±∞ 的概率公式）：:contentReference[oaicite:4]{index=4}
+这正是“随机选择（random decision/selection）”的严格概率论版本：\textbf{在 canard 分界附近，轨道去 regular 或 headless 不再由参数单独决定，而是由噪声驱动的随机变量决定。}
+
+\subsubsection{机制 3：折点附近的局部正则形（Berglund--Gentz 的样本路径推导）}
+Berglund--Gentz 在 van der Pol 型系统中研究了\emph{慢变量加噪}：
+\begin{equation}\label{eq:BG-619}
+	dx_t=\frac{1}{\varepsilon}\Bigl(y_t+x_t-\frac{x_t^3}{3}\Bigr)dt,\qquad
+	dy_t=-x_t\,dt+\sigma\,dW_t .
+\end{equation}
+% 资料来源（式 (6.1.19)）：:contentReference[oaicite:5]{index=5}
+
+它的关键动力学发生在折点（鞍结分岔点）附近。以右折点 $(x_c,y_c)=(1,-2/3)$ 为例，
+作局部变换（其符号选择使正则形更标准）：
+\[
+(\tilde x_t,\tilde y_t)=(x_t-x_c,\; -(y_t-y_c)).
+\]
+在折点邻域可化为正则形的小扰动：
+\begin{equation}\label{eq:BG-620}
+	d\tilde x_t=\frac{1}{\varepsilon}\bigl(-\tilde y_t-\tilde x_t^2\bigr)\,dt,\qquad
+	d\tilde y_t=dt+\sigma\,dW_t .
+\end{equation}
+% 资料来源（式 (6.1.20)）：:contentReference[oaicite:6]{index=6}
+
+\paragraph{“贴慢流形的绝热解”与偏差方程。}
+确定性情形 $\sigma=0$ 存在绝热解 $\bar x(\tilde y,\varepsilon)$ 追踪慢流形 $x^\ast(y)=|y|^{1/2}$，
+并且当 $\tilde y\lesssim -\varepsilon^{2/3}$ 时偏离量随 $|\tilde y|$ 变化具有可控估计。
+定义噪声诱导偏差
+\[
+\xi_t=\tilde x_t-\bar x(\tilde y_t,\varepsilon),
+\]
+则其满足（含漂移、非线性项与有效噪声强度）：
+\begin{equation}\label{eq:BG-621}
+	d\xi_t=\frac{1}{\varepsilon}\Bigl(a(\tilde y_t)\xi_t-\xi_t^2-\frac{1}{2}\sigma^2\varepsilon\,\partial_{yy}\bar x(\tilde y_t,\varepsilon)\Bigr)\,dt
+	+\sigma\,g(\tilde y_t)\,dW_t,
+\end{equation}
+其中
+\begin{equation}\label{eq:BG-622-623}
+	a(y)=-2\bar x(y,\varepsilon),\qquad g(y)=-\partial_y\bar x(y,\varepsilon).
+\end{equation}
+并且在 $y\lesssim -\varepsilon^{2/3}$ 时
+\[
+a(y)\sim -|y|^{1/2},\qquad g(y)\sim |y|^{-1/2}.
+\]
+% 资料来源（式 (6.1.21)--(6.1.23) 及渐近行为）：:contentReference[oaicite:7]{index=7}
+
+\paragraph{线性近似下的方差增长：解释“为何折点附近噪声影响被放大”。}
+取线性近似
+\begin{equation}\label{eq:BG-624}
+	d\xi^{0}_t=\frac{1}{\varepsilon}a(\tilde y^{\mathrm{det}}_t)\xi^{0}_t\,dt+\sigma\,g(\tilde y^{\mathrm{det}}_t)\,dW_t,
+\end{equation}
+其方差增长满足
+\[
+\mathrm{Var}(\xi^{0}_t)\sim \frac{\sigma^2\varepsilon}{|\tilde y^{\mathrm{det}}_t|^{3/2}},
 \qquad
-\hat m(z)\approx \frac{1}{N}\sum_{k=1}^{N}\tau_B^{(k)},
+\text{典型扩散尺度 }\ |\xi|\sim \frac{\sigma\,\varepsilon^{1/2}}{|\tilde y|^{3/4}}.
 \]
-并通过插值构造空间分布。
+% 资料来源（方差与典型扩散尺度）：:contentReference[oaicite:8]{index=8}
 
-图~\ref{fig:committor_mfpt_heat} 给出了 逃逸概率 与 MFPT 的热图：左列为 CTRW/\(Q\)-解，右列为 truncated Euler-Maruyama Monte Carlo 结果。可以观察到，逃逸概率 \(q\) 在左侧慢流形区域接近 0，在右侧目标区域 \(B\) 附近接近 1，在折叠邻域形成一条清晰的概率边界层；MFPT \(m\) 在远离 \(B\) 的左支区域取值较大，在靠近 \(B\) 的前沿迅速衰减至 0，体现了几何结构对平均过渡时间的强烈影响。
+这条公式直接告诉你：当轨道慢慢接近折点（$|\tilde y|\to0$）时，
+即使 $\sigma$ 固定不大，快方向的随机扩散尺度也会被 $|\tilde y|^{-3/4}$ 放大，
+从而更容易触发“提前/延后跳跃”以及在 canard 分界附近的“落左/落右”的随机选择。
 
-\begin{figure}[htbp]
-	\centering
-	\begin{minipage}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{fig/committor_heatmap.jpg}
-		\caption*{(a) 逃逸概率, CTRW/\(Q\)-解}
-	\end{minipage}\hfill
-	\begin{minipage}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{fig/committor_trunc_heatmap.png}
-		\caption*{(b) committor, truncated Euler-Maruyama MC}
-	\end{minipage}
-	
-	\vspace{0.8em}
-	\begin{minipage}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{fig/mfpt_heatmap.jpg}
-		\caption*{(c) MFPT, CTRW/\(Q\)-解}
-	\end{minipage}\hfill
-	\begin{minipage}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{fig/mfpt_trunc_heatmap.png}
-		\caption*{(d) MFPT, truncated EM MC}
-	\end{minipage}
-	
-	\caption{随机 Canard 系统中 逃逸概率 与 MFPT 的空间结构：左列为空间离散结果，右列为时间离散结果。}
-	\label{fig:committor_mfpt_heat}
-\end{figure}
+\paragraph{与“regular/headless”的连接（写作建议）。}
+在 canard 窗口内，确定性系统中“落左/落右”对参数 $a$ 极端敏感；
+而 \eqref{eq:BG-624} 的扩散放大意味着：在折点/排斥段附近，轨道会获得一个
+近似高斯的横向随机偏移，随后又被排斥动力学指数放大，
+最终把“横向偏移的符号/大小”转化成“落到 $S_L$ 或 $S_R$ 的概率”——这正是随机选择的数学机制。
 
-为进一步定量刻画慢流形上的行为，可沿慢流形 \(y=x^3/3-x\) 取若干采样点。例如，在左支深处
+\subsection{快变量噪声为什么会导致“随机共振（stochastic resonance）”？（数学机制）}
+
+\subsubsection{随机共振的标准定义（与快慢系统的对应）}
+随机共振通常指：系统在\textbf{弱周期信号}（或慢调制）作用下，本来难以跨越阈值/势垒发生切换；
+加入\textbf{适当强度}的噪声后，切换事件与周期信号产生最强同步，导致输出的信号-噪声比或谱峰在某个噪声强度处达到最大。
+
+在快慢系统中，慢变量（或慢流形几何）往往提供一个缓慢变化的“势垒高度/阈值位置”；
+而当噪声直接作用于快变量时，快变量在短时间内被噪声“踢过”分界（例如跨过不稳定支或在折点前提前跳跃），
+于是产生与慢调制相关的“近周期切换”。当噪声太小，几乎不切换；噪声太大，切换太随机；
+中间某个噪声强度使平均切换时间与慢时间尺度（或外加周期）匹配，从而出现“共振”。
+
+\subsubsection{用 Kramers 型速率解释“为何存在最优噪声强度”}
+在许多等效一维阈值/势垒模型中，跨越事件的速率可近似为
 \[
-(x_0,y_0)=\bigl(-1.5,\ \tfrac{x_0^3}{3}-x_0\bigr),
+r(t)\approx C(t)\exp\Bigl(-\frac{\Delta V(t)}{\sigma^2}\Bigr),
 \]
-有数值结果 \(q(x_0,y_0)\approx 0.00,\ m(x_0,y_0)\approx 24.2\)，表明从该区域出发几乎不可能直接先达右侧慢流形吸引区 \(B\)，同时平均停留时间较长；在靠近折叠后的点
+其中 $\Delta V(t)$ 随慢变量缓慢变化（慢变量相当于对势垒做慢调制）。
+当慢调制有特征周期 $T_{\mathrm{slow}}$（例如松弛振荡或外部微弱周期输入），
+随机共振常对应
 \[
-(x_f,y_f)=\bigl(1.0,\ \tfrac{x_f^3}{3}-x_f\bigr),
+\mathbb E[\tau_{\mathrm{switch}}]\approx \frac{T_{\mathrm{slow}}}{2}
+\quad\Longleftrightarrow\quad
+r(\sigma)\approx \frac{2}{T_{\mathrm{slow}}},
 \]
-有 \(q(x_f,y_f)\approx 0.35,\ m(x_f,y_f)\approx 54.0\)，说明一方面先达 \(B\) 的概率显著上升，另一方面仍可能在缓慢通道区域徘徊较长时间。这些数值与图~\ref{fig:committor_mfpt_heat} 中的空间分布总体一致，清晰体现了几何与随机性在 Canard 过渡中的耦合作用。
+从而在某个 $\sigma$ 处同步最强、谱峰最明显。
 
-\subsubsection{基于 逃逸概率 的 \texorpdfstring{work--error}{work--error} 比较}
-\label{sec:sec63-committor-work-error}
+\subsubsection{与 Canard/van der Pol 几何的直接对应}
+对 \eqref{eq:fast-noise}，噪声项在 $x$ 方程中被 $1/\varepsilon$ 放大（若仍用加性白噪写法），
+这意味着快方向的随机扰动会更直接、更强烈地影响“何时离开吸引支、何时跨过不稳定区”，
+从而把“慢变量的缓慢变化”转化为“随机切换事件的相位锁定”。
+因此快变量噪声下更典型地观察到随机共振/相干共振等现象，而不是像慢变量噪声那样主要表现为
+“regular vs headless 的随机选择”。
+（Sowers 也指出：把噪声放入快变量会导致随机共振等不同现象，并引相关文献。）%
+% 资料来源（快变量噪声可致随机共振的说明）：:contentReference[oaicite:9]{index=9}
 
-针对 逃逸概率 这一生成元型弱量，本文进一步比较空间离散与时间离散在误差—代价关系上的表现。仍以 \eqref{eq:committor-mfpt} 中的 \(q\) 为对象，选择慢流形 \(y=x^3/3-x\) 上的 \(N_p=10\) 个评价点 \(\{z_i\}\)，以较细网格 \(h_{\text{ref}}=0.08\) 下的 \(Q\)-解 \(q_{\text{ref}}\) 作为参考，RMS 误差定义如前所述。实验流程如下：\\
-第一步：对于空间离散（SD），在不同网格步长 \(h\in\{0.14,0.12,0.10\}\) 下装配 \(Q\)，采用 Gauss–Seidel 迭代求解 \(Qq=0\)，记录 sweeps 次数与误差 \(E_q\)，并以自由未知元数 \(\times\) sweeps作为代价。\\
-第二步：对于时间离散（TD），采用 truncated Euler-Maruyama，在统一步长 \(\Delta t=0.004\)、时间窗 \(T_{\max}\approx 18\) 下，从每个评价点发射 \(N\in\{12,24,48,72\}\) 条轨道，通过 Monte Carlo 估计 逃逸概率，并以所有节点与路径的总时间步数作为 work。
-对应的 work--error 曲线见图~\ref{fig:work-error-committor}。可以看到，随着 work 的增加，两类方法的误差均呈下降趋势；但在同一数量级的代价下，空间离散的误差明显更小。
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.62\textwidth]{fig/work_error_committor_trunc_vs_ctrw.pdf}
-	\caption{逃逸概率 的 work--error 曲线：空间离散与时间离散对比。纵轴为相对于参考 \(Q\)-解的 RMS 误差，横轴为代价（work proxy）。}
-	\label{fig:work-error-committor}
-\end{figure}
-
-表~\ref{tab:sd-committor} 给出了 SD 在不同网格步长下的误差与代价；表~\ref{tab:td-committor} 给出了 TD 在不同样本数下的结果。可以看出，当网格由 \(h=0.14\) 缩小到 \(h=0.10\) 时，SD 的 RMS 误差从 \(0.25\) 左右迅速下降至 \(0.07\) 左右，而代价仍处于 \(10^4\) 量级；相比之下，TD 在样本数从 \(12\) 增加到 \(72\) 时，误差始终停留在 \(0.25\sim 0.28\) 区间，且 work 已经提升到 \(10^5\sim 10^6\) 量级。
-
-\begin{table}[htbp]
-	\centering
-	\caption{SD（\(Q\)-解，GS 迭代）在不同网格下的 work--error}
-	\label{tab:sd-committor}
-	\begin{tabular}{cccc}
-		\toprule
-		网格步长 \(h\) & sweeps & work（proxy） & RMS 误差 \(E_q\) \\
-		\midrule
-		0.140 & 26 & 9{,}048  & 0.25118 \\
-		0.120 & 37 & 17{,}612 & 0.26187 \\
-		0.100 & 39 & 27{,}183 & 0.07024 \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-\begin{table}[htbp]
-	\centering
-	\caption{TD（\(\Delta t=0.004\)）在不同样本数下的 work--error}
-	\label{tab:td-committor}
-	\begin{tabular}{ccc}
-		\toprule
-		每节点样本数 \(N\) & work（总步数） & RMS 误差 \(E_q\) \\
-		\midrule
-		12 & 172{,}849 & 0.24704 \\
-		24 & 309{,}434 & 0.27759 \\
-		48 & 667{,}001 & 0.27981 \\
-		72 & 924{,}692 & 0.25288 \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-为便于直接比较，在表~\ref{tab:equal-work-committor} 中将 TD 的每个代价点与 SD 中 work 最接近的点配对。从表中可以清楚看到，在 work 约为 \(2.7\times 10^4\) 的代价水平上，空间离散已实现 \(E_q\approx 0.07\) 的误差；而时间离散即便将 work 提高到 \(10^5\) 乃至 \(10^6\) 量级，误差仍然停留在 \(0.25\sim 0.28\) 区间。
-
-\begin{table}[htbp]
-	\centering
-	\caption{同等代价的 RMS 误差对比}
-	\label{tab:equal-work-committor}
-	\begin{tabular}{cccc}
-		\toprule
-		TD：work（步） & TD：\(E_q\) & SD（最近 work）：work & SD：\(E_q\) \\
-		\midrule
-		172{,}849 & 0.24704 & 27{,}183 & 0.07024 \\
-		309{,}434 & 0.27759 & 27{,}183 & 0.07024 \\
-		667{,}001 & 0.27981 & 27{,}183 & 0.07024 \\
-		924{,}692 & 0.25288 & 27{,}183 & 0.07024 \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-这些结果表明，在 逃逸概率 与 MFPT 等生成元型弱量的比较中，CTRW/\(Q_u\) 空间离散方法一方面能够自然保持反射边界与几何结构，另一方面通过一次稀疏线性求解即可获得全场解，避免了 Monte Carlo 方差，在同等甚至远低于时间离散的代价下即可达到显著更小的误差，这一结论与前文的理论分析相互印证。
-
-\newpage
+\subsection{在快变量和慢变量上分别加噪声}
 
 
-%=====================================
+\begin{enumerate}
+	\item \textbf{模型层}：写出慢变量加噪的 van der Pol SDE \eqref{eq:BG-619}，并强调“关键发生在折点”。%
+	% 资料来源：式 (6.1.19) 与折点重要性叙述:contentReference[oaicite:10]{index=10}
+	\item \textbf{局部正则形层}：给出折点邻域正则形 \eqref{eq:BG-620}，指出它是鞍结正则形的随机扰动。%
+	% 资料来源：式 (6.1.20):contentReference[oaicite:11]{index=11}
+	\item \textbf{样本路径估计层}：给出偏差 SDE \eqref{eq:BG-621}--\eqref{eq:BG-624} 与方差/扩散尺度结论，
+	用 $|\tilde y|^{-3/4}$ 的放大量解释“为什么接近折点时噪声效果突然变强”，再把它与 canard 分界的指数敏感性结合，
+	得到“随机选择”的机制闭环。%
+	% 资料来源：式 (6.1.21)--(6.1.24) 与方差结论:contentReference[oaicite:12]{index=12}
+\end{enumerate}
 
-\section{随机 Canard 快--慢系统中快跳行为的数值比较}
-\label{sec:canard-fast-jump}
 
-本节在二维快--慢随机 Canard 系统上考察数值轨道的几何形态，重点比较时间离散格式与基于生成元的空间离散格式在再现 Canard 快跳现象方面的表现。考虑如下缩放后的快--慢系统：
-\begin{equation}\label{eq:canard-fast-slow}
+%
+%\begin{thebibliography}{99}
+%	
+%	\bibitem{Sowers2008}
+%	R.\ B.\ Sowers,
+%	\newblock \textit{Random Perturbations of Canards},
+%	\newblock Journal of Theoretical Probability, 21 (2008), 824--889.
+%	% 你上传的 PDF：Random Perturbations of Canards.pdf
+%	% 相关出处：随机选择（摘要）:contentReference[oaicite:13]{index=13}；regular/headless 定义:contentReference[oaicite:14]{index=14}；
+%	% 快变量噪声与随机共振提示:contentReference[oaicite:15]{index=15}。
+%	
+%	\bibitem{BerglundGentzBook}
+%	N.\ Berglund and B.\ Gentz,
+%	\newblock \textit{Noise-Induced Phenomena in Slow-Fast Dynamical Systems: A Sample-Paths Approach},
+%	\newblock Springer, 2006.
+%	% 你上传的 4 页摘录：式 (6.1.19)--(6.1.24) 与方差结论:contentReference[oaicite:16]{index=16}。
+%	
+%	\bibitem{Benoit1981}
+%	E.\ Beno\^{\i}t, J.-L.\ Callot, F.\ Diener, and M.\ Diener,
+%	\newblock \textit{Chasse au canard},
+%	\newblock Collectanea Mathematica, 32 (1981), 37--119.
+%	% Canard 经典起源文献。
+%	
+%	\bibitem{KrupaSzmolyan}
+%	M.\ Krupa and P.\ Szmolyan,
+%	\newblock \textit{Extending Geometric Singular Perturbation Theory to Nonhyperbolic Points---Fold and Canard Points},
+%	\newblock (系列论文，2001--2004 年间多篇；用于 canard 点展开与严格几何证明).
+%	
+%	\bibitem{Gammaitoni1998}
+%	L.\ Gammaitoni, P.\ H\"anggi, P.\ Jung, and F.\ Marchesoni,
+%	\newblock \textit{Stochastic Resonance},
+%	\newblock Reviews of Modern Physics, 70 (1998), 223--287.
+%	% 随机共振综述（给出标准定义、Kramers 速率解释与 SNR 最优噪声强度思想）。
+%	
+%\end{thebibliography}
+
+\section{随机 Canard 快-慢系统的动力学行为分析}
+\label{sec:canard-dynamics}
+
+\subsection{随机 Canard 系统与逃逸概率}
+
+对于随机微分方程~\eqref{eq:SDE}，给定两个互不相交的 Borel 集 $A,B\subset D$，
+定义首次到达时间
+\[
+\tau_A := \inf\{t\ge0 : X_t\in A\},\qquad
+\tau_B := \inf\{t\ge0 : X_t\in B\}.
+\]
+逃逸概率函数定义为
+\[
+q(x) := \mathbb{P}_x\bigl(\tau_B < \tau_A\bigr),\qquad x\in D.
+\]
+经典结果表明 $q$ 满足如下椭圆型边值问题\cite{EV_TPT,EV_TowardsTP}：
+\begin{equation}\label{eq:committor_PDE_ch4}
 	\begin{cases}
-		\dfrac{\mathrm{d}x_{1,t}}{\mathrm{d}t}
-		= \dfrac{1}{\delta}\Bigl(x_{1,t} + x_{2,t} - \dfrac{x_{1,t}^3}{3}\Bigr),\\[6pt]
-		\dfrac{\mathrm{d}x_{2,t}}{\mathrm{d}t}
-		= a - x_{1,t},
+		L q(x) = 0, & x\in D\setminus(A\cup B),\\[1mm]
+		q(x) = 0, & x\in A,\\[1mm]
+		q(x) = 1, & x\in B.
 	\end{cases}
 \end{equation}
-其中 \(0<\delta\ll 1\) 为快--慢时间尺度比，\(x_1\) 是快变量，\(x_2\) 为慢变量。为了刻画噪声对 Canard 轨道的扰动，进一步在慢变量方向上加入小幅随机扰动，得到随机 Canard 系统
-\begin{equation}\label{eq:canard-fast-slow-SDE}
+
+本章考察如下二维快--慢随机 Canard 系统：
+\begin{equation}\label{eq:canard-SDE-ch4}
 	\begin{cases}
-		\mathrm{d}x_{1,t}
-		= \dfrac{1}{\delta}\Bigl(x_{1,t} + x_{2,t} - \dfrac{x_{1,t}^3}{3}\Bigr)\,\mathrm{d}t,\\[6pt]
-		\mathrm{d}x_{2,t}
-		= (a - x_{1,t})\,\mathrm{d}t + \sigma_y\,\mathrm{d}W_t^{(2)},
+		\varepsilon\,\mathrm{d}x_t
+		= \bigl(y_t - \tfrac{x_t^3}{3} + x_t\bigr)\,\mathrm{d}t,\\[4pt]
+		\mathrm{d}y_t
+		= (a - x_t)\,\mathrm{d}t + \sigma\,\mathrm{d}W_t,
 	\end{cases}
 \end{equation}
-其中 \(W^{(2)}_t\) 为一维标准布朗运动，噪声强度取 \(\sigma_y=0.08\)。本节数值实验中固定
+其中 $0<\varepsilon\ll1$ 为快--慢时间尺度比，$x_t$ 为快变量（无直接噪声），
+$y_t$ 为慢变量（带加性噪声强度 $\sigma$），参数 $a$ 取特定值使系统出现
+Canard 过渡，具体取为
+\begin{equation}\label{eq:a-def}
+	a = 1 - \frac{\varepsilon}{8} - \frac{3\varepsilon^2}{32}
+	- \frac{173\varepsilon^3}{1024} - 0.01.
+\end{equation}
+系统的慢流形（$x$ 方程右端为零的零流形）为 $y = x^3/3 - x$，
+鞍结点位于 $(x,y)=(1,-2/3)$。
+
+\subsection{噪声强度与 Canard 现象的临界标度}
+\label{subsec:noise-sigma-c}
+
+\subsubsection{理论背景}
+
+经典结果（Berglund--Gentz \cite{berglund2006noise}，第 6.1 节）给出了
+随机 Canard 系统在鞍结点附近的局部标准形
+\begin{equation}\label{eq:normal-form}
+	\varepsilon\,\mathrm{d}\tilde x_t
+	= (-\tilde y_t - \tilde x_t^2)\,\mathrm{d}t,\qquad
+	\mathrm{d}\tilde y_t = \mathrm{d}t + \sigma\,\mathrm{d}W_t.
+\end{equation}
+在该标准形下，确定性 Canard 轨道沿慢流形 $\tilde x^\star(\tilde y)
+= -|\tilde y|^{1/2}$（$\tilde y\leq 0$）跟踪。
+设扰动 $\xi_t = \tilde x_t - \tilde x^\star(\tilde y_t,\varepsilon)$，则
+其方差满足
+\begin{equation}\label{eq:xi-variance}
+	\mathrm{Var}(\xi_t) \sim
+	\frac{\sigma^2\varepsilon}{|\tilde y_t|^{3/2}},
+\end{equation}
+即路径在 $x$ 方向的散布正比于 $\sigma\varepsilon^{1/2}/|\tilde y|^{3/4}$。
+
+由此可以刻画出一个\textbf{临界噪声强度}
+\begin{equation}\label{eq:sigma-c}
+	\sigma_c = \varepsilon^{1/3}.
+\end{equation}
+具体地，Berglund--Gentz 证明了以下两种情形：
+\begin{itemize}
+	\item 若 $\sigma < \varepsilon^{1/3}$，路径在分岔点附近的最大散布为 $O(\sigma)$，
+	小于稳定与不稳定绝热解之间的距离 $O(\varepsilon^{1/3})$，
+	因此\textbf{样本路径在经过分岔点之前不大可能提前跳到另一支慢流形}，
+	Canard 现象得以保持（图~\ref{fig:canard_ssa_vs_em}(a) 的上方部分）。
+	\item 若 $\sigma > \varepsilon^{1/3}$，路径的典型散布达到稳定与不稳定绝热解
+	之间距离的量级，\textbf{在 $\tilde y_t \sim -\sigma^{4/5}\varepsilon^{2/5}$
+		处就可能提前转移到另一支慢流形}，Canard 结构被破坏
+	（图~\ref{fig:canard_ssa_vs_em}(a) 的下方部分）。
+\end{itemize}
+因此 $\sigma_c = \varepsilon^{1/3}$ 构成 Canard 现象是否在噪声扰动下得以保持
+的临界阈值。
+
+\subsubsection{全局系统中的可观测量}
+
+在全局 van der Pol 系统~\eqref{eq:canard-SDE-ch4} 中，上述局部理论
+可通过以下可观测量在数值上加以验证。
+
+\paragraph{跳变位置分布}
+定义 $y_\mathrm{jump}$ 为路径首次穿越 $x=1$（鞍结点处）时对应的 $y$ 值。
+确定性轨道满足 $y_\mathrm{det} \approx -0.77$（该值依赖 $\varepsilon$，
+略低于鞍结点 $y_c = -2/3$）。当 $\sigma < \sigma_c$ 时，路径沿慢流形
+充分跟踪，$y_\mathrm{jump}$ 集中在 $y_\mathrm{det}$ 附近，
+标准差较小；当 $\sigma > \sigma_c$ 时，路径提前离开慢流形，
+$\mathrm{std}(y_\mathrm{jump})$ 显著增大。
+
+\paragraph{慢流形邻域停留时间}
+定义路径在慢流形管道 $\{|x - x^\star(y)| \leq \delta_\mathrm{hit}\}$
+内的时间占比（occupancy）为 Canard 质量的全局度量。
+
+\paragraph{到达窗口的命中概率 $P_\mathrm{hit}$}
+在慢流形上设定参考窗口
+\begin{equation}\label{eq:window-A}
+	A = \bigl\{(x,y):\; |y - y_\mathrm{ref}|\leq\eta,\;
+	|x - x^\star(y)|\leq\delta_\mathrm{hit}\bigr\},
+\end{equation}
+其中 $y_\mathrm{ref}$ 靠近鞍结点但仍在正值稳定支上，统计路径在穿越
+$x=1$ 之前进入 $A$ 的概率 $P_\mathrm{hit}$。
+理论预测：$\sigma < \sigma_c$ 时 $P_\mathrm{hit}$ 接近 1，
+$\sigma > \sigma_c$ 时 $P_\mathrm{hit}$ 显著下降。
+
+\subsubsection{数值验证：$y_\mathrm{jump}$ 与 $\sigma$ 的关系}
+
+取 $\varepsilon = 0.1$，$\sigma_c = \varepsilon^{1/3} \approx 0.464$，
+起点 $(x_0, y_0) = (1.5,\, x_0^3/3 - x_0)$（位于正值稳定支上）。
+对 $\sigma/\sigma_c \in [0.1, 2.0]$ 扫描，每组跑 $N=800$ 条路径，
+用 EM 精细格式（$\Delta t = \varepsilon/100$）作为参考。
+
+图~\ref{fig:canard_ssa_vs_em} 展示了四项统计量随 $\sigma/\sigma_c$ 的变化：
+
+%\begin{figure}[!htbp]
+%	\centering
+%	\includegraphics[width=\textwidth]{fig/canard_ssa_vs_em.png}
+%	\caption{随机 Canard 系统四项统计量随噪声强度 $\sigma/\sigma_c$ 的变化
+%		（$\varepsilon=0.1$，$\sigma_c = \varepsilon^{1/3} \approx 0.464$）。
+%		竖虚线标记临界值 $\sigma = \sigma_c$。
+%		(a) $P_\mathrm{hit}$：命中参考窗口 $A$ 的概率；
+%		(b) 提前逃离概率 $P_\mathrm{esc}$；
+%		(c) std$(y_\mathrm{jump})$；
+%		(d) 离散化误差随步长/网格尺寸的收敛性（参考 EM 最精细解）。}
+%	\label{fig:canard_ssa_vs_em}
+%\end{figure}
+
+从图~\ref{fig:canard_ssa_vs_em} 可以观察到：
+
+\begin{enumerate}
+	\item \textbf{临界行为的数值体现}：
+	$P_\mathrm{hit}$（子图 (a)）在 $\sigma < \sigma_c$ 时保持高位，
+	在 $\sigma \approx \sigma_c$ 附近开始明显下降；
+	提前逃离概率 $P_\mathrm{esc}$（子图 (b)）在 $\sigma > \sigma_c$
+	后显著上升，与理论一致。
+	
+	\item \textbf{跳变位置散布增大}：
+	std$(y_\mathrm{jump})$（子图 (c)）在 $\sigma$ 增大时单调增大，
+	$\sigma > \sigma_c$ 后增速明显加快，反映路径越来越早地离开慢流形。
+	
+	\item \textbf{EM 步长对 Canard 结构的敏感性}：
+	子图 (d) 显示，当 $\Delta t \geq \varepsilon$ 时，EM 格式的离散化
+	误差出现相变式跳跃，说明大步长 EM 会人为地"破坏"Canard 现象，
+	而 CTMC（SSA）格式的误差随 $h_y$ 变化相对温和。
+\end{enumerate}
+
+\subsection{CTMC 格式的跳跃速率构造}
+\label{subsec:jump-rates}
+
+对于系统~\eqref{eq:canard-SDE-ch4}，采用 Chang--Cooper 混合格式
+在二维网格上构造跳跃速率。取 $x$ 方向步长 $h_x$，$y$ 方向步长 $h_y$，
+在格点 $(x_i, y_j)$ 处定义漂移
 \[
-\delta = 0.1,\qquad
-a = 1 - \frac{\delta}{8} - \frac{3\delta^2}{32}
-- \frac{173\delta^3}{1024} - 0.01.
+\mu_x = \frac{y_j - x_i^3/3 + x_i}{\varepsilon},\qquad
+\mu_y = a - x_i.
 \]
-上述 \(a\) 的取值位于经典 Canard 参数的附近，使得确定性系统 \eqref{eq:canard-fast-slow} 在折叠点附近存在典型的“贴靠慢流形---短暂沿抑制支漂移---发生快跳”的轨道结构，噪声则进一步增强了对初值与数值扰动的敏感性。
-
-\subsection{快跳事件的定义与数值目标}
-
-方程 \eqref{eq:canard-fast-slow-SDE} 的零流形由
-\[
-x_2 = \frac{x_1^3}{3} - x_1
-\]
-给出，在折叠点附近可分为左侧吸引慢流形与右侧抑制（反吸引）慢流形。对给定的初值，如果轨道先在左侧吸引慢流形附近缓慢演化，然后进入折叠邻域，在几乎沿抑制慢流形短暂停留之后突然跨越到右侧区域，则称该轨道发生了一次 Canard 快跳。
-
-为了将快跳现象转化为可计算的统计量，本文采用如下简单的判别方式。给定一条轨道 \(\{x_t\}_{t\ge0}\)，定义
-\[
-\tau_{\mathrm{jump}}
-:= \inf\{t>0:\ x_{1,t}\ge x_{\mathrm{th}}\},
-\]
-其中快跳阈值固定为
-\[
-x_{\mathrm{th}} = 1.5.
-\]
-也就是说，\(\tau_{\mathrm{jump}}\) 表示快变量 \(x_1\) 第一次越过折叠点右侧阈值 \(x_{\mathrm{th}}\) 的时间。如果在有限考察时间窗 \([0,T]\) 内满足 \(\tau_{\mathrm{jump}}\le T\)，则认为在该时间窗内发生了至少一次快跳。相应地，我们将
-\[
-p_{\mathrm{jump}} := \mathbb{P}(\tau_{\mathrm{jump}}\le T),\qquad
-m_{\mathrm{jump}} := \mathbb{E}[\tau_{\mathrm{jump}}\mid\tau_{\mathrm{jump}}\le T]
-\]
-分别作为“快跳概率”和“条件平均快跳时间”的数值指标。本节实验固定观察时间窗 \(T=3\)，以保证在所选参数下大部分轨道能够完成一次典型的快跳。
-
-下文将比较在相同初值与计算代价下，不同数值格式对 \(p_{\mathrm{jump}}\) 与 \(m_{\mathrm{jump}}\) 的近似效果。特别是，我们关心在\emph{较大时间步长}下，时间离散格式是否仍然能够产生正确的快跳行为，而空间离散格式在这方面是否更稳定、更鲁棒。
-
-\subsection{时间离散格式：Euler--Maruyama 与驯服 EM}
-
-时间离散方法采用固定时间步长 \(\Delta t>0\)，在时间网格 \(t_n = n\Delta t\) 上给出数值近似 \(X_n\approx x_{t_n}\)。对方程 \eqref{eq:canard-fast-slow-SDE}，标准的 Euler--Maruyama 格式为
-\begin{equation}\label{eq:canard-EM}
+$y$ 方向的混合项为
+\begin{equation}\label{eq:m-y}
+	m_y = \frac{1}{2}\max\!\bigl(\sigma^2 - |\mu_y|\,h_y,\;0\bigr),
+\end{equation}
+而 $x$ 方向无物理扩散，故 $m_x = 0$。四个方向的跳跃速率为
+\begin{equation}\label{eq:jump-rates}
 	\begin{aligned}
-		X^{(1)}_{n+1}
-		&= X^{(1)}_n
-		+ \frac{\Delta t}{\delta}
-		\Bigl(X^{(1)}_n + X^{(2)}_n - \frac{(X^{(1)}_n)^3}{3}\Bigr),\\[3pt]
-		X^{(2)}_{n+1}
-		&= X^{(2)}_n
-		+ (a - X^{(1)}_n)\,\Delta t
-		+ \sigma_y\,\sqrt{\Delta t}\,\xi_n,
+		q_{x+} &= \frac{\max(\mu_x,0)}{h_x},&\quad
+		q_{x-} &= \frac{\max(-\mu_x,0)}{h_x},\\
+		q_{y+} &= \frac{\max(\mu_y,0)}{h_y} + \frac{m_y}{h_y^2},&\quad
+		q_{y-} &= \frac{\max(-\mu_y,0)}{h_y} + \frac{m_y}{h_y^2}.
 	\end{aligned}
 \end{equation}
-其中 \(\{\xi_n\}\) 为独立同分布的标准正态随机变量。为了改善强漂移区间的稳定性，也可以采用驯服 Euler--Maruyama 格式，即在快变量漂移上加入驯服因子：
-\begin{equation}\label{eq:canard-tamed}
-	\begin{aligned}
-		X^{(1)}_{n+1}
-		&= X^{(1)}_n
-		+ \frac{\Delta t}{\delta}
-		\frac{X^{(1)}_n + X^{(2)}_n - (X^{(1)}_n)^3/3}
-		{1 + \lvert X^{(1)}_n + X^{(2)}_n - (X^{(1)}_n)^3/3\rvert\Delta t},\\[3pt]
-		X^{(2)}_{n+1}
-		&= X^{(2)}_n
-		+ (a - X^{(1)}_n)\,\Delta t
-		+ \sigma_y\,\sqrt{\Delta t}\,\xi_n.
-	\end{aligned}
-\end{equation}
-当 \(\Delta t\) 足够小时，\eqref{eq:canard-EM} 与 \eqref{eq:canard-tamed} 在局部一致性与强收敛阶上没有本质差异；但在强漂移区域 \(|x_1|\gg1\) 或 \(|x_1+x_2 - x_1^3/3|\gg1\) 时，驯服格式通过分母中的削顶保证数值解不会发生数值爆跳。
 
-在快--慢系统中，漂移在快变量方向的尺度大致为 \(\mathcal O(1/\delta)\)。因此显式时间步进方法若要解析快时间尺度，必须满足
-\begin{equation}\label{eq:canard-dt-fast}
-	\frac{\Delta t}{\delta}\lvert x_1 + x_2 - x_1^3/3\rvert \ll 1,
-\end{equation}
-否则单步增量就可能跨越折叠邻域，或者在驯服因子的作用下将快跳过程严重“平滑化”。在数值实验中，我们将显式格式在“较小步长”（例如 \(\Delta t=10^{-3}\)）和“较大步长”（例如 \(\Delta t=5\times10^{-2},\,10^{-1}\)）下的结果进行对比，观察 \(\Delta t\) 对快跳概率与快跳时间分布的影响。
+\subsubsection{非均匀网格设计：$n_x = n_y^2$}
 
-\subsection{空间离散格式：基于生成元的 CTRW 跳跃过程}
+快变量 $x$ 方向无物理扩散，迎风格式引入的数值扩散为
+\[
+\text{数值扩散}_x \sim \frac{|\mu_x|\,h_x}{2}
+= \frac{h_x}{2\varepsilon},
+\]
+在 $\varepsilon \ll 1$ 时即便 $h_x$ 适中，数值扩散也会远超物理量级。
+为抑制此误差，令 $x$ 方向格点数为 $n_x = n_y^2$，从而
+$h_x = h_y^2/c$ 量级，使数值扩散降至 $O(h_y^2/\varepsilon)$，
+与 $y$ 方向的物理误差 $O(h_y)$ 相匹配。
 
-空间离散方法从生成元的角度出发，先在状态空间上构造离散生成元 \(Q_h\)，再通过连续时间随机游走（CTRW）与随机模拟算法（SSA）生成数值轨道。对 SDE
-\[
-\mathrm{d}X_t = \mu(X_t)\,\mathrm{d}t + \sigma(X_t)\,\mathrm{d}W_t,
-\]
-其 Kolmogorov 向前算子为
-\[
-(Lf)(x) = \sum_{i=1}^2 \mu_i(x)\,\partial_{x_i}f(x)
-+ \frac12\sum_{i=1}^2\sigma_i^2(x)\,\partial_{x_i}^2 f(x),
-\]
-本文采用 \cite{zu2023random} 提出的改进 \(Q_u\) 格式在二维正方网格上对 \(L\) 进行离散。设计算域
-\[
-\Omega = [-2.5,2.5]\times[-1,3],
-\]
-在其中取均匀网格
-\[
-x_i = x_{\min} + i h_x,\quad i=0,\dots,N_x;\qquad
-y_j = y_{\min} + j h_y,\quad j=0,\dots,N_y,
-\]
-本文实验中 \(h_x=h_y=0.05\)。对任意内部网格点 \((x_i,y_j)\)，记
-\[
-\mu_1 = \mu_1(x_i,y_j),\qquad
-\mu_2 = \mu_2(x_i,y_j),\qquad
-M_{11} = \frac{\sigma_x^2}{2},\qquad
-M_{22} = \frac{\sigma_y^2}{2},
-\]
-则 \(Q_u\) 格式在四个相邻网格点上的跃迁率可写为
-\begin{align*}
-	q_{i,j\to i+1,j}
-	&= \frac{\mu_1^+}{h_x} + \frac{M_{11}}{h_x^2},&
-	q_{i,j\to i-1,j}
-	&= \frac{\mu_1^-}{h_x} + \frac{M_{11}}{h_x^2},\\[2pt]
-	q_{i,j\to i,j+1}
-	&= \frac{\mu_2^+}{h_y} + \frac{M_{22}}{h_y^2},&
-	q_{i,j\to i,j-1}
-	&= \frac{\mu_2^-}{h_y} + \frac{M_{22}}{h_y^2},
-\end{align*}
-其中 \(\mu_k^+ = \max(\mu_k,0)\)、\(\mu_k^- = \max(-\mu_k,0)\)。总跃迁率为
-\[
-\lambda_{i,j} = \sum_{(i',j')\neq(i,j)} q_{i,j\to i',j'}.
-\]
-以 \(Q_u\) 为生成元，可以构造连续时间马尔可夫跳跃过程 \(\{Z_t^h\}_{t\ge0}\)：若当前状态为 \((x_i,y_j)\)，则停留时间服从参数为 \(\lambda_{i,j}\) 的指数分布
-\[
-\tau\sim\mathrm{Exp}(\lambda_{i,j}),
-\]
-随后以概率 \(q_{i,j\to i',j'}/\lambda_{i,j}\) 跳至相邻格点 \((x_{i'},y_{j'})\)。重复上述过程即可得到一条近似轨道 \(\{Z_t^h\}\)。
+以 $n_y = 60$（$h_y \approx 0.10$）为例，三种方案的比较如下：
+\begin{table}[!htbp]
+	\centering
+	\caption{不同网格方案下数值扩散的比较（$\varepsilon=0.1$，$\sigma^2=2$，$n_y=60$）}
+	\label{tab:grid-schemes}
+	\begin{tabular}{lccccc}
+		\toprule
+		方案 & $n_x$ & $n_y$ & $h_x$ & $h_y$ & 数值扩散$_x \approx h_x/(2\varepsilon)$ \\
+		\midrule
+		均匀网格（原始） & 60 & 60 & $0.100$ & $0.100$ & $0.500$ \\
+		本文方案 $n_x=n_y^2$ & 3600 & 60 & $0.00167$ & $0.100$ & $0.008$ \\
+		严格 CFL & 36000 & 60 & $0.000167$ & $0.100$ & $0.001$ \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
-由 \(Q_u\) 的构造可见，当快变量漂移较大时，\(\lvert\mu_1\rvert\) 增大，导致 \(\lambda_{i,j}\) 随之变大，平均停留时间
-\[
-\mathbb{E}[\tau\mid Z_t^h=(x_i,y_j)]
-= \lambda_{i,j}^{-1}
-\approx \frac{h_x}{\lvert\mu_1(x_i,y_j)\rvert},
-\]
-从而在快跳区间自动形成\emph{更细的有效时间步长}。与显式时间步进方法的固定步长 \(\Delta t\) 相比，SSA 在强漂移区域会自适应地缩小停留时间，这为解析 Canard 快跳提供了天然优势。
+本文方案在计算可行性与精度之间取得平衡：相较均匀网格，数值扩散
+降低约 60 倍，而计算量仅增加 $n_y$ 倍。
 
-\subsection{快跳事件对数值扰动的敏感性分析}
+\subsection{CTMC 格式与 EM 格式的数值比较}
+\label{subsec:ctmc-vs-em}
 
-在经典 Canard 理论中，快--慢系统可重写为\footnote{这里略去详细的坐标变换与正规形推导，仅给出定性结论。}
-\[
-\varepsilon\frac{\mathrm{d}x_1}{\mathrm{d}t}
-= F(x_1,x_2),\qquad
-\frac{\mathrm{d}x_2}{\mathrm{d}t} = G(x_1,x_2),
-\]
-其中 \(\varepsilon\sim\delta\) 为小参数，\(F\) 在折叠点附近满足 \(F(x_{\mathrm{fold}},x_2)=0\)、\(\partial_{x_1}F(x_{\mathrm{fold}},x_2)\ne0\)。处在 Canard 过渡附近时，存在一类对参数 \(a\) 极其敏感的轨道，它们沿反吸引慢流形停留的时间对 \(a\) 的变化呈指数级敏感，典型尺度为
-\[
-\mathcal O\bigl(\exp(-C/\varepsilon)\bigr).
-\]
-这意味着任意 \(\mathcal O(\varepsilon)\) 级别的系统扰动（包括数值离散误差）都可能将真实系统从“有 Canard 快跳”的参数区间推到“无 Canard 或快跳显著提前 / 延迟”的区域。
+\subsubsection{EM 格式对 Canard 结构的敏感性}
 
-显式时间步进方法本质上是在时间方向上对生成元 \(L\) 做一次向前 Euler 近似：
+EM 格式要求同时满足两个尺度的约束：
 \[
-u(t+\Delta t,\cdot)\approx u(t,\cdot) + \Delta t\,Lu(t,\cdot),
+\Delta t \ll \varepsilon \quad \text{（快变量精度）}
+\qquad \text{且} \qquad
+\Delta t \ll 1 \quad \text{（慢变量精度）}.
 \]
-相应地，\eqref{eq:canard-EM} 与 \eqref{eq:canard-tamed} 可以理解为在每一步对漂移场 \(\mu\) 作了 \(\mathcal O(\Delta t)\) 的扰动。对于 Canard 系统，这种在快变量方向上的有效漂移扰动约为
-\[
-\delta\mu_1 \approx \mathcal O\Bigl(\frac{\Delta t}{\delta}\Bigr),
-\]
-当 \(\Delta t\) 与 \(\delta\) 同阶或更大时，\(\delta\mu_1\) 完全可能达到 \(\mathcal O(\varepsilon)\) 的量级，从而改变系统是否处于 Canard 参数窗口。这在数值上表现为：
+当 $\Delta t \geq \varepsilon$ 时，快变量的数值积分变得不稳定，路径
+可能跳过慢流形，从而在数值上人为地破坏 Canard 结构。
+
+图~\ref{fig:convergence_comparison} 给出了不同 $\Delta t$ 下 EM
+与不同 $h_y$ 下 CTMC（SSA）的收敛性比较，度量指标为
+$y_\mathrm{jump}$ 的均值与标准差（以 EM 最精细解为参考）。
+
+%\begin{figure}[!htbp]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{fig/convergence_comparison.png}
+%	\caption{EM 与 CTMC（SSA）对 $y_\mathrm{jump}$ 统计量的收敛性比较
+%		（$\varepsilon=0.05$，$\sigma = \sigma_c$，$N=500$）。
+%		左图：均值收敛；右图：标准差收敛。
+%		红色阴影区域标记 $\Delta t \geq \varepsilon$ 的"危险区"，
+%		EM 在此区域出现灾难性失真。}
+%	\label{fig:convergence_comparison}
+%\end{figure}
+
+从图~\ref{fig:convergence_comparison} 可以清楚看出：
 
 \begin{itemize}
-	\item 当 \(\Delta t\) 很小时，时间离散方法能够正确再现典型的快跳轨道，快跳概率与平均快跳时间与参考解一致；
-	\item 当 \(\Delta t\) 增大到 \(\Delta t\gtrsim c\,\delta\) 时，数值漂移的有效扰动足以“推走” Canard 轨道，使得快跳发生显著提前或者延迟，极端情况下甚至在观察时间窗内不再出现典型的快跳。
+	\item \textbf{EM 的相变式崩溃}：在 $\Delta t < 0.5\varepsilon$ 时
+	EM 结果稳定，但 $\Delta t \geq \varepsilon$ 时均值和标准差均出现
+	大幅偏移，表现为路径"提前逃逸"的假象。
+	\item \textbf{CTMC 的温和退化}：SSA 的误差随 $h_y$ 单调增大，
+	无突变。$h_y = 0.3$ 时已有明显偏差，但行为可预测，可通过
+	细化网格改善。
 \end{itemize}
 
-相比之下，基于生成元的 \(Q_u\) 空间离散在\emph{空间}上引入的是 \(\mathcal O(h^2)\) 级别的局部截断误差，并且在快变量方向的有效时间步长由
+\subsubsection{等计算量下的公平比较}
+
+为进行公平比较，将 EM 的每步与 SSA 的每次跳跃换算为等效浮点
+操作数。根据实测，每次 SSA 跳跃的计算成本约为 EM 一步的
+$r \approx 3.47$ 倍（两者均在 Numba 并行加速下运行）。
+给定固定的计算预算 $W$，各方法可执行的路径数为
 \[
-\Delta t_{\mathrm{eff}}\sim \frac{h_x}{\lvert\mu_1\rvert}
+N = \left\lfloor \frac{W}{\bar w \times r} \right\rfloor,
 \]
-自适应决定。只要网格尺度 \(h_x\) 选取满足
-\[
-\frac{h_x}{\lvert\mu_1\rvert} \ll 1,
-\]
-生成元离散在折叠邻域不会引入足以破坏 Canard 结构的一阶漂移偏差，从而在较宽的参数与噪声范围内保持快跳行为的结构稳定性。
+其中 $\bar w$ 为每条路径的平均步数（EM）或跳跃数（SSA）。
 
-综上，在“是否出现快跳”这样的几何敏感指标上，时间离散格式对时间步长 \(\Delta t\) 极为敏感，而基于生成元的空间离散格式在同阶计算代价下具有更好的鲁棒性与结构保持性。
+在预算 $W = \bar w_\mathrm{EM,fine} \times 600$（相当于精细 EM 跑 600 条路径）
+的条件下，各方法的等效路径数与 $P_\mathrm{hit}$ 如表~\ref{tab:equal-budget}
+所示。
 
-\subsection{数值实验与结果比较}
+\begin{table}[!htbp]
+	\centering
+	\caption{等计算量比较：$P_\mathrm{hit}$ 与统计效率
+		（$\varepsilon=0.1$，$\sigma = 0.7\sigma_c$，预算 $\approx 2.4\times10^5$ EM 等效步）}
+	\label{tab:equal-budget}
+	\begin{tabular}{lrrrrr}
+		\toprule
+		方法 & $N$ & 等效代价/路径 & $P_\mathrm{hit}$ & SE & RMSE \\
+		\midrule
+		EM $\Delta t=\varepsilon/100$ & 600    & 394.8  & 0.9917 & 0.0037 & 0.0041 \\
+		EM $\Delta t=0.1\varepsilon$  & 5334   & 44.4   & 0.9451 & 0.0031 & 0.0450 \\
+		EM $\Delta t=0.2\varepsilon$  & 9435   & 25.1   & 0.9049 & 0.0030 & 0.0851 \\
+		EM $\Delta t=0.5\varepsilon$  & 17059  & 13.9   & 0.8179 & 0.0030 & 0.1722 \\
+		EM $\Delta t=1.0\varepsilon$  & 24883  & 9.5    & 0.6846 & 0.0029 & 0.3054 \\
+		EM $\Delta t=2.0\varepsilon$  & 32630  & 7.3    & 0.2747 & 0.0025 & 0.7153 \\
+		\midrule
+		SSA $h_y=0.10$（本文格式）    & 565    & 419.1  & 0.9558 & 0.0087 & 0.0353 \\
+		SSA $h_y=0.20$                & 2580   & 91.8   & 0.9240 & 0.0052 & 0.0662 \\
+		\bottomrule
+	\end{tabular}
+	\begin{minipage}{\textwidth}
+		\vspace{4pt}
+		\small 注：SE 为 $P_\mathrm{hit}$ 的标准误，RMSE $=\sqrt{|\mathrm{bias}|^2 + \mathrm{SE}^2}$，
+		真值取精细 EM（$N=4000$）的估计 $P_\mathrm{true}\approx0.990$。
+		SSA $h_y=0.30$ 因网格点不落在检测窗口内（网格--窗口不匹配），结果不可信，未列入。
+	\end{minipage}
+\end{table}
 
-为了验证上述分析，本节在随机 Canard 系统 \eqref{eq:canard-fast-slow-SDE} 上进行数值实验。计算域取为
-\[
-\Omega=[-2.5,\,2.5]\times[-1,\,3],
-\]
-外边界采用反射条件。初值选在左侧慢流形上
-\[
-x_1(0) = -1.5,\qquad
-x_2(0) = \frac{x_1(0)^3}{3}-x_1(0),
-\]
-快跳阈值为 \(x_{\mathrm{th}}=1.5\)，观察时间窗 \(T=3\)。
+\subsubsection{精度--路径数权衡}
 
-\paragraph{空间离散（CTRW--SSA）}
+图~\ref{fig:canard_optimal} 以三张子图揭示了等计算量下两类方法
+在精度与统计不确定性之间的权衡关系。
 
-空间离散方法采用前述 \(Q_u\) 格式，在 \(h_x=h_y=0.05\) 的均匀网格上构造生成元，并使用 SSA 模拟连续时间随机游走 \(Z_t^h\)。对于给定初值与参数，独立生成 \(N_{\mathrm{SSA}}\) 条样本路径，默认 \(N_{\mathrm{SSA}}=1000\)，统计
-\[
-p_{\mathrm{jump}}^{\mathrm{CTRW}}
-= \frac{1}{N_{\mathrm{SSA}}}\sum_{k=1}^{N_{\mathrm{SSA}}}
-\mathbf{1}_{\{\tau_{\mathrm{jump}}^{(k)}\le T\}},\qquad
-m_{\mathrm{jump}}^{\mathrm{CTRW}}
-= \frac{1}{\#\{\tau_{\mathrm{jump}}^{(k)}\le T\}}
-\sum_{\tau_{\mathrm{jump}}^{(k)}\le T}\tau_{\mathrm{jump}}^{(k)}.
-\]
-数值结果表明，在上述网格尺度下，CTRW 得到的快跳概率接近 \(1\)，平均快跳时间约为 \(m_{\mathrm{jump}}^{\mathrm{CTRW}}\approx0.5\)，与采用极小步长的高精度时间离散参考解基本一致。
+%\begin{figure}[!htbp]
+%	\centering
+%	\includegraphics[width=\textwidth]{fig/canard_optimal.png}
+%	\caption{等计算量下 EM 与 CTMC（SSA）的精度--路径数权衡
+%		（$\varepsilon=0.1$，$\sigma/\sigma_c=0.70$）。
+%		(1) $P_\mathrm{hit}$ vs 路径数 $N$（对数坐标）：
+%		EM 越多路径意味着越粗糙的步长，$P_\mathrm{hit}$ 急剧下降；
+%		SSA 的 $P_\mathrm{hit}$ 始终靠近真值。
+%		(2) RMSE vs $N$：EM 的 RMSE 在 $N$ 增大时反而上升（偏差主导）；
+%		SSA 的 RMSE 沿 $1/\sqrt{N}$ 统计参考线正常下降。
+%		(3) 精度--不确定性前沿图：EM 箭头（细化到粗化方向）向左下方退出
+%		可接受精度区域；SSA 箭头始终保持在绿色区域内。}
+%	\label{fig:canard_optimal}
+%\end{figure}
 
-\paragraph{时间离散（驯服 EM）}
+图~\ref{fig:canard_optimal} 揭示了 EM 方法面临的根本性困境：
 
-时间离散方法采用驯服 Euler--Maruyama 格式 \eqref{eq:canard-tamed}，取不同时间步长 \(\Delta t\in\{10^{-3},\,5\times10^{-3},\,10^{-2},\,5\times10^{-2},\,10^{-1}\}\)，对每个 \(\Delta t\) 独立生成 \(N_{\mathrm{EM}}\) 条样本路径（默认 \(N_{\mathrm{EM}}=1000\)），同样统计
-\[
-p_{\mathrm{jump}}^{\mathrm{tamed}}(\Delta t),\qquad
-m_{\mathrm{jump}}^{\mathrm{tamed}}(\Delta t).
-\]
-实验结果可以汇总为如下趋势：
 \begin{itemize}
-	\item 当 \(\Delta t=10^{-3}\) 时，\(p_{\mathrm{jump}}^{\mathrm{tamed}}\) 与 \(m_{\mathrm{jump}}^{\mathrm{tamed}}\) 与 CTRW 参考值几乎一致，说明在足够小时间步长下，时间离散格式能够正确解析快跳行为；
-	\item 当 \(\Delta t\) 增大到 \(10^{-2}\) 左右时，快跳仍然出现，但平均快跳时间已经出现可见偏移，表明时间离散误差开始显著影响 Canard 动力学；
-	\item 当 \(\Delta t\) 进一步增大到 \(5\times10^{-2}\) 或 \(10^{-1}\) 时，虽然大部分样本路径仍然在时间窗内发生快跳，但 \(m_{\mathrm{jump}}^{\mathrm{tamed}}(\Delta t)\) 明显晚于 CTRW 参考值，偏差可达 \(10\%\sim30\%\) 量级，轨道在折叠附近的几何形状也被明显平滑化，难以辨认典型的 Canard 轨道特征。
+	\item 要保持正确的 $P_\mathrm{hit} \approx 0.99$，EM 必须取
+	$\Delta t \leq 0.1\varepsilon$，此时每条路径成本约 44 等效步，
+	预算下只能跑 $\approx 5000$ 条路径，SE $\approx 0.003$，
+	RMSE $= 0.045$。
+	\item 若放宽步长以增加路径数（如 $\Delta t = \varepsilon$，
+	$N \approx 25000$），统计误差 SE 降至 $0.003$，
+	但偏差 $|P_\mathrm{hit} - P_\mathrm{true}| \approx 0.31$，
+	RMSE 反而升至 $0.31$，完全被系统误差主导。
 \end{itemize}
 
-\paragraph{整体比较与讨论}
+相比之下，SSA $h_y=0.10$ 在 $N=565$ 条路径下给出
+$P_\mathrm{hit}=0.956$，RMSE $=0.035$，\textbf{以约 1/9 的路径数
+	达到了与 EM 精细解（$\Delta t=\varepsilon/100$，$N=600$）
+	相当甚至更低的 RMSE}，验证了 CTMC 格式对 Canard 结构的高效捕捉能力。
 
-为定量比较两类方法在快跳统计上的差异，可以定义相对误差
-\[
-E_p^{\mathrm{tamed}}(\Delta t)
-:= \bigl\lvert p_{\mathrm{jump}}^{\mathrm{tamed}}(\Delta t)
-- p_{\mathrm{jump}}^{\mathrm{ref}}\bigr\rvert,\qquad
-E_m^{\mathrm{tamed}}(\Delta t)
-:= \bigl\lvert m_{\mathrm{jump}}^{\mathrm{tamed}}(\Delta t)
-- m_{\mathrm{jump}}^{\mathrm{ref}}\bigr\rvert,
-\]
-其中 \((p_{\mathrm{jump}}^{\mathrm{ref}},m_{\mathrm{jump}}^{\mathrm{ref}})\) 由 CTRW 在细网格或者极小步长的时间离散参考解给出。相应地，空间离散方法的误差
-\[
-E_p^{\mathrm{CTRW}}
-:= \bigl\lvert p_{\mathrm{jump}}^{\mathrm{CTRW}}
-- p_{\mathrm{jump}}^{\mathrm{ref}}\bigr\rvert,\qquad
-E_m^{\mathrm{CTRW}}
-:= \bigl\lvert m_{\mathrm{jump}}^{\mathrm{CTRW}}
-- m_{\mathrm{jump}}^{\mathrm{ref}}\bigr\rvert
-\]
-在上述实验参数下始终保持在很小的量级内。将误差与计算代价（时间离散的总时间步数，CTRW 的总跳跃次数）共同绘制成 work--error 曲线，可以清晰地看到：
+\subsubsection{四项统计量的系统比较}
+
+图~\ref{fig:canard_four_stats} 从更全面的角度比较了两种方法对
+Canard 结构的捕捉质量，在固定噪声强度 $\sigma = 0.7\sigma_c$
+（Canard 应当保持的参数区间）下，统计以下四项指标。
+
+%\begin{figure}[!htbp]
+%	\centering
+%	\includegraphics[width=\textwidth]{fig/canard_four_stats.png}
+%	\caption{等计算量下 EM（蓝色系）与 CTMC（SSA，绿色系）的四项
+%		Canard 结构统计量（$\varepsilon=0.1$，$\sigma/\sigma_c=0.70$，
+%		$N$ 按等计算量分配）。竖虚线标记 $\sigma=\sigma_c$。
+%		(1) 命中概率 $P_\mathrm{hit}$；
+%		(2) 提前逃离概率 $P_\mathrm{esc}$；
+%		(3) 慢流形占用率；
+%		(4) 跳变位置均值 $\mathrm{mean}(y_\mathrm{jump})$；
+%		(5) 跳变位置散布 $\mathrm{std}(y_\mathrm{jump})$；
+%		(6) $\sigma \approx \sigma_c$ 时 $y_\mathrm{jump}$ 的经验分布。}
+%	\label{fig:canard_four_stats}
+%\end{figure}
+
+图~\ref{fig:canard_four_stats} 中的关键结论如下：
 
 \begin{itemize}
-	\item 在相同计算代价下，CTRW 空间离散方法在快跳概率与平均快跳时间上的误差显著小于大步长时间离散方法；
-	\item 时间离散方法若要在快跳统计上达到与 CTRW 相当的精度，必须将时间步长缩小至 \(\Delta t\ll\delta\)，这会大幅增加总步数与计算成本。
+	\item \textbf{(1) 命中概率}：EM 大步长版本（$\Delta t = 2\varepsilon$）
+	即便在小 $\sigma$ 下 $P_\mathrm{hit}$ 也接近 0，说明数值误差将路径
+	"震飞"，与 Canard 物理无关；SSA（$h_y=0.10$）的 $P_\mathrm{hit}$
+	在 $\sigma < \sigma_c$ 时接近 0.95，行为物理合理。
+	
+	\item \textbf{(2) 提前逃离}：EM 大步长版本 $P_\mathrm{esc}$ 在
+	小 $\sigma$ 时虚高（纯数值假象），而 SSA 在 $\sigma < \sigma_c$
+	时 $P_\mathrm{esc}$ 低，在 $\sigma > \sigma_c$ 后才上升，
+	符合理论预测。
+	
+	\item \textbf{(5)(6) 跳变位置分布}：EM 精细解（$\Delta t=\varepsilon/100$，
+	蓝实线）与 SSA（$h_y=0.10$，绿实线）的 $y_\mathrm{jump}$ 均值
+	几乎相同（差 $<0.005$），两者分布均集中于
+	$y_\mathrm{jump} \approx -0.85$（远低于鞍结点 $y_c=-0.667$），
+	表明两种方法均正确捕捉了路径沿慢流形充分跟踪的 Canard 行为。
+	EM 的标准差略小（$0.073$ vs $0.081$），体现了空间离散引入的
+	少量额外随机性。
 \end{itemize}
 
 \subsection{小结}
+\label{subsec:canard-summary}
 
-本节基于缩放后的随机 Canard 快--慢系统，围绕“快跳是否正确出现以及快跳时间统计”这一几何敏感指标，系统比较了时间离散与空间离散两类数值格式。理论分析与数值实验表明：
+本节围绕随机 Canard 快--慢系统，从理论与数值两方面对噪声强度
+标度律以及两类数值格式进行了系统分析，主要结论如下：
 
 \begin{enumerate}
-	\item 显式时间离散方法在快变量方向的有效漂移误差为 \(\mathcal O(\Delta t/\delta)\)。当时间步长 \(\Delta t\) 与快时间尺度 \(\delta\) 同阶或更大时，这种误差足以改变系统是否处于 Canard 参数窗口，使得快跳时间出现明显偏移甚至结构性失真；
-	\item 基于生成元的 CTRW 空间离散方法在快变量方向具有自适应的有效时间步长 \(\Delta t_{\mathrm{eff}}\sim h_x/\lvert\mu_1\rvert\)，在折叠附近自动细化时间尺度，从而在较大的全局时间步长（从时间步进的角度看）下仍能保持 Canard 快跳的几何结构与统计特征；
-	\item 在相同计算代价下，空间离散方法在“是否出现快跳行为”这一指标上明显优于时间离散方法：CTRW 能稳定再现快跳及其时间分布，而粗步长时间离散方法则对时间步长极为敏感，数值结果缺乏鲁棒性。
+	\item \textbf{临界噪声强度 $\sigma_c = \varepsilon^{1/3}$}：
+	理论与数值实验均表明，以此为界 Canard 现象从保持过渡到破坏，
+	$P_\mathrm{hit}$ 的下降、$P_\mathrm{esc}$ 的上升以及
+	$\mathrm{std}(y_\mathrm{jump})$ 的增大均在 $\sigma \approx \sigma_c$
+	附近出现拐点，与 Berglund--Gentz 理论一致。
+	
+	\item \textbf{EM 格式的根本局限}：EM 需要 $\Delta t \ll \varepsilon$
+	才能正确捕捉快变量动力学，而 $\varepsilon \ll 1$ 使这一要求极为苛刻。
+	在固定计算预算下，"步长足够细"与"路径数足够多"之间存在不可调和的
+	权衡：粗步长导致 Canard 结构被数值误差破坏，且 RMSE 随路径数增加
+	反而上升。
+	
+	\item \textbf{CTMC 格式的优势}：基于生成元的 CTMC（SSA）格式
+	时间演化由 Gillespie 精确等待时间驱动，无时间步长选取问题。
+	空间离散化参数 $h_y$ 仅影响慢变量精度，且通过 $n_x = n_y^2$
+	的非均匀网格设计有效抑制了快变量的数值扩散。
+	在等计算量条件下，SSA（$h_y=0.10$）以约 1/9 的路径数达到
+	与 EM 精细解相当的 RMSE，体现了对 Canard 轨道结构的高效捕捉能力。
+	
+	\item \textbf{适用场景}：两类格式各有侧重。EM 精细格式（$\Delta t \ll \varepsilon$）
+	在追踪单条轨道几何细节方面具有优势；CTMC 格式在固定计算预算下
+	对 Canard 结构敏感的统计量（$P_\mathrm{hit}$、$y_\mathrm{jump}$
+	分布、逃逸概率等）的捕捉更为鲁棒高效。
 \end{enumerate}
-
-这一数值实验从动力学几何的角度补充了前一节一维立方振子上的 MFPT 比较，进一步说明了在快--慢、多尺度系统中，基于生成元的空间离散方法在长时间、弱量与几何敏感指标上的优势。
-
-%=====================================
 
 
 \section{结论}
@@ -2767,6 +2857,7 @@ E_m^{\mathrm{CTRW}}
 %需要指出的是，本文仍有若干局限与可拓展方向。理论方面，目前对空间离散方法的误差分析主要局限于低维、扩散非退化且系数足够光滑的情形，对于高维、退化扩散或具有复杂边界条件的随机系统，生成元离散的稳定性与收敛性仍有待进一步严格证明。时间离散方面，如何在保持强收敛与矩有界性的前提下，设计更高阶的显式或半隐式算法，以及如何在复杂几何域中处理反射与吸收边界，也是值得深入研究的问题。数值方面，可以在更多具有代表性的模型（如多稳态反应网络、高维随机梯度系统等）上验证本文的比较框架，并考虑时间离散与空间离散的自适应与混合策略，例如在不同空间区域或不同方程部分采用不同的离散技术，以充分发挥两类方法的互补优势。
 
 总的来看，本文所建立的时间离散与空间离散比较框架，以及在典型模型上的理论与数值分析，在随机微分方程的数值求解方法在强收敛和弱收敛、短时间的局部行为和长期总体行为之间的比较提供了两种离散格式的不同表现的判断，为在不同场景选取不同的数值格式提供了参考。随着数值分析理论与计算资源的不断发展，结合生成元离散、改进时间步进及机器学习等新技术，有望构造出既稳健又高效的随机模拟算法，为更复杂的随机动力系统的定量研究提供有力工具。
+
 
 
 
