@@ -8,7 +8,7 @@ import numba as nb
 import numpy as np
 
 
-nb.set_num_threads(28)
+nb.set_num_threads(20)
 
 
 EPS = 0.1
